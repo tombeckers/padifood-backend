@@ -1,13 +1,16 @@
 from contextlib import asynccontextmanager
 from typing import List
 
-from fastapi import Depends, FastAPI, UploadFile, File
+from fastapi import Depends, FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import APIKeyHeader
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from config import Settings
 
 settings = Settings()
+
+API_KEY_HEADER = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 # Support postgresql:// URL by converting to postgresql+asyncpg://
 database_url = settings.postgres_database_url
@@ -35,6 +38,11 @@ app.add_middleware(
 )
 
 
+async def verify_api_key(api_key: str = Depends(API_KEY_HEADER)):
+    if not api_key or api_key != settings.backend_api_key:
+        raise HTTPException(status_code=401, detail="Missing or invalid API key")
+
+
 async def get_db() -> AsyncSession:
     async with async_session() as session:
         yield session
@@ -49,6 +57,7 @@ def health():
 async def upload(
     files: List[UploadFile] = File(...),
     db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
 ):
     print("upload called, db:", db)
     results = []
