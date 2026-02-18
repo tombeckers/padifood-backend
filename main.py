@@ -1,12 +1,19 @@
 from contextlib import asynccontextmanager
+import io
+import os
+from datetime import date, datetime
 from typing import List
+import re
 
 from fastapi import Depends, FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
+from openpyxl import load_workbook
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from config import Settings
+from convert import convert_input
+from validation_hours import format_validation_email_body, run_validation
 
 settings = Settings()
 
@@ -59,21 +66,192 @@ async def upload(
     db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
-    print("upload called, db:", db)
-    results = []
+    _ = db  # dependency kept for compatibility
+    input_dir = "input"
+    os.makedirs(input_dir, exist_ok=True)
 
-    for file in files:
-        content = await file.read()
-        results.append(
-            {
-                "filename": file.filename,
-                "content_type": file.content_type,
-                "size": len(content),
-            }
+    if len(files) != 2:
+        raise HTTPException(
+            status_code=400,
+            detail="Exactly 2 files are required: one kloklijst and one factuur .xlsx file.",
         )
 
-    total_size = sum(result["size"] for result in results)
+    uploaded = []
+    for file in files:
+        if not file.filename:
+            raise HTTPException(status_code=400, detail="Uploaded file has no filename.")
+        if not file.filename.lower().endswith(".xlsx"):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Only .xlsx files are supported: {file.filename}",
+            )
+        content = await file.read()
+        uploaded.append({"filename": file.filename, "content": content})
+
+    def classify(data):
+        kloklijst = None
+        factuur = None
+        for item in data:
+            lower = item["filename"].lower()
+            is_kloklijst = "kloklijst" in lower
+            is_factuur = "factuur" in lower or "specificatie" in lower
+            if is_kloklijst and is_factuur:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Ambiguous file type for filename: {item['filename']}",
+                )
+            if is_kloklijst:
+                if kloklijst is not None:
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Multiple kloklijst files found; expected exactly one.",
+                    )
+                kloklijst = item
+            elif is_factuur:
+                if factuur is not None:
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Multiple factuur files found; expected exactly one.",
+                    )
+                factuur = item
+
+        if kloklijst is None or factuur is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Could not classify uploaded files into kloklijst and factuur.",
+            )
+        return kloklijst, factuur
+
+    def extract_week_from_filename(filename: str) -> str | None:
+        match = re.match(r"^\s*(\d{6})\b", filename)
+        return match.group(1) if match else None
+
+    def parse_excel_date(value) -> date | None:
+        if isinstance(value, datetime):
+            return value.date()
+        if isinstance(value, date):
+            return value
+        if value is None:
+            return None
+        text = str(value).strip()
+        if not text:
+            return None
+        text = text.split(" ")[0]
+        date_formats = [
+            "%Y-%m-%d",
+            "%d-%m-%Y",
+            "%d/%m/%Y",
+            "%Y/%m/%d",
+        ]
+        for fmt in date_formats:
+            try:
+                return datetime.strptime(text, fmt).date()
+            except ValueError:
+                continue
+        return None
+
+    def extract_week_from_factuur(content: bytes) -> str | None:
+        wb = load_workbook(io.BytesIO(content), data_only=True)
+        if "Export Factuur" not in wb.sheetnames:
+            return None
+
+        ws = wb["Export Factuur"]
+        rows = list(ws.iter_rows(values_only=True))
+        if not rows:
+            return None
+
+        header = [str(c).strip() if c is not None else "" for c in rows[0]]
+        if "Datum" not in header:
+            return None
+
+        datum_idx = header.index("Datum")
+        for row in rows[1:]:
+            if datum_idx >= len(row):
+                continue
+            parsed = parse_excel_date(row[datum_idx])
+            if parsed is None:
+                continue
+            iso = parsed.isocalendar()
+            return f"{iso[0]}{iso[1]:02d}"
+        return None
+
+    def build_prefixed_filename(original_filename: str, week: str) -> str:
+        fname = os.path.basename(original_filename)
+        stem = re.sub(r"\.xlsx$", "", fname, flags=re.IGNORECASE)
+        stem = re.sub(r"^\s*\d{6}\b[\s,._-]*", "", stem)
+        stem = stem.replace(",", " ")
+        stem = " ".join(stem.split()).strip()
+        if not stem:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Could not derive clean filename from: {original_filename}",
+            )
+        return f"{week} {stem}.xlsx"
+
+    kloklijst_upload, factuur_upload = classify(uploaded)
+
+    week_from_kloklijst = extract_week_from_filename(kloklijst_upload["filename"])
+    if not week_from_kloklijst:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not find week number (YYYYww) in kloklijst filename.",
+        )
+
+    week_from_factuur = extract_week_from_factuur(factuur_upload["content"])
+    if not week_from_factuur:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not find week number from Export Factuur sheet column Datum.",
+        )
+
+    if week_from_kloklijst != week_from_factuur:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Week number mismatch between kloklijst and factuur: "
+                f"{week_from_kloklijst} != {week_from_factuur}"
+            ),
+        )
+
+    week = week_from_factuur
+
+    kloklijst_name = build_prefixed_filename(kloklijst_upload["filename"], week)
+    factuur_name = build_prefixed_filename(factuur_upload["filename"], week)
+    kloklijst_path = os.path.join(input_dir, kloklijst_name)
+    factuur_path = os.path.join(input_dir, factuur_name)
+
+    with open(kloklijst_path, "wb") as f:
+        f.write(kloklijst_upload["content"])
+    with open(factuur_path, "wb") as f:
+        f.write(factuur_upload["content"])
+
+    try:
+        convert_input(kloklijst_name, factuur_name)
+        validation_result = run_validation(week)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected error while processing files: {e}",
+        )
+    output_file_week = validation_result["outputFileWeek"]
+    output_file_day = validation_result["outputFileDay"]
+
+    if not os.path.exists(output_file_week) or not os.path.exists(output_file_day):
+        raise HTTPException(
+            status_code=400,
+            detail="Expected output files were not generated by validation.",
+        )
+
+    email_body = format_validation_email_body(validation_result)
 
     return {
-        "emailBody": f"Test resultaat: \n\nTotal size: {total_size} bytes from {len(files)} files."
+        "emailBody": email_body,
+        "outputFileWeek": output_file_week,
+        "outputFileDay": output_file_day,
     }

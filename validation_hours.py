@@ -120,7 +120,9 @@ def load_factuur_hours_by_date(filepath: str) -> dict[str, dict[str, dict[str, f
     return totals
 
 
-def load_kloklijst_hours_by_date(filepath: str) -> dict[str, dict[str, dict[str, float]]]:
+def load_kloklijst_hours_by_date(
+    filepath: str,
+) -> dict[str, dict[str, dict[str, float]]]:
     """
     Returns {normalized_name: {date: {col_name: total_uren}}} for each column in
     KLOKLIJST_HOUR_COLS, forward-filling Naam and skipping summary rows.
@@ -177,7 +179,10 @@ def build_rows(factuur, kloklijst, include_date=False):
 
         if include_date:
             all_dates = sorted(set(f_by_name) | set(k_by_name))
-            iterations = [(date, f_by_name.get(date, {}), k_by_name.get(date, {})) for date in all_dates]
+            iterations = [
+                (date, f_by_name.get(date, {}), k_by_name.get(date, {}))
+                for date in all_dates
+            ]
         else:
             iterations = [(None, f_by_name, k_by_name)]
 
@@ -193,37 +198,54 @@ def build_rows(factuur, kloklijst, include_date=False):
                 base["Code toeslag"] = cat
 
                 if f_uren is None:
-                    rows.append({**base, "Factuur uren": "", "Kloklijst uren": round(k_uren, 2), "Verschil": "", "Status": "ALLEEN IN KLOKLIJST"})
+                    rows.append(
+                        {
+                            **base,
+                            "Factuur uren": "",
+                            "Kloklijst uren": round(k_uren, 2),
+                            "Verschil": "",
+                            "Status": "ALLEEN IN KLOKLIJST",
+                        }
+                    )
                     counts["only_kloklijst"] += 1
                 elif k_uren is None:
-                    rows.append({**base, "Factuur uren": round(f_uren, 2), "Kloklijst uren": "", "Verschil": "", "Status": "ALLEEN IN FACTUUR"})
+                    rows.append(
+                        {
+                            **base,
+                            "Factuur uren": round(f_uren, 2),
+                            "Kloklijst uren": "",
+                            "Verschil": "",
+                            "Status": "ALLEEN IN FACTUUR",
+                        }
+                    )
                     counts["only_factuur"] += 1
                 else:
                     diff = round(f_uren - k_uren, 2)
                     status = "OK" if diff == 0 else "VERSCHIL"
                     counts["verschil" if diff != 0 else "ok"] += 1
-                    rows.append({**base, "Factuur uren": round(f_uren, 2), "Kloklijst uren": round(k_uren, 2), "Verschil": diff, "Status": status})
+                    rows.append(
+                        {
+                            **base,
+                            "Factuur uren": round(f_uren, 2),
+                            "Kloklijst uren": round(k_uren, 2),
+                            "Verschil": diff,
+                            "Status": status,
+                        }
+                    )
 
     return rows, counts
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Validate hours between OTTO invoice and kloklijst.")
-    parser.add_argument("--week", required=True, help="Week number in YYYYww format, e.g. 202551")
-    args = parser.parse_args()
-    week = args.week
-
-    factuur_file  = f"formatted_input/{week} Padifood specificatie - Export Factuur.csv"
+def run_validation(week: str) -> dict:
+    factuur_file = f"formatted_input/{week} Padifood specificatie - Export Factuur.csv"
     kloklijst_file = f"formatted_input/{week} Kloklijst Padifood Otto Workforce.csv"
-    output_file       = f"output/{week} validation_hours.csv"
+    output_file = f"output/{week} validation_hours.csv"
     output_file_daily = f"output/{week} validation_hours_daily.csv"
 
     if not os.path.exists(factuur_file):
-        print(f"ERROR: file not found: {factuur_file}")
-        return
+        raise FileNotFoundError(f"File not found: {factuur_file}")
     if not os.path.exists(kloklijst_file):
-        print(f"ERROR: file not found: {kloklijst_file}")
-        return
+        raise FileNotFoundError(f"File not found: {kloklijst_file}")
 
     factuur = load_factuur_hours(factuur_file)
     kloklijst = load_kloklijst_hours(kloklijst_file)
@@ -235,22 +257,148 @@ def main():
     # --- Weekly aggregated output ---
     rows, counts = build_rows(factuur, kloklijst, include_date=False)
     with open(output_file, "w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=["Naam", "Code toeslag", "Factuur uren", "Kloklijst uren", "Verschil", "Status"])
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "Naam",
+                "Code toeslag",
+                "Factuur uren",
+                "Kloklijst uren",
+                "Verschil",
+                "Status",
+            ],
+        )
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"Resultaat geschreven naar: {output_file}")
-    print(f"  {len(rows)} regels | OK: {counts['ok']} | Verschil: {counts['verschil']} | Alleen factuur: {counts['only_factuur']} | Alleen kloklijst: {counts['only_kloklijst']}")
-
     # --- Daily output ---
-    rows_daily, counts_daily = build_rows(factuur_daily, kloklijst_daily, include_date=True)
+    rows_daily, counts_daily = build_rows(
+        factuur_daily, kloklijst_daily, include_date=True
+    )
     with open(output_file_daily, "w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=["Naam", "Datum", "Code toeslag", "Factuur uren", "Kloklijst uren", "Verschil", "Status"])
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "Naam",
+                "Datum",
+                "Code toeslag",
+                "Factuur uren",
+                "Kloklijst uren",
+                "Verschil",
+                "Status",
+            ],
+        )
         writer.writeheader()
         writer.writerows(rows_daily)
 
-    print(f"Resultaat geschreven naar: {output_file_daily}")
-    print(f"  {len(rows_daily)} regels | OK: {counts_daily['ok']} | Verschil: {counts_daily['verschil']} | Alleen factuur: {counts_daily['only_factuur']} | Alleen kloklijst: {counts_daily['only_kloklijst']}")
+    return {
+        "week": week,
+        "inputFactuurFile": factuur_file,
+        "inputKloklijstFile": kloklijst_file,
+        "outputFileWeek": output_file,
+        "outputFileDay": output_file_daily,
+        "rowsWeek": rows,
+        "rowsDay": rows_daily,
+        "countsWeek": counts,
+        "countsDay": counts_daily,
+    }
+
+
+def _fmt_value(value) -> str:
+    if value is None or value == "":
+        return "-"
+    return str(value)
+
+
+def format_validation_email_body(result: dict) -> str:
+    week = result["week"]
+    rows_week = result["rowsWeek"]
+    rows_day = result["rowsDay"]
+    counts_week = result["countsWeek"]
+    counts_day = result["countsDay"]
+
+    week_mismatches = [row for row in rows_week if row.get("Status") != "OK"]
+    day_mismatches = [row for row in rows_day if row.get("Status") != "OK"]
+
+    lines = [
+        f"Validatie uren week {week}",
+        "",
+        "Samenvatting weekbestand:",
+        (
+            f"- Totaal: {len(rows_week)} | OK: {counts_week['ok']} | "
+            f"VERSCHIL: {counts_week['verschil']} | "
+            f"ALLEEN IN FACTUUR: {counts_week['only_factuur']} | "
+            f"ALLEEN IN KLOKLIJST: {counts_week['only_kloklijst']}"
+        ),
+        "Samenvatting dagbestand:",
+        (
+            f"- Totaal: {len(rows_day)} | OK: {counts_day['ok']} | "
+            f"VERSCHIL: {counts_day['verschil']} | "
+            f"ALLEEN IN FACTUUR: {counts_day['only_factuur']} | "
+            f"ALLEEN IN KLOKLIJST: {counts_day['only_kloklijst']}"
+        ),
+        "",
+        "Afwijkingen weekbestand (alle niet-matchende regels):",
+    ]
+
+    if week_mismatches:
+        for row in week_mismatches:
+            lines.append(
+                " - "
+                f"Naam={_fmt_value(row.get('Naam'))}; "
+                f"Code={_fmt_value(row.get('Code toeslag'))}; "
+                f"Factuur={_fmt_value(row.get('Factuur uren'))}; "
+                f"Kloklijst={_fmt_value(row.get('Kloklijst uren'))}; "
+                f"Verschil={_fmt_value(row.get('Verschil'))}; "
+                f"Status={_fmt_value(row.get('Status'))}"
+            )
+    else:
+        lines.append(" - Geen afwijkingen.")
+
+    lines.append("")
+    lines.append("Afwijkingen dagbestand (alle niet-matchende regels):")
+    if day_mismatches:
+        for row in day_mismatches:
+            lines.append(
+                " - "
+                f"Naam={_fmt_value(row.get('Naam'))}; "
+                f"Datum={_fmt_value(row.get('Datum'))}; "
+                f"Code={_fmt_value(row.get('Code toeslag'))}; "
+                f"Factuur={_fmt_value(row.get('Factuur uren'))}; "
+                f"Kloklijst={_fmt_value(row.get('Kloklijst uren'))}; "
+                f"Verschil={_fmt_value(row.get('Verschil'))}; "
+                f"Status={_fmt_value(row.get('Status'))}"
+            )
+    else:
+        lines.append(" - Geen afwijkingen.")
+
+    return "\n".join(lines)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Validate hours between OTTO invoice and kloklijst."
+    )
+    parser.add_argument(
+        "--week", required=True, help="Week number in YYYYww format, e.g. 202551"
+    )
+    args = parser.parse_args()
+    week = args.week
+
+    try:
+        result = run_validation(week)
+    except FileNotFoundError as e:
+        print(f"ERROR: {e}")
+        return
+
+    print(f"Resultaat geschreven naar: {result['outputFileWeek']}")
+    print(
+        f"  {len(result['rowsWeek'])} regels | OK: {result['countsWeek']['ok']} | Verschil: {result['countsWeek']['verschil']} | Alleen factuur: {result['countsWeek']['only_factuur']} | Alleen kloklijst: {result['countsWeek']['only_kloklijst']}"
+    )
+    print(f"Resultaat geschreven naar: {result['outputFileDay']}")
+    print(
+        f"  {len(result['rowsDay'])} regels | OK: {result['countsDay']['ok']} | Verschil: {result['countsDay']['verschil']} | Alleen factuur: {result['countsDay']['only_factuur']} | Alleen kloklijst: {result['countsDay']['only_kloklijst']}"
+    )
 
 
 if __name__ == "__main__":
