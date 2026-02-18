@@ -39,6 +39,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = (BASE_DIR / "output").resolve()
 
 app.add_middleware(
     CORSMiddleware,
@@ -81,11 +82,11 @@ async def download(payload: DownloadRequest):
         candidate_path = candidate_path.resolve()
 
     try:
-        candidate_path.relative_to(BASE_DIR)
+        candidate_path.relative_to(OUTPUT_DIR)
     except ValueError as e:
         raise HTTPException(
             status_code=400,
-            detail="Invalid file path. Path must stay inside the backend directory.",
+            detail="Invalid file path. Only files inside output/ are allowed.",
         ) from e
 
     if not candidate_path.exists() or not candidate_path.is_file():
