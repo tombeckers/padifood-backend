@@ -1,14 +1,17 @@
 from contextlib import asynccontextmanager
 import io
 import os
+from pathlib import Path
 from datetime import date, datetime
 from typing import List
 import re
 
 from fastapi import Depends, FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.security import APIKeyHeader
 from openpyxl import load_workbook
+from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from config import Settings
@@ -35,6 +38,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+BASE_DIR = Path(__file__).resolve().parent
 
 app.add_middleware(
     CORSMiddleware,
@@ -58,6 +62,40 @@ async def get_db() -> AsyncSession:
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+class DownloadRequest(BaseModel):
+    fileName: str
+
+
+@app.post("/download")
+async def download(payload: DownloadRequest):
+    requested = payload.fileName.strip()
+    if not requested:
+        raise HTTPException(status_code=400, detail="fileName is required.")
+
+    candidate_path = Path(requested)
+    if not candidate_path.is_absolute():
+        candidate_path = (BASE_DIR / candidate_path).resolve()
+    else:
+        candidate_path = candidate_path.resolve()
+
+    try:
+        candidate_path.relative_to(BASE_DIR)
+    except ValueError as e:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file path. Path must stay inside the backend directory.",
+        ) from e
+
+    if not candidate_path.exists() or not candidate_path.is_file():
+        raise HTTPException(status_code=404, detail="File not found.")
+
+    return FileResponse(
+        path=str(candidate_path),
+        filename=candidate_path.name,
+        media_type="application/octet-stream",
+    )
 
 
 @app.post("/upload")
