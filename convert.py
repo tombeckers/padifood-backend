@@ -97,9 +97,9 @@ def convert_input(kloklijst_filename, factuur_filename):
         if fname.startswith("~$"):
             continue
         if not fname.lower().endswith(".xlsx"):
-            raise ValueError(f"Only .xlsx files are supported: {fname}")
+            raise ValueError(f"Alleen .xlsx-bestanden worden ondersteund: {fname}")
         if not os.path.exists(fpath):
-            raise FileNotFoundError(f"Input file not found: {fpath}")
+            raise FileNotFoundError(f"Invoerbestand niet gevonden: {fpath}")
 
         created_files.extend(_convert_workbook(fpath, output_dir))
 
@@ -108,5 +108,5 @@ def convert_input(kloklijst_filename, factuur_filename):
 
 if __name__ == "__main__":
     raise SystemExit(
-        "Use convert_input(kloklijst_filename, factuur_filename) from application code."
+        "Gebruik convert_input(kloklijst_filename, factuur_filename) vanuit de applicatiecode."
     )

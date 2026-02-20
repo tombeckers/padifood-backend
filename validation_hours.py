@@ -243,9 +243,9 @@ def run_validation(week: str) -> dict:
     output_file_daily = f"output/{week} validation_hours_daily.csv"
 
     if not os.path.exists(factuur_file):
-        raise FileNotFoundError(f"File not found: {factuur_file}")
+        raise FileNotFoundError(f"Bestand niet gevonden: {factuur_file}")
     if not os.path.exists(kloklijst_file):
-        raise FileNotFoundError(f"File not found: {kloklijst_file}")
+        raise FileNotFoundError(f"Bestand niet gevonden: {kloklijst_file}")
 
     factuur = load_factuur_hours(factuur_file)
     kloklijst = load_kloklijst_hours(kloklijst_file)
@@ -391,7 +391,7 @@ def main():
     try:
         result = run_validation(week)
     except FileNotFoundError as e:
-        print(f"ERROR: {e}")
+        print(f"FOUT: {e}")
         return
 
     print(f"Resultaat geschreven naar: {result['outputFileWeek']}")
