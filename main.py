@@ -52,7 +52,9 @@ app.add_middleware(
 
 async def verify_api_key(api_key: str = Depends(API_KEY_HEADER)):
     if not api_key or api_key != settings.backend_api_key:
-        raise HTTPException(status_code=401, detail="Missing or invalid API key")
+        raise HTTPException(
+            status_code=401, detail="Ontbrekende of ongeldige API-sleutel"
+        )
 
 
 async def get_db() -> AsyncSession:
@@ -86,11 +88,11 @@ async def download(payload: DownloadRequest):
     except ValueError as e:
         raise HTTPException(
             status_code=400,
-            detail="Invalid file path. Only files inside output/ are allowed.",
+            detail="Ongeldig bestandspad.",
         ) from e
 
     if not candidate_path.exists() or not candidate_path.is_file():
-        raise HTTPException(status_code=404, detail="File not found.")
+        raise HTTPException(status_code=404, detail="Bestand niet gevonden.")
 
     return FileResponse(
         path=str(candidate_path),
@@ -112,17 +114,19 @@ async def upload(
     if len(files) != 2:
         raise HTTPException(
             status_code=400,
-            detail="Exactly 2 files are required: one kloklijst and one factuur .xlsx file.",
+            detail="Precies 2 bestanden zijn vereist: een kloklijst en een factuurbestand (.xlsx).",
         )
 
     uploaded = []
     for file in files:
         if not file.filename:
-            raise HTTPException(status_code=400, detail="Uploaded file has no filename.")
+            raise HTTPException(
+                status_code=400, detail="Geüpload bestand heeft geen bestandsnaam."
+            )
         if not file.filename.lower().endswith(".xlsx"):
             raise HTTPException(
                 status_code=400,
-                detail=f"Only .xlsx files are supported: {file.filename}",
+                detail=f"Alleen .xlsx-bestanden worden ondersteund: {file.filename}",
             )
         content = await file.read()
         uploaded.append({"filename": file.filename, "content": content})
@@ -137,27 +141,27 @@ async def upload(
             if is_kloklijst and is_factuur:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Ambiguous file type for filename: {item['filename']}",
+                    detail=f"Onduidelijk bestandstype voor bestandsnaam: {item['filename']}",
                 )
             if is_kloklijst:
                 if kloklijst is not None:
                     raise HTTPException(
                         status_code=400,
-                        detail="Multiple kloklijst files found; expected exactly one.",
+                        detail="Meerdere kloklijstbestanden gevonden; precies één verwacht.",
                     )
                 kloklijst = item
             elif is_factuur:
                 if factuur is not None:
                     raise HTTPException(
                         status_code=400,
-                        detail="Multiple factuur files found; expected exactly one.",
+                        detail="Meerdere factuurbestanden gevonden; precies één verwacht.",
                     )
                 factuur = item
 
         if kloklijst is None or factuur is None:
             raise HTTPException(
                 status_code=400,
-                detail="Could not classify uploaded files into kloklijst and factuur.",
+                detail="Kon geüploade bestanden niet indelen als kloklijst en factuur.",
             )
         return kloklijst, factuur
 
@@ -223,7 +227,7 @@ async def upload(
         if not stem:
             raise HTTPException(
                 status_code=400,
-                detail=f"Could not derive clean filename from: {original_filename}",
+                detail=f"Kon geen geldige bestandsnaam afleiden uit: {original_filename}",
             )
         return f"{week} {stem}.xlsx"
 
@@ -233,21 +237,21 @@ async def upload(
     if not week_from_kloklijst:
         raise HTTPException(
             status_code=400,
-            detail="Could not find week number (YYYYww) in kloklijst filename.",
+            detail="Kon weeknummer (YYYYww) niet vinden in de bestandsnaam van de kloklijst.",
         )
 
     week_from_factuur = extract_week_from_factuur(factuur_upload["content"])
     if not week_from_factuur:
         raise HTTPException(
             status_code=400,
-            detail="Could not find week number from Export Factuur sheet column Datum.",
+            detail="Kon weeknummer niet bepalen uit kolom Datum in sheet Export Factuur.",
         )
 
     if week_from_kloklijst != week_from_factuur:
         raise HTTPException(
             status_code=400,
             detail=(
-                "Week number mismatch between kloklijst and factuur: "
+                "Weeknummer komt niet overeen tussen kloklijst en factuur: "
                 f"{week_from_kloklijst} != {week_from_factuur}"
             ),
         )
@@ -276,7 +280,7 @@ async def upload(
     except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail=f"Unexpected error while processing files: {e}",
+            detail=f"Onverwachte fout tijdens het verwerken van bestanden: {e}",
         )
     output_file_week = validation_result["outputFileWeek"]
     output_file_day = validation_result["outputFileDay"]
@@ -284,7 +288,7 @@ async def upload(
     if not os.path.exists(output_file_week) or not os.path.exists(output_file_day):
         raise HTTPException(
             status_code=400,
-            detail="Expected output files were not generated by validation.",
+            detail="De verwachte outputbestanden zijn niet gegenereerd door de validatie.",
         )
 
     email_body = format_validation_email_body(validation_result)

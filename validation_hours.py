@@ -243,9 +243,9 @@ def run_validation(week: str) -> dict:
     output_file_daily = f"output/{week} validation_hours_daily.csv"
 
     if not os.path.exists(factuur_file):
-        raise FileNotFoundError(f"File not found: {factuur_file}")
+        raise FileNotFoundError(f"Bestand niet gevonden: {factuur_file}")
     if not os.path.exists(kloklijst_file):
-        raise FileNotFoundError(f"File not found: {kloklijst_file}")
+        raise FileNotFoundError(f"Bestand niet gevonden: {kloklijst_file}")
 
     factuur = load_factuur_hours(factuur_file)
     kloklijst = load_kloklijst_hours(kloklijst_file)
@@ -310,68 +310,71 @@ def _fmt_value(value) -> str:
     return str(value)
 
 
+def _fmt_hours(value) -> str:
+    if value is None or value == "":
+        return "-"
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return str(value)
+    if number.is_integer():
+        return str(int(number))
+    return f"{number:.2f}".replace(".", ",")
+
+
 def format_validation_email_body(result: dict) -> str:
     week = result["week"]
     rows_week = result["rowsWeek"]
-    rows_day = result["rowsDay"]
-    counts_week = result["countsWeek"]
-    counts_day = result["countsDay"]
-
     week_mismatches = [row for row in rows_week if row.get("Status") != "OK"]
-    day_mismatches = [row for row in rows_day if row.get("Status") != "OK"]
+    if not week_mismatches:
+        return "\n".join(
+            [
+                "Goedemorgen,",
+                "",
+                (
+                    "Voor week "
+                    f"{week} hebben we op bovenstaande factuur geen discrepanties "
+                    "gevonden met onze kloklijsten."
+                ),
+                "",
+                "Bedankt!",
+            ]
+        )
 
     lines = [
-        f"Validatie uren week {week}",
+        "Goedemorgen,",
         "",
-        "Samenvatting weekbestand:",
         (
-            f"- Totaal: {len(rows_week)} | OK: {counts_week['ok']} | "
-            f"VERSCHIL: {counts_week['verschil']} | "
-            f"ALLEEN IN FACTUUR: {counts_week['only_factuur']} | "
-            f"ALLEEN IN KLOKLIJST: {counts_week['only_kloklijst']}"
+            "Op bovenstaande factuur hebben we voor week "
+            f"{week} de volgende discrepanties gevonden met onze kloklijsten:"
         ),
-        "Samenvatting dagbestand:",
-        (
-            f"- Totaal: {len(rows_day)} | OK: {counts_day['ok']} | "
-            f"VERSCHIL: {counts_day['verschil']} | "
-            f"ALLEEN IN FACTUUR: {counts_day['only_factuur']} | "
-            f"ALLEEN IN KLOKLIJST: {counts_day['only_kloklijst']}"
-        ),
-        "",
-        "Afwijkingen weekbestand (alle niet-matchende regels):",
     ]
 
-    if week_mismatches:
-        for row in week_mismatches:
-            lines.append(
-                " - "
-                f"Naam={_fmt_value(row.get('Naam'))}; "
-                f"Code={_fmt_value(row.get('Code toeslag'))}; "
-                f"Factuur={_fmt_value(row.get('Factuur uren'))}; "
-                f"Kloklijst={_fmt_value(row.get('Kloklijst uren'))}; "
-                f"Verschil={_fmt_value(row.get('Verschil'))}; "
-                f"Status={_fmt_value(row.get('Status'))}"
-            )
-    else:
-        lines.append(" - Geen afwijkingen.")
+    for row in week_mismatches:
+        name = _fmt_value(row.get("Naam"))
+        code = _fmt_value(row.get("Code toeslag"))
+        factuur_hours = _fmt_hours(row.get("Factuur uren"))
+        kloklijst_hours = _fmt_hours(row.get("Kloklijst uren"))
+        status = row.get("Status")
 
-    lines.append("")
-    lines.append("Afwijkingen dagbestand (alle niet-matchende regels):")
-    if day_mismatches:
-        for row in day_mismatches:
+        if status == "VERSCHIL":
             lines.append(
-                " - "
-                f"Naam={_fmt_value(row.get('Naam'))}; "
-                f"Datum={_fmt_value(row.get('Datum'))}; "
-                f"Code={_fmt_value(row.get('Code toeslag'))}; "
-                f"Factuur={_fmt_value(row.get('Factuur uren'))}; "
-                f"Kloklijst={_fmt_value(row.get('Kloklijst uren'))}; "
-                f"Verschil={_fmt_value(row.get('Verschil'))}; "
-                f"Status={_fmt_value(row.get('Status'))}"
+                f"- Bij {name} staat {factuur_hours} uur voor {code}, maar dit moet {kloklijst_hours} uur zijn."
             )
-    else:
-        lines.append(" - Geen afwijkingen.")
+        elif status == "ALLEEN IN FACTUUR":
+            lines.append(
+                f"- Bij {name} staat {factuur_hours} uur voor {code} op de factuur, maar deze uren staan niet op onze kloklijsten."
+            )
+        elif status == "ALLEEN IN KLOKLIJST":
+            lines.append(
+                f"- Bij {name} staat {kloklijst_hours} uur voor {code} op onze kloklijsten, maar deze uren ontbreken op de factuur."
+            )
+        else:
+            lines.append(
+                f"- Bij {name} is een discrepantie gevonden voor {code} (status: {_fmt_value(status)})."
+            )
 
+    lines.extend(["", "Kan hier een correctie van worden gemaakt?", "", "Bedankt!"])
     return "\n".join(lines)
 
 
@@ -388,7 +391,7 @@ def main():
     try:
         result = run_validation(week)
     except FileNotFoundError as e:
-        print(f"ERROR: {e}")
+        print(f"FOUT: {e}")
         return
 
     print(f"Resultaat geschreven naar: {result['outputFileWeek']}")
