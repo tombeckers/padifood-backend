@@ -1,7 +1,9 @@
 from contextlib import asynccontextmanager
+import csv
 import io
 import os
 from pathlib import Path
+import tempfile
 from datetime import date, datetime
 from typing import List
 import re
@@ -40,6 +42,9 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = (BASE_DIR / "output").resolve()
+WAGEGROUPS_CSV_PATH = (BASE_DIR / "person_wagegroups.csv").resolve()
+WAGEGROUPS_HEADERS = ["id", "name", "wagegroup"]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -62,6 +67,153 @@ async def get_db() -> AsyncSession:
         yield session
 
 
+def _normalize_person_name(name: str) -> str:
+    return " ".join(name.strip().lower().split())
+
+
+def _normalize_header_cell(value: str) -> str:
+    normalized = value.replace("\ufeff", "")
+    normalized = re.sub(r"[\s,;:_-]+", " ", normalized.strip().lower())
+    return " ".join(normalized.split())
+
+
+def _is_bulk_header_row(name: str, wagegroup: str) -> bool:
+    normalized_name = _normalize_header_cell(name)
+    normalized_wagegroup = _normalize_header_cell(wagegroup)
+
+    name_headers = {
+        "name",
+        "naam",
+        "achternaam voornaam",
+        "voornaam achternaam",
+    }
+    wagegroup_headers = {
+        "wagegroup",
+        "wage group",
+        "loon groep",
+        "loongroep",
+    }
+
+    if normalized_name not in name_headers:
+        return False
+    if not normalized_wagegroup:
+        return True
+    return normalized_wagegroup in wagegroup_headers
+
+
+def _clean_person_fields(name: str, wagegroup: str) -> tuple[str, str]:
+    cleaned_name = name.strip()
+    cleaned_wagegroup = wagegroup.strip()
+    if not cleaned_name or not cleaned_wagegroup:
+        raise HTTPException(
+            status_code=400,
+            detail="Velden 'name' en 'wagegroup' zijn verplicht.",
+        )
+    return cleaned_name, cleaned_wagegroup
+
+
+def _ensure_wagegroups_csv() -> None:
+    if WAGEGROUPS_CSV_PATH.exists():
+        return
+    with open(WAGEGROUPS_CSV_PATH, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=WAGEGROUPS_HEADERS)
+        writer.writeheader()
+
+
+def _read_wagegroups() -> list[dict[str, str]]:
+    _ensure_wagegroups_csv()
+    with open(WAGEGROUPS_CSV_PATH, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        missing_headers = [
+            header
+            for header in WAGEGROUPS_HEADERS
+            if header not in (reader.fieldnames or [])
+        ]
+        if missing_headers:
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    "CSV-indeling voor wagegroups is ongeldig. "
+                    f"Ontbrekende kolommen: {', '.join(missing_headers)}"
+                ),
+            )
+
+        rows: list[dict[str, str]] = []
+        for row in reader:
+            id_value = str(row.get("id", "")).strip()
+            name = str(row.get("name", "")).strip()
+            wagegroup = str(row.get("wagegroup", "")).strip()
+
+            if not id_value and not name and not wagegroup:
+                continue
+
+            rows.append(
+                {
+                    "id": id_value,
+                    "name": name,
+                    "wagegroup": wagegroup,
+                }
+            )
+        return rows
+
+
+def _write_wagegroups(rows: list[dict[str, str]]) -> None:
+    _ensure_wagegroups_csv()
+    fd, temp_path = tempfile.mkstemp(
+        prefix="person_wagegroups_",
+        suffix=".csv",
+        dir=str(BASE_DIR),
+    )
+    os.close(fd)
+
+    try:
+        with open(temp_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=WAGEGROUPS_HEADERS)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow(
+                    {
+                        "id": str(row.get("id", "")).strip(),
+                        "name": str(row.get("name", "")).strip(),
+                        "wagegroup": str(row.get("wagegroup", "")).strip(),
+                    }
+                )
+        os.replace(temp_path, WAGEGROUPS_CSV_PATH)
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+
+def _next_person_id(rows: list[dict[str, str]]) -> int:
+    max_id = 0
+    for row in rows:
+        try:
+            max_id = max(max_id, int(str(row.get("id", "")).strip()))
+        except ValueError:
+            continue
+    return max_id + 1
+
+
+def _upsert_person_wagegroup(
+    rows: list[dict[str, str]], name: str, wagegroup: str
+) -> str:
+    normalized_name = _normalize_person_name(name)
+    for row in rows:
+        if _normalize_person_name(str(row.get("name", ""))) == normalized_name:
+            row["name"] = name
+            row["wagegroup"] = wagegroup
+            return "updated"
+
+    rows.append(
+        {
+            "id": str(_next_person_id(rows)),
+            "name": name,
+            "wagegroup": wagegroup,
+        }
+    )
+    return "inserted"
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -69,6 +221,11 @@ def health():
 
 class DownloadRequest(BaseModel):
     fileName: str
+
+
+class WagePersonUpdateRequest(BaseModel):
+    name: str
+    wagegroup: str
 
 
 @app.post("/download")
@@ -99,6 +256,104 @@ async def download(payload: DownloadRequest):
         filename=candidate_path.name,
         media_type="application/octet-stream",
     )
+
+
+@app.get("/wagegroups")
+async def get_wagegroups(_: None = Depends(verify_api_key)):
+    rows = _read_wagegroups()
+    people = []
+    for row in rows:
+        try:
+            person_id = int(str(row.get("id", "")).strip())
+        except ValueError:
+            continue
+        people.append(
+            {
+                "id": person_id,
+                "name": str(row.get("name", "")).strip(),
+                "wagegroup": str(row.get("wagegroup", "")).strip(),
+            }
+        )
+    return people
+
+
+@app.post("/update_wage_person")
+async def update_wage_person(
+    payload: WagePersonUpdateRequest,
+    _: None = Depends(verify_api_key),
+):
+    name, wagegroup = _clean_person_fields(payload.name, payload.wagegroup)
+    rows = _read_wagegroups()
+    action = _upsert_person_wagegroup(rows, name, wagegroup)
+    _write_wagegroups(rows)
+    return {"status": "ok", "action": action}
+
+
+@app.post("/update_wages")
+async def update_wages(
+    file: UploadFile = File(...),
+    _: None = Depends(verify_api_key),
+):
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Geen bestandsnaam ontvangen.")
+    if not file.filename.lower().endswith(".xlsx"):
+        raise HTTPException(
+            status_code=400, detail="Alleen .xlsx-bestanden worden ondersteund."
+        )
+
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Leeg bestand ontvangen.")
+
+    try:
+        wb = load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail="Kon Excelbestand niet lezen."
+        ) from e
+
+    ws = wb.active
+    rows = _read_wagegroups()
+
+    processed = 0
+    inserted = 0
+    updated = 0
+    skipped = 0
+
+    for idx, excel_row in enumerate(ws.iter_rows(values_only=True)):
+        raw_name = excel_row[0] if len(excel_row) > 0 else None
+        raw_wagegroup = excel_row[1] if len(excel_row) > 1 else None
+
+        name = str(raw_name).strip() if raw_name is not None else ""
+        wagegroup = str(raw_wagegroup).strip() if raw_wagegroup is not None else ""
+
+        if _is_bulk_header_row(name, wagegroup):
+            skipped += 1
+            continue
+
+        if not name and not wagegroup:
+            continue
+
+        if not name or not wagegroup:
+            skipped += 1
+            continue
+
+        processed += 1
+        action = _upsert_person_wagegroup(rows, name, wagegroup)
+        if action == "inserted":
+            inserted += 1
+        else:
+            updated += 1
+
+    _write_wagegroups(rows)
+
+    return {
+        "status": "ok",
+        "processed": processed,
+        "inserted": inserted,
+        "updated": updated,
+        "skipped": skipped,
+    }
 
 
 @app.post("/upload")
