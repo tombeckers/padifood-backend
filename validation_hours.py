@@ -14,6 +14,7 @@ files use different name orderings (firstname-lastname vs lastname-firstname).
 import argparse
 import csv
 import os
+from difflib import SequenceMatcher
 from collections import defaultdict
 
 # Kloklijst columns that map to invoice wage categories
@@ -27,10 +28,147 @@ KLOKLIJST_HOUR_COLS = [
     "OW200 Dag",
 ]
 
+FUZZY_MATCH_THRESHOLD = 90
+
 
 def normalize_name(name: str) -> str:
     """Lowercase and sort words so 'Dawid Kutermak' == 'Kutermak Dawid'."""
     return " ".join(sorted(name.lower().replace("-", " ").split()))
+
+
+def _pair_key(kloklijst_name: str, factuur_name: str) -> tuple[str, str]:
+    return (normalize_name(kloklijst_name), normalize_name(factuur_name))
+
+
+def _build_alias_map(
+    all_names: set[str], confirmed_same_pairs: list[tuple[str, str]]
+) -> dict[str, str]:
+    parent = {name: name for name in all_names}
+
+    def find(node: str) -> str:
+        if parent[node] != node:
+            parent[node] = find(parent[node])
+        return parent[node]
+
+    def union(left: str, right: str) -> None:
+        root_left = find(left)
+        root_right = find(right)
+        if root_left == root_right:
+            return
+        canonical = min(root_left, root_right)
+        other = root_right if canonical == root_left else root_left
+        parent[other] = canonical
+
+    for left, right in confirmed_same_pairs:
+        left_norm = normalize_name(left)
+        right_norm = normalize_name(right)
+        if left_norm not in parent or right_norm not in parent:
+            continue
+        union(left_norm, right_norm)
+
+    return {name: find(name) for name in all_names}
+
+
+def _merge_week_hours_by_alias(
+    data: dict[str, dict[str, float]], alias_map: dict[str, str]
+) -> dict[str, dict[str, float]]:
+    merged: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    for name, categories in data.items():
+        canonical = alias_map.get(name, name)
+        for category, hours in categories.items():
+            merged[canonical][category] += hours
+    return {name: dict(categories) for name, categories in merged.items()}
+
+
+def _merge_daily_hours_by_alias(
+    data: dict[str, dict[str, dict[str, float]]], alias_map: dict[str, str]
+) -> dict[str, dict[str, dict[str, float]]]:
+    merged: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    for name, by_date in data.items():
+        canonical = alias_map.get(name, name)
+        for date_key, categories in by_date.items():
+            for category, hours in categories.items():
+                merged[canonical][date_key][category] += hours
+    return merged
+
+
+def _build_name_display_maps(
+    factuur_file: str, kloklijst_file: str
+) -> tuple[dict[str, str], dict[str, str]]:
+    factuur_names: dict[str, str] = {}
+    with open(factuur_file, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            raw_name = row.get("Naam", "").strip()
+            if not raw_name:
+                continue
+            normalized = normalize_name(raw_name)
+            factuur_names.setdefault(normalized, raw_name)
+
+    kloklijst_names: dict[str, str] = {}
+    current_name: str | None = None
+    with open(kloklijst_file, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        reader.fieldnames = [h.strip() for h in reader.fieldnames]
+        for row in reader:
+            naam = row.get("Naam", "").strip()
+            if naam:
+                current_name = naam
+            if not current_name:
+                continue
+            if not row.get("Datum", "").strip():
+                continue
+            normalized = normalize_name(current_name)
+            kloklijst_names.setdefault(normalized, current_name)
+
+    return factuur_names, kloklijst_names
+
+
+def _apply_alias_to_display_map(
+    display_map: dict[str, str], alias_map: dict[str, str]
+) -> dict[str, str]:
+    remapped: dict[str, str] = {}
+    for original_name, display_name in display_map.items():
+        canonical = alias_map.get(original_name, original_name)
+        remapped.setdefault(canonical, display_name)
+    return remapped
+
+
+def _fuzzy_score(left: str, right: str) -> int:
+    return round(100 * SequenceMatcher(None, left, right).ratio())
+
+
+def _find_similar_name_pairs(
+    factuur_names: set[str],
+    kloklijst_names: set[str],
+    factuur_display_map: dict[str, str],
+    kloklijst_display_map: dict[str, str],
+    confirmed_diff_pairs: set[tuple[str, str]],
+) -> list[tuple[str, str]]:
+    similar_pairs: list[tuple[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+
+    kloklijst_only = sorted(kloklijst_names - factuur_names)
+    factuur_only = sorted(factuur_names - kloklijst_names)
+
+    for kloklijst_name in kloklijst_only:
+        for factuur_name in factuur_only:
+            key = (kloklijst_name, factuur_name)
+            if key in confirmed_diff_pairs:
+                continue
+            if _fuzzy_score(kloklijst_name, factuur_name) <= FUZZY_MATCH_THRESHOLD:
+                continue
+            display_pair = (
+                kloklijst_display_map.get(kloklijst_name, kloklijst_name),
+                factuur_display_map.get(factuur_name, factuur_name),
+            )
+            if display_pair in seen:
+                continue
+            seen.add(display_pair)
+            similar_pairs.append(display_pair)
+
+    similar_pairs.sort(key=lambda pair: (pair[0].lower(), pair[1].lower()))
+    return similar_pairs
 
 
 def load_factuur_hours(filepath: str) -> dict[str, dict[str, float]]:
@@ -236,7 +374,11 @@ def build_rows(factuur, kloklijst, include_date=False):
     return rows, counts
 
 
-def run_validation(week: str) -> dict:
+def run_validation(
+    week: str,
+    confirmed_same_pairs: list[tuple[str, str]] | None = None,
+    confirmed_diff_pairs: list[tuple[str, str]] | None = None,
+) -> dict:
     factuur_file = f"formatted_input/{week} Padifood specificatie - Export Factuur.csv"
     kloklijst_file = f"formatted_input/{week} Kloklijst Padifood Otto Workforce.csv"
     output_file = f"output/{week} validation_hours.csv"
@@ -251,6 +393,35 @@ def run_validation(week: str) -> dict:
     kloklijst = load_kloklijst_hours(kloklijst_file)
     factuur_daily = load_factuur_hours_by_date(factuur_file)
     kloklijst_daily = load_kloklijst_hours_by_date(kloklijst_file)
+
+    confirmed_same_pairs = confirmed_same_pairs or []
+    confirmed_diff_pairs = confirmed_diff_pairs or []
+    confirmed_diff_pairs_set = {
+        _pair_key(kloklijst_name, factuur_name)
+        for kloklijst_name, factuur_name in confirmed_diff_pairs
+    }
+
+    all_names = set(factuur.keys()) | set(kloklijst.keys())
+    alias_map = _build_alias_map(all_names, confirmed_same_pairs)
+
+    factuur = _merge_week_hours_by_alias(factuur, alias_map)
+    kloklijst = _merge_week_hours_by_alias(kloklijst, alias_map)
+    factuur_daily = _merge_daily_hours_by_alias(factuur_daily, alias_map)
+    kloklijst_daily = _merge_daily_hours_by_alias(kloklijst_daily, alias_map)
+
+    factuur_display, kloklijst_display = _build_name_display_maps(
+        factuur_file, kloklijst_file
+    )
+    factuur_display = _apply_alias_to_display_map(factuur_display, alias_map)
+    kloklijst_display = _apply_alias_to_display_map(kloklijst_display, alias_map)
+
+    similar_people = _find_similar_name_pairs(
+        factuur_names=set(factuur.keys()),
+        kloklijst_names=set(kloklijst.keys()),
+        factuur_display_map=factuur_display,
+        kloklijst_display_map=kloklijst_display,
+        confirmed_diff_pairs=confirmed_diff_pairs_set,
+    )
 
     os.makedirs("output", exist_ok=True)
 
@@ -301,6 +472,7 @@ def run_validation(week: str) -> dict:
         "rowsDay": rows_daily,
         "countsWeek": counts,
         "countsDay": counts_daily,
+        "similarPeople": similar_people,
     }
 
 

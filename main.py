@@ -18,7 +18,11 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 
 from config import Settings
 from convert import convert_input
-from validation_hours import format_validation_email_body, run_validation
+from validation_hours import (
+    format_validation_email_body,
+    normalize_name,
+    run_validation,
+)
 
 settings = Settings()
 
@@ -44,6 +48,8 @@ BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = (BASE_DIR / "output").resolve()
 WAGEGROUPS_CSV_PATH = (BASE_DIR / "person_wagegroups.csv").resolve()
 WAGEGROUPS_HEADERS = ["id", "name", "wagegroup"]
+VERIFIED_NAME_PAIRS_CSV_PATH = (BASE_DIR / "verified_name_pairs.csv").resolve()
+VERIFIED_NAME_PAIRS_HEADERS = ["kloklijst_name", "factuur_name", "same_person"]
 
 
 app.add_middleware(
@@ -110,6 +116,144 @@ def _clean_person_fields(name: str, wagegroup: str) -> tuple[str, str]:
             detail="Velden 'name' en 'wagegroup' zijn verplicht.",
         )
     return cleaned_name, cleaned_wagegroup
+
+
+def _normalize_name_for_validation(name: str) -> str:
+    return normalize_name(name)
+
+
+def _ensure_verified_name_pairs_csv() -> None:
+    if VERIFIED_NAME_PAIRS_CSV_PATH.exists():
+        return
+    with open(VERIFIED_NAME_PAIRS_CSV_PATH, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=VERIFIED_NAME_PAIRS_HEADERS)
+        writer.writeheader()
+
+
+def _read_verified_name_pairs() -> list[dict[str, str | bool]]:
+    _ensure_verified_name_pairs_csv()
+    with open(VERIFIED_NAME_PAIRS_CSV_PATH, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        missing_headers = [
+            header
+            for header in VERIFIED_NAME_PAIRS_HEADERS
+            if header not in (reader.fieldnames or [])
+        ]
+        if missing_headers:
+            raise HTTPException(
+                status_code=500,
+                detail=(
+                    "CSV-indeling voor geverifieerde naamparen is ongeldig. "
+                    f"Ontbrekende kolommen: {', '.join(missing_headers)}"
+                ),
+            )
+
+        rows: list[dict[str, str | bool]] = []
+        for row in reader:
+            kloklijst_name = str(row.get("kloklijst_name", "")).strip()
+            factuur_name = str(row.get("factuur_name", "")).strip()
+            same_person_raw = str(row.get("same_person", "")).strip().lower()
+            if not kloklijst_name or not factuur_name:
+                continue
+            same_person = same_person_raw in {"1", "true", "yes", "ja"}
+            rows.append(
+                {
+                    "kloklijst_name": kloklijst_name,
+                    "factuur_name": factuur_name,
+                    "same_person": same_person,
+                }
+            )
+        return rows
+
+
+def _write_verified_name_pairs(rows: list[dict[str, str | bool]]) -> None:
+    _ensure_verified_name_pairs_csv()
+    fd, temp_path = tempfile.mkstemp(
+        prefix="verified_name_pairs_",
+        suffix=".csv",
+        dir=str(BASE_DIR),
+    )
+    os.close(fd)
+
+    try:
+        with open(temp_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=VERIFIED_NAME_PAIRS_HEADERS)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow(
+                    {
+                        "kloklijst_name": str(row.get("kloklijst_name", "")).strip(),
+                        "factuur_name": str(row.get("factuur_name", "")).strip(),
+                        "same_person": (
+                            "true" if bool(row.get("same_person")) else "false"
+                        ),
+                    }
+                )
+        os.replace(temp_path, VERIFIED_NAME_PAIRS_CSV_PATH)
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+
+def _upsert_verified_name_pair(
+    rows: list[dict[str, str | bool]],
+    kloklijst_name: str,
+    factuur_name: str,
+    same_person: bool,
+) -> None:
+    target_kloklijst = _normalize_name_for_validation(kloklijst_name)
+    target_factuur = _normalize_name_for_validation(factuur_name)
+
+    for row in rows:
+        existing_kloklijst = _normalize_name_for_validation(
+            str(row.get("kloklijst_name", ""))
+        )
+        existing_factuur = _normalize_name_for_validation(
+            str(row.get("factuur_name", ""))
+        )
+        if (
+            existing_kloklijst == target_kloklijst
+            and existing_factuur == target_factuur
+        ):
+            row["kloklijst_name"] = kloklijst_name
+            row["factuur_name"] = factuur_name
+            row["same_person"] = same_person
+            return
+
+    rows.append(
+        {
+            "kloklijst_name": kloklijst_name,
+            "factuur_name": factuur_name,
+            "same_person": same_person,
+        }
+    )
+
+
+def _decision_pairs_for_validation(
+    rows: list[dict[str, str | bool]],
+) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
+    same_pairs: list[tuple[str, str]] = []
+    diff_pairs: list[tuple[str, str]] = []
+    for row in rows:
+        kloklijst_name = str(row.get("kloklijst_name", "")).strip()
+        factuur_name = str(row.get("factuur_name", "")).strip()
+        if not kloklijst_name or not factuur_name:
+            continue
+        if bool(row.get("same_person")):
+            same_pairs.append((kloklijst_name, factuur_name))
+        else:
+            diff_pairs.append((kloklijst_name, factuur_name))
+    return same_pairs, diff_pairs
+
+
+def _validate_week(week: str) -> str:
+    cleaned_week = week.strip()
+    if not re.fullmatch(r"\d{6}", cleaned_week):
+        raise HTTPException(
+            status_code=400,
+            detail="Week moet in formaat YYYYww zijn, bijvoorbeeld 202551.",
+        )
+    return cleaned_week
 
 
 def _ensure_wagegroups_csv() -> None:
@@ -228,6 +372,17 @@ class WagePersonUpdateRequest(BaseModel):
     wagegroup: str
 
 
+class NamePairDecision(BaseModel):
+    kloklijstName: str
+    factuurName: str
+    samePerson: bool
+
+
+class VerifyNamePairsRequest(BaseModel):
+    week: str
+    decisions: list[NamePairDecision]
+
+
 @app.post("/download")
 async def download(payload: DownloadRequest):
     requested = payload.fileName.strip()
@@ -320,7 +475,7 @@ async def update_wages(
     updated = 0
     skipped = 0
 
-    for idx, excel_row in enumerate(ws.iter_rows(values_only=True)):
+    for excel_row in ws.iter_rows(values_only=True):
         raw_name = excel_row[0] if len(excel_row) > 0 else None
         raw_wagegroup = excel_row[1] if len(excel_row) > 1 else None
 
@@ -523,9 +678,19 @@ async def upload(
     with open(factuur_path, "wb") as f:
         f.write(factuur_upload["content"])
 
+    verified_rows = _read_verified_name_pairs()
+    confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(
+        verified_rows
+    )
+
     try:
         convert_input(kloklijst_name, factuur_name)
-        validation_result = run_validation(week)
+        validation_result = run_validation(
+            week,
+            confirmed_same_pairs=confirmed_same_pairs,
+            confirmed_diff_pairs=confirmed_diff_pairs,
+        )
+        print(f"validation_result: {validation_result['similarPeople']}")
     except FileNotFoundError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except ValueError as e:
@@ -552,4 +717,63 @@ async def upload(
         "emailBody": email_body,
         "outputFileWeek": output_file_week,
         "outputFileDay": output_file_day,
+        "similarPeople": validation_result.get("similarPeople", []),
+    }
+
+
+@app.post("/verify_name_pairs")
+async def verify_name_pairs(
+    payload: VerifyNamePairsRequest,
+    _: None = Depends(verify_api_key),
+):
+    week = _validate_week(payload.week)
+    rows = _read_verified_name_pairs()
+
+    for decision in payload.decisions:
+        kloklijst_name = decision.kloklijstName.strip()
+        factuur_name = decision.factuurName.strip()
+        if not kloklijst_name or not factuur_name:
+            raise HTTPException(
+                status_code=400,
+                detail="Elke beslissing moet zowel kloklijstName als factuurName bevatten.",
+            )
+        _upsert_verified_name_pair(
+            rows=rows,
+            kloklijst_name=kloklijst_name,
+            factuur_name=factuur_name,
+            same_person=decision.samePerson,
+        )
+
+    _write_verified_name_pairs(rows)
+
+    confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(rows)
+    try:
+        validation_result = run_validation(
+            week,
+            confirmed_same_pairs=confirmed_same_pairs,
+            confirmed_diff_pairs=confirmed_diff_pairs,
+        )
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Onverwachte fout tijdens het herberekenen van validatie: {e}",
+        ) from e
+
+    output_file_week = validation_result["outputFileWeek"]
+    if not os.path.exists(output_file_week):
+        raise HTTPException(
+            status_code=400,
+            detail="Het verwachte week-outputbestand is niet gegenereerd door de validatie.",
+        )
+
+    email_body = format_validation_email_body(validation_result)
+    return {
+        "emailBody": email_body,
+        "outputFileWeek": output_file_week,
     }

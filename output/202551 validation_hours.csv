@@ -174,12 +174,9 @@ kierzkowski mateusz,T133 Dag,26.25,26.25,0.0,OK
 kierzkowski mateusz,T135 Dag,5.25,5.25,0.0,OK
 konrad mogilnicki,Norm uren Dag,20.5,20.5,0.0,OK
 kovacova martina,Norm uren Dag,40.0,40.0,0.0,OK
-krystina pasiali,Norm uren Dag,,41.0,,ALLEEN IN KLOKLIJST
-krystina pasiali,OW140 Week,,6.0,,ALLEEN IN KLOKLIJST
-krystina pasiali,OW180 Dag,,5.0,,ALLEEN IN KLOKLIJST
-krystyna pasiali,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
-krystyna pasiali,OW140 Week,6.0,,,ALLEEN IN FACTUUR
-krystyna pasiali,OW180 Dag,5.0,,,ALLEEN IN FACTUUR
+krystina pasiali,Norm uren Dag,40.0,41.0,-1.0,VERSCHIL
+krystina pasiali,OW140 Week,6.0,6.0,0.0,OK
+krystina pasiali,OW180 Dag,5.0,5.0,0.0,OK
 lenart richard,Norm uren Dag,33.0,33.0,0.0,OK
 lopusiewicz maciej,Norm uren Dag,40.0,40.0,0.0,OK
 lucyna stankiewicz,Norm uren Dag,40.0,40.0,0.0,OK
@@ -241,8 +238,7 @@ nikola solomonova,T133 Dag,22.25,22.25,0.0,OK
 ogiela patrycja,Norm uren Dag,27.25,27.25,0.0,OK
 osik rafal,Norm uren Dag,32.0,32.0,0.0,OK
 osik rafal,T133 Dag,1.0,1.0,0.0,OK
-owczarczak sandra wawrzyniak,Norm uren Dag,38.5,,,ALLEEN IN FACTUUR
-owczarek sandra wawrzyniak,Norm uren Dag,,38.5,,ALLEEN IN KLOKLIJST
+owczarczak sandra wawrzyniak,Norm uren Dag,38.5,38.5,0.0,OK
 patryk rydzewski,Norm uren Dag,11.25,12.75,-1.5,VERSCHIL
 patryk rydzewski,OW140 Week,1.5,1.5,0.0,OK
 patryk rydzewski,T133 Dag,26.0,26.0,0.0,OK
