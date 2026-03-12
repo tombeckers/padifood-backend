@@ -521,11 +521,11 @@ async def upload(
     input_dir = "input"
     os.makedirs(input_dir, exist_ok=True)
 
-    if len(files) != 2:
-        raise HTTPException(
-            status_code=400,
-            detail="Precies 2 bestanden zijn vereist: een kloklijst en een factuurbestand (.xlsx).",
-        )
+    # if len(files) != 2:
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail="Precies 2 bestanden zijn vereist: een kloklijst en een factuurbestand (.xlsx).",
+    #     )
 
     uploaded = []
     for file in files:
@@ -704,6 +704,7 @@ async def upload(
         raise
     except Exception as e:
         import traceback
+
         traceback.print_exc()
         raise HTTPException(
             status_code=500,
