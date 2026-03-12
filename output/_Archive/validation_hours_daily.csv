@@ -1,0 +1,971 @@
+﻿Naam,Datum,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+adrian koson,2025-12-15,Norm uren Dag,1.5,,,ALLEEN IN FACTUUR
+adrian moldovan,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+adrian moldovan,2025-12-15,T133 Dag,4.25,4.25,0.0,OK
+adrian moldovan,2025-12-16,Norm uren Dag,3.5,3.5,0.0,OK
+adrian moldovan,2025-12-16,T133 Dag,4.0,4.0,0.0,OK
+adrian moldovan,2025-12-17,Norm uren Dag,3.5,3.5,0.0,OK
+adrian moldovan,2025-12-17,T133 Dag,4.5,4.5,0.0,OK
+adrian moldovan,2025-12-18,Norm uren Dag,3.75,3.75,0.0,OK
+adrian moldovan,2025-12-18,T133 Dag,2.25,2.25,0.0,OK
+agafitei ioan,2025-12-15,Norm uren Dag,3.5,3.5,0.0,OK
+agafitei ioan,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+agafitei ioan,2025-12-16,Norm uren Dag,2.5,2.5,0.0,OK
+agafitei ioan,2025-12-16,T133 Dag,5.5,5.5,0.0,OK
+agafitei ioan,2025-12-16,T135 Dag,0.5,0.5,0.0,OK
+agafitei ioan,2025-12-17,Norm uren Dag,0.75,2.25,-1.5,VERSCHIL
+agafitei ioan,2025-12-17,OW140 Week,1.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-17,T133 Dag,5.5,5.5,0.0,OK
+agafitei ioan,2025-12-17,T135 Dag,1.25,1.25,0.0,OK
+agafitei ioan,2025-12-18,Norm uren Dag,2.5,2.5,0.0,OK
+agafitei ioan,2025-12-18,T133 Dag,5.5,5.5,0.0,OK
+agafitei ioan,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+agafitei ioan,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+agafitei ioan,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+agafitei ioan,2025-12-20,Norm uren Dag,,-3.25,,ALLEEN IN KLOKLIJST
+agafitei ioan,2025-12-20,OW180 Dag,3.25,3.25,0.0,OK
+agafitei ioan,2025-12-21,OW140 Week,,1.5,,ALLEEN IN KLOKLIJST
+agnieszka cwioro,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+agnieszka cwioro,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+agnieszka cwioro,2025-12-15,T135 Dag,0.25,0.25,0.0,OK
+agnieszka cwioro,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+agnieszka cwioro,2025-12-16,T133 Dag,5.25,5.25,0.0,OK
+agnieszka cwioro,2025-12-16,T135 Dag,0.25,0.25,0.0,OK
+agnieszka cwioro,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+agnieszka cwioro,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+agnieszka cwioro,2025-12-17,T135 Dag,0.5,0.5,0.0,OK
+agnieszka cwioro,2025-12-18,Norm uren Dag,2.0,2.75,-0.75,VERSCHIL
+agnieszka cwioro,2025-12-18,OW140 Week,0.75,,,ALLEEN IN FACTUUR
+agnieszka cwioro,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+agnieszka cwioro,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+agnieszka cwioro,2025-12-19,T133 Dag,5.0,5.0,0.0,OK
+agnieszka cwioro,2025-12-20,Norm uren Dag,,-4.0,,ALLEEN IN KLOKLIJST
+agnieszka cwioro,2025-12-20,OW180 Dag,3.0,3.0,0.0,OK
+agnieszka cwioro,2025-12-20,OW200 Dag,1.0,1.0,0.0,OK
+agnieszka cwioro,2025-12-21,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+agnieszka kosior,2025-12-15,Norm uren Dag,9.5,9.5,0.0,OK
+agnieszka kosior,2025-12-15,T133 Dag,0.25,0.25,0.0,OK
+agnieszka kosior,2025-12-16,Norm uren Dag,9.5,9.5,0.0,OK
+agnieszka kosior,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
+agnieszka kosior,2025-12-17,Norm uren Dag,9.5,9.5,0.0,OK
+agnieszka kosior,2025-12-18,Norm uren Dag,1.75,9.5,-7.75,VERSCHIL
+agnieszka kosior,2025-12-18,OW140 Week,7.75,,,ALLEEN IN FACTUUR
+agnieszka kosior,2025-12-19,Norm uren Dag,9.25,9.25,0.0,OK
+agnieszka kosior,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+agnieszka kosior,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+agnieszka kosior,2025-12-21,OW140 Week,,7.75,,ALLEEN IN KLOKLIJST
+ales marco,2025-12-15,Norm uren Dag,8.25,8.25,0.0,OK
+ales marco,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+ales marco,2025-12-17,Norm uren Dag,4.5,8.75,-4.25,VERSCHIL
+ales marco,2025-12-17,OW140 Week,4.25,,,ALLEEN IN FACTUUR
+ales marco,2025-12-18,Norm uren Dag,9.0,9.0,0.0,OK
+ales marco,2025-12-19,Norm uren Dag,9.0,9.0,0.0,OK
+ales marco,2025-12-21,OW140 Week,,4.25,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+andrei obaciu,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+andrei obaciu,2025-12-16,Norm uren Dag,7.0,7.0,0.0,OK
+andrei obaciu,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+andrei obaciu,2025-12-17,Norm uren Dag,7.0,7.0,0.0,OK
+andrei obaciu,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+andrei obaciu,2025-12-18,Norm uren Dag,6.0,7.0,-1.0,VERSCHIL
+andrei obaciu,2025-12-18,OW140 Week,1.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+andrei obaciu,2025-12-19,Norm uren Dag,7.0,7.0,0.0,OK
+andrei obaciu,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+andrei obaciu,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+andrei obaciu,2025-12-21,OW140 Week,,1.0,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-15,Norm uren Dag,7.0,7.0,0.0,OK
+andrzej jankowski,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+andrzej jankowski,2025-12-16,Norm uren Dag,7.0,7.0,0.0,OK
+andrzej jankowski,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+andrzej jankowski,2025-12-17,Norm uren Dag,5.25,5.25,0.0,OK
+andrzej jankowski,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+andrzej jankowski,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+andrzej jankowski,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+andrzej jankowski,2025-12-19,Norm uren Dag,5.25,5.25,0.0,OK
+andrzej jankowski,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+anna gajewska,2025-12-15,Norm uren Dag,8.25,8.25,0.0,OK
+anna gajewska,2025-12-16,Norm uren Dag,7.5,8.25,-0.75,VERSCHIL
+anna gajewska,2025-12-16,OW140 Week,0.75,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-17,Norm uren Dag,8.5,8.5,0.0,OK
+anna gajewska,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+anna gajewska,2025-12-19,Norm uren Dag,7.75,7.75,0.0,OK
+anna gajewska,2025-12-21,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-15,Norm uren Dag,8.5,8.5,0.0,OK
+anna mikulska,2025-12-16,Norm uren Dag,7.5,7.5,0.0,OK
+anna mikulska,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+anna mikulska,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+anna mikulska,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+anna mikulska,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+anna sztabinska,2025-12-15,Norm uren Dag,2.0,2.0,0.0,OK
+anna sztabinska,2025-12-15,T133 Dag,4.75,4.75,0.0,OK
+anna sztabinska,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+anna sztabinska,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+anna sztabinska,2025-12-17,Norm uren Dag,2.5,2.5,0.0,OK
+anna sztabinska,2025-12-17,T133 Dag,3.5,3.5,0.0,OK
+anna sztabinska,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+anna sztabinska,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+anna sztabinska,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+anna sztabinska,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+arkadiusz kulesza,2025-12-15,Norm uren Dag,5.0,5.0,0.0,OK
+arkadiusz kulesza,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+arkadiusz kulesza,2025-12-17,Norm uren Dag,6.5,6.5,0.0,OK
+arkadiusz kulesza,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+arkadiusz kulesza,2025-12-19,Norm uren Dag,7.5,7.5,0.0,OK
+arkadiusz kulesza,2025-12-20,Norm uren Dag,5.0,-1.25,6.25,VERSCHIL
+arkadiusz kulesza,2025-12-20,OW180 Dag,0.25,0.25,0.0,OK
+arkadiusz kulesza,2025-12-20,OW200 Dag,1.0,1.0,0.0,OK
+artini paolo,2025-12-15,Norm uren Dag,3.0,3.0,0.0,OK
+artini paolo,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+artini paolo,2025-12-16,Norm uren Dag,3.0,3.0,0.0,OK
+artini paolo,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+artini paolo,2025-12-17,Norm uren Dag,3.0,3.0,0.0,OK
+artini paolo,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+artini paolo,2025-12-18,Norm uren Dag,3.0,3.0,0.0,OK
+artini paolo,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+artini paolo,2025-12-19,Norm uren Dag,3.0,3.0,0.0,OK
+artini paolo,2025-12-19,T133 Dag,5.0,5.0,0.0,OK
+audrius augustinaitis,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+audrius augustinaitis,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+audrius augustinaitis,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+audrius augustinaitis,2025-12-16,T133 Dag,5.25,5.25,0.0,OK
+audrius augustinaitis,2025-12-16,T135 Dag,0.5,0.5,0.0,OK
+audrius augustinaitis,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+audrius augustinaitis,2025-12-17,T133 Dag,5.5,5.5,0.0,OK
+audrius augustinaitis,2025-12-17,T135 Dag,0.25,0.25,0.0,OK
+audrius augustinaitis,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+audrius augustinaitis,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+audrius augustinaitis,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+audrius augustinaitis,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+audrius augustinaitis,2025-12-19,T133 Dag,0.5,0.5,0.0,OK
+babics david,2025-12-15,Norm uren Dag,8.75,8.75,0.0,OK
+babics david,2025-12-16,Norm uren Dag,9.0,9.0,0.0,OK
+babics david,2025-12-17,Norm uren Dag,4.25,9.0,-4.75,VERSCHIL
+babics david,2025-12-17,OW140 Week,4.75,,,ALLEEN IN FACTUUR
+babics david,2025-12-18,Norm uren Dag,9.0,9.0,0.0,OK
+babics david,2025-12-19,Norm uren Dag,9.0,9.0,0.0,OK
+babics david,2025-12-21,OW140 Week,,4.75,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+baraniuk beata,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+baraniuk beata,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+baraniuk beata,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+beata marczak,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+beata marczak,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+beata marczak,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+beata marczak,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+beata marczak,2025-12-18,Norm uren Dag,2.0,2.0,0.0,OK
+beata marczak,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+beata marczak,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+beata marczak,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+beata marczak,2025-12-20,T135 Dag,4.75,4.75,0.0,OK
+bernardeta bienkowska,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+bernardeta bienkowska,2025-12-15,T133 Dag,4.75,4.75,0.0,OK
+bernardeta bienkowska,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+bernardeta bienkowska,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+bernardeta bienkowska,2025-12-17,Norm uren Dag,2.0,2.0,0.0,OK
+bernardeta bienkowska,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+bernardeta bienkowska,2025-12-18,Norm uren Dag,2.0,2.0,0.0,OK
+bernardeta bienkowska,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+bernardeta bienkowska,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+bernardeta bienkowska,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+bierczak piotr,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+bierczak piotr,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+bierczak piotr,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+bierczak piotr,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+bierczak piotr,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+bogdan cotofrea stefan,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+bogdan cotofrea stefan,2025-12-16,Norm uren Dag,7.5,7.5,0.0,OK
+bogdan cotofrea stefan,2025-12-16,T135 Dag,0.25,0.25,0.0,OK
+bogdan cotofrea stefan,2025-12-17,Norm uren Dag,7.5,7.5,0.0,OK
+bogdan cotofrea stefan,2025-12-17,T135 Dag,0.25,0.25,0.0,OK
+bogdan cotofrea stefan,2025-12-18,Norm uren Dag,7.75,7.75,0.0,OK
+bogdan cotofrea stefan,2025-12-19,Norm uren Dag,7.75,7.75,0.0,OK
+bogdan cotofrea stefan,2025-12-20,Norm uren Dag,1.25,-4.5,5.75,VERSCHIL
+bogdan cotofrea stefan,2025-12-20,OW180 Dag,4.5,4.5,0.0,OK
+bogumil mlynarczyk,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
+bogumil mlynarczyk,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+bogumil mlynarczyk,2025-12-15,T135 Dag,0.75,0.75,0.0,OK
+bogumil mlynarczyk,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+bogumil mlynarczyk,2025-12-16,T133 Dag,5.25,5.25,0.0,OK
+bogumil mlynarczyk,2025-12-16,T135 Dag,0.5,0.5,0.0,OK
+bogumil mlynarczyk,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+bogumil mlynarczyk,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+bogumil mlynarczyk,2025-12-17,T135 Dag,0.5,0.5,0.0,OK
+bogumil mlynarczyk,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+bogumil mlynarczyk,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+bogumil mlynarczyk,2025-12-18,T135 Dag,0.75,0.75,0.0,OK
+bogumil mlynarczyk,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+bogumil mlynarczyk,2025-12-19,T133 Dag,4.5,4.5,0.0,OK
+bruzdzinski marcel,2025-12-15,Norm uren Dag,6.5,6.5,0.0,OK
+bruzdzinski marcel,2025-12-15,T135 Dag,1.5,1.5,0.0,OK
+bruzdzinski marcel,2025-12-16,Norm uren Dag,6.0,6.0,0.0,OK
+bruzdzinski marcel,2025-12-16,T135 Dag,1.5,1.5,0.0,OK
+bruzdzinski marcel,2025-12-17,Norm uren Dag,6.25,6.25,0.0,OK
+bruzdzinski marcel,2025-12-17,T135 Dag,1.25,1.25,0.0,OK
+bruzdzinski marcel,2025-12-19,Norm uren Dag,6.5,6.5,0.0,OK
+bruzdzinski marcel,2025-12-19,T135 Dag,1.25,1.25,0.0,OK
+cabla robert,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+cabla robert,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+cabla robert,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+cabla robert,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+cabla robert,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+cabla robert,2025-12-20,Norm uren Dag,,-7.75,,ALLEEN IN KLOKLIJST
+cabla robert,2025-12-20,OW180 Dag,5.25,5.25,0.0,OK
+cabla robert,2025-12-20,OW200 Dag,2.5,2.5,0.0,OK
+cieslak grazyna,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+cieslak grazyna,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+cieslak grazyna,2025-12-17,Norm uren Dag,7.5,7.5,0.0,OK
+cieslak grazyna,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+cieslak grazyna,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+colaco eden,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+colaco eden,2025-12-15,T135 Dag,0.25,0.25,0.0,OK
+colaco eden,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+colaco eden,2025-12-17,Norm uren Dag,8.25,8.25,0.0,OK
+colaco eden,2025-12-17,T135 Dag,0.25,0.25,0.0,OK
+colaco eden,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+colaco eden,2025-12-18,T135 Dag,0.25,0.25,0.0,OK
+colaco eden,2025-12-19,Norm uren Dag,6.5,6.5,0.0,OK
+colaco eden,2025-12-20,Norm uren Dag,0.5,-5.25,5.75,VERSCHIL
+colaco eden,2025-12-20,OW180 Dag,5.25,5.25,0.0,OK
+costa pedro,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
+costa pedro,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+costa pedro,2025-12-16,Norm uren Dag,2.5,2.5,0.0,OK
+costa pedro,2025-12-16,T133 Dag,4.75,4.75,0.0,OK
+costa pedro,2025-12-17,Norm uren Dag,2.5,2.5,0.0,OK
+costa pedro,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+costa pedro,2025-12-18,Norm uren Dag,2.5,2.5,0.0,OK
+costa pedro,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+costa pedro,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+costa pedro,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+cristu virgil,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+cristu virgil,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+cristu virgil,2025-12-17,Norm uren Dag,7.75,8.0,-0.25,VERSCHIL
+cristu virgil,2025-12-17,OW140 Week,0.25,,,ALLEEN IN FACTUUR
+cristu virgil,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+cristu virgil,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+cristu virgil,2025-12-20,Norm uren Dag,0.25,-7.0,7.25,VERSCHIL
+cristu virgil,2025-12-20,OW180 Dag,6.0,6.0,0.0,OK
+cristu virgil,2025-12-20,OW200 Dag,1.0,1.0,0.0,OK
+cristu virgil,2025-12-21,OW140 Week,,0.25,,ALLEEN IN KLOKLIJST
+czajkowski jaroslaw,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+czajkowski jaroslaw,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+czajkowski jaroslaw,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+czajkowski jaroslaw,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+czajkowski jaroslaw,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+dalalau gabriel,2025-12-20,Norm uren Dag,,-6.25,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-20,OW180 Dag,6.25,6.25,0.0,OK
+damian filipek,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+damian filipek,2025-12-16,Norm uren Dag,7.5,7.5,0.0,OK
+damian filipek,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+damian filipek,2025-12-18,Norm uren Dag,3.5,3.5,0.0,OK
+damian filipek,2025-12-19,Norm uren Dag,4.5,4.5,0.0,OK
+damian pyc,2025-12-15,Norm uren Dag,4.0,4.0,0.0,OK
+damian pyc,2025-12-15,T133 Dag,4.0,4.0,0.0,OK
+damian pyc,2025-12-16,Norm uren Dag,3.75,3.75,0.0,OK
+damian pyc,2025-12-16,T133 Dag,3.75,3.75,0.0,OK
+damian pyc,2025-12-17,Norm uren Dag,3.75,3.75,0.0,OK
+damian pyc,2025-12-17,T133 Dag,4.25,4.25,0.0,OK
+damian pyc,2025-12-18,Norm uren Dag,3.75,3.75,0.0,OK
+damian pyc,2025-12-18,T133 Dag,4.0,4.0,0.0,OK
+damian pyc,2025-12-19,Norm uren Dag,3.75,3.75,0.0,OK
+damian pyc,2025-12-19,T133 Dag,3.0,3.0,0.0,OK
+daniel pikta,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+daniel pikta,2025-12-16,Norm uren Dag,5.25,5.25,0.0,OK
+daniel pikta,2025-12-17,Norm uren Dag,6.75,6.75,0.0,OK
+daniel pikta,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+daniel pikta,2025-12-19,Norm uren Dag,7.25,7.25,0.0,OK
+daniel pikta,2025-12-20,T135 Dag,4.75,4.75,0.0,OK
+daniel sapa,2025-12-15,Norm uren Dag,3.0,3.0,0.0,OK
+daniel sapa,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+daniel sapa,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+daniel sapa,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+daniel sapa,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+daniel sapa,2025-12-17,T133 Dag,4.75,4.75,0.0,OK
+daniel sapa,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+daniel sapa,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+daniel sapa,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+daniel sapa,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+daniel wilczak,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+daniel wilczak,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+daniel wilczak,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
+daniel wilczak,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+daniel wilczak,2025-12-19,Norm uren Dag,7.75,7.75,0.0,OK
+daniel wilczak,2025-12-20,Norm uren Dag,0.5,-5.5,6.0,VERSCHIL
+daniel wilczak,2025-12-20,OW180 Dag,5.5,5.5,0.0,OK
+daria major,2025-12-15,Norm uren Dag,1.75,1.75,0.0,OK
+daria major,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+daria major,2025-12-15,T135 Dag,0.5,0.5,0.0,OK
+daria major,2025-12-16,Norm uren Dag,2.0,2.0,0.0,OK
+daria major,2025-12-16,T133 Dag,4.5,4.5,0.0,OK
+daria major,2025-12-17,Norm uren Dag,1.75,1.75,0.0,OK
+daria major,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+daria major,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+daria major,2025-12-18,Norm uren Dag,1.75,1.75,0.0,OK
+daria major,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+daria major,2025-12-18,T135 Dag,1.25,1.25,0.0,OK
+daria major,2025-12-19,Norm uren Dag,1.75,1.75,0.0,OK
+daria major,2025-12-19,T133 Dag,5.0,5.0,0.0,OK
+dariusz glabien,2025-12-15,Norm uren Dag,6.0,6.0,0.0,OK
+dariusz glabien,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+dariusz glabien,2025-12-16,Norm uren Dag,6.25,6.25,0.0,OK
+dariusz glabien,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+dariusz glabien,2025-12-17,Norm uren Dag,6.0,6.0,0.0,OK
+dariusz glabien,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+dariusz glabien,2025-12-18,Norm uren Dag,6.25,6.25,0.0,OK
+dariusz glabien,2025-12-18,T133 Dag,4.25,4.25,0.0,OK
+dariusz glabien,2025-12-19,Norm uren Dag,6.25,6.25,0.0,OK
+dariusz glabien,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+dariusz glabien,2025-12-20,Norm uren Dag,1.0,-7.0,8.0,VERSCHIL
+dariusz glabien,2025-12-20,OW180 Dag,5.25,5.25,0.0,OK
+dariusz glabien,2025-12-20,OW200 Dag,1.75,1.75,0.0,OK
+dawid jankowski,2025-12-15,Norm uren Dag,7.25,7.25,0.0,OK
+dawid jankowski,2025-12-16,Norm uren Dag,9.5,9.5,0.0,OK
+dawid jankowski,2025-12-16,T133 Dag,0.5,0.5,0.0,OK
+dawid jankowski,2025-12-17,Norm uren Dag,3.75,9.5,-5.75,VERSCHIL
+dawid jankowski,2025-12-17,OW140 Week,5.75,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+dawid jankowski,2025-12-19,Norm uren Dag,9.5,9.5,0.0,OK
+dawid jankowski,2025-12-20,OW180 Dag,4.5,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-21,OW140 Week,,5.75,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+dawid kutermak,2025-12-16,Norm uren Dag,7.75,7.75,0.0,OK
+dawid kutermak,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
+dawid kutermak,2025-12-18,Norm uren Dag,7.75,7.75,0.0,OK
+dawid kutermak,2025-12-19,Norm uren Dag,4.75,4.75,0.0,OK
+dawid skorczewski,2025-12-15,Norm uren Dag,6.25,6.25,0.0,OK
+dawid skorczewski,2025-12-16,Norm uren Dag,8.5,8.5,0.0,OK
+dawid skorczewski,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
+dawid skorczewski,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+dawid skorczewski,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+dawid skorczewski,2025-12-20,Norm uren Dag,1.5,-5.0,6.5,VERSCHIL
+dawid skorczewski,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+dawid skorczewski,2025-12-20,OW200 Dag,0.25,0.25,0.0,OK
+dekanova katarina,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+dekanova katarina,2025-12-16,Norm uren Dag,6.5,8.0,-1.5,VERSCHIL
+dekanova katarina,2025-12-16,OW140 Week,1.5,,,ALLEEN IN FACTUUR
+dekanova katarina,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
+dekanova katarina,2025-12-18,Norm uren Dag,9.25,9.25,0.0,OK
+dekanova katarina,2025-12-18,T133 Dag,1.25,1.25,0.0,OK
+dekanova katarina,2025-12-19,Norm uren Dag,7.5,7.5,0.0,OK
+dekanova katarina,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+dekanova katarina,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+dekanova katarina,2025-12-21,OW140 Week,,1.5,,ALLEEN IN KLOKLIJST
+denisa radu,2025-12-15,Norm uren Dag,7.75,7.75,0.0,OK
+denisa radu,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+denisa radu,2025-12-17,Norm uren Dag,1.5,1.5,0.0,OK
+dlugolecki grzegorz,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+dlugolecki grzegorz,2025-12-15,T133 Dag,3.5,3.5,0.0,OK
+dlugolecki grzegorz,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+dlugolecki grzegorz,2025-12-16,T133 Dag,3.5,3.5,0.0,OK
+dlugolecki grzegorz,2025-12-17,Norm uren Dag,1.25,1.25,0.0,OK
+dlugolecki grzegorz,2025-12-17,T133 Dag,3.75,3.75,0.0,OK
+dlugolecki grzegorz,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+dlugolecki grzegorz,2025-12-18,T133 Dag,3.0,3.0,0.0,OK
+dlugolecki grzegorz,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+dlugolecki grzegorz,2025-12-19,T133 Dag,3.5,3.5,0.0,OK
+domaradzka jagoda,2025-12-15,Norm uren Dag,9.5,9.5,0.0,OK
+domaradzka jagoda,2025-12-15,T133 Dag,0.5,0.5,0.0,OK
+domaradzka jagoda,2025-12-16,Norm uren Dag,2.0,9.5,-7.5,VERSCHIL
+domaradzka jagoda,2025-12-16,OW140 Week,7.5,,,ALLEEN IN FACTUUR
+domaradzka jagoda,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
+domaradzka jagoda,2025-12-17,Norm uren Dag,9.0,9.0,0.0,OK
+domaradzka jagoda,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+domaradzka jagoda,2025-12-19,Norm uren Dag,9.25,9.25,0.0,OK
+domaradzka jagoda,2025-12-21,OW140 Week,,7.5,,ALLEEN IN KLOKLIJST
+dominik kijak,2025-12-15,Norm uren Dag,7.0,7.0,0.0,OK
+dominik kijak,2025-12-15,T135 Dag,1.5,1.5,0.0,OK
+dominik kijak,2025-12-16,Norm uren Dag,7.0,7.0,0.0,OK
+dominik kijak,2025-12-16,T135 Dag,1.5,1.5,0.0,OK
+dominik kijak,2025-12-17,Norm uren Dag,4.5,7.0,-2.5,VERSCHIL
+dominik kijak,2025-12-17,OW140 Week,2.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-17,T135 Dag,1.5,1.5,0.0,OK
+dominik kijak,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+dominik kijak,2025-12-18,T135 Dag,1.5,1.5,0.0,OK
+dominik kijak,2025-12-19,Norm uren Dag,7.0,7.0,0.0,OK
+dominik kijak,2025-12-19,T135 Dag,1.5,1.5,0.0,OK
+dominik kijak,2025-12-21,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+drabik renata,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+drabik renata,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+drabik renata,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+drabik renata,2025-12-16,T133 Dag,2.75,2.75,0.0,OK
+drabik renata,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+drabik renata,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+drabik renata,2025-12-18,T133 Dag,4.0,4.0,0.0,OK
+drabik renata,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+drabik renata,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+drozdziel martin,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+drozdziel martin,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+drozdziel martin,2025-12-15,T135 Dag,0.25,0.25,0.0,OK
+drozdziel martin,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+drozdziel martin,2025-12-16,T133 Dag,3.75,3.75,0.0,OK
+drozdziel martin,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+drozdziel martin,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+drozdziel martin,2025-12-17,T135 Dag,0.5,0.5,0.0,OK
+drozdziel martin,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+drozdziel martin,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+drozdziel martin,2025-12-18,T135 Dag,0.5,0.5,0.0,OK
+drozdziel martin,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+drozdziel martin,2025-12-19,T133 Dag,4.75,4.75,0.0,OK
+elzbieta przybyszewska,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+elzbieta przybyszewska,2025-12-16,Norm uren Dag,7.25,7.25,0.0,OK
+elzbieta przybyszewska,2025-12-17,Norm uren Dag,7.75,8.0,-0.25,VERSCHIL
+elzbieta przybyszewska,2025-12-17,OW140 Week,0.25,,,ALLEEN IN FACTUUR
+elzbieta przybyszewska,2025-12-18,Norm uren Dag,9.0,9.0,0.0,OK
+elzbieta przybyszewska,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+elzbieta przybyszewska,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+elzbieta przybyszewska,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+elzbieta przybyszewska,2025-12-21,OW140 Week,,0.25,,ALLEEN IN KLOKLIJST
+ernesto slepcik,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+ernesto slepcik,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+ernesto slepcik,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+ernesto slepcik,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+ernesto slepcik,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+ernesto slepcik,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+ernesto slepcik,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+ernesto slepcik,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+ernesto slepcik,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+ernesto slepcik,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+ewa koszny,2025-12-15,Norm uren Dag,2.0,2.0,0.0,OK
+ewa koszny,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+ewa koszny,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+ewa koszny,2025-12-16,T133 Dag,3.75,3.75,0.0,OK
+ewa koszny,2025-12-17,Norm uren Dag,2.0,2.0,0.0,OK
+ewa koszny,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+ewa koszny,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+ewa koszny,2025-12-18,T133 Dag,3.5,3.5,0.0,OK
+ewa koszny,2025-12-19,Norm uren Dag,2.0,2.0,0.0,OK
+ewa koszny,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+fiszer katarzyna,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+fiszer katarzyna,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+fiszer katarzyna,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+fiszer katarzyna,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+fiszer katarzyna,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+fiszer katarzyna,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+garbacz kamila,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+garbacz kamila,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+garbacz kamila,2025-12-19,Norm uren Dag,1.0,1.0,0.0,OK
+gerda kasileviciute,2025-12-15,Norm uren Dag,7.5,7.5,0.0,OK
+gerda kasileviciute,2025-12-15,T133 Dag,1.75,1.75,0.0,OK
+gerda kasileviciute,2025-12-16,Norm uren Dag,7.75,7.75,0.0,OK
+gerda kasileviciute,2025-12-16,T133 Dag,1.5,1.5,0.0,OK
+gerda kasileviciute,2025-12-17,Norm uren Dag,2.25,7.75,-5.5,VERSCHIL
+gerda kasileviciute,2025-12-17,OW140 Week,5.5,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-17,T133 Dag,1.25,1.25,0.0,OK
+gerda kasileviciute,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+gerda kasileviciute,2025-12-18,T133 Dag,1.25,1.25,0.0,OK
+gerda kasileviciute,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+gerda kasileviciute,2025-12-19,T133 Dag,0.75,0.75,0.0,OK
+gerda kasileviciute,2025-12-21,OW140 Week,,5.5,,ALLEEN IN KLOKLIJST
+gigliotti mario,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+gigliotti mario,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+gigliotti mario,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+gigliotti mario,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+gigliotti mario,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+gil sandra,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+gil sandra,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+gil sandra,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+gil sandra,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+gil sandra,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+gil sandra,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+grucelski marcin,2025-12-15,Norm uren Dag,3.75,3.75,0.0,OK
+grucelski marcin,2025-12-15,T133 Dag,4.25,4.25,0.0,OK
+grucelski marcin,2025-12-16,Norm uren Dag,3.0,3.0,0.0,OK
+grucelski marcin,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+grucelski marcin,2025-12-16,T135 Dag,0.5,0.5,0.0,OK
+grucelski marcin,2025-12-17,Norm uren Dag,2.5,3.0,-0.5,VERSCHIL
+grucelski marcin,2025-12-17,OW140 Week,0.5,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+grucelski marcin,2025-12-17,T135 Dag,1.25,1.25,0.0,OK
+grucelski marcin,2025-12-18,Norm uren Dag,3.0,3.0,0.0,OK
+grucelski marcin,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+grucelski marcin,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+grucelski marcin,2025-12-19,Norm uren Dag,3.0,3.0,0.0,OK
+grucelski marcin,2025-12-19,T133 Dag,2.75,2.75,0.0,OK
+grucelski marcin,2025-12-20,Norm uren Dag,,-2.5,,ALLEEN IN KLOKLIJST
+grucelski marcin,2025-12-20,OW180 Dag,2.5,2.5,0.0,OK
+grucelski marcin,2025-12-21,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+hanna kijak,2025-12-15,Norm uren Dag,2.0,2.0,0.0,OK
+hanna kijak,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+hanna kijak,2025-12-15,T135 Dag,0.5,0.5,0.0,OK
+hanna kijak,2025-12-16,Norm uren Dag,1.75,1.75,0.0,OK
+hanna kijak,2025-12-16,T133 Dag,4.75,4.75,0.0,OK
+hanna kijak,2025-12-17,Norm uren Dag,1.75,1.75,0.0,OK
+hanna kijak,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+hanna kijak,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+hanna kijak,2025-12-18,Norm uren Dag,2.0,2.0,0.0,OK
+hanna kijak,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+hanna kijak,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+hanna kijak,2025-12-19,Norm uren Dag,2.0,2.0,0.0,OK
+hanna kijak,2025-12-19,T133 Dag,4.75,4.75,0.0,OK
+hanna kijak,2025-12-20,Norm uren Dag,3.0,-0.5,3.5,VERSCHIL
+hanna kijak,2025-12-20,OW180 Dag,0.5,0.5,0.0,OK
+iva kupcikova,2025-12-15,Norm uren Dag,6.0,6.0,0.0,OK
+iva kupcikova,2025-12-16,Norm uren Dag,6.0,6.0,0.0,OK
+iva kupcikova,2025-12-17,Norm uren Dag,6.0,6.0,0.0,OK
+iva kupcikova,2025-12-18,Norm uren Dag,4.5,4.5,0.0,OK
+iva kupcikova,2025-12-19,Norm uren Dag,6.0,6.0,0.0,OK
+iva kupcikova,2025-12-20,T135 Dag,5.0,5.0,0.0,OK
+jakub kristof,2025-12-15,Norm uren Dag,3.0,3.0,0.0,OK
+jakub kristof,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+jakub kristof,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+jakub kristof,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+jakub kristof,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+jakub kristof,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+jakub kristof,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+jakub kristof,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+jakub kristof,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+jakub kristof,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+jakub ustrzynski,2025-12-15,Norm uren Dag,7.25,7.25,0.0,OK
+jakub ustrzynski,2025-12-16,Norm uren Dag,9.0,9.0,0.0,OK
+jakub ustrzynski,2025-12-17,Norm uren Dag,7.25,7.25,0.0,OK
+jakub ustrzynski,2025-12-18,Norm uren Dag,8.5,9.0,-0.5,VERSCHIL
+jakub ustrzynski,2025-12-18,OW140 Week,0.5,,,ALLEEN IN FACTUUR
+jakub ustrzynski,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+jakub ustrzynski,2025-12-21,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+jaworski patryk,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+jaworski patryk,2025-12-18,Norm uren Dag,7.75,7.75,0.0,OK
+jaworski patryk,2025-12-19,Norm uren Dag,5.5,5.5,0.0,OK
+jerzy muc,2025-12-15,Norm uren Dag,3.5,3.5,0.0,OK
+jerzy muc,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+jerzy muc,2025-12-16,Norm uren Dag,3.5,3.5,0.0,OK
+jerzy muc,2025-12-16,T133 Dag,4.5,4.5,0.0,OK
+jerzy muc,2025-12-17,Norm uren Dag,3.5,3.5,0.0,OK
+jerzy muc,2025-12-17,T133 Dag,4.5,4.5,0.0,OK
+jerzy muc,2025-12-18,Norm uren Dag,3.5,3.5,0.0,OK
+jerzy muc,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+jerzy muc,2025-12-19,Norm uren Dag,3.5,3.5,0.0,OK
+jerzy muc,2025-12-19,T133 Dag,4.25,4.25,0.0,OK
+julia kaziura,2025-12-15,Norm uren Dag,7.0,7.0,0.0,OK
+julia kaziura,2025-12-16,Norm uren Dag,8.25,8.25,0.0,OK
+julia kaziura,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+julia kaziura,2025-12-18,Norm uren Dag,8.5,8.5,0.0,OK
+julia kaziura,2025-12-18,T133 Dag,1.25,1.25,0.0,OK
+julia kaziura,2025-12-19,Norm uren Dag,6.75,6.75,0.0,OK
+julia nowak,2025-12-15,Norm uren Dag,6.25,6.25,0.0,OK
+julia nowak,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+julia nowak,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+julia nowak,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+julia nowak,2025-12-19,Norm uren Dag,7.5,7.5,0.0,OK
+julia rychlik,2025-12-15,Norm uren Dag,2.75,2.75,0.0,OK
+julia rychlik,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+julia rychlik,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+julia rychlik,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+julia rychlik,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+julia rychlik,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+julia rychlik,2025-12-18,Norm uren Dag,2.0,2.0,0.0,OK
+julia rychlik,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+julia rychlik,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+julia rychlik,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+justyna perczyk,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+justyna perczyk,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+justyna perczyk,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+justyna perczyk,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+justyna perczyk,2025-12-19,Norm uren Dag,7.75,7.75,0.0,OK
+kamil karpinski,2025-12-16,Norm uren Dag,3.0,3.0,0.0,OK
+kamil karpinski,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+kamil karpinski,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+kamil karpinski,2025-12-17,T133 Dag,4.5,4.5,0.0,OK
+kamil karpinski,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+kamil karpinski,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+kamil karpinski,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+kamil karpinski,2025-12-19,T133 Dag,3.25,3.25,0.0,OK
+kamil michalik,2025-12-15,Norm uren Dag,3.75,3.75,0.0,OK
+kamil michalik,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+kamil michalik,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+kamil michalik,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+kamil michalik,2025-12-17,Norm uren Dag,2.75,2.75,0.0,OK
+kamil michalik,2025-12-17,T133 Dag,4.0,4.0,0.0,OK
+kamil michalik,2025-12-18,Norm uren Dag,2.75,2.75,0.0,OK
+kamil michalik,2025-12-18,T133 Dag,4.0,4.0,0.0,OK
+kamil michalik,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+kamil michalik,2025-12-19,T133 Dag,2.75,2.75,0.0,OK
+katarzyna kaziura,2025-12-15,Norm uren Dag,7.0,7.0,0.0,OK
+katarzyna kaziura,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+katarzyna kaziura,2025-12-16,Norm uren Dag,7.0,7.0,0.0,OK
+katarzyna kaziura,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+katarzyna kaziura,2025-12-17,Norm uren Dag,6.0,7.0,-1.0,VERSCHIL
+katarzyna kaziura,2025-12-17,OW140 Week,1.0,,,ALLEEN IN FACTUUR
+katarzyna kaziura,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+katarzyna kaziura,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+katarzyna kaziura,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+katarzyna kaziura,2025-12-19,Norm uren Dag,7.0,7.0,0.0,OK
+katarzyna kaziura,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+katarzyna kaziura,2025-12-21,OW140 Week,,1.0,,ALLEEN IN KLOKLIJST
+katarzyna kutkiewicz,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna kutkiewicz,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+katarzyna kutkiewicz,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna kutkiewicz,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+katarzyna kutkiewicz,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna kutkiewicz,2025-12-17,T133 Dag,4.75,4.75,0.0,OK
+katarzyna kutkiewicz,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna kutkiewicz,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+katarzyna kutkiewicz,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna kutkiewicz,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+katarzyna stencel,2025-12-15,Norm uren Dag,3.0,3.0,0.0,OK
+katarzyna stencel,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+katarzyna stencel,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna stencel,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+katarzyna stencel,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna stencel,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+katarzyna stencel,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna stencel,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+katarzyna stencel,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+katarzyna stencel,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+kaziura wiktor,2025-12-15,Norm uren Dag,7.25,7.25,0.0,OK
+kaziura wiktor,2025-12-16,Norm uren Dag,7.25,7.25,0.0,OK
+kaziura wiktor,2025-12-17,Norm uren Dag,7.25,7.25,0.0,OK
+kaziura wiktor,2025-12-18,Norm uren Dag,9.0,9.0,0.0,OK
+kaziura wiktor,2025-12-19,Norm uren Dag,5.5,5.5,0.0,OK
+kaziura wiktor,2025-12-19,T135 Dag,2.0,2.0,0.0,OK
+kierzkowski mateusz,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+kierzkowski mateusz,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+kierzkowski mateusz,2025-12-16,Norm uren Dag,1.75,1.75,0.0,OK
+kierzkowski mateusz,2025-12-16,T133 Dag,5.25,5.25,0.0,OK
+kierzkowski mateusz,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+kierzkowski mateusz,2025-12-17,Norm uren Dag,1.75,1.75,0.0,OK
+kierzkowski mateusz,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+kierzkowski mateusz,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+kierzkowski mateusz,2025-12-18,Norm uren Dag,0.75,1.5,-0.75,VERSCHIL
+kierzkowski mateusz,2025-12-18,OW140 Week,0.75,,,ALLEEN IN FACTUUR
+kierzkowski mateusz,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+kierzkowski mateusz,2025-12-18,T135 Dag,2.25,2.25,0.0,OK
+kierzkowski mateusz,2025-12-19,Norm uren Dag,2.0,2.0,0.0,OK
+kierzkowski mateusz,2025-12-19,T133 Dag,5.25,5.25,0.0,OK
+kierzkowski mateusz,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+kierzkowski mateusz,2025-12-21,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+konrad mogilnicki,2025-12-15,Norm uren Dag,4.75,4.75,0.0,OK
+konrad mogilnicki,2025-12-16,Norm uren Dag,7.75,7.75,0.0,OK
+konrad mogilnicki,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+kovacova martina,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+kovacova martina,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+kovacova martina,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+kovacova martina,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+kovacova martina,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+krystina pasiali,2025-12-15,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-16,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-17,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-18,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-19,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-20,OW180 Dag,,5.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-21,OW140 Week,,6.0,,ALLEEN IN KLOKLIJST
+krystyna pasiali,2025-12-15,Norm uren Dag,9.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-16,Norm uren Dag,9.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-17,Norm uren Dag,3.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-17,OW140 Week,6.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-18,Norm uren Dag,10.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-19,Norm uren Dag,8.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-20,OW180 Dag,5.0,,,ALLEEN IN FACTUUR
+lenart richard,2025-12-15,Norm uren Dag,5.25,5.25,0.0,OK
+lenart richard,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+lenart richard,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+lenart richard,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+lenart richard,2025-12-19,Norm uren Dag,3.75,3.75,0.0,OK
+lopusiewicz maciej,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+lopusiewicz maciej,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+lopusiewicz maciej,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+lopusiewicz maciej,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+lopusiewicz maciej,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+lucyna stankiewicz,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+lucyna stankiewicz,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+lucyna stankiewicz,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+lucyna stankiewicz,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+lucyna stankiewicz,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+lukas proschl,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+lukas proschl,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+lukas proschl,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+lukas proschl,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+lukas proschl,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+lukas proschl,2025-12-20,Norm uren Dag,1.0,-4.25,5.25,VERSCHIL
+lukas proschl,2025-12-20,OW180 Dag,4.25,4.25,0.0,OK
+maciej wolanin,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
+maciej wolanin,2025-12-15,T133 Dag,5.25,5.25,0.0,OK
+maciej wolanin,2025-12-15,T135 Dag,0.5,0.5,0.0,OK
+maciej wolanin,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+maciej wolanin,2025-12-16,T133 Dag,5.0,5.0,0.0,OK
+maciej wolanin,2025-12-17,Norm uren Dag,2.5,2.5,0.0,OK
+maciej wolanin,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+maciej wolanin,2025-12-17,T135 Dag,0.5,0.5,0.0,OK
+maciej wolanin,2025-12-18,Norm uren Dag,2.5,2.5,0.0,OK
+maciej wolanin,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+maciej wolanin,2025-12-18,T135 Dag,0.75,0.75,0.0,OK
+maciej wolanin,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+maciej wolanin,2025-12-19,T133 Dag,4.5,4.5,0.0,OK
+madej marta,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+madej marta,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+madej marta,2025-12-17,Norm uren Dag,3.75,3.75,0.0,OK
+madry oliwier,2025-12-15,Norm uren Dag,5.25,5.25,0.0,OK
+madry oliwier,2025-12-15,T133 Dag,3.5,3.5,0.0,OK
+madry oliwier,2025-12-16,Norm uren Dag,5.0,5.0,0.0,OK
+madry oliwier,2025-12-16,T133 Dag,2.25,2.25,0.0,OK
+madry oliwier,2025-12-17,Norm uren Dag,3.5,5.25,-1.75,VERSCHIL
+madry oliwier,2025-12-17,OW140 Week,1.75,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-17,T133 Dag,3.5,3.5,0.0,OK
+madry oliwier,2025-12-18,Norm uren Dag,5.0,5.0,0.0,OK
+madry oliwier,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+madry oliwier,2025-12-19,Norm uren Dag,5.25,5.25,0.0,OK
+madry oliwier,2025-12-19,T133 Dag,2.0,2.0,0.0,OK
+madry oliwier,2025-12-21,OW140 Week,,1.75,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+madry slawomir,2025-12-16,Norm uren Dag,5.0,5.0,0.0,OK
+madry slawomir,2025-12-17,Norm uren Dag,8.25,8.25,0.0,OK
+madry slawomir,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+madry slawomir,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+magdalena marek,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+magdalena marek,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+magdalena marek,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+magdalena marek,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+magdalena marek,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+magdalena zmijewska,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+magdalena zmijewska,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+magdalena zmijewska,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+magdalena zmijewska,2025-12-16,T133 Dag,3.0,3.0,0.0,OK
+magdalena zmijewska,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+magdalena zmijewska,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+magdalena zmijewska,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+magdalena zmijewska,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-15,Norm uren Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+maka patryk,2025-12-16,Norm uren Dag,3.5,3.5,0.0,OK
+maka patryk,2025-12-16,T133 Dag,4.0,4.0,0.0,OK
+maka patryk,2025-12-17,Norm uren Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-17,T133 Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-18,Norm uren Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+maka patryk,2025-12-19,Norm uren Dag,3.75,3.75,0.0,OK
+maka patryk,2025-12-19,T133 Dag,1.25,1.25,0.0,OK
+malgorzata pasieka,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+malgorzata pasieka,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+malgorzata pasieka,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+malgorzata pasieka,2025-12-16,T133 Dag,4.75,4.75,0.0,OK
+malgorzata pasieka,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+malgorzata pasieka,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+malgorzata pasieka,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+malgorzata pasieka,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+malgorzata pasieka,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+malgorzata pasieka,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+malgorzata urbanowicz,2025-12-15,Norm uren Dag,9.5,9.5,0.0,OK
+malgorzata urbanowicz,2025-12-15,T133 Dag,0.5,0.5,0.0,OK
+malgorzata urbanowicz,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+malgorzata urbanowicz,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
+malgorzata urbanowicz,2025-12-17,Norm uren Dag,1.75,9.5,-7.75,VERSCHIL
+malgorzata urbanowicz,2025-12-17,OW140 Week,7.75,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+malgorzata urbanowicz,2025-12-19,Norm uren Dag,9.25,9.25,0.0,OK
+malgorzata urbanowicz,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+malgorzata urbanowicz,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+malgorzata urbanowicz,2025-12-21,OW140 Week,,7.75,,ALLEEN IN KLOKLIJST
+mankowska paulina,2025-12-15,Norm uren Dag,9.25,9.25,0.0,OK
+mankowska paulina,2025-12-15,T133 Dag,0.5,0.5,0.0,OK
+mankowska paulina,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+mankowska paulina,2025-12-16,T133 Dag,0.5,0.5,0.0,OK
+mankowska paulina,2025-12-17,Norm uren Dag,3.0,9.5,-6.5,VERSCHIL
+mankowska paulina,2025-12-17,OW140 Week,6.5,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+mankowska paulina,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+mankowska paulina,2025-12-21,OW140 Week,,6.5,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+marius mladinovici,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+marius mladinovici,2025-12-16,Norm uren Dag,7.0,7.0,0.0,OK
+marius mladinovici,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+marius mladinovici,2025-12-17,Norm uren Dag,6.0,7.0,-1.0,VERSCHIL
+marius mladinovici,2025-12-17,OW140 Week,1.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+marius mladinovici,2025-12-18,Norm uren Dag,7.0,7.0,0.0,OK
+marius mladinovici,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+marius mladinovici,2025-12-19,Norm uren Dag,7.0,7.0,0.0,OK
+marius mladinovici,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+marius mladinovici,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+marius mladinovici,2025-12-21,OW140 Week,,1.0,,ALLEEN IN KLOKLIJST
+marius seciu,2025-12-15,Norm uren Dag,10.5,10.5,0.0,OK
+marius seciu,2025-12-16,Norm uren Dag,9.5,9.5,0.0,OK
+marius seciu,2025-12-17,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+marius seciu,2025-12-17,OW140 Week,10.5,,,ALLEEN IN FACTUUR
+marius seciu,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+marius seciu,2025-12-19,Norm uren Dag,10.5,10.5,0.0,OK
+marius seciu,2025-12-20,Norm uren Dag,,-10.5,,ALLEEN IN KLOKLIJST
+marius seciu,2025-12-20,OW180 Dag,5.25,5.25,0.0,OK
+marius seciu,2025-12-20,OW200 Dag,5.25,5.25,0.0,OK
+marius seciu,2025-12-21,OW140 Week,,10.5,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
+marques wilson,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+marques wilson,2025-12-16,Norm uren Dag,2.5,2.5,0.0,OK
+marques wilson,2025-12-16,T133 Dag,4.75,4.75,0.0,OK
+marques wilson,2025-12-17,Norm uren Dag,2.5,2.5,0.0,OK
+marques wilson,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+marques wilson,2025-12-18,Norm uren Dag,2.5,2.5,0.0,OK
+marques wilson,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+marques wilson,2025-12-19,Norm uren Dag,2.75,2.75,0.0,OK
+marques wilson,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+martynas tranevicius,2025-12-15,Norm uren Dag,1.75,1.75,0.0,OK
+mateusz wielgus,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+mateusz wielgus,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+mateusz wielgus,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+mateusz wielgus,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+mateusz wielgus,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+mateusz wielgus,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+matiscik vladimir,2025-12-15,Norm uren Dag,3.5,3.5,0.0,OK
+matiscik vladimir,2025-12-15,T133 Dag,4.75,4.75,0.0,OK
+matiscik vladimir,2025-12-16,Norm uren Dag,4.0,4.0,0.0,OK
+matiscik vladimir,2025-12-16,T133 Dag,4.0,4.0,0.0,OK
+matiscik vladimir,2025-12-17,Norm uren Dag,3.75,3.75,0.0,OK
+matiscik vladimir,2025-12-17,T133 Dag,4.75,4.75,0.0,OK
+matiscik vladimir,2025-12-18,Norm uren Dag,3.5,3.5,0.0,OK
+matiscik vladimir,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+matiscik vladimir,2025-12-19,Norm uren Dag,1.5,1.5,0.0,OK
+matiscik vladimir,2025-12-19,T133 Dag,3.5,3.5,0.0,OK
+mika patrycja,2025-12-15,Norm uren Dag,4.25,4.25,0.0,OK
+mika patrycja,2025-12-15,T133 Dag,3.75,3.75,0.0,OK
+mika patrycja,2025-12-16,Norm uren Dag,4.25,4.25,0.0,OK
+mika patrycja,2025-12-16,T133 Dag,3.5,3.5,0.0,OK
+mika patrycja,2025-12-17,Norm uren Dag,4.25,4.25,0.0,OK
+mika patrycja,2025-12-17,T133 Dag,3.75,3.75,0.0,OK
+mika patrycja,2025-12-18,Norm uren Dag,4.25,4.25,0.0,OK
+mika patrycja,2025-12-18,T133 Dag,3.5,3.5,0.0,OK
+mika patrycja,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+mikiciuk tomasz,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+mikiciuk tomasz,2025-12-15,T133 Dag,0.75,0.75,0.0,OK
+mikiciuk tomasz,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+mikiciuk tomasz,2025-12-16,T133 Dag,0.5,0.5,0.0,OK
+mikiciuk tomasz,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+mikiciuk tomasz,2025-12-18,Norm uren Dag,7.0,8.0,-1.0,VERSCHIL
+mikiciuk tomasz,2025-12-18,OW140 Week,1.0,,,ALLEEN IN FACTUUR
+mikiciuk tomasz,2025-12-19,Norm uren Dag,7.75,7.75,0.0,OK
+mikiciuk tomasz,2025-12-20,Norm uren Dag,,-4.75,,ALLEEN IN KLOKLIJST
+mikiciuk tomasz,2025-12-20,OW180 Dag,4.75,4.75,0.0,OK
+mikiciuk tomasz,2025-12-21,OW140 Week,,1.0,,ALLEEN IN KLOKLIJST
+milon oliwia,2025-12-15,Norm uren Dag,9.5,9.5,0.0,OK
+milon oliwia,2025-12-15,T133 Dag,0.5,0.5,0.0,OK
+milon oliwia,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+milon oliwia,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
+milon oliwia,2025-12-17,Norm uren Dag,3.0,9.5,-6.5,VERSCHIL
+milon oliwia,2025-12-17,OW140 Week,6.5,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-18,Norm uren Dag,9.5,9.5,0.0,OK
+milon oliwia,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+milon oliwia,2025-12-21,OW140 Week,,6.5,,ALLEEN IN KLOKLIJST
+mlot wiktoria,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+mlot wiktoria,2025-12-16,T133 Dag,4.5,4.5,0.0,OK
+mlot wiktoria,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+mlot wiktoria,2025-12-17,T133 Dag,5.25,5.25,0.0,OK
+mlot wiktoria,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+mlot wiktoria,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+mlot wiktoria,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+mlot wiktoria,2025-12-18,T135 Dag,1.25,1.25,0.0,OK
+mlot wiktoria,2025-12-19,Norm uren Dag,2.25,2.25,0.0,OK
+mlot wiktoria,2025-12-19,T133 Dag,5.0,5.0,0.0,OK
+muszczek patrycja,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+muszczek patrycja,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+muszczek patrycja,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+muszczek patrycja,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
+muszczek patrycja,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+muszczek patrycja,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+nikola solomonova,2025-12-15,Norm uren Dag,2.25,2.25,0.0,OK
+nikola solomonova,2025-12-15,T133 Dag,4.5,4.5,0.0,OK
+nikola solomonova,2025-12-16,Norm uren Dag,2.25,2.25,0.0,OK
+nikola solomonova,2025-12-16,T133 Dag,4.25,4.25,0.0,OK
+nikola solomonova,2025-12-17,Norm uren Dag,2.25,2.25,0.0,OK
+nikola solomonova,2025-12-17,T133 Dag,5.0,5.0,0.0,OK
+nikola solomonova,2025-12-18,Norm uren Dag,2.25,2.25,0.0,OK
+nikola solomonova,2025-12-18,T133 Dag,5.0,5.0,0.0,OK
+nikola solomonova,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+nikola solomonova,2025-12-19,T133 Dag,3.5,3.5,0.0,OK
+ogiela patrycja,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+ogiela patrycja,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+ogiela patrycja,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
+ogiela patrycja,2025-12-18,Norm uren Dag,3.25,3.25,0.0,OK
+osik rafal,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+osik rafal,2025-12-15,T133 Dag,0.75,0.75,0.0,OK
+osik rafal,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+osik rafal,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
+osik rafal,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
+osik rafal,2025-12-18,Norm uren Dag,6.75,6.75,0.0,OK
+osik rafal,2025-12-19,Norm uren Dag,1.5,1.5,0.0,OK
+owczarczak sandra wawrzyniak,2025-12-15,Norm uren Dag,6.5,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-16,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-17,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-18,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-19,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarek sandra wawrzyniak,2025-12-15,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-16,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-17,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-18,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-19,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+patryk rydzewski,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
+patryk rydzewski,2025-12-15,T133 Dag,5.5,5.5,0.0,OK
+patryk rydzewski,2025-12-15,T135 Dag,0.5,0.5,0.0,OK
+patryk rydzewski,2025-12-16,Norm uren Dag,2.75,2.75,0.0,OK
+patryk rydzewski,2025-12-16,T133 Dag,4.75,4.75,0.0,OK
+patryk rydzewski,2025-12-17,Norm uren Dag,2.5,2.5,0.0,OK
+patryk rydzewski,2025-12-17,T133 Dag,5.5,5.5,0.0,OK
+patryk rydzewski,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+patryk rydzewski,2025-12-18,Norm uren Dag,1.0,2.5,-1.5,VERSCHIL
+patryk rydzewski,2025-12-18,OW140 Week,1.5,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-18,T133 Dag,5.25,5.25,0.0,OK
+patryk rydzewski,2025-12-18,T135 Dag,1.25,1.25,0.0,OK
+patryk rydzewski,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+patryk rydzewski,2025-12-19,T133 Dag,5.0,5.0,0.0,OK
+patryk rydzewski,2025-12-21,OW140 Week,,1.5,,ALLEEN IN KLOKLIJST
+piotr wach,2025-12-15,Norm uren Dag,7.0,7.0,0.0,OK
+piotr wach,2025-12-15,T135 Dag,1.0,1.0,0.0,OK
+piotr wach,2025-12-16,Norm uren Dag,6.75,6.75,0.0,OK
+piotr wach,2025-12-16,T135 Dag,1.0,1.0,0.0,OK
+piotr wach,2025-12-17,Norm uren Dag,7.0,7.0,0.0,OK
+piotr wach,2025-12-17,T135 Dag,1.0,1.0,0.0,OK
+piotr wach,2025-12-18,Norm uren Dag,7.5,7.5,0.0,OK
+piotr wach,2025-12-18,T135 Dag,1.0,1.0,0.0,OK
+piotr wach,2025-12-19,Norm uren Dag,5.75,5.75,0.0,OK
+piotr wach,2025-12-19,T135 Dag,1.0,1.0,0.0,OK
+poplonski tomasz,2025-12-15,Norm uren Dag,3.75,3.75,0.0,OK
+poplonski tomasz,2025-12-15,T133 Dag,4.25,4.25,0.0,OK
+poplonski tomasz,2025-12-16,Norm uren Dag,3.5,3.5,0.0,OK
+poplonski tomasz,2025-12-16,T133 Dag,3.75,3.75,0.0,OK
+poplonski tomasz,2025-12-17,Norm uren Dag,3.75,3.75,0.0,OK
+poplonski tomasz,2025-12-17,T133 Dag,4.25,4.25,0.0,OK
+poplonski tomasz,2025-12-18,Norm uren Dag,3.5,3.5,0.0,OK
+poplonski tomasz,2025-12-18,T133 Dag,3.75,3.75,0.0,OK
+poplonski tomasz,2025-12-19,Norm uren Dag,3.75,3.75,0.0,OK
+poplonski tomasz,2025-12-19,T133 Dag,3.5,3.5,0.0,OK
+przemyslaw robakowski,2025-12-15,Norm uren Dag,10.5,10.5,0.0,OK
+przemyslaw robakowski,2025-12-16,Norm uren Dag,9.25,9.25,0.0,OK
+przemyslaw robakowski,2025-12-17,Norm uren Dag,9.75,10.5,-0.75,VERSCHIL
+przemyslaw robakowski,2025-12-17,OW140 Week,0.75,,,ALLEEN IN FACTUUR
+przemyslaw robakowski,2025-12-18,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+przemyslaw robakowski,2025-12-18,OW140 Week,9.5,,,ALLEEN IN FACTUUR
+przemyslaw robakowski,2025-12-19,Norm uren Dag,10.5,10.5,0.0,OK
+przemyslaw robakowski,2025-12-21,OW140 Week,,10.25,,ALLEEN IN KLOKLIJST
+przemyslaw zaremba,2025-12-15,Norm uren Dag,4.0,4.0,0.0,OK
+przemyslaw zaremba,2025-12-15,T133 Dag,5.0,5.0,0.0,OK
+przemyslaw zaremba,2025-12-16,Norm uren Dag,3.0,3.0,0.0,OK
+przemyslaw zaremba,2025-12-16,T133 Dag,4.0,4.0,0.0,OK
+przemyslaw zaremba,2025-12-17,Norm uren Dag,3.0,3.0,0.0,OK
+przemyslaw zaremba,2025-12-17,T133 Dag,4.5,4.5,0.0,OK
+przemyslaw zaremba,2025-12-18,Norm uren Dag,3.0,3.0,0.0,OK
+przemyslaw zaremba,2025-12-18,T133 Dag,4.5,4.5,0.0,OK
+przemyslaw zaremba,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+przemyslaw zaremba,2025-12-19,T133 Dag,4.0,4.0,0.0,OK
+przydatek renata,2025-12-15,Norm uren Dag,8.0,8.0,0.0,OK
+przydatek renata,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
+przydatek renata,2025-12-18,Norm uren Dag,7.5,7.5,0.0,OK
+przydatek renata,2025-12-19,Norm uren Dag,7.25,7.25,0.0,OK
+slosiar tomas,2025-12-15,Norm uren Dag,6.5,6.5,0.0,OK
+slosiar tomas,2025-12-16,Norm uren Dag,8.5,8.5,0.0,OK
+slosiar tomas,2025-12-17,Norm uren Dag,9.0,9.0,0.0,OK
+slosiar tomas,2025-12-18,Norm uren Dag,5.25,5.25,0.0,OK
+slosiar tomas,2025-12-18,T133 Dag,4.75,4.75,0.0,OK
+slosiar tomas,2025-12-19,Norm uren Dag,2.5,2.5,0.0,OK
+slosiar tomas,2025-12-19,T133 Dag,3.75,3.75,0.0,OK
+slosiar tomas,2025-12-20,Norm uren Dag,,-4.25,,ALLEEN IN KLOKLIJST
+slosiar tomas,2025-12-20,OW180 Dag,2.5,2.75,-0.25,VERSCHIL
+slosiar tomas,2025-12-20,OW200 Dag,1.5,1.5,0.0,OK
