@@ -703,6 +703,8 @@ async def upload(
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail=f"Onverwachte fout tijdens het verwerken van bestanden: {e}",
