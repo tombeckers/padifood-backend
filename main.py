@@ -18,6 +18,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 
 from config import Settings
 from convert import convert_input
+from loaders import load_file
 from validation_hours import (
     format_validation_email_body,
     normalize_name,
@@ -517,7 +518,6 @@ async def upload(
     db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
-    _ = db  # dependency kept for compatibility
     input_dir = "input"
     os.makedirs(input_dir, exist_ok=True)
 
@@ -684,7 +684,12 @@ async def upload(
     )
 
     try:
-        convert_input(kloklijst_name, factuur_name)
+        created_files = convert_input(kloklijst_name, factuur_name)
+        for file_path in created_files:
+            fname = os.path.basename(file_path)
+            with open(file_path, "rb") as f:
+                content = f.read()
+            await load_file(fname, content, db)
         validation_result = run_validation(
             week,
             confirmed_same_pairs=confirmed_same_pairs,
@@ -698,6 +703,9 @@ async def upload(
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
+
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail=f"Onverwachte fout tijdens het verwerken van bestanden: {e}",
