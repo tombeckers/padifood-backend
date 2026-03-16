@@ -2,31 +2,38 @@
 validation_hours.py
 
 Compares hours per employee per wage category between:
-  - "Padifood specificatie - Export Factuur.csv"
-      → sum of "Totaal uren" grouped by "Naam" + "Code toeslag"
-  - "202551 Kloklijst Padifood Otto Workforce.csv"
-      → sum of each hour-type column grouped by employee name
+  - invoice_lines table (from "Padifood specificatie - Export Factuur")
+      → sum of totaal_uren grouped by naam + code_toeslag
+  - kloklijst table (agency='otto', from "Kloklijst Padifood Otto Workforce")
+      → sum of each hour-type column grouped by employee naam
 
 Names are normalized (lowercase, words sorted) before matching, because the two
-files use different name orderings (firstname-lastname vs lastname-firstname).
+sources use different name orderings (firstname-lastname vs lastname-firstname).
 """
 
 import argparse
+import asyncio
 import csv
 import os
-from difflib import SequenceMatcher
 from collections import defaultdict
+from difflib import SequenceMatcher
 
-# Kloklijst columns that map to invoice wage categories
-KLOKLIJST_HOUR_COLS = [
-    "Norm uren Dag",
-    "T133 Dag",
-    "T135 Dag",
-    "T200 Dag",
-    "OW140 Week",
-    "OW180 Dag",
-    "OW200 Dag",
-]
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from models import InvoiceLine, Kloklijst
+
+# Maps the original kloklijst column names (used in output/comparison) to
+# the corresponding ORM field names on the Kloklijst model.
+KLOKLIJST_COL_TO_FIELD: dict[str, str] = {
+    "Norm uren Dag": "norm_uren_dag",
+    "T133 Dag": "t133_dag",
+    "T135 Dag": "t135_dag",
+    "T200 Dag": "t200_dag",
+    "OW140 Week": "ow140_week",
+    "OW180 Dag": "ow180_dag",
+    "OW200 Dag": "ow200_dag",
+}
 
 FUZZY_MATCH_THRESHOLD = 90
 
@@ -92,48 +99,6 @@ def _merge_daily_hours_by_alias(
     return merged
 
 
-def _build_name_display_maps(
-    factuur_file: str, kloklijst_file: str
-) -> tuple[dict[str, str], dict[str, str]]:
-    factuur_names: dict[str, str] = {}
-    with open(factuur_file, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            raw_name = row.get("Naam", "").strip()
-            if not raw_name:
-                continue
-            normalized = normalize_name(raw_name)
-            factuur_names.setdefault(normalized, raw_name)
-
-    kloklijst_names: dict[str, str] = {}
-    current_name: str | None = None
-    with open(kloklijst_file, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        reader.fieldnames = [h.strip() for h in reader.fieldnames]
-        for row in reader:
-            naam = row.get("Naam", "").strip()
-            if naam:
-                current_name = naam
-            if not current_name:
-                continue
-            if not row.get("Datum", "").strip():
-                continue
-            normalized = normalize_name(current_name)
-            kloklijst_names.setdefault(normalized, current_name)
-
-    return factuur_names, kloklijst_names
-
-
-def _apply_alias_to_display_map(
-    display_map: dict[str, str], alias_map: dict[str, str]
-) -> dict[str, str]:
-    remapped: dict[str, str] = {}
-    for original_name, display_name in display_map.items():
-        canonical = alias_map.get(original_name, original_name)
-        remapped.setdefault(canonical, display_name)
-    return remapped
-
-
 def _fuzzy_score(left: str, right: str) -> int:
     return round(100 * SequenceMatcher(None, left, right).ratio())
 
@@ -171,133 +136,126 @@ def _find_similar_name_pairs(
     return similar_pairs
 
 
-def load_factuur_hours(filepath: str) -> dict[str, dict[str, float]]:
-    """
-    Returns {normalized_name: {code_toeslag: total_uren}}.
-    """
+# ---------------------------------------------------------------------------
+# DB-backed loaders
+# ---------------------------------------------------------------------------
+
+async def _load_factuur_hours_db(
+    week: int, db: AsyncSession
+) -> dict[str, dict[str, float]]:
+    """Returns {normalized_name: {code_toeslag: total_uren}} from invoice_lines."""
+    result = await db.execute(
+        select(InvoiceLine).where(InvoiceLine.week_number == week)
+    )
     totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
-    with open(filepath, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            naam = row.get("Naam", "").strip()
-            code = row.get("Code toeslag", "").strip()
-            uren_str = row.get("Totaal uren", "").strip()
-            if not naam or not code or not uren_str:
-                continue
-            try:
-                uren = float(uren_str.replace(",", "."))
-            except ValueError:
-                continue
-            totals[normalize_name(naam)][code] += uren
+    for row in result.scalars().all():
+        if not row.naam or not row.code_toeslag:
+            continue
+        totals[normalize_name(row.naam)][row.code_toeslag] += row.totaal_uren
     return {k: dict(v) for k, v in totals.items()}
 
 
-def load_kloklijst_hours(filepath: str) -> dict[str, dict[str, float]]:
-    """
-    Returns {normalized_name: {col_name: total_uren}} for each column in
-    KLOKLIJST_HOUR_COLS, forward-filling Naam and skipping summary rows.
-    """
+async def _load_kloklijst_hours_db(
+    week: int, db: AsyncSession
+) -> dict[str, dict[str, float]]:
+    """Returns {normalized_name: {col_name: total_uren}} from kloklijst (agency=otto)."""
+    result = await db.execute(
+        select(Kloklijst).where(
+            Kloklijst.week_number == week,
+            Kloklijst.agency == "otto",
+            Kloklijst.datum.isnot(None),
+        )
+    )
     totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
-    current_name: str | None = None
-
-    with open(filepath, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        reader.fieldnames = [h.strip() for h in reader.fieldnames]
-
-        for row in reader:
-            naam = row.get("Naam", "").strip()
-            if naam:
-                current_name = naam
-
-            if not current_name:
-                continue
-
-            # Skip summary rows — they have no Datum
-            if not row.get("Datum", "").strip():
-                continue
-
-            norm = normalize_name(current_name)
-            for col in KLOKLIJST_HOUR_COLS:
-                val_str = row.get(col, "").strip()
-                if not val_str:
-                    continue
-                try:
-                    val = float(val_str.replace(",", "."))
-                except ValueError:
-                    continue
-                if val != 0:
-                    totals[norm][col] += val
-
+    for row in result.scalars().all():
+        if not row.naam:
+            continue
+        norm = normalize_name(row.naam)
+        for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
+            val = getattr(row, field, None)
+            if val is not None and val != 0:
+                totals[norm][col_name] += val
     return {k: dict(v) for k, v in totals.items()}
 
 
-def normalize_date(date_str: str) -> str:
-    """Trim datetime strings like '2025-12-15 00:00:00' to just '2025-12-15'."""
-    return date_str.strip().split(" ")[0]
-
-
-def load_factuur_hours_by_date(filepath: str) -> dict[str, dict[str, dict[str, float]]]:
-    """
-    Returns {normalized_name: {date: {code_toeslag: total_uren}}}.
-    """
-    totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
-    with open(filepath, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            naam = row.get("Naam", "").strip()
-            code = row.get("Code toeslag", "").strip()
-            datum = row.get("Datum", "").strip()
-            uren_str = row.get("Totaal uren", "").strip()
-            if not naam or not code or not datum or not uren_str:
-                continue
-            try:
-                uren = float(uren_str.replace(",", "."))
-            except ValueError:
-                continue
-            totals[normalize_name(naam)][normalize_date(datum)][code] += uren
-    return totals
-
-
-def load_kloklijst_hours_by_date(
-    filepath: str,
+async def _load_factuur_hours_by_date_db(
+    week: int, db: AsyncSession
 ) -> dict[str, dict[str, dict[str, float]]]:
-    """
-    Returns {normalized_name: {date: {col_name: total_uren}}} for each column in
-    KLOKLIJST_HOUR_COLS, forward-filling Naam and skipping summary rows.
-    """
+    """Returns {normalized_name: {date: {code_toeslag: total_uren}}} from invoice_lines."""
+    result = await db.execute(
+        select(InvoiceLine).where(InvoiceLine.week_number == week)
+    )
     totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
-    current_name: str | None = None
-
-    with open(filepath, newline="", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        reader.fieldnames = [h.strip() for h in reader.fieldnames]
-
-        for row in reader:
-            naam = row.get("Naam", "").strip()
-            if naam:
-                current_name = naam
-
-            if not current_name:
-                continue
-
-            datum = row.get("Datum", "").strip()
-            if not datum:
-                continue
-
-            norm = normalize_name(current_name)
-            date_key = normalize_date(datum)
-            for col in KLOKLIJST_HOUR_COLS:
-                val_str = row.get(col, "").strip()
-                if not val_str:
-                    continue
-                try:
-                    val = float(val_str.replace(",", "."))
-                except ValueError:
-                    continue
-                if val != 0:
-                    totals[norm][date_key][col] += val
-
+    for row in result.scalars().all():
+        if not row.naam or not row.code_toeslag or row.datum is None:
+            continue
+        totals[normalize_name(row.naam)][str(row.datum)][row.code_toeslag] += row.totaal_uren
     return totals
+
+
+async def _load_kloklijst_hours_by_date_db(
+    week: int, db: AsyncSession
+) -> dict[str, dict[str, dict[str, float]]]:
+    """Returns {normalized_name: {date: {col_name: total_uren}}} from kloklijst (agency=otto)."""
+    result = await db.execute(
+        select(Kloklijst).where(
+            Kloklijst.week_number == week,
+            Kloklijst.agency == "otto",
+            Kloklijst.datum.isnot(None),
+        )
+    )
+    totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    for row in result.scalars().all():
+        if not row.naam:
+            continue
+        norm = normalize_name(row.naam)
+        date_key = str(row.datum)
+        for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
+            val = getattr(row, field, None)
+            if val is not None and val != 0:
+                totals[norm][date_key][col_name] += val
+    return totals
+
+
+async def _build_name_display_maps_db(
+    week: int, db: AsyncSession
+) -> tuple[dict[str, str], dict[str, str]]:
+    """Returns (factuur_display_map, kloklijst_display_map): normalized_name → raw_name."""
+    factuur_result = await db.execute(
+        select(InvoiceLine.naam)
+        .where(InvoiceLine.week_number == week)
+        .distinct()
+    )
+    factuur_names: dict[str, str] = {}
+    for (naam,) in factuur_result:
+        if naam:
+            factuur_names.setdefault(normalize_name(naam), naam)
+
+    kloklijst_result = await db.execute(
+        select(Kloklijst.naam)
+        .where(
+            Kloklijst.week_number == week,
+            Kloklijst.agency == "otto",
+            Kloklijst.naam.isnot(None),
+        )
+        .distinct()
+    )
+    kloklijst_names: dict[str, str] = {}
+    for (naam,) in kloklijst_result:
+        if naam:
+            kloklijst_names.setdefault(normalize_name(naam), naam)
+
+    return factuur_names, kloklijst_names
+
+
+def _apply_alias_to_display_map(
+    display_map: dict[str, str], alias_map: dict[str, str]
+) -> dict[str, str]:
+    remapped: dict[str, str] = {}
+    for original_name, display_name in display_map.items():
+        canonical = alias_map.get(original_name, original_name)
+        remapped.setdefault(canonical, display_name)
+    return remapped
 
 
 def build_rows(factuur, kloklijst, include_date=False):
@@ -374,25 +332,25 @@ def build_rows(factuur, kloklijst, include_date=False):
     return rows, counts
 
 
-def run_validation(
+async def run_validation(
     week: str,
+    db: AsyncSession,
     confirmed_same_pairs: list[tuple[str, str]] | None = None,
     confirmed_diff_pairs: list[tuple[str, str]] | None = None,
 ) -> dict:
-    factuur_file = f"formatted_input/{week} Padifood specificatie - Export Factuur.csv"
-    kloklijst_file = f"formatted_input/{week} Kloklijst Padifood Otto Workforce.csv"
+    week_int = int(week)
     output_file = f"output/{week} validation_hours.csv"
     output_file_daily = f"output/{week} validation_hours_daily.csv"
 
-    if not os.path.exists(factuur_file):
-        raise FileNotFoundError(f"Bestand niet gevonden: {factuur_file}")
-    if not os.path.exists(kloklijst_file):
-        raise FileNotFoundError(f"Bestand niet gevonden: {kloklijst_file}")
+    factuur = await _load_factuur_hours_db(week_int, db)
+    kloklijst = await _load_kloklijst_hours_db(week_int, db)
+    factuur_daily = await _load_factuur_hours_by_date_db(week_int, db)
+    kloklijst_daily = await _load_kloklijst_hours_by_date_db(week_int, db)
 
-    factuur = load_factuur_hours(factuur_file)
-    kloklijst = load_kloklijst_hours(kloklijst_file)
-    factuur_daily = load_factuur_hours_by_date(factuur_file)
-    kloklijst_daily = load_kloklijst_hours_by_date(kloklijst_file)
+    if not factuur:
+        raise ValueError(f"Geen factuurregels gevonden in de database voor week {week}.")
+    if not kloklijst:
+        raise ValueError(f"Geen kloklijstregels gevonden in de database voor week {week}.")
 
     confirmed_same_pairs = confirmed_same_pairs or []
     confirmed_diff_pairs = confirmed_diff_pairs or []
@@ -409,9 +367,7 @@ def run_validation(
     factuur_daily = _merge_daily_hours_by_alias(factuur_daily, alias_map)
     kloklijst_daily = _merge_daily_hours_by_alias(kloklijst_daily, alias_map)
 
-    factuur_display, kloklijst_display = _build_name_display_maps(
-        factuur_file, kloklijst_file
-    )
+    factuur_display, kloklijst_display = await _build_name_display_maps_db(week_int, db)
     factuur_display = _apply_alias_to_display_map(factuur_display, alias_map)
     kloklijst_display = _apply_alias_to_display_map(kloklijst_display, alias_map)
 
@@ -464,8 +420,6 @@ def run_validation(
 
     return {
         "week": week,
-        "inputFactuurFile": factuur_file,
-        "inputKloklijstFile": kloklijst_file,
         "outputFileWeek": output_file,
         "outputFileDay": output_file_daily,
         "rowsWeek": rows,
@@ -550,21 +504,11 @@ def format_validation_email_body(result: dict) -> str:
     return "\n".join(lines)
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Validate hours between OTTO invoice and kloklijst."
-    )
-    parser.add_argument(
-        "--week", required=True, help="Week number in YYYYww format, e.g. 202551"
-    )
-    args = parser.parse_args()
-    week = args.week
+async def _main_async(week: str) -> None:
+    from db import async_session
 
-    try:
-        result = run_validation(week)
-    except FileNotFoundError as e:
-        print(f"FOUT: {e}")
-        return
+    async with async_session() as session:
+        result = await run_validation(week, session)
 
     print(f"Resultaat geschreven naar: {result['outputFileWeek']}")
     print(
@@ -574,6 +518,17 @@ def main():
     print(
         f"  {len(result['rowsDay'])} regels | OK: {result['countsDay']['ok']} | Verschil: {result['countsDay']['verschil']} | Alleen factuur: {result['countsDay']['only_factuur']} | Alleen kloklijst: {result['countsDay']['only_kloklijst']}"
     )
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Validate hours between OTTO invoice and kloklijst."
+    )
+    parser.add_argument(
+        "--week", required=True, help="Week number in YYYYww format, e.g. 202551"
+    )
+    args = parser.parse_args()
+    asyncio.run(_main_async(args.week))
 
 
 if __name__ == "__main__":

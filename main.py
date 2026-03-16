@@ -690,8 +690,9 @@ async def upload(
             with open(file_path, "rb") as f:
                 content = f.read()
             await load_file(fname, content, db)
-        validation_result = run_validation(
+        validation_result = await run_validation(
             week,
+            db,
             confirmed_same_pairs=confirmed_same_pairs,
             confirmed_diff_pairs=confirmed_diff_pairs,
         )
@@ -732,6 +733,7 @@ async def upload(
 @app.post("/verify_name_pairs")
 async def verify_name_pairs(
     payload: VerifyNamePairsRequest,
+    db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
     week = _validate_week(payload.week)
@@ -756,8 +758,9 @@ async def verify_name_pairs(
 
     confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(rows)
     try:
-        validation_result = run_validation(
+        validation_result = await run_validation(
             week,
+            db,
             confirmed_same_pairs=confirmed_same_pairs,
             confirmed_diff_pairs=confirmed_diff_pairs,
         )

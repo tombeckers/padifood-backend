@@ -650,15 +650,21 @@ kovacova martina,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
 kovacova martina,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
 kovacova martina,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
 kovacova martina,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
-krystina pasiali,2025-12-15,Norm uren Dag,9.0,9.0,0.0,OK
-krystina pasiali,2025-12-16,Norm uren Dag,9.0,9.0,0.0,OK
-krystina pasiali,2025-12-17,Norm uren Dag,3.0,9.0,-6.0,VERSCHIL
-krystina pasiali,2025-12-17,OW140 Week,6.0,,,ALLEEN IN FACTUUR
-krystina pasiali,2025-12-18,Norm uren Dag,10.5,10.5,0.0,OK
-krystina pasiali,2025-12-19,Norm uren Dag,8.5,8.5,0.0,OK
+krystina pasiali,2025-12-15,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-16,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-17,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-18,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-19,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
 krystina pasiali,2025-12-20,Norm uren Dag,,-5.0,,ALLEEN IN KLOKLIJST
-krystina pasiali,2025-12-20,OW180 Dag,5.0,5.0,0.0,OK
+krystina pasiali,2025-12-20,OW180 Dag,,5.0,,ALLEEN IN KLOKLIJST
 krystina pasiali,2025-12-21,OW140 Week,,6.0,,ALLEEN IN KLOKLIJST
+krystyna pasiali,2025-12-15,Norm uren Dag,9.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-16,Norm uren Dag,9.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-17,Norm uren Dag,3.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-17,OW140 Week,6.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-18,Norm uren Dag,10.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-19,Norm uren Dag,8.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-20,OW180 Dag,5.0,,,ALLEEN IN FACTUUR
 lenart richard,2025-12-15,Norm uren Dag,5.25,5.25,0.0,OK
 lenart richard,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
 lenart richard,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
@@ -886,11 +892,16 @@ osik rafal,2025-12-16,T133 Dag,0.25,0.25,0.0,OK
 osik rafal,2025-12-17,Norm uren Dag,7.75,7.75,0.0,OK
 osik rafal,2025-12-18,Norm uren Dag,6.75,6.75,0.0,OK
 osik rafal,2025-12-19,Norm uren Dag,1.5,1.5,0.0,OK
-owczarczak sandra wawrzyniak,2025-12-15,Norm uren Dag,6.5,6.5,0.0,OK
-owczarczak sandra wawrzyniak,2025-12-16,Norm uren Dag,8.0,8.0,0.0,OK
-owczarczak sandra wawrzyniak,2025-12-17,Norm uren Dag,8.0,8.0,0.0,OK
-owczarczak sandra wawrzyniak,2025-12-18,Norm uren Dag,8.0,8.0,0.0,OK
-owczarczak sandra wawrzyniak,2025-12-19,Norm uren Dag,8.0,8.0,0.0,OK
+owczarczak sandra wawrzyniak,2025-12-15,Norm uren Dag,6.5,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-16,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-17,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-18,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-19,Norm uren Dag,8.0,,,ALLEEN IN FACTUUR
+owczarek sandra wawrzyniak,2025-12-15,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-16,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-17,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-18,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+owczarek sandra wawrzyniak,2025-12-19,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
 patryk rydzewski,2025-12-15,Norm uren Dag,2.5,2.5,0.0,OK
 patryk rydzewski,2025-12-15,T133 Dag,5.5,5.5,0.0,OK
 patryk rydzewski,2025-12-15,T135 Dag,0.5,0.5,0.0,OK
