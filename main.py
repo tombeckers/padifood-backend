@@ -19,6 +19,11 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from config import Settings
 from convert import convert_input
 from loaders import load_file
+from otto_identifier_mapping import (
+    build_otto_mapping_candidates,
+    persist_otto_mapping_candidates,
+    write_otto_mapping_csv,
+)
 from validation_hours import (
     format_validation_email_body,
     normalize_name,
@@ -384,6 +389,14 @@ class VerifyNamePairsRequest(BaseModel):
     decisions: list[NamePairDecision]
 
 
+class OttoIdentifierMappingBuildRequest(BaseModel):
+    week: str
+    persist: bool = False
+    requireFullCoverage: bool = False
+    writeCsv: bool = True
+    includeCandidates: bool = False
+
+
 @app.post("/download")
 async def download(payload: DownloadRequest):
     requested = payload.fileName.strip()
@@ -412,6 +425,50 @@ async def download(payload: DownloadRequest):
         filename=candidate_path.name,
         media_type="application/octet-stream",
     )
+
+
+@app.post("/otto_identifier_mapping/build")
+async def build_otto_identifier_mapping(
+    payload: OttoIdentifierMappingBuildRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    week = _validate_week(payload.week)
+    week_int = int(week)
+    analysis = await build_otto_mapping_candidates(week_int, db)
+    stats = analysis["stats"]
+
+    csv_path = None
+    if payload.writeCsv:
+        csv_path = write_otto_mapping_csv(analysis["candidates"])
+
+    if payload.requireFullCoverage and not bool(stats.get("coverage100")):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Coverage is niet 100% voor Otto mapping. "
+                "Controleer unresolved people en uniqueness conflicts."
+            ),
+        )
+
+    persist_result = {"insertedMappings": 0}
+    if payload.persist:
+        persist_result = await persist_otto_mapping_candidates(
+            week=week_int,
+            candidates=analysis["candidates"],
+            db=db,
+        )
+
+    response = {
+        "status": "ok",
+        "stats": stats,
+        "csvBackupPath": csv_path,
+        "uniquenessConflicts": analysis["uniquenessConflicts"],
+        "persistResult": persist_result,
+    }
+    if payload.includeCandidates:
+        response["candidates"] = analysis["candidates"]
+    return response
 
 
 @app.get("/wagegroups")
@@ -521,10 +578,13 @@ async def upload(
     input_dir = "input"
     os.makedirs(input_dir, exist_ok=True)
 
-    if len(files) != 2:
+    if len(files) < 2 or len(files) > 3:
         raise HTTPException(
             status_code=400,
-            detail="Precies 2 bestanden zijn vereist: een kloklijst en een factuurbestand (.xlsx).",
+            detail=(
+                "Er zijn 2 of 3 bestanden vereist: één specificatie en "
+                "één of twee kloklijsten (.xlsx)."
+            ),
         )
 
     uploaded = []
@@ -542,24 +602,50 @@ async def upload(
         uploaded.append({"filename": file.filename, "content": content})
 
     def classify(data):
-        kloklijst = None
         factuur = None
+        kloklijst_otto = None
+        kloklijst_flex = None
         for item in data:
             lower = item["filename"].lower()
             is_kloklijst = "kloklijst" in lower
-            is_factuur = "factuur" in lower or "specificatie" in lower
-            if is_kloklijst and is_factuur:
+            is_factuur = (
+                "factuur" in lower or "specificatie" in lower
+            ) and not is_kloklijst
+            is_otto = is_kloklijst and ("otto" in lower or "otto workforce" in lower)
+            is_flex = is_kloklijst and "flexspecialisten" in lower
+
+            if is_kloklijst and not is_otto and not is_flex:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Onduidelijk bestandstype voor bestandsnaam: {item['filename']}",
+                    detail=(
+                        "Kon kloklijstprovider niet bepalen uit bestandsnaam: "
+                        f"{item['filename']}. Verwacht 'Otto' of 'Flexspecialisten'."
+                    ),
                 )
-            if is_kloklijst:
-                if kloklijst is not None:
+
+            if is_otto and is_flex:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Onduidelijke kloklijstprovider voor bestand: {item['filename']}",
+                )
+
+            if is_otto:
+                if kloklijst_otto is not None:
                     raise HTTPException(
                         status_code=400,
-                        detail="Meerdere kloklijstbestanden gevonden; precies één verwacht.",
+                        detail="Meerdere Otto kloklijsten gevonden; precies één verwacht.",
                     )
-                kloklijst = item
+                kloklijst_otto = item
+            elif is_flex:
+                if kloklijst_flex is not None:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=(
+                            "Meerdere Flexspecialisten kloklijsten gevonden; "
+                            "precies één verwacht."
+                        ),
+                    )
+                kloklijst_flex = item
             elif is_factuur:
                 if factuur is not None:
                     raise HTTPException(
@@ -568,12 +654,20 @@ async def upload(
                     )
                 factuur = item
 
-        if kloklijst is None or factuur is None:
+        if factuur is None:
             raise HTTPException(
                 status_code=400,
-                detail="Kon geüploade bestanden niet indelen als kloklijst en factuur.",
+                detail="Geen specificatie/factuurbestand gevonden in de upload.",
             )
-        return kloklijst, factuur
+        if kloklijst_otto is None and kloklijst_flex is None:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Geen kloklijst gevonden. Upload minimaal één kloklijst: "
+                    "Otto Workforce en/of Flexspecialisten."
+                ),
+            )
+        return factuur, kloklijst_otto, kloklijst_flex
 
     def extract_week_from_filename(filename: str) -> str | None:
         match = re.match(r"^\s*(\d{6})\b", filename)
@@ -641,14 +735,7 @@ async def upload(
             )
         return f"{week} {stem}.xlsx"
 
-    kloklijst_upload, factuur_upload = classify(uploaded)
-
-    week_from_kloklijst = extract_week_from_filename(kloklijst_upload["filename"])
-    if not week_from_kloklijst:
-        raise HTTPException(
-            status_code=400,
-            detail="Kon weeknummer (YYYYww) niet vinden in de bestandsnaam van de kloklijst.",
-        )
+    factuur_upload, kloklijst_otto_upload, kloklijst_flex_upload = classify(uploaded)
 
     week_from_factuur = extract_week_from_factuur(factuur_upload["content"])
     if not week_from_factuur:
@@ -657,24 +744,49 @@ async def upload(
             detail="Kon weeknummer niet bepalen uit kolom Datum in sheet Export Factuur.",
         )
 
-    if week_from_kloklijst != week_from_factuur:
-        raise HTTPException(
-            status_code=400,
-            detail=(
-                "Weeknummer komt niet overeen tussen kloklijst en factuur: "
-                f"{week_from_kloklijst} != {week_from_factuur}"
-            ),
-        )
+    kloklijst_uploads = [
+        ("Otto Workforce", kloklijst_otto_upload),
+        ("Flexspecialisten", kloklijst_flex_upload),
+    ]
+    for provider_label, kloklijst_upload in kloklijst_uploads:
+        if kloklijst_upload is None:
+            continue
+        week_from_kloklijst = extract_week_from_filename(kloklijst_upload["filename"])
+        if not week_from_kloklijst:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Kon weeknummer (YYYYww) niet vinden in de bestandsnaam van de "
+                    f"{provider_label} kloklijst."
+                ),
+            )
+        if week_from_kloklijst != week_from_factuur:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Weeknummer komt niet overeen tussen "
+                    f"{provider_label} kloklijst en factuur: "
+                    f"{week_from_kloklijst} != {week_from_factuur}"
+                ),
+            )
 
     week = week_from_factuur
 
-    kloklijst_name = build_prefixed_filename(kloklijst_upload["filename"], week)
     factuur_name = build_prefixed_filename(factuur_upload["filename"], week)
-    kloklijst_path = os.path.join(input_dir, kloklijst_name)
     factuur_path = os.path.join(input_dir, factuur_name)
+    provider_to_kloklijst_name: dict[str, str] = {}
 
-    with open(kloklijst_path, "wb") as f:
-        f.write(kloklijst_upload["content"])
+    for provider_key, upload_item in (
+        ("otto", kloklijst_otto_upload),
+        ("flex", kloklijst_flex_upload),
+    ):
+        if upload_item is None:
+            continue
+        kloklijst_name = build_prefixed_filename(upload_item["filename"], week)
+        provider_to_kloklijst_name[provider_key] = kloklijst_name
+        kloklijst_path = os.path.join(input_dir, kloklijst_name)
+        with open(kloklijst_path, "wb") as f:
+            f.write(upload_item["content"])
     with open(factuur_path, "wb") as f:
         f.write(factuur_upload["content"])
 
@@ -683,20 +795,52 @@ async def upload(
         verified_rows
     )
 
+    providers_response: dict[str, dict] = {}
     try:
-        created_files = convert_input(kloklijst_name, factuur_name)
+        kloklijst_names = list(provider_to_kloklijst_name.values())
+        created_files = convert_input(kloklijst_names, factuur_name)
         for file_path in created_files:
             fname = os.path.basename(file_path)
             with open(file_path, "rb") as f:
                 content = f.read()
             await load_file(fname, content, db)
-        validation_result = await run_validation(
-            week,
-            db,
-            confirmed_same_pairs=confirmed_same_pairs,
-            confirmed_diff_pairs=confirmed_diff_pairs,
-        )
-        print(f"validation_result: {validation_result['similarPeople']}")
+
+        for response_key, agency, provider_label in (
+            ("otto", "otto", "Otto Workforce"),
+            ("flex", "flexspecialisten", "Flexspecialisten"),
+        ):
+            if response_key not in provider_to_kloklijst_name:
+                continue
+            validation_result = await run_validation(
+                week,
+                db,
+                agency=agency,
+                confirmed_same_pairs=confirmed_same_pairs,
+                confirmed_diff_pairs=confirmed_diff_pairs,
+            )
+            output_file_week = validation_result["outputFileWeek"]
+            output_file_day = validation_result["outputFileDay"]
+            if not os.path.exists(output_file_week) or not os.path.exists(
+                output_file_day
+            ):
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "De verwachte outputbestanden zijn niet gegenereerd door de "
+                        f"validatie voor {provider_label}."
+                    ),
+                )
+
+            provider_result = {**validation_result, "providerLabel": provider_label}
+            providers_response[response_key] = {
+                "emailBody": format_validation_email_body(provider_result),
+                "outputFileWeek": output_file_week,
+                "outputFileDay": output_file_day,
+                "similarPeople": validation_result.get("similarPeople", []),
+                "exactPersonMatchCount": validation_result.get(
+                    "exactPersonMatchCount", 0
+                ),
+            }
     except FileNotFoundError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except ValueError as e:
@@ -711,23 +855,13 @@ async def upload(
             status_code=500,
             detail=f"Onverwachte fout tijdens het verwerken van bestanden: {e}",
         )
-    output_file_week = validation_result["outputFileWeek"]
-    output_file_day = validation_result["outputFileDay"]
-
-    if not os.path.exists(output_file_week) or not os.path.exists(output_file_day):
+    if not providers_response:
         raise HTTPException(
             status_code=400,
-            detail="De verwachte outputbestanden zijn niet gegenereerd door de validatie.",
+            detail="Geen validatieresultaten gegenereerd voor de geüploade providers.",
         )
 
-    email_body = format_validation_email_body(validation_result)
-
-    return {
-        "emailBody": email_body,
-        "outputFileWeek": output_file_week,
-        "outputFileDay": output_file_day,
-        "similarPeople": validation_result.get("similarPeople", []),
-    }
+    return {"providers": providers_response}
 
 
 @app.post("/verify_name_pairs")
@@ -757,16 +891,46 @@ async def verify_name_pairs(
     _write_verified_name_pairs(rows)
 
     confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(rows)
+    providers_response: dict[str, dict] = {}
+    validation_errors: list[str] = []
     try:
-        validation_result = await run_validation(
-            week,
-            db,
-            confirmed_same_pairs=confirmed_same_pairs,
-            confirmed_diff_pairs=confirmed_diff_pairs,
-        )
+        for response_key, agency, provider_label in (
+            ("otto", "otto", "Otto Workforce"),
+            ("flex", "flexspecialisten", "Flexspecialisten"),
+        ):
+            try:
+                validation_result = await run_validation(
+                    week,
+                    db,
+                    agency=agency,
+                    confirmed_same_pairs=confirmed_same_pairs,
+                    confirmed_diff_pairs=confirmed_diff_pairs,
+                )
+            except ValueError as e:
+                if "Geen kloklijstregels gevonden" in str(e):
+                    continue
+                validation_errors.append(str(e))
+                continue
+
+            output_file_week = validation_result["outputFileWeek"]
+            if not os.path.exists(output_file_week):
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Het verwachte week-outputbestand is niet gegenereerd door de "
+                        f"validatie voor {provider_label}."
+                    ),
+                )
+
+            provider_result = {**validation_result, "providerLabel": provider_label}
+            providers_response[response_key] = {
+                "emailBody": format_validation_email_body(provider_result),
+                "outputFileWeek": output_file_week,
+                "exactPersonMatchCount": validation_result.get(
+                    "exactPersonMatchCount", 0
+                ),
+            }
     except FileNotFoundError as e:
-        raise HTTPException(status_code=400, detail=str(e)) from e
-    except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except HTTPException:
         raise
@@ -776,15 +940,11 @@ async def verify_name_pairs(
             detail=f"Onverwachte fout tijdens het herberekenen van validatie: {e}",
         ) from e
 
-    output_file_week = validation_result["outputFileWeek"]
-    if not os.path.exists(output_file_week):
+    if not providers_response:
+        if validation_errors:
+            raise HTTPException(status_code=400, detail=validation_errors[0])
         raise HTTPException(
             status_code=400,
-            detail="Het verwachte week-outputbestand is niet gegenereerd door de validatie.",
+            detail="Geen validatieresultaten gevonden voor Otto of Flexspecialisten.",
         )
-
-    email_body = format_validation_email_body(validation_result)
-    return {
-        "emailBody": email_body,
-        "outputFileWeek": output_file_week,
-    }
+    return {"providers": providers_response}

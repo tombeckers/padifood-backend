@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from typing import Optional
 
+from sqlalchemy import UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -141,3 +142,26 @@ class OttoRateCard(Base):
     rate_140: Mapped[Optional[float]]      # 1.4x OW
     rate_180_ow: Mapped[Optional[float]]   # 1.8x OW
     rate_200_ow: Mapped[Optional[float]]   # 2x OW
+
+
+class OttoIdentifierMapping(Base):
+    """
+    Verified mapping between OTTO kloklijst Loonnummers and factuur SAP IDs.
+    Used by validation as identifier-first matching key.
+    """
+
+    __tablename__ = "otto_identifier_mapping"
+    __table_args__ = (
+        UniqueConstraint("provider", "kloklijst_loonnummer", name="uq_otto_map_provider_loon"),
+        UniqueConstraint("provider", "sap_id", name="uq_otto_map_provider_sap"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    provider: Mapped[str]
+    kloklijst_loonnummer: Mapped[str]
+    sap_id: Mapped[str]
+    kloklijst_name: Mapped[str]
+    factuur_name: Mapped[str]
+    match_type: Mapped[str]
+    verified: Mapped[bool]
+    source_week: Mapped[Optional[int]]

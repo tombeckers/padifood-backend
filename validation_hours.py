@@ -22,6 +22,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import InvoiceLine, Kloklijst
+from otto_identifier_mapping import load_verified_otto_mapping
 
 # Maps the original kloklijst column names (used in output/comparison) to
 # the corresponding ORM field names on the Kloklijst model.
@@ -43,8 +44,60 @@ def normalize_name(name: str) -> str:
     return " ".join(sorted(name.lower().replace("-", " ").split()))
 
 
+def _name_compare_key(name: str) -> str:
+    return f"name:{normalize_name(name)}"
+
+
+def _id_text(value: object | None) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text if text else None
+
+
+def _invoice_compare_key(
+    *,
+    agency: str,
+    sap_id: object | None,
+    name: str | None,
+    mapped_sap_ids: set[str],
+) -> str | None:
+    sap = _id_text(sap_id)
+    if agency == "otto" and sap and sap in mapped_sap_ids:
+        return f"id:{sap}"
+    if not name:
+        return None
+    return _name_compare_key(name)
+
+
+def _kloklijst_compare_key(
+    *,
+    agency: str,
+    loonnummers: object | None,
+    name: str | None,
+    loonnummer_to_sap: dict[str, str],
+) -> str | None:
+    loonnummer = _id_text(loonnummers)
+    if agency == "otto" and loonnummer and loonnummer in loonnummer_to_sap:
+        return f"id:{loonnummer_to_sap[loonnummer]}"
+    if not name:
+        return None
+    return _name_compare_key(name)
+
+
+def _display_name_for_key(key: str, display_names: dict[str, str]) -> str:
+    display = display_names.get(key)
+    if display:
+        return display
+    if key.startswith("name:"):
+        return key.split(":", 1)[1]
+    if key.startswith("id:"):
+        return key.split(":", 1)[1]
+    return key
+
+
 def _pair_key(kloklijst_name: str, factuur_name: str) -> tuple[str, str]:
-    return (normalize_name(kloklijst_name), normalize_name(factuur_name))
+    return (_name_compare_key(kloklijst_name), _name_compare_key(factuur_name))
 
 
 def _build_alias_map(
@@ -67,11 +120,11 @@ def _build_alias_map(
         parent[other] = canonical
 
     for left, right in confirmed_same_pairs:
-        left_norm = normalize_name(left)
-        right_norm = normalize_name(right)
-        if left_norm not in parent or right_norm not in parent:
+        left_key = _name_compare_key(left)
+        right_key = _name_compare_key(right)
+        if left_key not in parent or right_key not in parent:
             continue
-        union(left_norm, right_norm)
+        union(left_key, right_key)
 
     return {name: find(name) for name in all_names}
 
@@ -113,15 +166,23 @@ def _find_similar_name_pairs(
     similar_pairs: list[tuple[str, str]] = []
     seen: set[tuple[str, str]] = set()
 
-    kloklijst_only = sorted(kloklijst_names - factuur_names)
-    factuur_only = sorted(factuur_names - kloklijst_names)
+    kloklijst_only = sorted(
+        name
+        for name in (kloklijst_names - factuur_names)
+        if name.startswith("name:")
+    )
+    factuur_only = sorted(
+        name for name in (factuur_names - kloklijst_names) if name.startswith("name:")
+    )
 
     for kloklijst_name in kloklijst_only:
         for factuur_name in factuur_only:
             key = (kloklijst_name, factuur_name)
             if key in confirmed_diff_pairs:
                 continue
-            if _fuzzy_score(kloklijst_name, factuur_name) <= FUZZY_MATCH_THRESHOLD:
+            klok_raw = kloklijst_name.split(":", 1)[1]
+            factuur_raw = factuur_name.split(":", 1)[1]
+            if _fuzzy_score(klok_raw, factuur_raw) <= FUZZY_MATCH_THRESHOLD:
                 continue
             display_pair = (
                 kloklijst_display_map.get(kloklijst_name, kloklijst_name),
@@ -140,10 +201,14 @@ def _find_similar_name_pairs(
 # DB-backed loaders
 # ---------------------------------------------------------------------------
 
+
 async def _load_factuur_hours_db(
-    week: int, db: AsyncSession
+    week: int,
+    db: AsyncSession,
+    agency: str,
+    mapped_sap_ids: set[str],
 ) -> dict[str, dict[str, float]]:
-    """Returns {normalized_name: {code_toeslag: total_uren}} from invoice_lines."""
+    """Returns {compare_key: {code_toeslag: total_uren}} from invoice_lines."""
     result = await db.execute(
         select(InvoiceLine).where(InvoiceLine.week_number == week)
     )
@@ -151,18 +216,29 @@ async def _load_factuur_hours_db(
     for row in result.scalars().all():
         if not row.naam or not row.code_toeslag:
             continue
-        totals[normalize_name(row.naam)][row.code_toeslag] += row.totaal_uren
+        compare_key = _invoice_compare_key(
+            agency=agency,
+            sap_id=row.sap_id,
+            name=row.naam,
+            mapped_sap_ids=mapped_sap_ids,
+        )
+        if not compare_key:
+            continue
+        totals[compare_key][row.code_toeslag] += row.totaal_uren
     return {k: dict(v) for k, v in totals.items()}
 
 
 async def _load_kloklijst_hours_db(
-    week: int, db: AsyncSession
+    week: int,
+    db: AsyncSession,
+    agency: str,
+    loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, float]]:
-    """Returns {normalized_name: {col_name: total_uren}} from kloklijst (agency=otto)."""
+    """Returns {compare_key: {col_name: total_uren}} from kloklijst for an agency."""
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
-            Kloklijst.agency == "otto",
+            Kloklijst.agency == agency,
             Kloklijst.datum.isnot(None),
         )
     )
@@ -170,18 +246,28 @@ async def _load_kloklijst_hours_db(
     for row in result.scalars().all():
         if not row.naam:
             continue
-        norm = normalize_name(row.naam)
+        compare_key = _kloklijst_compare_key(
+            agency=agency,
+            loonnummers=row.loonnummers,
+            name=row.naam,
+            loonnummer_to_sap=loonnummer_to_sap,
+        )
+        if not compare_key:
+            continue
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
             val = getattr(row, field, None)
             if val is not None and val != 0:
-                totals[norm][col_name] += val
+                totals[compare_key][col_name] += val
     return {k: dict(v) for k, v in totals.items()}
 
 
 async def _load_factuur_hours_by_date_db(
-    week: int, db: AsyncSession
+    week: int,
+    db: AsyncSession,
+    agency: str,
+    mapped_sap_ids: set[str],
 ) -> dict[str, dict[str, dict[str, float]]]:
-    """Returns {normalized_name: {date: {code_toeslag: total_uren}}} from invoice_lines."""
+    """Returns {compare_key: {date: {code_toeslag: total_uren}}} from invoice_lines."""
     result = await db.execute(
         select(InvoiceLine).where(InvoiceLine.week_number == week)
     )
@@ -189,18 +275,31 @@ async def _load_factuur_hours_by_date_db(
     for row in result.scalars().all():
         if not row.naam or not row.code_toeslag or row.datum is None:
             continue
-        totals[normalize_name(row.naam)][str(row.datum)][row.code_toeslag] += row.totaal_uren
+        compare_key = _invoice_compare_key(
+            agency=agency,
+            sap_id=row.sap_id,
+            name=row.naam,
+            mapped_sap_ids=mapped_sap_ids,
+        )
+        if not compare_key:
+            continue
+        totals[compare_key][str(row.datum)][
+            row.code_toeslag
+        ] += row.totaal_uren
     return totals
 
 
 async def _load_kloklijst_hours_by_date_db(
-    week: int, db: AsyncSession
+    week: int,
+    db: AsyncSession,
+    agency: str,
+    loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, dict[str, float]]]:
-    """Returns {normalized_name: {date: {col_name: total_uren}}} from kloklijst (agency=otto)."""
+    """Returns {compare_key: {date: {col_name: total_uren}}} from kloklijst for an agency."""
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
-            Kloklijst.agency == "otto",
+            Kloklijst.agency == agency,
             Kloklijst.datum.isnot(None),
         )
     )
@@ -208,42 +307,67 @@ async def _load_kloklijst_hours_by_date_db(
     for row in result.scalars().all():
         if not row.naam:
             continue
-        norm = normalize_name(row.naam)
+        compare_key = _kloklijst_compare_key(
+            agency=agency,
+            loonnummers=row.loonnummers,
+            name=row.naam,
+            loonnummer_to_sap=loonnummer_to_sap,
+        )
+        if not compare_key:
+            continue
         date_key = str(row.datum)
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
             val = getattr(row, field, None)
             if val is not None and val != 0:
-                totals[norm][date_key][col_name] += val
+                totals[compare_key][date_key][col_name] += val
     return totals
 
 
 async def _build_name_display_maps_db(
-    week: int, db: AsyncSession
+    week: int,
+    db: AsyncSession,
+    agency: str,
+    mapped_sap_ids: set[str],
+    loonnummer_to_sap: dict[str, str],
 ) -> tuple[dict[str, str], dict[str, str]]:
-    """Returns (factuur_display_map, kloklijst_display_map): normalized_name → raw_name."""
+    """Returns compare-key display maps for factuur and kloklijst."""
     factuur_result = await db.execute(
-        select(InvoiceLine.naam)
+        select(InvoiceLine.sap_id, InvoiceLine.naam)
         .where(InvoiceLine.week_number == week)
         .distinct()
     )
     factuur_names: dict[str, str] = {}
-    for (naam,) in factuur_result:
+    for sap_id, naam in factuur_result:
         if naam:
-            factuur_names.setdefault(normalize_name(naam), naam)
+            compare_key = _invoice_compare_key(
+                agency=agency,
+                sap_id=sap_id,
+                name=naam,
+                mapped_sap_ids=mapped_sap_ids,
+            )
+            if compare_key:
+                factuur_names.setdefault(compare_key, naam)
 
     kloklijst_result = await db.execute(
-        select(Kloklijst.naam)
+        select(Kloklijst.loonnummers, Kloklijst.naam)
         .where(
             Kloklijst.week_number == week,
-            Kloklijst.agency == "otto",
+            Kloklijst.agency == agency,
             Kloklijst.naam.isnot(None),
         )
         .distinct()
     )
     kloklijst_names: dict[str, str] = {}
-    for (naam,) in kloklijst_result:
+    for loonnummers, naam in kloklijst_result:
         if naam:
-            kloklijst_names.setdefault(normalize_name(naam), naam)
+            compare_key = _kloklijst_compare_key(
+                agency=agency,
+                loonnummers=loonnummers,
+                name=naam,
+                loonnummer_to_sap=loonnummer_to_sap,
+            )
+            if compare_key:
+                kloklijst_names.setdefault(compare_key, naam)
 
     return factuur_names, kloklijst_names
 
@@ -258,7 +382,7 @@ def _apply_alias_to_display_map(
     return remapped
 
 
-def build_rows(factuur, kloklijst, include_date=False):
+def build_rows(factuur, kloklijst, include_date=False, display_names: dict[str, str] | None = None):
     """
     Combine factuur and kloklijst dicts into comparison rows.
 
@@ -288,7 +412,8 @@ def build_rows(factuur, kloklijst, include_date=False):
                 f_uren = f_cats.get(cat)
                 k_uren = k_cats.get(cat)
 
-                base = {"Naam": name}
+                shown_name = _display_name_for_key(name, display_names or {})
+                base = {"Naam": shown_name}
                 if include_date:
                     base["Datum"] = date
                 base["Code toeslag"] = cat
@@ -335,22 +460,37 @@ def build_rows(factuur, kloklijst, include_date=False):
 async def run_validation(
     week: str,
     db: AsyncSession,
+    agency: str,
     confirmed_same_pairs: list[tuple[str, str]] | None = None,
     confirmed_diff_pairs: list[tuple[str, str]] | None = None,
 ) -> dict:
     week_int = int(week)
-    output_file = f"output/{week} validation_hours.csv"
-    output_file_daily = f"output/{week} validation_hours_daily.csv"
+    provider_suffix = "flex" if agency == "flexspecialisten" else agency
+    output_file = f"output/{week} validation_hours_{provider_suffix}.csv"
+    output_file_daily = f"output/{week} validation_hours_{provider_suffix}_daily.csv"
 
-    factuur = await _load_factuur_hours_db(week_int, db)
-    kloklijst = await _load_kloklijst_hours_db(week_int, db)
-    factuur_daily = await _load_factuur_hours_by_date_db(week_int, db)
-    kloklijst_daily = await _load_kloklijst_hours_by_date_db(week_int, db)
+    loonnummer_to_sap: dict[str, str] = {}
+    mapped_sap_ids: set[str] = set()
+    if agency == "otto":
+        loonnummer_to_sap, mapped_sap_ids = await load_verified_otto_mapping(db)
+
+    factuur = await _load_factuur_hours_db(week_int, db, agency, mapped_sap_ids)
+    kloklijst = await _load_kloklijst_hours_db(week_int, db, agency, loonnummer_to_sap)
+    factuur_daily = await _load_factuur_hours_by_date_db(
+        week_int, db, agency, mapped_sap_ids
+    )
+    kloklijst_daily = await _load_kloklijst_hours_by_date_db(
+        week_int, db, agency, loonnummer_to_sap
+    )
 
     if not factuur:
-        raise ValueError(f"Geen factuurregels gevonden in de database voor week {week}.")
+        raise ValueError(
+            f"Geen factuurregels gevonden in de database voor week {week}."
+        )
     if not kloklijst:
-        raise ValueError(f"Geen kloklijstregels gevonden in de database voor week {week}.")
+        raise ValueError(
+            f"Geen kloklijstregels gevonden in de database voor week {week}."
+        )
 
     confirmed_same_pairs = confirmed_same_pairs or []
     confirmed_diff_pairs = confirmed_diff_pairs or []
@@ -367,10 +507,13 @@ async def run_validation(
     factuur_daily = _merge_daily_hours_by_alias(factuur_daily, alias_map)
     kloklijst_daily = _merge_daily_hours_by_alias(kloklijst_daily, alias_map)
 
-    factuur_display, kloklijst_display = await _build_name_display_maps_db(week_int, db)
+    factuur_display, kloklijst_display = await _build_name_display_maps_db(
+        week_int, db, agency, mapped_sap_ids, loonnummer_to_sap
+    )
     factuur_display = _apply_alias_to_display_map(factuur_display, alias_map)
     kloklijst_display = _apply_alias_to_display_map(kloklijst_display, alias_map)
 
+    exact_person_match_count = len(set(factuur.keys()) & set(kloklijst.keys()))
     similar_people = _find_similar_name_pairs(
         factuur_names=set(factuur.keys()),
         kloklijst_names=set(kloklijst.keys()),
@@ -382,7 +525,13 @@ async def run_validation(
     os.makedirs("output", exist_ok=True)
 
     # --- Weekly aggregated output ---
-    rows, counts = build_rows(factuur, kloklijst, include_date=False)
+    key_display_map = {**kloklijst_display, **factuur_display}
+    rows, counts = build_rows(
+        factuur,
+        kloklijst,
+        include_date=False,
+        display_names=key_display_map,
+    )
     with open(output_file, "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(
             f,
@@ -400,7 +549,10 @@ async def run_validation(
 
     # --- Daily output ---
     rows_daily, counts_daily = build_rows(
-        factuur_daily, kloklijst_daily, include_date=True
+        factuur_daily,
+        kloklijst_daily,
+        include_date=True,
+        display_names=key_display_map,
     )
     with open(output_file_daily, "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(
@@ -427,6 +579,7 @@ async def run_validation(
         "countsWeek": counts,
         "countsDay": counts_daily,
         "similarPeople": similar_people,
+        "exactPersonMatchCount": exact_person_match_count,
     }
 
 
@@ -450,8 +603,10 @@ def _fmt_hours(value) -> str:
 
 def format_validation_email_body(result: dict) -> str:
     week = result["week"]
+    provider_label = result.get("providerLabel")
     rows_week = result["rowsWeek"]
     week_mismatches = [row for row in rows_week if row.get("Status") != "OK"]
+    provider_hint = f" op de factuur van {provider_label}" if provider_label else ""
     if not week_mismatches:
         return "\n".join(
             [
@@ -459,7 +614,7 @@ def format_validation_email_body(result: dict) -> str:
                 "",
                 (
                     "Voor week "
-                    f"{week} hebben we op bovenstaande factuur geen discrepanties "
+                    f"{week} hebben we{provider_hint} geen discrepanties "
                     "gevonden met onze kloklijsten."
                 ),
                 "",
@@ -471,7 +626,8 @@ def format_validation_email_body(result: dict) -> str:
         "Goedemorgen,",
         "",
         (
-            "Op bovenstaande factuur hebben we voor week "
+            "Op bovenstaande factuur hebben we"
+            f"{provider_hint} voor week "
             f"{week} de volgende discrepanties gevonden met onze kloklijsten:"
         ),
     ]
@@ -508,7 +664,7 @@ async def _main_async(week: str) -> None:
     from db import async_session
 
     async with async_session() as session:
-        result = await run_validation(week, session)
+        result = await run_validation(week, session, agency="otto")
 
     print(f"Resultaat geschreven naar: {result['outputFileWeek']}")
     print(

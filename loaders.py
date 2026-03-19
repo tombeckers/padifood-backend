@@ -10,10 +10,12 @@ File type detection is based on filename patterns:
 """
 
 import io
+import os
 import re
 from typing import Optional
 
 import pandas as pd
+from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import InvoiceLine, Kloklijst, OttoRateCard, Tarievensheet
@@ -278,6 +280,12 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
             return {"skipped": True, "reason": "Unknown kloklijst agency"}
 
         rows = _load_kloklijst_df(content, week_number, agency)
+        await session.execute(
+            delete(Kloklijst).where(
+                Kloklijst.week_number == week_number,
+                Kloklijst.agency == agency,
+            )
+        )
         session.add_all(rows)
         await session.commit()
         return {"table": "kloklijst", "week": week_number, "agency": agency, "rows": len(rows)}
@@ -288,6 +296,9 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
             return {"skipped": True, "reason": "Could not extract week number"}
 
         rows = _load_invoice_lines_df(content, week_number)
+        await session.execute(
+            delete(InvoiceLine).where(InvoiceLine.week_number == week_number)
+        )
         session.add_all(rows)
         await session.commit()
         return {"table": "invoice_lines", "week": week_number, "rows": len(rows)}
@@ -298,6 +309,9 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
             return {"skipped": True, "reason": "Could not extract week number"}
 
         rows = _load_tarievensheet_df(content, week_number)
+        await session.execute(
+            delete(Tarievensheet).where(Tarievensheet.week_number == week_number)
+        )
         session.add_all(rows)
         await session.commit()
         return {"table": "tarievensheet", "week": week_number, "rows": len(rows)}

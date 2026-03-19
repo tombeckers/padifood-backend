@@ -30,7 +30,7 @@ Bulk upload from Excel (`col1=name`, `col2=wagegroup`):
 
 ## Upload Validation + Name Verification API
 
-`POST /upload` now also returns `similarPeople`: near-equal name pairs (`>90` fuzzy match) between kloklijst and factuur names.
+`POST /upload` now returns provider-specific results in `providers`.
 
 Upload files (2 Excel files: one kloklijst and one factuur/specificatie):
 
@@ -38,10 +38,13 @@ Upload files (2 Excel files: one kloklijst and one factuur/specificatie):
 
 Response shape:
 
-- `emailBody`: email text after validation
-- `outputFileWeek`: generated weekly CSV output path
-- `outputFileDay`: generated daily CSV output path
-- `similarPeople`: list of `[kloklijstName, factuurName]` pairs for user verification (empty list when none)
+- `providers.otto` / `providers.flex` (depending on uploaded files)
+- per provider:
+  - `emailBody`
+  - `outputFileWeek`
+  - `outputFileDay`
+  - `similarPeople`
+  - `exactPersonMatchCount`
 
 Confirm suggested pairs:
 
@@ -49,10 +52,35 @@ Confirm suggested pairs:
 
 `POST /verify_name_pairs` response:
 
-- `emailBody`
-- `outputFileWeek`
+- `providers.otto` / `providers.flex` with:
+  - `emailBody`
+  - `outputFileWeek`
+  - `exactPersonMatchCount`
 
 Notes:
 
 - decisions are persisted globally in `verified_name_pairs.csv` and reused in future validations
 - `samePerson=false` also prevents repeated fuzzy suggestions for that pair
+
+## Otto Identifier Mapping API
+
+`POST /otto_identifier_mapping/build` builds Otto candidate mappings from:
+
+- `kloklijst.agency='otto'` (`Loonnummers`, `Naam`)
+- `invoice_lines` (`SAP ID`, `Naam`)
+
+Request body:
+
+`{"week":"202550","persist":false,"requireFullCoverage":false,"writeCsv":true,"includeCandidates":false}`
+
+Response includes:
+
+- `stats` (coverage and match-type counts)
+- `uniquenessConflicts`
+- `csvBackupPath` (backup CSV at `output/otto_identifier_mapping_backup.csv` when enabled)
+- `persistResult.insertedMappings` (when `persist=true`)
+
+Notes:
+
+- Otto mapping is identifier-first (`Loonnummers -> SAP ID`) with name fallback in validation
+- Flex remains on current name-based behavior until a valid identifier/source bridge exists for Flex-specific invoice matching

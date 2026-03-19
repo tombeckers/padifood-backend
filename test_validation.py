@@ -1,6 +1,7 @@
 """
 Temporary test script — run with: python test_validation.py
 """
+
 import asyncio
 from db import async_session, engine
 from sqlalchemy import text
@@ -29,10 +30,12 @@ async def main():
         print()
 
         # 3. Sample invoice_lines
-        result = await conn.execute(text(
-            "SELECT week_number, naam, code_toeslag, totaal_uren "
-            "FROM invoice_lines LIMIT 3"
-        ))
+        result = await conn.execute(
+            text(
+                "SELECT week_number, naam, code_toeslag, totaal_uren "
+                "FROM invoice_lines LIMIT 3"
+            )
+        )
         print("=== invoice_lines sample ===")
         for r in result:
             print(f"  {r}")
@@ -40,10 +43,12 @@ async def main():
         print()
 
         # 4. Sample kloklijst (only rows with a date, otto agency)
-        result = await conn.execute(text(
-            "SELECT week_number, agency, naam, datum, norm_uren_dag "
-            "FROM kloklijst WHERE datum IS NOT NULL AND agency = 'otto' LIMIT 3"
-        ))
+        result = await conn.execute(
+            text(
+                "SELECT week_number, agency, naam, datum, norm_uren_dag "
+                "FROM kloklijst WHERE datum IS NOT NULL AND agency = 'otto' LIMIT 3"
+            )
+        )
         print("=== kloklijst sample (otto, datum not null) ===")
         for r in result:
             print(f"  {r}")
@@ -52,9 +57,7 @@ async def main():
 
     # 5. Run validation for the first available week
     async with engine.connect() as conn:
-        result = await conn.execute(
-            text("SELECT MIN(week_number) FROM invoice_lines")
-        )
+        result = await conn.execute(text("SELECT MIN(week_number) FROM invoice_lines"))
         week_int = result.scalar()
 
     if not week_int:
@@ -64,7 +67,7 @@ async def main():
     week = str(week_int)
     print(f"=== Running validation for week {week} ===")
     async with async_session() as db:
-        result = await run_validation(week, db)
+        result = await run_validation(week, db, agency="otto")
 
     counts = result["countsWeek"]
     print(f"  Rows:          {len(result['rowsWeek'])}")

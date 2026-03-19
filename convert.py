@@ -78,14 +78,14 @@ def _convert_workbook(fpath: str, output_dir: str) -> list[str]:
     return created_files
 
 
-def convert_input(kloklijst_filename, factuur_filename):
-    """Convert only the two provided XLSX files into CSV in formatted_input/."""
+def convert_input(kloklijst_filenames: list[str], factuur_filename: str):
+    """Convert provided kloklijsten and factuur XLSX files into CSV in formatted_input/."""
 
     input_dir = "input"
     output_dir = "formatted_input"
     os.makedirs(output_dir, exist_ok=True)
 
-    candidates = [kloklijst_filename, factuur_filename]
+    candidates = [*kloklijst_filenames, factuur_filename]
     created_files: list[str] = []
 
     for candidate in candidates:
@@ -108,5 +108,5 @@ def convert_input(kloklijst_filename, factuur_filename):
 
 if __name__ == "__main__":
     raise SystemExit(
-        "Gebruik convert_input(kloklijst_filename, factuur_filename) vanuit de applicatiecode."
+        "Gebruik convert_input(kloklijst_filenames, factuur_filename) vanuit de applicatiecode."
     )
