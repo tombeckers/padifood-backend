@@ -165,3 +165,24 @@ class OttoIdentifierMapping(Base):
     match_type: Mapped[str]
     verified: Mapped[bool]
     source_week: Mapped[Optional[int]]
+
+
+class PersonWagegroup(Base):
+    """
+    Known wagegroups per provider/person number.
+    For Otto, canonical person number is SAP ID.
+    """
+
+    __tablename__ = "person_wagegroups"
+    __table_args__ = (
+        UniqueConstraint("provider", "person_number", name="uq_wagegroup_provider_person"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    provider: Mapped[str]
+    person_number: Mapped[str]
+    kloklijst_loonnummer: Mapped[Optional[str]]
+    name: Mapped[str]
+    wagegroup: Mapped[str]
+    verified: Mapped[bool]
+    source_week: Mapped[Optional[int]]

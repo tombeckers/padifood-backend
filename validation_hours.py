@@ -23,6 +23,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import InvoiceLine, Kloklijst
 from otto_identifier_mapping import load_verified_otto_mapping
+from validation_wagegroups import analyze_otto_wagegroups
 
 # Maps the original kloklijst column names (used in output/comparison) to
 # the corresponding ORM field names on the Kloklijst model.
@@ -570,6 +571,21 @@ async def run_validation(
         writer.writeheader()
         writer.writerows(rows_daily)
 
+    wagegroup_analysis: dict | None = None
+    wagegroup_output_file: str | None = None
+    if agency == "otto":
+        wagegroup_analysis = await analyze_otto_wagegroups(
+            week=week_int,
+            db=db,
+            include_mismatches=True,
+            max_items=100000,
+        )
+        wagegroup_output_file = f"output/{week} validation_wagegroups_otto.csv"
+        _write_wagegroup_rows_csv(
+            wagegroup_output_file,
+            wagegroup_analysis.get("mismatches", []),
+        )
+
     return {
         "week": week,
         "outputFileWeek": output_file,
@@ -580,6 +596,8 @@ async def run_validation(
         "countsDay": counts_daily,
         "similarPeople": similar_people,
         "exactPersonMatchCount": exact_person_match_count,
+        "wagegroupAnalysis": wagegroup_analysis,
+        "wagegroupOutputFile": wagegroup_output_file,
     }
 
 
@@ -601,13 +619,43 @@ def _fmt_hours(value) -> str:
     return f"{number:.2f}".replace(".", ",")
 
 
+def _write_wagegroup_rows_csv(path: str, rows: list[dict]) -> None:
+    fieldnames = [
+        "sapId",
+        "name",
+        "invoiceWagegroup",
+        "knownWagegroup",
+        "status",
+        "matchMethod",
+    ]
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(
+                {
+                    "sapId": row.get("sapId", ""),
+                    "name": row.get("name", ""),
+                    "invoiceWagegroup": row.get("invoiceWagegroup", ""),
+                    "knownWagegroup": row.get("knownWagegroup", ""),
+                    "status": row.get("status", ""),
+                    "matchMethod": row.get("matchMethod", ""),
+                }
+            )
+
+
 def format_validation_email_body(result: dict) -> str:
     week = result["week"]
     provider_label = result.get("providerLabel")
     rows_week = result["rowsWeek"]
     week_mismatches = [row for row in rows_week if row.get("Status") != "OK"]
-    provider_hint = f" op de factuur van {provider_label}" if provider_label else ""
-    if not week_mismatches:
+    wagegroup_analysis = result.get("wagegroupAnalysis") or {}
+    wagegroup_rows = wagegroup_analysis.get("mismatches", [])
+    wagegroup_mismatches = [
+        row for row in wagegroup_rows if str(row.get("status", "")).strip() == "mismatch"
+    ]
+    provider_hint = f" voor {provider_label}" if provider_label else ""
+    if not week_mismatches and not wagegroup_mismatches:
         return "\n".join(
             [
                 "Goedemorgen,",
@@ -622,15 +670,25 @@ def format_validation_email_body(result: dict) -> str:
             ]
         )
 
-    lines = [
-        "Goedemorgen,",
-        "",
-        (
+    lines = ["Goedemorgen,", ""]
+    if week_mismatches and wagegroup_mismatches:
+        lines.append(
+            "Op bovenstaande factuur hebben we"
+            f"{provider_hint} voor week "
+            f"{week} de volgende discrepanties gevonden met onze kloklijsten en loongroep-referenties:"
+        )
+    elif week_mismatches:
+        lines.append(
             "Op bovenstaande factuur hebben we"
             f"{provider_hint} voor week "
             f"{week} de volgende discrepanties gevonden met onze kloklijsten:"
-        ),
-    ]
+        )
+    else:
+        lines.append(
+            "Op bovenstaande factuur hebben we"
+            f"{provider_hint} voor week "
+            f"{week} de volgende afwijkingen gevonden in loongroepen:"
+        )
 
     for row in week_mismatches:
         name = _fmt_value(row.get("Naam"))
@@ -654,6 +712,22 @@ def format_validation_email_body(result: dict) -> str:
         else:
             lines.append(
                 f"- Bij {name} is een discrepantie gevonden voor {code} (status: {_fmt_value(status)})."
+            )
+
+    if wagegroup_mismatches and week_mismatches:
+        lines.extend(
+            [
+                "",
+                "Daarnaast hebben we de volgende afwijkingen gevonden in loongroepen:",
+            ]
+        )
+    if wagegroup_mismatches:
+        for row in wagegroup_mismatches:
+            name = _fmt_value(row.get("name"))
+            invoice_wagegroup = _fmt_value(row.get("invoiceWagegroup"))
+            known_wagegroup = _fmt_value(row.get("knownWagegroup"))
+            lines.append(
+                f"- Bij {name} staat loongroep {invoice_wagegroup} op de factuur, maar referentie is {known_wagegroup}."
             )
 
     lines.extend(["", "Kan hier een correctie van worden gemaakt?", "", "Bedankt!"])

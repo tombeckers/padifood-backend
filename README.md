@@ -20,13 +20,38 @@ Get current people:
 
 `curl -sS -X GET "$BACKEND_URL/wagegroups" -H "X-API-Key: $API_KEY"`
 
-Upsert a single person:
+Clear wagegroups (all providers):
 
-`curl -sS -X POST "$BACKEND_URL/update_wage_person" -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" -d '{"name":"John Doe","wagegroup":"WG3"}'`
+`curl -sS -X DELETE "$BACKEND_URL/wagegroups" -H "X-API-Key: $API_KEY"`
 
-Bulk upload from Excel (`col1=name`, `col2=wagegroup`):
+Fallback clear endpoint:
+
+`curl -sS -X POST "$BACKEND_URL/wagegroups/clear" -H "X-API-Key: $API_KEY"`
+
+Upsert a single person (canonical ID first; name fallback auto-generated when omitted):
+
+`curl -sS -X POST "$BACKEND_URL/update_wage_person" -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" -d '{"provider":"otto","personNumber":"123456","name":"John Doe","wagegroup":"WG3","verified":true}'`
+
+Bulk upload from Excel (header-detected):
+
+- supported header pairs include:
+  - `Achternaam voornaam` + `Loongroep`
+  - `Name`/`Naam` + `Wagegroup`
+- for Otto, names like `Ailoaei 16444322 Emanuel-Florin` are parsed and matched against verified identifier mappings; canonical person numbers are stored when found
 
 `curl -sS -X POST "$BACKEND_URL/update_wages" -H "X-API-Key: $API_KEY" -F "file=@/absolute/path/to/wagegroups.xlsx"`
+
+Backfill DB wagegroups from legacy CSV + Otto identifier mapping candidates:
+
+`curl -sS -X POST "$BACKEND_URL/wagegroups/backfill_from_csv" -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" -d '{"week":"202550","provider":"otto"}'`
+
+Analyze Otto wagegroups for a week (compares invoice `fase_tarief` against DB wagegroups):
+
+`curl -sS -X POST "$BACKEND_URL/otto_wagegroups/analyze" -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" -d '{"week":"202550","includeMismatches":true,"maxItems":500}'`
+
+Verify Otto runtime coverage/uniqueness gate:
+
+`curl -sS -X POST "$BACKEND_URL/otto_wagegroups/verify_coverage" -H "X-API-Key: $API_KEY" -H "Content-Type: application/json" -d '{"week":"202550"}'`
 
 ## Upload Validation + Name Verification API
 
@@ -45,6 +70,9 @@ Response shape:
   - `outputFileDay`
   - `similarPeople`
   - `exactPersonMatchCount`
+  - Otto only:
+    - `wagegroupOutputFile`
+    - `wagegroupSummary`
 
 Confirm suggested pairs:
 
@@ -56,11 +84,15 @@ Confirm suggested pairs:
   - `emailBody`
   - `outputFileWeek`
   - `exactPersonMatchCount`
+  - Otto only:
+    - `wagegroupOutputFile`
+    - `wagegroupSummary`
 
 Notes:
 
 - decisions are persisted globally in `verified_name_pairs.csv` and reused in future validations
 - `samePerson=false` also prevents repeated fuzzy suggestions for that pair
+- for Otto, upload validation now also compares `InvoiceLine.fase_tarief` against DB `person_wagegroups` and includes loongroep mismatches in `emailBody`
 
 ## Otto Identifier Mapping API
 

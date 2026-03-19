@@ -14,15 +14,26 @@ from fastapi.responses import FileResponse
 from fastapi.security import APIKeyHeader
 from openpyxl import load_workbook
 from pydantic import BaseModel
+from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from config import Settings
 from convert import convert_input
 from loaders import load_file
+from models import PersonWagegroup
 from otto_identifier_mapping import (
     build_otto_mapping_candidates,
     persist_otto_mapping_candidates,
     write_otto_mapping_csv,
+)
+from validation_wagegroups import (
+    analyze_otto_wagegroups,
+    backfill_wagegroups_from_csv,
+    list_person_wagegroups,
+    load_otto_identity_context,
+    resolve_wagegroup_identity,
+    upsert_person_wagegroup,
+    verify_otto_wagegroup_coverage,
 )
 from validation_hours import (
     format_validation_email_body,
@@ -111,6 +122,57 @@ def _is_bulk_header_row(name: str, wagegroup: str) -> bool:
     if not normalized_wagegroup:
         return True
     return normalized_wagegroup in wagegroup_headers
+
+
+def _detect_wagegroup_columns(ws) -> tuple[int, int, int] | None:
+    """
+    Detect (name_col_idx, wagegroup_col_idx, header_row_idx) from sheet headers.
+    Supports both legacy headers and OTTO-style headers.
+    """
+    name_headers = {
+        "name",
+        "naam",
+        "achternaam voornaam",
+        "voornaam achternaam",
+    }
+    wagegroup_headers = {
+        "wagegroup",
+        "wage group",
+        "loon groep",
+        "loongroep",
+    }
+
+    for row_idx, row in enumerate(ws.iter_rows(values_only=True, max_row=60), start=1):
+        normalized_cells: list[str] = []
+        for cell in row:
+            if cell is None:
+                normalized_cells.append("")
+                continue
+            normalized_cells.append(_normalize_header_cell(str(cell)))
+
+        if not any(normalized_cells):
+            continue
+
+        name_idx = next(
+            (
+                idx
+                for idx, value in enumerate(normalized_cells)
+                if value in name_headers
+            ),
+            None,
+        )
+        wagegroup_idx = next(
+            (
+                idx
+                for idx, value in enumerate(normalized_cells)
+                if value in wagegroup_headers
+            ),
+            None,
+        )
+        if name_idx is not None and wagegroup_idx is not None:
+            return name_idx, wagegroup_idx, row_idx
+
+    return None
 
 
 def _clean_person_fields(name: str, wagegroup: str) -> tuple[str, str]:
@@ -374,8 +436,29 @@ class DownloadRequest(BaseModel):
 
 
 class WagePersonUpdateRequest(BaseModel):
+    provider: str = "otto"
+    personNumber: str | None = None
+    kloklijstLoonnummer: str | None = None
     name: str
     wagegroup: str
+    verified: bool = True
+    sourceWeek: int | None = None
+
+
+class WagegroupBackfillRequest(BaseModel):
+    week: str
+    provider: str = "otto"
+    csvPath: str | None = None
+
+
+class OttoWagegroupAnalysisRequest(BaseModel):
+    week: str
+    includeMismatches: bool = True
+    maxItems: int = 500
+
+
+class OttoWagegroupCoverageRequest(BaseModel):
+    week: str
 
 
 class NamePairDecision(BaseModel):
@@ -472,39 +555,116 @@ async def build_otto_identifier_mapping(
 
 
 @app.get("/wagegroups")
-async def get_wagegroups(_: None = Depends(verify_api_key)):
-    rows = _read_wagegroups()
-    people = []
-    for row in rows:
-        try:
-            person_id = int(str(row.get("id", "")).strip())
-        except ValueError:
-            continue
-        people.append(
-            {
-                "id": person_id,
-                "name": str(row.get("name", "")).strip(),
-                "wagegroup": str(row.get("wagegroup", "")).strip(),
-            }
-        )
-    return people
+async def get_wagegroups(
+    provider: str | None = None,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    rows = await list_person_wagegroups(db=db, provider=provider)
+    return [
+        {
+            "id": row.id,
+            "provider": row.provider,
+            "personNumber": row.person_number,
+            "kloklijstLoonnummer": row.kloklijst_loonnummer,
+            "name": row.name,
+            "wagegroup": row.wagegroup,
+            "verified": row.verified,
+            "sourceWeek": row.source_week,
+        }
+        for row in rows
+    ]
+
+
+async def _clear_wagegroups_db(
+    db: AsyncSession,
+    provider: str | None = None,
+) -> dict[str, object]:
+    provider_normalized = provider.strip().lower() if provider else None
+    stmt = delete(PersonWagegroup)
+    if provider_normalized:
+        stmt = stmt.where(PersonWagegroup.provider == provider_normalized)
+    result = await db.execute(stmt)
+    await db.commit()
+    return {
+        "status": "ok",
+        "provider": provider_normalized or "all",
+        "deleted": int(result.rowcount or 0),
+    }
+
+
+@app.delete("/wagegroups")
+async def delete_wagegroups(
+    provider: str | None = None,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    return await _clear_wagegroups_db(db=db, provider=provider)
+
+
+@app.post("/wagegroups/clear")
+async def clear_wagegroups(
+    provider: str | None = None,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    return await _clear_wagegroups_db(db=db, provider=provider)
 
 
 @app.post("/update_wage_person")
 async def update_wage_person(
     payload: WagePersonUpdateRequest,
+    db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
     name, wagegroup = _clean_person_fields(payload.name, payload.wagegroup)
-    rows = _read_wagegroups()
-    action = _upsert_person_wagegroup(rows, name, wagegroup)
-    _write_wagegroups(rows)
-    return {"status": "ok", "action": action}
+    provider = payload.provider.strip().lower()
+    if not provider:
+        raise HTTPException(status_code=400, detail="provider is verplicht.")
+    identity = await resolve_wagegroup_identity(
+        db,
+        provider=provider,
+        raw_name=name,
+        supplied_person_number=(
+            payload.personNumber.strip() if payload.personNumber else None
+        ),
+    )
+    person_number = str(identity["person_number"])
+    resolved_name = str(identity["name"])
+    resolved_kloklijst_loonnummer = (
+        payload.kloklijstLoonnummer.strip()
+        if payload.kloklijstLoonnummer
+        else (
+            str(identity["kloklijst_loonnummer"])
+            if identity.get("kloklijst_loonnummer")
+            else None
+        )
+    )
+    resolved_verified = payload.verified or bool(identity.get("verified"))
+
+    action = await upsert_person_wagegroup(
+        db,
+        provider=provider,
+        person_number=person_number,
+        name=resolved_name,
+        wagegroup=wagegroup,
+        kloklijst_loonnummer=resolved_kloklijst_loonnummer,
+        verified=resolved_verified,
+        source_week=payload.sourceWeek,
+    )
+    return {
+        "status": "ok",
+        "action": action,
+        "personNumber": person_number,
+        "identityMatchMethod": identity.get("match_method"),
+    }
 
 
 @app.post("/update_wages")
 async def update_wages(
     file: UploadFile = File(...),
+    provider: str = "otto",
+    db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
     if not file.filename:
@@ -526,16 +686,40 @@ async def update_wages(
         ) from e
 
     ws = wb.active
-    rows = _read_wagegroups()
+    detected_columns = _detect_wagegroup_columns(ws)
+    if detected_columns is None:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Kon kolommen voor naam en loongroep niet herkennen in het Excelbestand. "
+                "Verwachte headers zijn bijvoorbeeld: "
+                "'Achternaam voornaam' + 'Loongroep' of 'Name/Naam' + 'Wagegroup'."
+            ),
+        )
+
+    name_col_idx, wagegroup_col_idx, header_row_idx = detected_columns
+    provider_normalized = provider.strip().lower()
+    if not provider_normalized:
+        raise HTTPException(status_code=400, detail="provider is verplicht.")
 
     processed = 0
     inserted = 0
     updated = 0
     skipped = 0
+    identity_resolved = 0
+    embedded_numbers_detected = 0
+    otto_context = (
+        await load_otto_identity_context(db) if provider_normalized == "otto" else None
+    )
 
-    for excel_row in ws.iter_rows(values_only=True):
-        raw_name = excel_row[0] if len(excel_row) > 0 else None
-        raw_wagegroup = excel_row[1] if len(excel_row) > 1 else None
+    for row_idx, excel_row in enumerate(ws.iter_rows(values_only=True), start=1):
+        if row_idx <= header_row_idx:
+            continue
+
+        raw_name = excel_row[name_col_idx] if len(excel_row) > name_col_idx else None
+        raw_wagegroup = (
+            excel_row[wagegroup_col_idx] if len(excel_row) > wagegroup_col_idx else None
+        )
 
         name = str(raw_name).strip() if raw_name is not None else ""
         wagegroup = str(raw_wagegroup).strip() if raw_wagegroup is not None else ""
@@ -551,22 +735,100 @@ async def update_wages(
             skipped += 1
             continue
 
+        identity = await resolve_wagegroup_identity(
+            db,
+            provider=provider_normalized,
+            raw_name=name,
+            otto_context=otto_context,
+        )
+        person_number = str(identity["person_number"])
+        resolved_name = str(identity["name"])
+        resolved_kloklijst_loonnummer = (
+            str(identity["kloklijst_loonnummer"])
+            if identity.get("kloklijst_loonnummer")
+            else None
+        )
+        if identity.get("verified"):
+            identity_resolved += 1
+        if identity.get("kloklijst_loonnummer"):
+            embedded_numbers_detected += 1
+
         processed += 1
-        action = _upsert_person_wagegroup(rows, name, wagegroup)
+        action = await upsert_person_wagegroup(
+            db,
+            provider=provider_normalized,
+            person_number=person_number,
+            name=resolved_name,
+            wagegroup=wagegroup,
+            kloklijst_loonnummer=resolved_kloklijst_loonnummer,
+            verified=bool(identity.get("verified")),
+        )
         if action == "inserted":
             inserted += 1
         else:
             updated += 1
 
-    _write_wagegroups(rows)
-
     return {
         "status": "ok",
+        "detectedColumns": {
+            "nameColumnIndex": name_col_idx,
+            "wagegroupColumnIndex": wagegroup_col_idx,
+            "headerRowIndex": header_row_idx,
+        },
         "processed": processed,
         "inserted": inserted,
         "updated": updated,
         "skipped": skipped,
+        "identityResolved": identity_resolved,
+        "embeddedNumbersDetected": embedded_numbers_detected,
     }
+
+
+@app.post("/wagegroups/backfill_from_csv")
+async def backfill_wagegroups(
+    payload: WagegroupBackfillRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    week = _validate_week(payload.week)
+    csv_path = (
+        Path(payload.csvPath).resolve() if payload.csvPath else WAGEGROUPS_CSV_PATH
+    )
+    try:
+        result = await backfill_wagegroups_from_csv(
+            week=int(week),
+            db=db,
+            csv_path=csv_path,
+            provider=payload.provider.strip().lower(),
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    return result
+
+
+@app.post("/otto_wagegroups/analyze")
+async def analyze_otto_wagegroups_endpoint(
+    payload: OttoWagegroupAnalysisRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    week = _validate_week(payload.week)
+    return await analyze_otto_wagegroups(
+        week=int(week),
+        db=db,
+        include_mismatches=payload.includeMismatches,
+        max_items=max(1, payload.maxItems),
+    )
+
+
+@app.post("/otto_wagegroups/verify_coverage")
+async def verify_otto_wagegroups_coverage_endpoint(
+    payload: OttoWagegroupCoverageRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    week = _validate_week(payload.week)
+    return await verify_otto_wagegroup_coverage(week=int(week), db=db)
 
 
 @app.post("/upload")
@@ -820,6 +1082,7 @@ async def upload(
             )
             output_file_week = validation_result["outputFileWeek"]
             output_file_day = validation_result["outputFileDay"]
+            wagegroup_output_file = validation_result.get("wagegroupOutputFile")
             if not os.path.exists(output_file_week) or not os.path.exists(
                 output_file_day
             ):
@@ -830,9 +1093,21 @@ async def upload(
                         f"validatie voor {provider_label}."
                     ),
                 )
+            if (
+                response_key == "otto"
+                and wagegroup_output_file
+                and not os.path.exists(wagegroup_output_file)
+            ):
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Het verwachte wagegroup-outputbestand is niet gegenereerd door de "
+                        f"validatie voor {provider_label}."
+                    ),
+                )
 
             provider_result = {**validation_result, "providerLabel": provider_label}
-            providers_response[response_key] = {
+            provider_response = {
                 "emailBody": format_validation_email_body(provider_result),
                 "outputFileWeek": output_file_week,
                 "outputFileDay": output_file_day,
@@ -841,6 +1116,12 @@ async def upload(
                     "exactPersonMatchCount", 0
                 ),
             }
+            if response_key == "otto":
+                provider_response["wagegroupOutputFile"] = wagegroup_output_file
+                provider_response["wagegroupSummary"] = (
+                    validation_result.get("wagegroupAnalysis") or {}
+                )
+            providers_response[response_key] = provider_response
     except FileNotFoundError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except ValueError as e:
@@ -913,6 +1194,7 @@ async def verify_name_pairs(
                 continue
 
             output_file_week = validation_result["outputFileWeek"]
+            wagegroup_output_file = validation_result.get("wagegroupOutputFile")
             if not os.path.exists(output_file_week):
                 raise HTTPException(
                     status_code=400,
@@ -921,15 +1203,33 @@ async def verify_name_pairs(
                         f"validatie voor {provider_label}."
                     ),
                 )
+            if (
+                response_key == "otto"
+                and wagegroup_output_file
+                and not os.path.exists(wagegroup_output_file)
+            ):
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Het verwachte wagegroup-outputbestand is niet gegenereerd door de "
+                        f"validatie voor {provider_label}."
+                    ),
+                )
 
             provider_result = {**validation_result, "providerLabel": provider_label}
-            providers_response[response_key] = {
+            provider_response = {
                 "emailBody": format_validation_email_body(provider_result),
                 "outputFileWeek": output_file_week,
                 "exactPersonMatchCount": validation_result.get(
                     "exactPersonMatchCount", 0
                 ),
             }
+            if response_key == "otto":
+                provider_response["wagegroupOutputFile"] = wagegroup_output_file
+                provider_response["wagegroupSummary"] = (
+                    validation_result.get("wagegroupAnalysis") or {}
+                )
+            providers_response[response_key] = provider_response
     except FileNotFoundError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except HTTPException:
