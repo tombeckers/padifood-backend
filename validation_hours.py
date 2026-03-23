@@ -204,14 +204,21 @@ def _find_similar_name_pairs(
 
 
 async def _load_factuur_hours_db(
+<<<<<<< Updated upstream
     week: int,
     db: AsyncSession,
     agency: str,
     mapped_sap_ids: set[str],
+=======
+    week: int, db: AsyncSession, agency: str = "otto"
+>>>>>>> Stashed changes
 ) -> dict[str, dict[str, float]]:
     """Returns {compare_key: {code_toeslag: total_uren}} from invoice_lines."""
     result = await db.execute(
-        select(InvoiceLine).where(InvoiceLine.week_number == week)
+        select(InvoiceLine).where(
+            InvoiceLine.week_number == week,
+            InvoiceLine.agency == agency,
+        )
     )
     totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
     for row in result.scalars().all():
@@ -230,12 +237,18 @@ async def _load_factuur_hours_db(
 
 
 async def _load_kloklijst_hours_db(
+<<<<<<< Updated upstream
     week: int,
     db: AsyncSession,
     agency: str,
     loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, float]]:
     """Returns {compare_key: {col_name: total_uren}} from kloklijst for an agency."""
+=======
+    week: int, db: AsyncSession, agency: str = "otto"
+) -> dict[str, dict[str, float]]:
+    """Returns {normalized_name: {col_name: total_uren}} from kloklijst for the given agency."""
+>>>>>>> Stashed changes
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
@@ -263,14 +276,21 @@ async def _load_kloklijst_hours_db(
 
 
 async def _load_factuur_hours_by_date_db(
+<<<<<<< Updated upstream
     week: int,
     db: AsyncSession,
     agency: str,
     mapped_sap_ids: set[str],
+=======
+    week: int, db: AsyncSession, agency: str = "otto"
+>>>>>>> Stashed changes
 ) -> dict[str, dict[str, dict[str, float]]]:
     """Returns {compare_key: {date: {code_toeslag: total_uren}}} from invoice_lines."""
     result = await db.execute(
-        select(InvoiceLine).where(InvoiceLine.week_number == week)
+        select(InvoiceLine).where(
+            InvoiceLine.week_number == week,
+            InvoiceLine.agency == agency,
+        )
     )
     totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
     for row in result.scalars().all():
@@ -291,12 +311,18 @@ async def _load_factuur_hours_by_date_db(
 
 
 async def _load_kloklijst_hours_by_date_db(
+<<<<<<< Updated upstream
     week: int,
     db: AsyncSession,
     agency: str,
     loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, dict[str, float]]]:
     """Returns {compare_key: {date: {col_name: total_uren}}} from kloklijst for an agency."""
+=======
+    week: int, db: AsyncSession, agency: str = "otto"
+) -> dict[str, dict[str, dict[str, float]]]:
+    """Returns {normalized_name: {date: {col_name: total_uren}}} from kloklijst for the given agency."""
+>>>>>>> Stashed changes
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
@@ -325,16 +351,28 @@ async def _load_kloklijst_hours_by_date_db(
 
 
 async def _build_name_display_maps_db(
+<<<<<<< Updated upstream
     week: int,
     db: AsyncSession,
     agency: str,
     mapped_sap_ids: set[str],
     loonnummer_to_sap: dict[str, str],
+=======
+    week: int, db: AsyncSession, agency: str = "otto"
+>>>>>>> Stashed changes
 ) -> tuple[dict[str, str], dict[str, str]]:
     """Returns compare-key display maps for factuur and kloklijst."""
     factuur_result = await db.execute(
+<<<<<<< Updated upstream
         select(InvoiceLine.sap_id, InvoiceLine.naam)
         .where(InvoiceLine.week_number == week)
+=======
+        select(InvoiceLine.naam)
+        .where(
+            InvoiceLine.week_number == week,
+            InvoiceLine.agency == agency,
+        )
+>>>>>>> Stashed changes
         .distinct()
     )
     factuur_names: dict[str, str] = {}
@@ -461,11 +499,16 @@ def build_rows(factuur, kloklijst, include_date=False, display_names: dict[str, 
 async def run_validation(
     week: str,
     db: AsyncSession,
+<<<<<<< Updated upstream
     agency: str,
+=======
+    agency: str = "otto",
+>>>>>>> Stashed changes
     confirmed_same_pairs: list[tuple[str, str]] | None = None,
     confirmed_diff_pairs: list[tuple[str, str]] | None = None,
 ) -> dict:
     week_int = int(week)
+<<<<<<< Updated upstream
     provider_suffix = "flex" if agency == "flexspecialisten" else agency
     output_file = f"output/{week} validation_hours_{provider_suffix}.csv"
     output_file_daily = f"output/{week} validation_hours_{provider_suffix}_daily.csv"
@@ -492,6 +535,21 @@ async def run_validation(
         raise ValueError(
             f"Geen kloklijstregels gevonden in de database voor week {week}."
         )
+=======
+    agency_suffix = "" if agency == "otto" else f"_{agency}"
+    output_file = f"output/{week} validation_hours{agency_suffix}.csv"
+    output_file_daily = f"output/{week} validation_hours_daily{agency_suffix}.csv"
+
+    factuur = await _load_factuur_hours_db(week_int, db, agency)
+    kloklijst = await _load_kloklijst_hours_db(week_int, db, agency)
+    factuur_daily = await _load_factuur_hours_by_date_db(week_int, db, agency)
+    kloklijst_daily = await _load_kloklijst_hours_by_date_db(week_int, db, agency)
+
+    if not factuur:
+        raise ValueError(f"Geen factuurregels gevonden in de database voor week {week} (agency={agency}).")
+    if not kloklijst:
+        raise ValueError(f"Geen kloklijstregels gevonden in de database voor week {week} (agency={agency}).")
+>>>>>>> Stashed changes
 
     confirmed_same_pairs = confirmed_same_pairs or []
     confirmed_diff_pairs = confirmed_diff_pairs or []
@@ -508,9 +566,13 @@ async def run_validation(
     factuur_daily = _merge_daily_hours_by_alias(factuur_daily, alias_map)
     kloklijst_daily = _merge_daily_hours_by_alias(kloklijst_daily, alias_map)
 
+<<<<<<< Updated upstream
     factuur_display, kloklijst_display = await _build_name_display_maps_db(
         week_int, db, agency, mapped_sap_ids, loonnummer_to_sap
     )
+=======
+    factuur_display, kloklijst_display = await _build_name_display_maps_db(week_int, db, agency)
+>>>>>>> Stashed changes
     factuur_display = _apply_alias_to_display_map(factuur_display, alias_map)
     kloklijst_display = _apply_alias_to_display_map(kloklijst_display, alias_map)
 
@@ -588,6 +650,7 @@ async def run_validation(
 
     return {
         "week": week,
+        "agency": agency,
         "outputFileWeek": output_file,
         "outputFileDay": output_file_daily,
         "rowsWeek": rows,

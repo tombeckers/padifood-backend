@@ -78,14 +78,27 @@ def _convert_workbook(fpath: str, output_dir: str) -> list[str]:
     return created_files
 
 
+<<<<<<< Updated upstream
 def convert_input(kloklijst_filenames: list[str], factuur_filename: str):
     """Convert provided kloklijsten and factuur XLSX files into CSV in formatted_input/."""
+=======
+def convert_input(kloklijst_filename, factuur_filename=None):
+    """Convert the provided XLSX files into CSV in formatted_input/.
+
+    factuur_filename is optional — pass None to convert only the kloklijst
+    (e.g. when processing a Flexspecialisten kloklijst without an OTTO invoice).
+    """
+>>>>>>> Stashed changes
 
     input_dir = "input"
     output_dir = "formatted_input"
     os.makedirs(output_dir, exist_ok=True)
 
+<<<<<<< Updated upstream
     candidates = [*kloklijst_filenames, factuur_filename]
+=======
+    candidates = [f for f in [kloklijst_filename, factuur_filename] if f is not None]
+>>>>>>> Stashed changes
     created_files: list[str] = []
 
     for candidate in candidates:

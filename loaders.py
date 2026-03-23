@@ -18,6 +18,7 @@ import pandas as pd
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from convert_flex import parse_flex_pdfs
 from models import InvoiceLine, Kloklijst, OttoRateCard, Tarievensheet
 
 
@@ -127,6 +128,7 @@ def _load_invoice_lines_df(content: bytes, week_number: int) -> list[InvoiceLine
         rows.append(
             InvoiceLine(
                 week_number=week_number,
+                agency="otto",
                 sap_id=r.get("SAP ID", ""),
                 naam=r.get("Naam", ""),
                 uurloon=_to_float(r.get("Uurloon")) or 0.0,
@@ -254,6 +256,57 @@ def _load_otto_rate_card_df(content: bytes) -> list[OttoRateCard]:
             )
         )
     return rows
+
+
+# ---------------------------------------------------------------------------
+# Flexspecialisten invoice loader (PDF)
+# ---------------------------------------------------------------------------
+
+async def load_flex_invoices(
+    pdfs: list[tuple[str, bytes]],
+    week_number: int,
+    session: AsyncSession,
+) -> dict:
+    """
+    Parse one or more Flexspecialisten PDF invoices for the same week,
+    merge them (corrections override originals), and insert into invoice_lines.
+
+    Args:
+        pdfs: list of (filename, raw_bytes) tuples
+        week_number: ISO week number (YYYYww)
+        session: async DB session
+    """
+    pdf_contents = [content for _, content in pdfs]
+    rows_data = parse_flex_pdfs(pdf_contents)
+
+    rows = [
+        InvoiceLine(
+            week_number=week_number,
+            agency="flexspecialisten",
+            sap_id="",
+            naam=r["naam"],
+            uurloon=r["tarief"],
+            uurloon_zonder_atv=0.0,
+            functie_toeslag=0.0,
+            wekentelling=0,
+            fase_tarief="",
+            datum=None,          # PDF invoices have weekly totals only
+            code_toeslag=r["code_toeslag"],
+            totaal_uren=r["totaal_uren"],
+            subtotaal=r["subtotaal"],
+        )
+        for r in rows_data
+    ]
+
+    session.add_all(rows)
+    await session.commit()
+    return {
+        "table": "invoice_lines",
+        "agency": "flexspecialisten",
+        "week": week_number,
+        "rows": len(rows),
+        "pdfs": [fname for fname, _ in pdfs],
+    }
 
 
 # ---------------------------------------------------------------------------

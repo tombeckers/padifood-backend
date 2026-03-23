@@ -47,14 +47,17 @@ class Kloklijst(Base):
 
 class InvoiceLine(Base):
     """
-    Line items from the OTTO invoice (Padifood specificatie - Export Factuur).
-    One row per surcharge type per employee per day.
+    Line items from an agency invoice.
+    - OTTO: one row per surcharge type per employee per day (datum always set).
+    - Flexspecialisten: one row per surcharge type per employee per week
+      (datum is None — PDF invoices only have weekly totals).
     """
 
     __tablename__ = "invoice_lines"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     week_number: Mapped[int]
+    agency: Mapped[str]  # 'otto' or 'flexspecialisten'
 
     sap_id: Mapped[str]
     naam: Mapped[str]
@@ -63,7 +66,7 @@ class InvoiceLine(Base):
     functie_toeslag: Mapped[float]
     wekentelling: Mapped[int]
     fase_tarief: Mapped[str]
-    datum: Mapped[date]
+    datum: Mapped[Optional[date]]
     code_toeslag: Mapped[str]
     totaal_uren: Mapped[float]
     subtotaal: Mapped[float]
