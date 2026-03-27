@@ -998,12 +998,9 @@ async def upload(
             raise HTTPException(status_code=400, detail="Weeknummer (YYYYww) niet gevonden in OTTO kloklijst bestandsnaam.")
         otto_week_fa = extract_week_from_factuur(otto_factuur["content"])  # type: ignore[index]
         if not otto_week_fa:
-            raise HTTPException(status_code=400, detail="Weeknummer niet te bepalen uit kolom Datum in OTTO factuur.")
+            print("WARNING: Weeknummer niet te bepalen uit kolom Datum in OTTO factuur — week uit kloklijst gebruikt")
         if otto_week_kl != otto_week_fa:
-            raise HTTPException(
-                status_code=400,
-                detail=f"OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa}",
-            )
+            print(f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa} — doorgaan met kloklijst week")
         week = otto_week_kl
 
     if has_flex:
@@ -1015,15 +1012,9 @@ async def upload(
             raise HTTPException(status_code=400, detail="Weeknummer niet te bepalen uit de Flexspecialisten PDF.")
         flex_week_pdf = str(flex_week_pdf_raw)
         if flex_week_kl != flex_week_pdf:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Flex weeknummers komen niet overeen: kloklijst={flex_week_kl}, PDF={flex_week_pdf}",
-            )
+            print(f"WARNING: Flex weeknummers komen niet overeen: kloklijst={flex_week_kl}, PDF={flex_week_pdf} — doorgaan met kloklijst week")
         if week is not None and week != flex_week_kl:
-            raise HTTPException(
-                status_code=400,
-                detail=f"OTTO weeknummer ({week}) komt niet overeen met Flexspecialisten weeknummer ({flex_week_kl}).",
-            )
+            print(f"WARNING: OTTO weeknummer ({week}) komt niet overeen met Flexspecialisten weeknummer ({flex_week_kl}) — doorgaan")
         week = flex_week_kl
 
     assert week is not None
