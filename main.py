@@ -932,26 +932,36 @@ async def upload(
         is_pdf = lower.endswith(".pdf")
         is_kloklijst = "kloklijst" in lower
 
+        is_flex = "flex" in lower
+        is_otto = "otto" in lower
+
         if is_pdf:
             flex_pdfs.append(item)
         elif is_kloklijst:
-            if "otto" in lower:
+            if is_otto:
                 if otto_kloklijst is not None:
                     raise HTTPException(status_code=400, detail="Meerdere OTTO kloklijstbestanden gevonden.")
                 otto_kloklijst = item
-            elif "flexspecialisten" in lower:
+            elif is_flex:
                 if flex_kloklijst is not None:
                     raise HTTPException(status_code=400, detail="Meerdere Flexspecialisten kloklijstbestanden gevonden.")
                 flex_kloklijst = item
             else:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Kan agency niet bepalen voor kloklijst: {item['filename']}. Bestandsnaam moet 'Otto' of 'Flexspecialisten' bevatten.",
+                    detail=f"Kan agency niet bepalen voor kloklijst: {item['filename']}. Bestandsnaam moet 'Otto' of 'Flex' bevatten.",
                 )
         elif "factuur" in lower or "specificatie" in lower:
-            if otto_factuur is not None:
-                raise HTTPException(status_code=400, detail="Meerdere OTTO factuurbestanden gevonden.")
-            otto_factuur = item
+            if is_flex:
+                # Flex XLSX invoice — not currently processed but don't block
+                pass
+            else:
+                if otto_factuur is not None:
+                    raise HTTPException(status_code=400, detail="Meerdere OTTO factuurbestanden gevonden.")
+                otto_factuur = item
+        elif "tarief" in lower or "lonen" in lower:
+            # Tarievensheet uploaded as part of batch — ignore here, handled by /upload_tarievensheet
+            pass
         else:
             raise HTTPException(
                 status_code=400,
