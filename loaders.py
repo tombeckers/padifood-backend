@@ -319,15 +319,16 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
     into the appropriate table. Returns a summary dict.
     """
     name = filename
+    name_lower = filename.lower()
 
-    if "Kloklijst" in name:
+    if "kloklijst" in name_lower:
         week_number = _extract_week_number(name)
         if week_number is None:
             return {"skipped": True, "reason": "Could not extract week number"}
 
-        if "Otto Workforce" in name or "Otto workforce" in name:
+        if "otto" in name_lower:
             agency = "otto"
-        elif "Flexspecialisten" in name:
+        elif "flex" in name_lower:
             agency = "flexspecialisten"
         else:
             return {"skipped": True, "reason": "Unknown kloklijst agency"}
@@ -343,7 +344,7 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
         await session.commit()
         return {"table": "kloklijst", "week": week_number, "agency": agency, "rows": len(rows)}
 
-    elif "Export Factuur" in name:
+    elif "export factuur" in name_lower:
         week_number = _extract_week_number(name)
         if week_number is None:
             return {"skipped": True, "reason": "Could not extract week number"}
@@ -356,7 +357,7 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
         await session.commit()
         return {"table": "invoice_lines", "week": week_number, "rows": len(rows)}
 
-    elif "Tarievensheet" in name:
+    elif "tarievensheet" in name_lower:
         week_number = _extract_week_number(name)
         if week_number is None:
             return {"skipped": True, "reason": "Could not extract week number"}
@@ -369,7 +370,7 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
         await session.commit()
         return {"table": "tarievensheet", "week": week_number, "rows": len(rows)}
 
-    elif "tarievenoverzicht" in name:
+    elif "tarievenoverzicht" in name_lower:
         rows = _load_otto_rate_card_df(content)
         session.add_all(rows)
         await session.commit()
