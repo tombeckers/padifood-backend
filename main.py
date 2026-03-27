@@ -19,8 +19,6 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 
 from config import Settings
 from convert import convert_input
-<<<<<<< Updated upstream
-from loaders import load_file
 from models import PersonWagegroup
 from otto_identifier_mapping import (
     build_otto_mapping_candidates,
@@ -36,10 +34,8 @@ from validation_wagegroups import (
     upsert_person_wagegroup,
     verify_otto_wagegroup_coverage,
 )
-=======
 from convert_flex import extract_week_from_flex_pdfs
 from loaders import load_file, load_flex_invoices
->>>>>>> Stashed changes
 from validation_hours import (
     format_validation_email_body,
     normalize_name,
@@ -846,98 +842,6 @@ async def upload(
     input_dir = "input"
     os.makedirs(input_dir, exist_ok=True)
 
-<<<<<<< Updated upstream
-    if len(files) < 2 or len(files) > 3:
-        raise HTTPException(
-            status_code=400,
-            detail=(
-                "Er zijn 2 of 3 bestanden vereist: één specificatie en "
-                "één of twee kloklijsten (.xlsx)."
-            ),
-        )
-
-    uploaded = []
-    for file in files:
-        if not file.filename:
-            raise HTTPException(
-                status_code=400, detail="Geüpload bestand heeft geen bestandsnaam."
-            )
-        if not file.filename.lower().endswith(".xlsx"):
-            raise HTTPException(
-                status_code=400,
-                detail=f"Alleen .xlsx-bestanden worden ondersteund: {file.filename}",
-            )
-        content = await file.read()
-        uploaded.append({"filename": file.filename, "content": content})
-
-    def classify(data):
-        factuur = None
-        kloklijst_otto = None
-        kloklijst_flex = None
-        for item in data:
-            lower = item["filename"].lower()
-            is_kloklijst = "kloklijst" in lower
-            is_factuur = (
-                "factuur" in lower or "specificatie" in lower
-            ) and not is_kloklijst
-            is_otto = is_kloklijst and ("otto" in lower or "otto workforce" in lower)
-            is_flex = is_kloklijst and "flexspecialisten" in lower
-
-            if is_kloklijst and not is_otto and not is_flex:
-                raise HTTPException(
-                    status_code=400,
-                    detail=(
-                        "Kon kloklijstprovider niet bepalen uit bestandsnaam: "
-                        f"{item['filename']}. Verwacht 'Otto' of 'Flexspecialisten'."
-                    ),
-                )
-
-            if is_otto and is_flex:
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"Onduidelijke kloklijstprovider voor bestand: {item['filename']}",
-                )
-
-            if is_otto:
-                if kloklijst_otto is not None:
-                    raise HTTPException(
-                        status_code=400,
-                        detail="Meerdere Otto kloklijsten gevonden; precies één verwacht.",
-                    )
-                kloklijst_otto = item
-            elif is_flex:
-                if kloklijst_flex is not None:
-                    raise HTTPException(
-                        status_code=400,
-                        detail=(
-                            "Meerdere Flexspecialisten kloklijsten gevonden; "
-                            "precies één verwacht."
-                        ),
-                    )
-                kloklijst_flex = item
-            elif is_factuur:
-                if factuur is not None:
-                    raise HTTPException(
-                        status_code=400,
-                        detail="Meerdere factuurbestanden gevonden; precies één verwacht.",
-                    )
-                factuur = item
-
-        if factuur is None:
-            raise HTTPException(
-                status_code=400,
-                detail="Geen specificatie/factuurbestand gevonden in de upload.",
-            )
-        if kloklijst_otto is None and kloklijst_flex is None:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    "Geen kloklijst gevonden. Upload minimaal één kloklijst: "
-                    "Otto Workforce en/of Flexspecialisten."
-                ),
-            )
-        return factuur, kloklijst_otto, kloklijst_flex
-=======
     if len(files) < 2:
         raise HTTPException(
             status_code=400,
@@ -945,7 +849,6 @@ async def upload(
         )
 
     # ------------------------------------------------------------------ helpers
->>>>>>> Stashed changes
 
     def extract_week_from_filename(filename: str) -> str | None:
         match = re.match(r"^\s*(\d{6})\b", filename)
@@ -1004,9 +907,6 @@ async def upload(
             )
         return f"{week} {stem}.xlsx"
 
-<<<<<<< Updated upstream
-    factuur_upload, kloklijst_otto_upload, kloklijst_flex_upload = classify(uploaded)
-=======
     # ------------------------------------------------------------------ read + classify
 
     uploaded = []
@@ -1021,40 +921,12 @@ async def upload(
             )
         content = await file.read()
         uploaded.append({"filename": file.filename, "content": content})
->>>>>>> Stashed changes
 
     otto_kloklijst: dict | None = None
     flex_kloklijst: dict | None = None
     otto_factuur: dict | None = None
     flex_pdfs: list[dict] = []
 
-<<<<<<< Updated upstream
-    kloklijst_uploads = [
-        ("Otto Workforce", kloklijst_otto_upload),
-        ("Flexspecialisten", kloklijst_flex_upload),
-    ]
-    for provider_label, kloklijst_upload in kloklijst_uploads:
-        if kloklijst_upload is None:
-            continue
-        week_from_kloklijst = extract_week_from_filename(kloklijst_upload["filename"])
-        if not week_from_kloklijst:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    "Kon weeknummer (YYYYww) niet vinden in de bestandsnaam van de "
-                    f"{provider_label} kloklijst."
-                ),
-            )
-        if week_from_kloklijst != week_from_factuur:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    "Weeknummer komt niet overeen tussen "
-                    f"{provider_label} kloklijst en factuur: "
-                    f"{week_from_kloklijst} != {week_from_factuur}"
-                ),
-            )
-=======
     for item in uploaded:
         lower = item["filename"].lower()
         is_pdf = lower.endswith(".pdf")
@@ -1105,29 +977,9 @@ async def upload(
         raise HTTPException(status_code=400, detail="Flexspecialisten kloklijst gevonden maar geen PDF factuur.")
     if flex_pdfs and not flex_kloklijst:
         raise HTTPException(status_code=400, detail="Flexspecialisten PDF gevonden maar geen Flexspecialisten kloklijst.")
->>>>>>> Stashed changes
 
     # ------------------------------------------------------------------ week extraction + cross-validation
 
-<<<<<<< Updated upstream
-    factuur_name = build_prefixed_filename(factuur_upload["filename"], week)
-    factuur_path = os.path.join(input_dir, factuur_name)
-    provider_to_kloklijst_name: dict[str, str] = {}
-
-    for provider_key, upload_item in (
-        ("otto", kloklijst_otto_upload),
-        ("flex", kloklijst_flex_upload),
-    ):
-        if upload_item is None:
-            continue
-        kloklijst_name = build_prefixed_filename(upload_item["filename"], week)
-        provider_to_kloklijst_name[provider_key] = kloklijst_name
-        kloklijst_path = os.path.join(input_dir, kloklijst_name)
-        with open(kloklijst_path, "wb") as f:
-            f.write(upload_item["content"])
-    with open(factuur_path, "wb") as f:
-        f.write(factuur_upload["content"])
-=======
     week: str | None = None
 
     if has_otto:
@@ -1167,99 +1019,10 @@ async def upload(
     assert week is not None
 
     # ------------------------------------------------------------------ load name-pair decisions
->>>>>>> Stashed changes
 
     verified_rows = _read_verified_name_pairs()
     confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(verified_rows)
 
-<<<<<<< Updated upstream
-    providers_response: dict[str, dict] = {}
-    try:
-        kloklijst_names = list(provider_to_kloklijst_name.values())
-        created_files = convert_input(kloklijst_names, factuur_name)
-        for file_path in created_files:
-            fname = os.path.basename(file_path)
-            with open(file_path, "rb") as f:
-                content = f.read()
-            await load_file(fname, content, db)
-
-        for response_key, agency, provider_label in (
-            ("otto", "otto", "Otto Workforce"),
-            ("flex", "flexspecialisten", "Flexspecialisten"),
-        ):
-            if response_key not in provider_to_kloklijst_name:
-                continue
-            validation_result = await run_validation(
-                week,
-                db,
-                agency=agency,
-                confirmed_same_pairs=confirmed_same_pairs,
-                confirmed_diff_pairs=confirmed_diff_pairs,
-            )
-            output_file_week = validation_result["outputFileWeek"]
-            output_file_day = validation_result["outputFileDay"]
-            wagegroup_output_file = validation_result.get("wagegroupOutputFile")
-            if not os.path.exists(output_file_week) or not os.path.exists(
-                output_file_day
-            ):
-                raise HTTPException(
-                    status_code=400,
-                    detail=(
-                        "De verwachte outputbestanden zijn niet gegenereerd door de "
-                        f"validatie voor {provider_label}."
-                    ),
-                )
-            if (
-                response_key == "otto"
-                and wagegroup_output_file
-                and not os.path.exists(wagegroup_output_file)
-            ):
-                raise HTTPException(
-                    status_code=400,
-                    detail=(
-                        "Het verwachte wagegroup-outputbestand is niet gegenereerd door de "
-                        f"validatie voor {provider_label}."
-                    ),
-                )
-
-            provider_result = {**validation_result, "providerLabel": provider_label}
-            provider_response = {
-                "emailBody": format_validation_email_body(provider_result),
-                "outputFileWeek": output_file_week,
-                "outputFileDay": output_file_day,
-                "similarPeople": validation_result.get("similarPeople", []),
-                "exactPersonMatchCount": validation_result.get(
-                    "exactPersonMatchCount", 0
-                ),
-            }
-            if response_key == "otto":
-                provider_response["wagegroupOutputFile"] = wagegroup_output_file
-                provider_response["wagegroupSummary"] = (
-                    validation_result.get("wagegroupAnalysis") or {}
-                )
-            providers_response[response_key] = provider_response
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=400, detail=str(e)) from e
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e)) from e
-    except HTTPException:
-        raise
-    except Exception as e:
-        import traceback
-
-        traceback.print_exc()
-        raise HTTPException(
-            status_code=500,
-            detail=f"Onverwachte fout tijdens het verwerken van bestanden: {e}",
-        )
-    if not providers_response:
-        raise HTTPException(
-            status_code=400,
-            detail="Geen validatieresultaten gegenereerd voor de geüploade providers.",
-        )
-
-    return {"providers": providers_response}
-=======
     # ------------------------------------------------------------------ process OTTO
 
     results: list[dict] = []
@@ -1361,7 +1124,6 @@ async def upload(
         })
 
     return {"results": results}
->>>>>>> Stashed changes
 
 
 @app.post("/verify_name_pairs")
@@ -1394,7 +1156,6 @@ async def verify_name_pairs(
     providers_response: dict[str, dict] = {}
     validation_errors: list[str] = []
     try:
-<<<<<<< Updated upstream
         for response_key, agency, provider_label in (
             ("otto", "otto", "Otto Workforce"),
             ("flex", "flexspecialisten", "Flexspecialisten"),
@@ -1450,15 +1211,6 @@ async def verify_name_pairs(
                     validation_result.get("wagegroupAnalysis") or {}
                 )
             providers_response[response_key] = provider_response
-=======
-        validation_result = await run_validation(
-            week,
-            db,
-            agency=payload.agency,
-            confirmed_same_pairs=confirmed_same_pairs,
-            confirmed_diff_pairs=confirmed_diff_pairs,
-        )
->>>>>>> Stashed changes
     except FileNotFoundError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except HTTPException:

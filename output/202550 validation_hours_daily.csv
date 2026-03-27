@@ -1,0 +1,1234 @@
+﻿Naam,Datum,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+adrian koson,2025-12-08,Norm uren Dag,7.5,40.0,-32.5,VERSCHIL
+adrian koson,2025-12-09,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+adrian koson,2025-12-10,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+adrian koson,2025-12-11,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+adrian koson,2025-12-12,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+adrian moldovan,2025-12-08,Norm uren Dag,13.75,37.5,-23.75,VERSCHIL
+adrian moldovan,2025-12-08,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+adrian moldovan,2025-12-09,Norm uren Dag,17.5,38.75,-21.25,VERSCHIL
+adrian moldovan,2025-12-09,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+adrian moldovan,2025-12-10,Norm uren Dag,17.5,38.75,-21.25,VERSCHIL
+adrian moldovan,2025-12-10,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+adrian moldovan,2025-12-11,Norm uren Dag,18.75,38.75,-20.0,VERSCHIL
+adrian moldovan,2025-12-11,T133 Dag,11.25,,,ALLEEN IN FACTUUR
+adrian moldovan,2025-12-12,Norm uren Dag,,32.5,,ALLEEN IN KLOKLIJST
+agafitei ioan,2025-12-08,Norm uren Dag,17.5,40.0,-22.5,VERSCHIL
+agafitei ioan,2025-12-08,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-09,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+agafitei ioan,2025-12-09,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-09,T135 Dag,2.5,5.0,-2.5,VERSCHIL
+agafitei ioan,2025-12-10,Norm uren Dag,3.75,38.75,-35.0,VERSCHIL
+agafitei ioan,2025-12-10,OW140 Week,7.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-10,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-10,T135 Dag,6.25,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-11,Norm uren Dag,12.5,36.25,-23.75,VERSCHIL
+agafitei ioan,2025-12-11,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-12,Norm uren Dag,12.5,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+agafitei ioan,2025-12-13,OW180 Dag,16.25,,,ALLEEN IN FACTUUR
+agnieszka cwioro,2025-12-08,Norm uren Dag,13.75,8.75,5.0,VERSCHIL
+agnieszka cwioro,2025-12-08,T133 Dag,26.25,27.5,-1.25,VERSCHIL
+agnieszka cwioro,2025-12-08,T135 Dag,1.25,5.0,-3.75,VERSCHIL
+agnieszka cwioro,2025-12-09,Norm uren Dag,13.75,8.75,5.0,VERSCHIL
+agnieszka cwioro,2025-12-09,T133 Dag,26.25,26.25,0.0,OK
+agnieszka cwioro,2025-12-09,T135 Dag,1.25,6.25,-5.0,VERSCHIL
+agnieszka cwioro,2025-12-10,Norm uren Dag,13.75,8.75,5.0,VERSCHIL
+agnieszka cwioro,2025-12-10,T133 Dag,26.25,26.25,0.0,OK
+agnieszka cwioro,2025-12-10,T135 Dag,2.5,5.0,-2.5,VERSCHIL
+agnieszka cwioro,2025-12-11,Norm uren Dag,10.0,10.0,0.0,OK
+agnieszka cwioro,2025-12-11,OW140 Week,3.75,,,ALLEEN IN FACTUUR
+agnieszka cwioro,2025-12-11,T133 Dag,26.25,26.25,0.0,OK
+agnieszka cwioro,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+agnieszka cwioro,2025-12-12,Norm uren Dag,13.75,8.75,5.0,VERSCHIL
+agnieszka cwioro,2025-12-12,T133 Dag,25.0,26.25,-1.25,VERSCHIL
+agnieszka cwioro,2025-12-12,T135 Dag,,6.25,,ALLEEN IN KLOKLIJST
+agnieszka cwioro,2025-12-13,OW180 Dag,15.0,,,ALLEEN IN FACTUUR
+agnieszka cwioro,2025-12-13,OW200 Dag,5.0,,,ALLEEN IN FACTUUR
+agnieszka cwioro,2025-12-14,OW140 Week,,5.0,,ALLEEN IN KLOKLIJST
+agnieszka kosior,2025-12-08,Norm uren Dag,47.5,37.5,10.0,VERSCHIL
+agnieszka kosior,2025-12-08,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+agnieszka kosior,2025-12-09,Norm uren Dag,47.5,33.75,13.75,VERSCHIL
+agnieszka kosior,2025-12-09,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+agnieszka kosior,2025-12-10,Norm uren Dag,47.5,47.5,0.0,OK
+agnieszka kosior,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+agnieszka kosior,2025-12-11,Norm uren Dag,8.75,45.0,-36.25,VERSCHIL
+agnieszka kosior,2025-12-11,OW140 Week,38.75,,,ALLEEN IN FACTUUR
+agnieszka kosior,2025-12-12,Norm uren Dag,46.25,38.75,7.5,VERSCHIL
+agnieszka kosior,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+agnieszka kosior,2025-12-14,OW140 Week,,5.0,,ALLEEN IN KLOKLIJST
+ales marco,2025-12-08,Norm uren Dag,41.25,,,ALLEEN IN FACTUUR
+ales marco,2025-12-09,Norm uren Dag,46.25,,,ALLEEN IN FACTUUR
+ales marco,2025-12-10,Norm uren Dag,22.5,,,ALLEEN IN FACTUUR
+ales marco,2025-12-10,OW140 Week,21.25,,,ALLEEN IN FACTUUR
+ales marco,2025-12-11,Norm uren Dag,45.0,,,ALLEEN IN FACTUUR
+ales marco,2025-12-12,Norm uren Dag,45.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-08,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+andrei obaciu,2025-12-08,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-08,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-09,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+andrei obaciu,2025-12-09,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-09,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-10,Norm uren Dag,35.0,18.75,16.25,VERSCHIL
+andrei obaciu,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-11,Norm uren Dag,30.0,20.0,10.0,VERSCHIL
+andrei obaciu,2025-12-11,OW140 Week,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-11,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-12,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+andrei obaciu,2025-12-12,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+andrei obaciu,2025-12-12,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrei obaciu,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+andrzej jankowski,2025-12-08,Norm uren Dag,35.0,13.75,21.25,VERSCHIL
+andrzej jankowski,2025-12-08,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-08,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrzej jankowski,2025-12-09,Norm uren Dag,35.0,12.5,22.5,VERSCHIL
+andrzej jankowski,2025-12-09,T133 Dag,,16.25,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-09,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrzej jankowski,2025-12-10,Norm uren Dag,26.25,12.5,13.75,VERSCHIL
+andrzej jankowski,2025-12-10,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrzej jankowski,2025-12-11,Norm uren Dag,35.0,13.75,21.25,VERSCHIL
+andrzej jankowski,2025-12-11,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+andrzej jankowski,2025-12-12,Norm uren Dag,26.25,13.75,12.5,VERSCHIL
+andrzej jankowski,2025-12-12,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+andrzej jankowski,2025-12-12,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+anna cyran,2025-12-08,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+anna gajewska,2025-12-08,Norm uren Dag,41.25,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-09,Norm uren Dag,37.5,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-09,OW140 Week,3.75,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-10,Norm uren Dag,42.5,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+anna gajewska,2025-12-12,Norm uren Dag,38.75,,,ALLEEN IN FACTUUR
+anna mikulska,2025-12-08,Norm uren Dag,42.5,11.25,31.25,VERSCHIL
+anna mikulska,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-09,Norm uren Dag,37.5,11.25,26.25,VERSCHIL
+anna mikulska,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-10,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+anna mikulska,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-11,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+anna mikulska,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-12,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+anna mikulska,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+anna mikulska,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+anna sztabinska,2025-12-08,Norm uren Dag,10.0,40.0,-30.0,VERSCHIL
+anna sztabinska,2025-12-08,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+anna sztabinska,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+anna sztabinska,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+anna sztabinska,2025-12-10,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+anna sztabinska,2025-12-10,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+anna sztabinska,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+anna sztabinska,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+anna sztabinska,2025-12-12,Norm uren Dag,11.25,38.75,-27.5,VERSCHIL
+anna sztabinska,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-08,Norm uren Dag,25.0,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-09,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-10,Norm uren Dag,32.5,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-12,Norm uren Dag,37.5,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-13,Norm uren Dag,25.0,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-13,OW180 Dag,1.25,,,ALLEEN IN FACTUUR
+arkadiusz kulesza,2025-12-13,OW200 Dag,5.0,,,ALLEEN IN FACTUUR
+artini paolo,2025-12-08,Norm uren Dag,15.0,33.75,-18.75,VERSCHIL
+artini paolo,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+artini paolo,2025-12-09,Norm uren Dag,15.0,33.75,-18.75,VERSCHIL
+artini paolo,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+artini paolo,2025-12-10,Norm uren Dag,15.0,32.5,-17.5,VERSCHIL
+artini paolo,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+artini paolo,2025-12-11,Norm uren Dag,15.0,32.5,-17.5,VERSCHIL
+artini paolo,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+artini paolo,2025-12-12,Norm uren Dag,15.0,32.5,-17.5,VERSCHIL
+artini paolo,2025-12-12,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-08,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+audrius augustinaitis,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-09,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+audrius augustinaitis,2025-12-09,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-09,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-10,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+audrius augustinaitis,2025-12-10,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-10,T135 Dag,1.25,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-11,Norm uren Dag,13.75,36.25,-22.5,VERSCHIL
+audrius augustinaitis,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+audrius augustinaitis,2025-12-12,Norm uren Dag,12.5,38.75,-26.25,VERSCHIL
+audrius augustinaitis,2025-12-12,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+babics david,2025-12-08,Norm uren Dag,43.75,45.0,-1.25,VERSCHIL
+babics david,2025-12-09,Norm uren Dag,45.0,45.0,0.0,OK
+babics david,2025-12-10,Norm uren Dag,21.25,45.0,-23.75,VERSCHIL
+babics david,2025-12-10,OW140 Week,23.75,,,ALLEEN IN FACTUUR
+babics david,2025-12-11,Norm uren Dag,45.0,45.0,0.0,OK
+babics david,2025-12-12,Norm uren Dag,45.0,41.25,3.75,VERSCHIL
+babics david,2025-12-14,OW140 Week,,21.25,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-08,Norm uren Dag,,11.25,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-09,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+baraniuk beata,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-10,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+baraniuk beata,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+baraniuk beata,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+baraniuk beata,2025-12-12,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+baraniuk beata,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+barbara holubowska,2025-12-08,Norm uren Dag,,43.75,,ALLEEN IN KLOKLIJST
+barbara holubowska,2025-12-09,Norm uren Dag,,45.0,,ALLEEN IN KLOKLIJST
+barbara holubowska,2025-12-10,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+barbara holubowska,2025-12-11,Norm uren Dag,,41.25,,ALLEEN IN KLOKLIJST
+barbara holubowska,2025-12-12,Norm uren Dag,,33.75,,ALLEEN IN KLOKLIJST
+beata marczak,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+beata marczak,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+beata marczak,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+beata marczak,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+beata marczak,2025-12-10,Norm uren Dag,,42.5,,ALLEEN IN KLOKLIJST
+beata marczak,2025-12-11,Norm uren Dag,10.0,40.0,-30.0,VERSCHIL
+beata marczak,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+beata marczak,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+beata marczak,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+beata marczak,2025-12-13,T135 Dag,23.75,,,ALLEEN IN FACTUUR
+beata marczak,2025-12-14,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+bernardeta bienkowska,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+bernardeta bienkowska,2025-12-08,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+bernardeta bienkowska,2025-12-09,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+bernardeta bienkowska,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+bernardeta bienkowska,2025-12-10,Norm uren Dag,10.0,40.0,-30.0,VERSCHIL
+bernardeta bienkowska,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+bernardeta bienkowska,2025-12-11,Norm uren Dag,10.0,40.0,-30.0,VERSCHIL
+bernardeta bienkowska,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+bernardeta bienkowska,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+bernardeta bienkowska,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+bierczak piotr,2025-12-08,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+bierczak piotr,2025-12-08,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+bierczak piotr,2025-12-09,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+bierczak piotr,2025-12-09,T133 Dag,,12.5,,ALLEEN IN KLOKLIJST
+bierczak piotr,2025-12-10,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+bierczak piotr,2025-12-10,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+bierczak piotr,2025-12-11,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+bierczak piotr,2025-12-11,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+bierczak piotr,2025-12-12,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+bierczak piotr,2025-12-12,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-08,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+bogdan cotofrea stefan,2025-12-08,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-09,Norm uren Dag,37.5,11.25,26.25,VERSCHIL
+bogdan cotofrea stefan,2025-12-09,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-09,T135 Dag,1.25,,,ALLEEN IN FACTUUR
+bogdan cotofrea stefan,2025-12-10,Norm uren Dag,37.5,12.5,25.0,VERSCHIL
+bogdan cotofrea stefan,2025-12-10,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-10,T135 Dag,1.25,3.75,-2.5,VERSCHIL
+bogdan cotofrea stefan,2025-12-11,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+bogdan cotofrea stefan,2025-12-11,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-12,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+bogdan cotofrea stefan,2025-12-12,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+bogdan cotofrea stefan,2025-12-13,Norm uren Dag,6.25,,,ALLEEN IN FACTUUR
+bogdan cotofrea stefan,2025-12-13,OW180 Dag,22.5,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-08,Norm uren Dag,12.5,37.5,-25.0,VERSCHIL
+bogumil mlynarczyk,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-08,T135 Dag,3.75,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-09,Norm uren Dag,11.25,37.5,-26.25,VERSCHIL
+bogumil mlynarczyk,2025-12-09,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-09,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-10,Norm uren Dag,11.25,37.5,-26.25,VERSCHIL
+bogumil mlynarczyk,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-10,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-11,Norm uren Dag,11.25,37.5,-26.25,VERSCHIL
+bogumil mlynarczyk,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-11,T135 Dag,3.75,,,ALLEEN IN FACTUUR
+bogumil mlynarczyk,2025-12-12,Norm uren Dag,11.25,37.5,-26.25,VERSCHIL
+bogumil mlynarczyk,2025-12-12,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+bruzdzinski marcel,2025-12-08,Norm uren Dag,32.5,17.5,15.0,VERSCHIL
+bruzdzinski marcel,2025-12-08,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-08,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+bruzdzinski marcel,2025-12-09,Norm uren Dag,30.0,6.25,23.75,VERSCHIL
+bruzdzinski marcel,2025-12-09,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-09,T135 Dag,7.5,5.0,2.5,VERSCHIL
+bruzdzinski marcel,2025-12-10,Norm uren Dag,31.25,5.0,26.25,VERSCHIL
+bruzdzinski marcel,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-10,T135 Dag,6.25,5.0,1.25,VERSCHIL
+bruzdzinski marcel,2025-12-11,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-11,T135 Dag,,6.25,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-12,Norm uren Dag,32.5,7.5,25.0,VERSCHIL
+bruzdzinski marcel,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+bruzdzinski marcel,2025-12-12,T135 Dag,6.25,3.75,2.5,VERSCHIL
+cabla robert,2025-12-08,Norm uren Dag,40.0,40.0,0.0,OK
+cabla robert,2025-12-09,Norm uren Dag,40.0,40.0,0.0,OK
+cabla robert,2025-12-10,Norm uren Dag,40.0,42.5,-2.5,VERSCHIL
+cabla robert,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+cabla robert,2025-12-12,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+cabla robert,2025-12-13,OW180 Dag,26.25,,,ALLEEN IN FACTUUR
+cabla robert,2025-12-13,OW200 Dag,12.5,,,ALLEEN IN FACTUUR
+cieslak grazyna,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+cieslak grazyna,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+cieslak grazyna,2025-12-09,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+cieslak grazyna,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+cieslak grazyna,2025-12-10,Norm uren Dag,37.5,12.5,25.0,VERSCHIL
+cieslak grazyna,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+cieslak grazyna,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+cieslak grazyna,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+cieslak grazyna,2025-12-12,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+cieslak grazyna,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-08,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+colaco eden,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-08,T135 Dag,1.25,2.5,-1.25,VERSCHIL
+colaco eden,2025-12-09,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+colaco eden,2025-12-09,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-10,Norm uren Dag,41.25,11.25,30.0,VERSCHIL
+colaco eden,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-10,T135 Dag,1.25,3.75,-2.5,VERSCHIL
+colaco eden,2025-12-11,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+colaco eden,2025-12-11,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-11,T135 Dag,1.25,2.5,-1.25,VERSCHIL
+colaco eden,2025-12-12,Norm uren Dag,32.5,15.0,17.5,VERSCHIL
+colaco eden,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-12,T135 Dag,,3.75,,ALLEEN IN KLOKLIJST
+colaco eden,2025-12-13,Norm uren Dag,2.5,,,ALLEEN IN FACTUUR
+colaco eden,2025-12-13,OW180 Dag,26.25,,,ALLEEN IN FACTUUR
+colaco eden,2025-12-14,OW140 Week,,1.25,,ALLEEN IN KLOKLIJST
+costa pedro,2025-12-08,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+costa pedro,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+costa pedro,2025-12-08,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+costa pedro,2025-12-09,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+costa pedro,2025-12-09,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+costa pedro,2025-12-09,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+costa pedro,2025-12-10,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+costa pedro,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+costa pedro,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+costa pedro,2025-12-11,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+costa pedro,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+costa pedro,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+costa pedro,2025-12-12,Norm uren Dag,13.75,35.0,-21.25,VERSCHIL
+costa pedro,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+costa pedro,2025-12-12,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+cristu virgil,2025-12-08,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+cristu virgil,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+cristu virgil,2025-12-09,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+cristu virgil,2025-12-09,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+cristu virgil,2025-12-10,Norm uren Dag,38.75,13.75,25.0,VERSCHIL
+cristu virgil,2025-12-10,OW140 Week,1.25,,,ALLEEN IN FACTUUR
+cristu virgil,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+cristu virgil,2025-12-11,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+cristu virgil,2025-12-11,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+cristu virgil,2025-12-12,Norm uren Dag,40.0,40.0,0.0,OK
+cristu virgil,2025-12-13,Norm uren Dag,1.25,,,ALLEEN IN FACTUUR
+cristu virgil,2025-12-13,OW180 Dag,30.0,,,ALLEEN IN FACTUUR
+cristu virgil,2025-12-13,OW200 Dag,5.0,,,ALLEEN IN FACTUUR
+czajkowski jaroslaw,2025-12-08,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+czajkowski jaroslaw,2025-12-08,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+czajkowski jaroslaw,2025-12-09,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+czajkowski jaroslaw,2025-12-09,T133 Dag,,13.75,,ALLEEN IN KLOKLIJST
+czajkowski jaroslaw,2025-12-10,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+czajkowski jaroslaw,2025-12-10,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+czajkowski jaroslaw,2025-12-11,Norm uren Dag,40.0,18.75,21.25,VERSCHIL
+czajkowski jaroslaw,2025-12-11,T133 Dag,,17.5,,ALLEEN IN KLOKLIJST
+czajkowski jaroslaw,2025-12-12,Norm uren Dag,40.0,31.25,8.75,VERSCHIL
+czajkowski jaroslaw,2025-12-12,T133 Dag,,8.75,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-08,Norm uren Dag,40.0,17.5,22.5,VERSCHIL
+dalalau gabriel,2025-12-08,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-09,Norm uren Dag,40.0,17.5,22.5,VERSCHIL
+dalalau gabriel,2025-12-09,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-10,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+dalalau gabriel,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-11,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+dalalau gabriel,2025-12-11,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-12,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+dalalau gabriel,2025-12-12,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+dalalau gabriel,2025-12-13,OW180 Dag,31.25,,,ALLEEN IN FACTUUR
+dalalau gabriel,2025-12-14,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+damian filipek,2025-12-08,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+damian filipek,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+damian filipek,2025-12-09,Norm uren Dag,37.5,12.5,25.0,VERSCHIL
+damian filipek,2025-12-09,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+damian filipek,2025-12-10,Norm uren Dag,40.0,7.5,32.5,VERSCHIL
+damian filipek,2025-12-10,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+damian filipek,2025-12-11,Norm uren Dag,17.5,12.5,5.0,VERSCHIL
+damian filipek,2025-12-11,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+damian filipek,2025-12-12,Norm uren Dag,22.5,11.25,11.25,VERSCHIL
+damian filipek,2025-12-12,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+damian pyc,2025-12-08,Norm uren Dag,20.0,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-08,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-09,Norm uren Dag,18.75,40.0,-21.25,VERSCHIL
+damian pyc,2025-12-09,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-10,Norm uren Dag,18.75,40.0,-21.25,VERSCHIL
+damian pyc,2025-12-10,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-11,Norm uren Dag,18.75,26.25,-7.5,VERSCHIL
+damian pyc,2025-12-11,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-12,Norm uren Dag,18.75,40.0,-21.25,VERSCHIL
+damian pyc,2025-12-12,T133 Dag,15.0,,,ALLEEN IN FACTUUR
+damian pyc,2025-12-13,T135 Dag,,22.5,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-08,Norm uren Dag,38.75,13.75,25.0,VERSCHIL
+daniel pikta,2025-12-08,T133 Dag,,17.5,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-09,Norm uren Dag,26.25,7.5,18.75,VERSCHIL
+daniel pikta,2025-12-09,T133 Dag,,11.25,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-10,Norm uren Dag,33.75,11.25,22.5,VERSCHIL
+daniel pikta,2025-12-10,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-11,Norm uren Dag,35.0,7.5,27.5,VERSCHIL
+daniel pikta,2025-12-11,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-12,Norm uren Dag,36.25,11.25,25.0,VERSCHIL
+daniel pikta,2025-12-12,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+daniel pikta,2025-12-13,T135 Dag,23.75,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-08,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-09,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-10,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-10,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-11,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-12,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+daniel sapa,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+daniel wilczak,2025-12-08,Norm uren Dag,40.0,40.0,0.0,OK
+daniel wilczak,2025-12-09,Norm uren Dag,40.0,40.0,0.0,OK
+daniel wilczak,2025-12-10,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+daniel wilczak,2025-12-11,Norm uren Dag,40.0,40.0,0.0,OK
+daniel wilczak,2025-12-12,Norm uren Dag,38.75,,,ALLEEN IN FACTUUR
+daniel wilczak,2025-12-13,Norm uren Dag,2.5,,,ALLEEN IN FACTUUR
+daniel wilczak,2025-12-13,OW180 Dag,27.5,,,ALLEEN IN FACTUUR
+daria major,2025-12-08,Norm uren Dag,8.75,38.75,-30.0,VERSCHIL
+daria major,2025-12-08,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+daria major,2025-12-08,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+daria major,2025-12-09,Norm uren Dag,10.0,33.75,-23.75,VERSCHIL
+daria major,2025-12-09,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+daria major,2025-12-10,Norm uren Dag,8.75,38.75,-30.0,VERSCHIL
+daria major,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+daria major,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+daria major,2025-12-11,Norm uren Dag,8.75,38.75,-30.0,VERSCHIL
+daria major,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+daria major,2025-12-11,T135 Dag,6.25,,,ALLEEN IN FACTUUR
+daria major,2025-12-12,Norm uren Dag,8.75,33.75,-25.0,VERSCHIL
+daria major,2025-12-12,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-08,Norm uren Dag,30.0,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-08,T133 Dag,,13.75,,ALLEEN IN KLOKLIJST
+dariusz glabien,2025-12-08,T135 Dag,5.0,27.5,-22.5,VERSCHIL
+dariusz glabien,2025-12-09,Norm uren Dag,31.25,-1.25,32.5,VERSCHIL
+dariusz glabien,2025-12-09,T133 Dag,,13.75,,ALLEEN IN KLOKLIJST
+dariusz glabien,2025-12-09,T135 Dag,5.0,22.5,-17.5,VERSCHIL
+dariusz glabien,2025-12-10,Norm uren Dag,30.0,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-10,T133 Dag,,13.75,,ALLEEN IN KLOKLIJST
+dariusz glabien,2025-12-10,T135 Dag,5.0,22.5,-17.5,VERSCHIL
+dariusz glabien,2025-12-11,Norm uren Dag,31.25,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-11,T133 Dag,21.25,13.75,7.5,VERSCHIL
+dariusz glabien,2025-12-11,T135 Dag,,22.5,,ALLEEN IN KLOKLIJST
+dariusz glabien,2025-12-12,Norm uren Dag,31.25,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-12,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+dariusz glabien,2025-12-12,T135 Dag,5.0,21.25,-16.25,VERSCHIL
+dariusz glabien,2025-12-13,Norm uren Dag,5.0,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-13,OW180 Dag,26.25,,,ALLEEN IN FACTUUR
+dariusz glabien,2025-12-13,OW200 Dag,8.75,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-08,Norm uren Dag,36.25,43.75,-7.5,VERSCHIL
+dawid jankowski,2025-12-09,Norm uren Dag,47.5,42.5,5.0,VERSCHIL
+dawid jankowski,2025-12-09,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-10,Norm uren Dag,18.75,47.5,-28.75,VERSCHIL
+dawid jankowski,2025-12-10,OW140 Week,28.75,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+dawid jankowski,2025-12-11,Norm uren Dag,47.5,45.0,2.5,VERSCHIL
+dawid jankowski,2025-12-12,Norm uren Dag,47.5,46.25,1.25,VERSCHIL
+dawid jankowski,2025-12-13,OW180 Dag,22.5,,,ALLEEN IN FACTUUR
+dawid jankowski,2025-12-14,OW140 Week,,27.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-08,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+dawid kutermak,2025-12-08,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-08,T135 Dag,,2.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-09,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+dawid kutermak,2025-12-09,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-10,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+dawid kutermak,2025-12-10,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-10,T135 Dag,,3.75,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-11,Norm uren Dag,38.75,12.5,26.25,VERSCHIL
+dawid kutermak,2025-12-11,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-12,Norm uren Dag,23.75,12.5,11.25,VERSCHIL
+dawid kutermak,2025-12-12,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-12,T135 Dag,,2.5,,ALLEEN IN KLOKLIJST
+dawid kutermak,2025-12-14,OW140 Week,,3.75,,ALLEEN IN KLOKLIJST
+dawid skorczewski,2025-12-08,Norm uren Dag,31.25,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-09,Norm uren Dag,42.5,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-10,Norm uren Dag,38.75,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-12,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-13,Norm uren Dag,7.5,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+dawid skorczewski,2025-12-13,OW200 Dag,1.25,,,ALLEEN IN FACTUUR
+dekanova katarina,2025-12-08,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+dekanova katarina,2025-12-09,Norm uren Dag,32.5,40.0,-7.5,VERSCHIL
+dekanova katarina,2025-12-09,OW140 Week,7.5,,,ALLEEN IN FACTUUR
+dekanova katarina,2025-12-10,Norm uren Dag,38.75,38.75,0.0,OK
+dekanova katarina,2025-12-11,Norm uren Dag,46.25,46.25,0.0,OK
+dekanova katarina,2025-12-11,T133 Dag,6.25,5.0,1.25,VERSCHIL
+dekanova katarina,2025-12-12,Norm uren Dag,37.5,40.0,-2.5,VERSCHIL
+dekanova katarina,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+dekanova katarina,2025-12-14,OW140 Week,,10.0,,ALLEEN IN KLOKLIJST
+denisa radu,2025-12-08,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+denisa radu,2025-12-09,Norm uren Dag,40.0,40.0,0.0,OK
+denisa radu,2025-12-10,Norm uren Dag,7.5,40.0,-32.5,VERSCHIL
+denisa radu,2025-12-11,Norm uren Dag,,46.25,,ALLEEN IN KLOKLIJST
+denisa radu,2025-12-11,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+denisa radu,2025-12-12,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+denisa radu,2025-12-14,OW140 Week,,11.25,,ALLEEN IN KLOKLIJST
+dlugolecki grzegorz,2025-12-08,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+dlugolecki grzegorz,2025-12-08,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+dlugolecki grzegorz,2025-12-09,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+dlugolecki grzegorz,2025-12-09,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+dlugolecki grzegorz,2025-12-10,Norm uren Dag,6.25,30.0,-23.75,VERSCHIL
+dlugolecki grzegorz,2025-12-10,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+dlugolecki grzegorz,2025-12-11,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+dlugolecki grzegorz,2025-12-11,T133 Dag,15.0,,,ALLEEN IN FACTUUR
+dlugolecki grzegorz,2025-12-12,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+dlugolecki grzegorz,2025-12-12,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+dlugolecki grzegorz,2025-12-13,Norm uren Dag,,-12.5,,ALLEEN IN KLOKLIJST
+dlugolecki grzegorz,2025-12-13,OW180 Dag,,12.5,,ALLEEN IN KLOKLIJST
+domaradzka jagoda,2025-12-08,Norm uren Dag,47.5,43.75,3.75,VERSCHIL
+domaradzka jagoda,2025-12-08,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+domaradzka jagoda,2025-12-09,Norm uren Dag,10.0,40.0,-30.0,VERSCHIL
+domaradzka jagoda,2025-12-09,OW140 Week,37.5,,,ALLEEN IN FACTUUR
+domaradzka jagoda,2025-12-09,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+domaradzka jagoda,2025-12-10,Norm uren Dag,45.0,47.5,-2.5,VERSCHIL
+domaradzka jagoda,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+domaradzka jagoda,2025-12-11,Norm uren Dag,47.5,45.0,2.5,VERSCHIL
+domaradzka jagoda,2025-12-12,Norm uren Dag,46.25,38.75,7.5,VERSCHIL
+domaradzka jagoda,2025-12-14,OW140 Week,,17.5,,ALLEEN IN KLOKLIJST
+dominik kijak,2025-12-08,Norm uren Dag,35.0,40.0,-5.0,VERSCHIL
+dominik kijak,2025-12-08,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-09,Norm uren Dag,35.0,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-09,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-10,Norm uren Dag,22.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-10,OW140 Week,12.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-10,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-11,Norm uren Dag,35.0,40.0,-5.0,VERSCHIL
+dominik kijak,2025-12-11,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+dominik kijak,2025-12-12,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+dominik kijak,2025-12-12,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+dominik kijak,2025-12-12,T135 Dag,7.5,,,ALLEEN IN FACTUUR
+dorota szulewska,2025-12-08,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+dorota szulewska,2025-12-09,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+dorota szulewska,2025-12-10,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+dorota szulewska,2025-12-11,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+dorota szulewska,2025-12-12,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+drabik renata,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drabik renata,2025-12-08,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+drabik renata,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drabik renata,2025-12-09,T133 Dag,13.75,,,ALLEEN IN FACTUUR
+drabik renata,2025-12-10,Norm uren Dag,11.25,26.25,-15.0,VERSCHIL
+drabik renata,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+drabik renata,2025-12-11,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+drabik renata,2025-12-11,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+drabik renata,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drabik renata,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drozdziel martin,2025-12-08,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-08,T135 Dag,1.25,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drozdziel martin,2025-12-09,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+drozdziel martin,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-10,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-11,Norm uren Dag,11.25,38.75,-27.5,VERSCHIL
+drozdziel martin,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-11,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+drozdziel martin,2025-12-12,Norm uren Dag,11.25,38.75,-27.5,VERSCHIL
+drozdziel martin,2025-12-12,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+elzbieta przybyszewska,2025-12-08,Norm uren Dag,40.0,40.0,0.0,OK
+elzbieta przybyszewska,2025-12-09,Norm uren Dag,36.25,40.0,-3.75,VERSCHIL
+elzbieta przybyszewska,2025-12-10,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+elzbieta przybyszewska,2025-12-10,OW140 Week,1.25,,,ALLEEN IN FACTUUR
+elzbieta przybyszewska,2025-12-11,Norm uren Dag,45.0,40.0,5.0,VERSCHIL
+elzbieta przybyszewska,2025-12-12,Norm uren Dag,40.0,40.0,0.0,OK
+elzbieta przybyszewska,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-08,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+ernesto slepcik,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-09,Norm uren Dag,13.75,20.0,-6.25,VERSCHIL
+ernesto slepcik,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-10,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-11,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+ernesto slepcik,2025-12-12,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+ernesto slepcik,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-08,Norm uren Dag,10.0,42.5,-32.5,VERSCHIL
+ewa koszny,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-09,Norm uren Dag,11.25,42.5,-31.25,VERSCHIL
+ewa koszny,2025-12-09,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-10,Norm uren Dag,10.0,41.25,-31.25,VERSCHIL
+ewa koszny,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-11,Norm uren Dag,11.25,38.75,-27.5,VERSCHIL
+ewa koszny,2025-12-11,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-12,Norm uren Dag,10.0,36.25,-26.25,VERSCHIL
+ewa koszny,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+ewa koszny,2025-12-14,OW140 Week,,1.25,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-08,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+fiszer katarzyna,2025-12-09,Norm uren Dag,40.0,17.5,22.5,VERSCHIL
+fiszer katarzyna,2025-12-09,T133 Dag,,16.25,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-10,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+fiszer katarzyna,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+fiszer katarzyna,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-12,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+fiszer katarzyna,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+fiszer katarzyna,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+garbacz kamila,2025-12-08,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+garbacz kamila,2025-12-10,Norm uren Dag,40.0,36.25,3.75,VERSCHIL
+garbacz kamila,2025-12-11,Norm uren Dag,40.0,36.25,3.75,VERSCHIL
+garbacz kamila,2025-12-12,Norm uren Dag,5.0,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-08,Norm uren Dag,37.5,40.0,-2.5,VERSCHIL
+gerda kasileviciute,2025-12-08,T133 Dag,8.75,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-09,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+gerda kasileviciute,2025-12-09,T133 Dag,7.5,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+gerda kasileviciute,2025-12-10,OW140 Week,27.5,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-10,T133 Dag,6.25,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-11,Norm uren Dag,40.0,28.75,11.25,VERSCHIL
+gerda kasileviciute,2025-12-11,T133 Dag,6.25,,,ALLEEN IN FACTUUR
+gerda kasileviciute,2025-12-12,Norm uren Dag,40.0,40.0,0.0,OK
+gerda kasileviciute,2025-12-12,T133 Dag,3.75,,,ALLEEN IN FACTUUR
+gigliotti mario,2025-12-08,Norm uren Dag,40.0,21.25,18.75,VERSCHIL
+gigliotti mario,2025-12-08,T133 Dag,,16.25,,ALLEEN IN KLOKLIJST
+gigliotti mario,2025-12-09,Norm uren Dag,40.0,22.5,17.5,VERSCHIL
+gigliotti mario,2025-12-09,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+gigliotti mario,2025-12-10,Norm uren Dag,40.0,22.5,17.5,VERSCHIL
+gigliotti mario,2025-12-10,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+gigliotti mario,2025-12-11,Norm uren Dag,40.0,22.5,17.5,VERSCHIL
+gigliotti mario,2025-12-11,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+gigliotti mario,2025-12-12,Norm uren Dag,40.0,22.5,17.5,VERSCHIL
+gigliotti mario,2025-12-12,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+gil sandra,2025-12-09,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+gil sandra,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+gil sandra,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+gil sandra,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+gil sandra,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+gil sandra,2025-12-12,Norm uren Dag,11.25,38.75,-27.5,VERSCHIL
+gil sandra,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-08,Norm uren Dag,18.75,38.75,-20.0,VERSCHIL
+grucelski marcin,2025-12-08,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-09,Norm uren Dag,15.0,36.25,-21.25,VERSCHIL
+grucelski marcin,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-09,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-10,Norm uren Dag,12.5,31.25,-18.75,VERSCHIL
+grucelski marcin,2025-12-10,OW140 Week,2.5,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-10,T135 Dag,6.25,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-11,Norm uren Dag,15.0,38.75,-23.75,VERSCHIL
+grucelski marcin,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-12,Norm uren Dag,15.0,32.5,-17.5,VERSCHIL
+grucelski marcin,2025-12-12,T133 Dag,13.75,,,ALLEEN IN FACTUUR
+grucelski marcin,2025-12-13,OW180 Dag,12.5,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-08,Norm uren Dag,10.0,36.25,-26.25,VERSCHIL
+hanna kijak,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-08,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-09,Norm uren Dag,8.75,36.25,-27.5,VERSCHIL
+hanna kijak,2025-12-09,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-10,Norm uren Dag,8.75,36.25,-27.5,VERSCHIL
+hanna kijak,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-11,Norm uren Dag,10.0,27.5,-17.5,VERSCHIL
+hanna kijak,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-11,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-12,Norm uren Dag,10.0,37.5,-27.5,VERSCHIL
+hanna kijak,2025-12-12,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-13,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+hanna kijak,2025-12-13,OW180 Dag,2.5,,,ALLEEN IN FACTUUR
+iva kupcikova,2025-12-08,Norm uren Dag,30.0,11.25,18.75,VERSCHIL
+iva kupcikova,2025-12-08,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+iva kupcikova,2025-12-09,Norm uren Dag,30.0,11.25,18.75,VERSCHIL
+iva kupcikova,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+iva kupcikova,2025-12-10,Norm uren Dag,30.0,11.25,18.75,VERSCHIL
+iva kupcikova,2025-12-10,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+iva kupcikova,2025-12-11,Norm uren Dag,22.5,11.25,11.25,VERSCHIL
+iva kupcikova,2025-12-11,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+iva kupcikova,2025-12-12,Norm uren Dag,30.0,,,ALLEEN IN FACTUUR
+iva kupcikova,2025-12-13,T135 Dag,25.0,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-08,Norm uren Dag,15.0,40.0,-25.0,VERSCHIL
+jakub kristof,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-09,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-10,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-11,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+jakub kristof,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+jakub kristof,2025-12-12,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+jakub kristof,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+jakub ustrzynski,2025-12-08,Norm uren Dag,36.25,45.0,-8.75,VERSCHIL
+jakub ustrzynski,2025-12-09,Norm uren Dag,45.0,45.0,0.0,OK
+jakub ustrzynski,2025-12-10,Norm uren Dag,36.25,36.25,0.0,OK
+jakub ustrzynski,2025-12-11,Norm uren Dag,42.5,45.0,-2.5,VERSCHIL
+jakub ustrzynski,2025-12-11,OW140 Week,2.5,,,ALLEEN IN FACTUUR
+jakub ustrzynski,2025-12-12,Norm uren Dag,40.0,41.25,-1.25,VERSCHIL
+jakub ustrzynski,2025-12-14,OW140 Week,,12.5,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-08,Norm uren Dag,,35.0,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-09,Norm uren Dag,,37.5,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-10,Norm uren Dag,,47.5,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-11,Norm uren Dag,,45.0,,ALLEEN IN KLOKLIJST
+jankowska paulina,2025-12-12,Norm uren Dag,,20.0,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-08,Norm uren Dag,,13.75,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-08,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-09,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+jaworski patryk,2025-12-09,T133 Dag,,13.75,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-10,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+jaworski patryk,2025-12-10,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-11,Norm uren Dag,38.75,13.75,25.0,VERSCHIL
+jaworski patryk,2025-12-11,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+jaworski patryk,2025-12-12,Norm uren Dag,27.5,13.75,13.75,VERSCHIL
+jaworski patryk,2025-12-12,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+jerzy muc,2025-12-08,Norm uren Dag,17.5,17.5,0.0,OK
+jerzy muc,2025-12-08,T133 Dag,22.5,22.5,0.0,OK
+jerzy muc,2025-12-09,Norm uren Dag,17.5,7.5,10.0,VERSCHIL
+jerzy muc,2025-12-09,T133 Dag,22.5,25.0,-2.5,VERSCHIL
+jerzy muc,2025-12-09,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+jerzy muc,2025-12-10,Norm uren Dag,17.5,6.25,11.25,VERSCHIL
+jerzy muc,2025-12-10,T133 Dag,22.5,26.25,-3.75,VERSCHIL
+jerzy muc,2025-12-10,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+jerzy muc,2025-12-11,Norm uren Dag,17.5,5.0,12.5,VERSCHIL
+jerzy muc,2025-12-11,T133 Dag,22.5,27.5,-5.0,VERSCHIL
+jerzy muc,2025-12-11,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+jerzy muc,2025-12-12,Norm uren Dag,17.5,7.5,10.0,VERSCHIL
+jerzy muc,2025-12-12,T133 Dag,21.25,25.0,-3.75,VERSCHIL
+jerzy muc,2025-12-12,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+julia kaziura,2025-12-08,Norm uren Dag,35.0,40.0,-5.0,VERSCHIL
+julia kaziura,2025-12-09,Norm uren Dag,41.25,47.5,-6.25,VERSCHIL
+julia kaziura,2025-12-09,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+julia kaziura,2025-12-10,Norm uren Dag,40.0,38.75,1.25,VERSCHIL
+julia kaziura,2025-12-11,Norm uren Dag,42.5,46.25,-3.75,VERSCHIL
+julia kaziura,2025-12-11,T133 Dag,6.25,5.0,1.25,VERSCHIL
+julia kaziura,2025-12-12,Norm uren Dag,33.75,40.0,-6.25,VERSCHIL
+julia kaziura,2025-12-14,OW140 Week,,22.5,,ALLEEN IN KLOKLIJST
+julia nowak,2025-12-08,Norm uren Dag,31.25,,,ALLEEN IN FACTUUR
+julia nowak,2025-12-09,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+julia nowak,2025-12-10,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+julia nowak,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+julia nowak,2025-12-12,Norm uren Dag,37.5,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-08,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-09,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-10,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-11,Norm uren Dag,10.0,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-12,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+julia rychlik,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+justyna perczyk,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+justyna perczyk,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+justyna perczyk,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+justyna perczyk,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+justyna perczyk,2025-12-10,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+justyna perczyk,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+justyna perczyk,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+justyna perczyk,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+justyna perczyk,2025-12-12,Norm uren Dag,38.75,11.25,27.5,VERSCHIL
+justyna perczyk,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+kamil karpinski,2025-12-08,Norm uren Dag,,35.0,,ALLEEN IN KLOKLIJST
+kamil karpinski,2025-12-09,Norm uren Dag,15.0,40.0,-25.0,VERSCHIL
+kamil karpinski,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+kamil karpinski,2025-12-10,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+kamil karpinski,2025-12-10,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+kamil karpinski,2025-12-11,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+kamil karpinski,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+kamil karpinski,2025-12-12,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+kamil karpinski,2025-12-12,T133 Dag,16.25,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-08,Norm uren Dag,18.75,40.0,-21.25,VERSCHIL
+kamil michalik,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-09,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+kamil michalik,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-10,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+kamil michalik,2025-12-10,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-11,Norm uren Dag,13.75,38.75,-25.0,VERSCHIL
+kamil michalik,2025-12-11,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-12,Norm uren Dag,13.75,,,ALLEEN IN FACTUUR
+kamil michalik,2025-12-12,T133 Dag,13.75,,,ALLEEN IN FACTUUR
+kamila wajler,2025-12-08,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+kamila wajler,2025-12-09,Norm uren Dag,,45.0,,ALLEEN IN KLOKLIJST
+kamila wajler,2025-12-10,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+kamila wajler,2025-12-11,Norm uren Dag,,18.75,,ALLEEN IN KLOKLIJST
+katarzyna kaziura,2025-12-08,Norm uren Dag,35.0,35.0,0.0,OK
+katarzyna kaziura,2025-12-08,T135 Dag,5.0,5.0,0.0,OK
+katarzyna kaziura,2025-12-09,Norm uren Dag,35.0,35.0,0.0,OK
+katarzyna kaziura,2025-12-09,T135 Dag,5.0,5.0,0.0,OK
+katarzyna kaziura,2025-12-10,Norm uren Dag,30.0,35.0,-5.0,VERSCHIL
+katarzyna kaziura,2025-12-10,OW140 Week,5.0,,,ALLEEN IN FACTUUR
+katarzyna kaziura,2025-12-10,T135 Dag,5.0,5.0,0.0,OK
+katarzyna kaziura,2025-12-11,Norm uren Dag,40.0,35.0,5.0,VERSCHIL
+katarzyna kaziura,2025-12-11,T135 Dag,5.0,5.0,0.0,OK
+katarzyna kaziura,2025-12-12,Norm uren Dag,35.0,27.5,7.5,VERSCHIL
+katarzyna kaziura,2025-12-12,T135 Dag,5.0,5.0,0.0,OK
+katarzyna kutkiewicz,2025-12-08,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+katarzyna kutkiewicz,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+katarzyna kutkiewicz,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+katarzyna kutkiewicz,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+katarzyna kutkiewicz,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+katarzyna kutkiewicz,2025-12-10,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+katarzyna kutkiewicz,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+katarzyna kutkiewicz,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+katarzyna kutkiewicz,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+katarzyna kutkiewicz,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-08,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-09,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-10,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-11,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-12,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+katarzyna stencel,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+kaziura wiktor,2025-12-08,Norm uren Dag,36.25,8.75,27.5,VERSCHIL
+kaziura wiktor,2025-12-09,Norm uren Dag,36.25,35.0,1.25,VERSCHIL
+kaziura wiktor,2025-12-10,Norm uren Dag,36.25,40.0,-3.75,VERSCHIL
+kaziura wiktor,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+kaziura wiktor,2025-12-11,Norm uren Dag,45.0,40.0,5.0,VERSCHIL
+kaziura wiktor,2025-12-12,Norm uren Dag,27.5,40.0,-12.5,VERSCHIL
+kaziura wiktor,2025-12-12,T135 Dag,10.0,5.0,5.0,VERSCHIL
+kewin skrzypczak,2025-12-08,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kewin skrzypczak,2025-12-09,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kewin skrzypczak,2025-12-10,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kewin skrzypczak,2025-12-11,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kewin skrzypczak,2025-12-12,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+kierzkowski mateusz,2025-12-08,Norm uren Dag,11.25,12.5,-1.25,VERSCHIL
+kierzkowski mateusz,2025-12-08,T133 Dag,26.25,26.25,0.0,OK
+kierzkowski mateusz,2025-12-08,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+kierzkowski mateusz,2025-12-09,Norm uren Dag,8.75,13.75,-5.0,VERSCHIL
+kierzkowski mateusz,2025-12-09,T133 Dag,26.25,25.0,1.25,VERSCHIL
+kierzkowski mateusz,2025-12-09,T135 Dag,5.0,3.75,1.25,VERSCHIL
+kierzkowski mateusz,2025-12-10,Norm uren Dag,8.75,12.5,-3.75,VERSCHIL
+kierzkowski mateusz,2025-12-10,T133 Dag,26.25,27.5,-1.25,VERSCHIL
+kierzkowski mateusz,2025-12-10,T135 Dag,5.0,5.0,0.0,OK
+kierzkowski mateusz,2025-12-11,Norm uren Dag,3.75,13.75,-10.0,VERSCHIL
+kierzkowski mateusz,2025-12-11,OW140 Week,3.75,,,ALLEEN IN FACTUUR
+kierzkowski mateusz,2025-12-11,T133 Dag,26.25,26.25,0.0,OK
+kierzkowski mateusz,2025-12-11,T135 Dag,11.25,12.5,-1.25,VERSCHIL
+kierzkowski mateusz,2025-12-12,Norm uren Dag,10.0,12.5,-2.5,VERSCHIL
+kierzkowski mateusz,2025-12-12,T133 Dag,26.25,26.25,0.0,OK
+kierzkowski mateusz,2025-12-12,T135 Dag,5.0,3.75,1.25,VERSCHIL
+kierzkowski mateusz,2025-12-13,Norm uren Dag,,-36.25,,ALLEEN IN KLOKLIJST
+kierzkowski mateusz,2025-12-13,OW200 Dag,,36.25,,ALLEEN IN KLOKLIJST
+kierzkowski mateusz,2025-12-14,OW140 Week,,26.25,,ALLEEN IN KLOKLIJST
+konrad mogilnicki,2025-12-08,Norm uren Dag,23.75,37.5,-13.75,VERSCHIL
+konrad mogilnicki,2025-12-09,Norm uren Dag,38.75,38.75,0.0,OK
+konrad mogilnicki,2025-12-10,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+konrad mogilnicki,2025-12-11,Norm uren Dag,,37.5,,ALLEEN IN KLOKLIJST
+konrad mogilnicki,2025-12-12,Norm uren Dag,40.0,33.75,6.25,VERSCHIL
+kovacova martina,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+kovacova martina,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+kovacova martina,2025-12-09,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+kovacova martina,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+kovacova martina,2025-12-10,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+kovacova martina,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+kovacova martina,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+kovacova martina,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+kovacova martina,2025-12-12,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+kovacova martina,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-08,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-09,Norm uren Dag,,42.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-09,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-10,Norm uren Dag,,36.25,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-11,Norm uren Dag,,42.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-11,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+krystina pasiali,2025-12-12,Norm uren Dag,,37.5,,ALLEEN IN KLOKLIJST
+krystyna pasiali,2025-12-08,Norm uren Dag,45.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-09,Norm uren Dag,45.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-10,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-10,OW140 Week,30.0,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-11,Norm uren Dag,52.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-12,Norm uren Dag,42.5,,,ALLEEN IN FACTUUR
+krystyna pasiali,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+kwiecinska patrycja,2025-12-08,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kwiecinska patrycja,2025-12-09,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+kwiecinska patrycja,2025-12-10,Norm uren Dag,,46.25,,ALLEEN IN KLOKLIJST
+kwiecinska patrycja,2025-12-11,Norm uren Dag,,45.0,,ALLEEN IN KLOKLIJST
+kwiecinska patrycja,2025-12-12,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+kwiecinska patrycja,2025-12-14,OW140 Week,,10.0,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-08,Norm uren Dag,26.25,10.0,16.25,VERSCHIL
+lenart richard,2025-12-08,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-08,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+lenart richard,2025-12-09,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-10,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+lenart richard,2025-12-10,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-11,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+lenart richard,2025-12-11,T133 Dag,,27.5,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-12,Norm uren Dag,18.75,12.5,6.25,VERSCHIL
+lenart richard,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+lenart richard,2025-12-12,T135 Dag,,2.5,,ALLEEN IN KLOKLIJST
+lopusiewicz maciej,2025-12-08,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lopusiewicz maciej,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+lopusiewicz maciej,2025-12-09,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lopusiewicz maciej,2025-12-09,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+lopusiewicz maciej,2025-12-10,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+lopusiewicz maciej,2025-12-10,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+lopusiewicz maciej,2025-12-11,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lopusiewicz maciej,2025-12-11,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+lopusiewicz maciej,2025-12-12,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lopusiewicz maciej,2025-12-12,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+lucyna stankiewicz,2025-12-08,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+lucyna stankiewicz,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+lucyna stankiewicz,2025-12-09,Norm uren Dag,40.0,10.0,30.0,VERSCHIL
+lucyna stankiewicz,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+lucyna stankiewicz,2025-12-10,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+lucyna stankiewicz,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+lucyna stankiewicz,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+lucyna stankiewicz,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+lucyna stankiewicz,2025-12-12,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+lucyna stankiewicz,2025-12-12,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-08,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lukas proschl,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-08,T135 Dag,,2.5,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-09,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lukas proschl,2025-12-09,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-10,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lukas proschl,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-10,T135 Dag,,3.75,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-11,Norm uren Dag,35.0,13.75,21.25,VERSCHIL
+lukas proschl,2025-12-11,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-11,T135 Dag,,3.75,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-12,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+lukas proschl,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-12,T135 Dag,,2.5,,ALLEEN IN KLOKLIJST
+lukas proschl,2025-12-13,Norm uren Dag,5.0,,,ALLEEN IN FACTUUR
+lukas proschl,2025-12-13,OW180 Dag,21.25,,,ALLEEN IN FACTUUR
+lukas proschl,2025-12-14,OW140 Week,,10.0,,ALLEEN IN KLOKLIJST
+maciej wolanin,2025-12-08,Norm uren Dag,12.5,38.75,-26.25,VERSCHIL
+maciej wolanin,2025-12-08,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-08,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-09,Norm uren Dag,13.75,38.75,-25.0,VERSCHIL
+maciej wolanin,2025-12-09,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-10,Norm uren Dag,12.5,38.75,-26.25,VERSCHIL
+maciej wolanin,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-10,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-11,Norm uren Dag,12.5,38.75,-26.25,VERSCHIL
+maciej wolanin,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-11,T135 Dag,3.75,,,ALLEEN IN FACTUUR
+maciej wolanin,2025-12-12,Norm uren Dag,12.5,38.75,-26.25,VERSCHIL
+maciej wolanin,2025-12-12,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+madej marta,2025-12-08,Norm uren Dag,40.0,45.0,-5.0,VERSCHIL
+madej marta,2025-12-09,Norm uren Dag,46.25,45.0,1.25,VERSCHIL
+madej marta,2025-12-10,Norm uren Dag,18.75,45.0,-26.25,VERSCHIL
+madej marta,2025-12-11,Norm uren Dag,,45.0,,ALLEEN IN KLOKLIJST
+madej marta,2025-12-12,Norm uren Dag,,43.75,,ALLEEN IN KLOKLIJST
+madej marta,2025-12-14,OW140 Week,,23.75,,ALLEEN IN KLOKLIJST
+madry oliwier,2025-12-08,Norm uren Dag,26.25,52.5,-26.25,VERSCHIL
+madry oliwier,2025-12-08,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-09,Norm uren Dag,25.0,43.75,-18.75,VERSCHIL
+madry oliwier,2025-12-09,T133 Dag,11.25,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-10,Norm uren Dag,17.5,52.5,-35.0,VERSCHIL
+madry oliwier,2025-12-10,OW140 Week,8.75,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-10,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-11,Norm uren Dag,25.0,40.0,-15.0,VERSCHIL
+madry oliwier,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-12,Norm uren Dag,26.25,43.75,-17.5,VERSCHIL
+madry oliwier,2025-12-12,T133 Dag,10.0,,,ALLEEN IN FACTUUR
+madry oliwier,2025-12-14,OW140 Week,,32.5,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-08,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+madry slawomir,2025-12-08,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-09,Norm uren Dag,25.0,13.75,11.25,VERSCHIL
+madry slawomir,2025-12-09,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-10,Norm uren Dag,41.25,15.0,26.25,VERSCHIL
+madry slawomir,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-11,Norm uren Dag,40.0,8.75,31.25,VERSCHIL
+madry slawomir,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+madry slawomir,2025-12-12,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+madry slawomir,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+magdalena marek,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+magdalena marek,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+magdalena marek,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+magdalena marek,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+magdalena marek,2025-12-10,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+magdalena marek,2025-12-10,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+magdalena marek,2025-12-11,Norm uren Dag,35.0,10.0,25.0,VERSCHIL
+magdalena marek,2025-12-11,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+magdalena marek,2025-12-12,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+magdalena marek,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+magdalena zmijewska,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+magdalena zmijewska,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+magdalena zmijewska,2025-12-09,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+magdalena zmijewska,2025-12-09,T133 Dag,15.0,,,ALLEEN IN FACTUUR
+magdalena zmijewska,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+magdalena zmijewska,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+magdalena zmijewska,2025-12-11,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+magdalena zmijewska,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+magdalena zmijewska,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-08,Norm uren Dag,18.75,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-09,Norm uren Dag,17.5,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-09,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-10,Norm uren Dag,18.75,35.0,-16.25,VERSCHIL
+maka patryk,2025-12-10,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+maka patryk,2025-12-11,Norm uren Dag,18.75,35.0,-16.25,VERSCHIL
+maka patryk,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+maka patryk,2025-12-12,Norm uren Dag,18.75,,,ALLEEN IN FACTUUR
+maka patryk,2025-12-12,T133 Dag,6.25,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-08,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+malgorzata pasieka,2025-12-09,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-10,Norm uren Dag,11.25,33.75,-22.5,VERSCHIL
+malgorzata pasieka,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+malgorzata pasieka,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+malgorzata pasieka,2025-12-12,Norm uren Dag,11.25,36.25,-25.0,VERSCHIL
+malgorzata pasieka,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-08,Norm uren Dag,47.5,36.25,11.25,VERSCHIL
+malgorzata urbanowicz,2025-12-08,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-09,Norm uren Dag,46.25,40.0,6.25,VERSCHIL
+malgorzata urbanowicz,2025-12-09,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-10,Norm uren Dag,8.75,46.25,-37.5,VERSCHIL
+malgorzata urbanowicz,2025-12-10,OW140 Week,38.75,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+malgorzata urbanowicz,2025-12-11,Norm uren Dag,47.5,45.0,2.5,VERSCHIL
+malgorzata urbanowicz,2025-12-12,Norm uren Dag,46.25,37.5,8.75,VERSCHIL
+malgorzata urbanowicz,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+malgorzata urbanowicz,2025-12-14,OW140 Week,,7.5,,ALLEEN IN KLOKLIJST
+mankowska paulina,2025-12-08,Norm uren Dag,46.25,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-08,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-09,Norm uren Dag,46.25,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-09,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-10,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-10,OW140 Week,32.5,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-11,Norm uren Dag,47.5,,,ALLEEN IN FACTUUR
+mankowska paulina,2025-12-12,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-08,Norm uren Dag,40.0,15.0,25.0,VERSCHIL
+marius mladinovici,2025-12-08,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-08,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-09,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+marius mladinovici,2025-12-09,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-09,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-10,Norm uren Dag,30.0,15.0,15.0,VERSCHIL
+marius mladinovici,2025-12-10,OW140 Week,5.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-10,T135 Dag,5.0,3.75,1.25,VERSCHIL
+marius mladinovici,2025-12-11,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+marius mladinovici,2025-12-11,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-11,T135 Dag,5.0,5.0,0.0,OK
+marius mladinovici,2025-12-12,Norm uren Dag,35.0,15.0,20.0,VERSCHIL
+marius mladinovici,2025-12-12,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+marius mladinovici,2025-12-12,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+marius mladinovici,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+marius seciu,2025-12-08,Norm uren Dag,52.5,41.25,11.25,VERSCHIL
+marius seciu,2025-12-09,Norm uren Dag,47.5,38.75,8.75,VERSCHIL
+marius seciu,2025-12-10,Norm uren Dag,,46.25,,ALLEEN IN KLOKLIJST
+marius seciu,2025-12-10,OW140 Week,52.5,,,ALLEEN IN FACTUUR
+marius seciu,2025-12-11,Norm uren Dag,47.5,52.5,-5.0,VERSCHIL
+marius seciu,2025-12-12,Norm uren Dag,52.5,37.5,15.0,VERSCHIL
+marius seciu,2025-12-13,Norm uren Dag,,-37.5,,ALLEEN IN KLOKLIJST
+marius seciu,2025-12-13,OW180 Dag,26.25,31.25,-5.0,VERSCHIL
+marius seciu,2025-12-13,OW200 Dag,26.25,6.25,20.0,VERSCHIL
+marius seciu,2025-12-14,OW140 Week,,16.25,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-08,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+marques wilson,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+marques wilson,2025-12-08,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-09,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+marques wilson,2025-12-09,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+marques wilson,2025-12-09,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-10,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+marques wilson,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+marques wilson,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-11,Norm uren Dag,12.5,35.0,-22.5,VERSCHIL
+marques wilson,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+marques wilson,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+marques wilson,2025-12-12,Norm uren Dag,13.75,35.0,-21.25,VERSCHIL
+marques wilson,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+marques wilson,2025-12-12,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-08,Norm uren Dag,8.75,33.75,-25.0,VERSCHIL
+martynas tranevicius,2025-12-08,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-09,Norm uren Dag,,35.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-09,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-10,Norm uren Dag,,35.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-11,Norm uren Dag,,35.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-12,Norm uren Dag,,28.75,,ALLEEN IN KLOKLIJST
+martynas tranevicius,2025-12-12,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-08,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+mateusz wielgus,2025-12-08,T133 Dag,,20.0,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-09,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+mateusz wielgus,2025-12-09,T133 Dag,,15.0,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-10,Norm uren Dag,40.0,13.75,26.25,VERSCHIL
+mateusz wielgus,2025-12-10,T133 Dag,,22.5,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-11,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+mateusz wielgus,2025-12-11,T133 Dag,,21.25,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-12,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+mateusz wielgus,2025-12-12,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+mateusz wielgus,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-08,Norm uren Dag,17.5,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-08,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-09,Norm uren Dag,20.0,32.5,-12.5,VERSCHIL
+matiscik vladimir,2025-12-09,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-10,Norm uren Dag,18.75,35.0,-16.25,VERSCHIL
+matiscik vladimir,2025-12-10,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-10,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+matiscik vladimir,2025-12-11,Norm uren Dag,17.5,35.0,-17.5,VERSCHIL
+matiscik vladimir,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-11,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+matiscik vladimir,2025-12-12,Norm uren Dag,7.5,35.0,-27.5,VERSCHIL
+matiscik vladimir,2025-12-12,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+matiscik vladimir,2025-12-12,T135 Dag,,5.0,,ALLEEN IN KLOKLIJST
+mika patrycja,2025-12-08,Norm uren Dag,21.25,40.0,-18.75,VERSCHIL
+mika patrycja,2025-12-08,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+mika patrycja,2025-12-09,Norm uren Dag,21.25,40.0,-18.75,VERSCHIL
+mika patrycja,2025-12-09,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+mika patrycja,2025-12-10,Norm uren Dag,21.25,40.0,-18.75,VERSCHIL
+mika patrycja,2025-12-10,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+mika patrycja,2025-12-11,Norm uren Dag,21.25,45.0,-23.75,VERSCHIL
+mika patrycja,2025-12-11,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+mika patrycja,2025-12-12,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+mika patrycja,2025-12-14,OW140 Week,,5.0,,ALLEEN IN KLOKLIJST
+mikiciuk tomasz,2025-12-08,Norm uren Dag,40.0,40.0,0.0,OK
+mikiciuk tomasz,2025-12-08,T133 Dag,3.75,,,ALLEEN IN FACTUUR
+mikiciuk tomasz,2025-12-09,Norm uren Dag,40.0,40.0,0.0,OK
+mikiciuk tomasz,2025-12-09,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+mikiciuk tomasz,2025-12-10,Norm uren Dag,40.0,47.5,-7.5,VERSCHIL
+mikiciuk tomasz,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+mikiciuk tomasz,2025-12-11,Norm uren Dag,35.0,45.0,-10.0,VERSCHIL
+mikiciuk tomasz,2025-12-11,OW140 Week,5.0,,,ALLEEN IN FACTUUR
+mikiciuk tomasz,2025-12-12,Norm uren Dag,38.75,40.0,-1.25,VERSCHIL
+mikiciuk tomasz,2025-12-13,OW180 Dag,23.75,,,ALLEEN IN FACTUUR
+mikiciuk tomasz,2025-12-14,OW140 Week,,15.0,,ALLEEN IN KLOKLIJST
+milon oliwia,2025-12-08,Norm uren Dag,47.5,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-08,T133 Dag,2.5,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-09,Norm uren Dag,46.25,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-09,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-10,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-10,OW140 Week,32.5,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-11,Norm uren Dag,47.5,,,ALLEEN IN FACTUUR
+milon oliwia,2025-12-12,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-08,Norm uren Dag,,40.0,,ALLEEN IN KLOKLIJST
+mlot wiktoria,2025-12-09,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+mlot wiktoria,2025-12-09,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+mlot wiktoria,2025-12-10,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+mlot wiktoria,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-11,T135 Dag,6.25,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-12,Norm uren Dag,11.25,,,ALLEEN IN FACTUUR
+mlot wiktoria,2025-12-12,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+muszczek patrycja,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+muszczek patrycja,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+muszczek patrycja,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-10,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+muszczek patrycja,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-11,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+muszczek patrycja,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-12,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+muszczek patrycja,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+muszczek patrycja,2025-12-13,OW180 Dag,25.0,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-08,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+nikola solomonova,2025-12-08,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-09,Norm uren Dag,11.25,42.5,-31.25,VERSCHIL
+nikola solomonova,2025-12-09,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-10,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+nikola solomonova,2025-12-10,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-11,Norm uren Dag,11.25,40.0,-28.75,VERSCHIL
+nikola solomonova,2025-12-11,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-12,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+nikola solomonova,2025-12-12,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+nikola solomonova,2025-12-14,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+ogiela patrycja,2025-12-08,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+ogiela patrycja,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-10,Norm uren Dag,40.0,12.5,27.5,VERSCHIL
+ogiela patrycja,2025-12-10,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-11,Norm uren Dag,16.25,11.25,5.0,VERSCHIL
+ogiela patrycja,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-12,Norm uren Dag,,10.0,,ALLEEN IN KLOKLIJST
+ogiela patrycja,2025-12-12,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+osik rafal,2025-12-08,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+osik rafal,2025-12-08,T133 Dag,3.75,,,ALLEEN IN FACTUUR
+osik rafal,2025-12-09,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+osik rafal,2025-12-09,T133 Dag,1.25,,,ALLEEN IN FACTUUR
+osik rafal,2025-12-10,Norm uren Dag,38.75,46.25,-7.5,VERSCHIL
+osik rafal,2025-12-10,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+osik rafal,2025-12-11,Norm uren Dag,33.75,45.0,-11.25,VERSCHIL
+osik rafal,2025-12-12,Norm uren Dag,7.5,41.25,-33.75,VERSCHIL
+owczarczak sandra wawrzyniak,2025-12-08,Norm uren Dag,32.5,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-09,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-10,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-11,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+owczarczak sandra wawrzyniak,2025-12-12,Norm uren Dag,40.0,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-08,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+patryk rydzewski,2025-12-08,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-08,T135 Dag,2.5,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-09,Norm uren Dag,13.75,40.0,-26.25,VERSCHIL
+patryk rydzewski,2025-12-09,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-10,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+patryk rydzewski,2025-12-10,T133 Dag,27.5,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-10,T135 Dag,5.0,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-11,Norm uren Dag,5.0,40.0,-35.0,VERSCHIL
+patryk rydzewski,2025-12-11,OW140 Week,7.5,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-11,T133 Dag,26.25,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-11,T135 Dag,6.25,,,ALLEEN IN FACTUUR
+patryk rydzewski,2025-12-12,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+patryk rydzewski,2025-12-12,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+piksa sandra,2025-12-08,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+piksa sandra,2025-12-09,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+piksa sandra,2025-12-10,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+piksa sandra,2025-12-11,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+piksa sandra,2025-12-12,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+piotr wach,2025-12-08,Norm uren Dag,35.0,35.0,0.0,OK
+piotr wach,2025-12-08,T135 Dag,5.0,5.0,0.0,OK
+piotr wach,2025-12-09,Norm uren Dag,33.75,35.0,-1.25,VERSCHIL
+piotr wach,2025-12-09,T135 Dag,5.0,5.0,0.0,OK
+piotr wach,2025-12-10,Norm uren Dag,35.0,35.0,0.0,OK
+piotr wach,2025-12-10,T135 Dag,5.0,5.0,0.0,OK
+piotr wach,2025-12-11,Norm uren Dag,37.5,41.25,-3.75,VERSCHIL
+piotr wach,2025-12-11,T135 Dag,5.0,5.0,0.0,OK
+piotr wach,2025-12-12,Norm uren Dag,28.75,32.5,-3.75,VERSCHIL
+piotr wach,2025-12-12,T135 Dag,5.0,5.0,0.0,OK
+piotr wach,2025-12-14,OW140 Week,,3.75,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-08,Norm uren Dag,18.75,32.5,-13.75,VERSCHIL
+poplonski tomasz,2025-12-08,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+poplonski tomasz,2025-12-08,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-09,Norm uren Dag,17.5,35.0,-17.5,VERSCHIL
+poplonski tomasz,2025-12-09,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+poplonski tomasz,2025-12-09,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-10,Norm uren Dag,18.75,32.5,-13.75,VERSCHIL
+poplonski tomasz,2025-12-10,T133 Dag,21.25,,,ALLEEN IN FACTUUR
+poplonski tomasz,2025-12-10,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-11,Norm uren Dag,17.5,32.5,-15.0,VERSCHIL
+poplonski tomasz,2025-12-11,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+poplonski tomasz,2025-12-11,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-12,Norm uren Dag,18.75,32.5,-13.75,VERSCHIL
+poplonski tomasz,2025-12-12,T133 Dag,17.5,,,ALLEEN IN FACTUUR
+poplonski tomasz,2025-12-12,T135 Dag,,7.5,,ALLEEN IN KLOKLIJST
+poplonski tomasz,2025-12-14,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+przemyslaw robakowski,2025-12-08,Norm uren Dag,52.5,10.0,42.5,VERSCHIL
+przemyslaw robakowski,2025-12-09,Norm uren Dag,46.25,41.25,5.0,VERSCHIL
+przemyslaw robakowski,2025-12-10,Norm uren Dag,48.75,52.5,-3.75,VERSCHIL
+przemyslaw robakowski,2025-12-10,OW140 Week,3.75,,,ALLEEN IN FACTUUR
+przemyslaw robakowski,2025-12-11,Norm uren Dag,,43.75,,ALLEEN IN KLOKLIJST
+przemyslaw robakowski,2025-12-11,OW140 Week,47.5,,,ALLEEN IN FACTUUR
+przemyslaw robakowski,2025-12-12,Norm uren Dag,52.5,47.5,5.0,VERSCHIL
+przemyslaw zaremba,2025-12-08,Norm uren Dag,20.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-08,T133 Dag,25.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-09,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-09,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-10,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-10,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-11,Norm uren Dag,15.0,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-11,T133 Dag,22.5,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-12,Norm uren Dag,12.5,,,ALLEEN IN FACTUUR
+przemyslaw zaremba,2025-12-12,T133 Dag,20.0,,,ALLEEN IN FACTUUR
+przydatek renata,2025-12-08,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+przydatek renata,2025-12-08,T133 Dag,,26.25,,ALLEEN IN KLOKLIJST
+przydatek renata,2025-12-09,Norm uren Dag,40.0,11.25,28.75,VERSCHIL
+przydatek renata,2025-12-09,T133 Dag,,18.75,,ALLEEN IN KLOKLIJST
+przydatek renata,2025-12-10,Norm uren Dag,,12.5,,ALLEEN IN KLOKLIJST
+przydatek renata,2025-12-10,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+przydatek renata,2025-12-11,Norm uren Dag,37.5,11.25,26.25,VERSCHIL
+przydatek renata,2025-12-11,T133 Dag,,23.75,,ALLEEN IN KLOKLIJST
+przydatek renata,2025-12-12,Norm uren Dag,36.25,11.25,25.0,VERSCHIL
+przydatek renata,2025-12-12,T133 Dag,,25.0,,ALLEEN IN KLOKLIJST
+slosiar tomas,2025-12-08,Norm uren Dag,32.5,45.0,-12.5,VERSCHIL
+slosiar tomas,2025-12-09,Norm uren Dag,42.5,45.0,-2.5,VERSCHIL
+slosiar tomas,2025-12-10,Norm uren Dag,45.0,3.75,41.25,VERSCHIL
+slosiar tomas,2025-12-11,Norm uren Dag,26.25,45.0,-18.75,VERSCHIL
+slosiar tomas,2025-12-11,T133 Dag,23.75,,,ALLEEN IN FACTUUR
+slosiar tomas,2025-12-12,Norm uren Dag,12.5,40.0,-27.5,VERSCHIL
+slosiar tomas,2025-12-12,T133 Dag,18.75,,,ALLEEN IN FACTUUR
+slosiar tomas,2025-12-13,OW180 Dag,12.5,,,ALLEEN IN FACTUUR
+slosiar tomas,2025-12-13,OW200 Dag,7.5,,,ALLEEN IN FACTUUR
