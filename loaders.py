@@ -322,6 +322,8 @@ async def load_file(filename: str, content: bytes, session: AsyncSession) -> dic
     name_lower = filename.lower()
 
     if "kloklijst" in name_lower:
+        if "unique_names" in name_lower:
+            return {"skipped": True, "reason": "Skipping unique_names sheet"}
         week_number = _extract_week_number(name)
         if week_number is None:
             return {"skipped": True, "reason": "Could not extract week number"}
