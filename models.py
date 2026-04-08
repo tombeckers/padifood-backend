@@ -189,3 +189,61 @@ class PersonWagegroup(Base):
     wagegroup: Mapped[str]
     verified: Mapped[bool]
     source_week: Mapped[Optional[int]]
+
+
+class PersonWagegroupRate(Base):
+    """
+    Parsed person-level rates from uploaded wagegroup/rate workbooks.
+    Stores one row per percentage/multiplier key.
+    """
+
+    __tablename__ = "person_wagegroup_rates"
+    __table_args__ = (
+        UniqueConstraint(
+            "provider",
+            "person_number",
+            "schaal",
+            "tarief",
+            "rate_key",
+            name="uq_person_rate_provider_person_schaal_tarief_key",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    provider: Mapped[str]
+    person_number: Mapped[str]
+    name: Mapped[str]
+    normalized_name: Mapped[str]
+    schaal: Mapped[Optional[str]]
+    tarief: Mapped[Optional[str]]
+    rate_key: Mapped[str]
+    rate_value: Mapped[float]
+    source_file: Mapped[Optional[str]]
+    source_week: Mapped[Optional[int]]
+
+
+class WagegroupRateCard(Base):
+    """
+    Provider rate card by (schaal, tarief, rate_key).
+    Used as fallback when person-level rate is not available.
+    """
+
+    __tablename__ = "wagegroup_rate_card"
+    __table_args__ = (
+        UniqueConstraint(
+            "provider",
+            "schaal",
+            "tarief",
+            "rate_key",
+            name="uq_rate_card_provider_schaal_tarief_key",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    provider: Mapped[str]
+    schaal: Mapped[str]
+    tarief: Mapped[str]
+    rate_key: Mapped[str]
+    rate_value: Mapped[float]
+    source_file: Mapped[Optional[str]]
+    source_week: Mapped[Optional[int]]

@@ -6,3 +6,4 @@ class Settings(BaseSettings):
 
     postgres_database_url: str
     backend_api_key: str
+    rate_diff_tolerance_eur: float = 1.0

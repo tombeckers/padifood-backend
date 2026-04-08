@@ -21,9 +21,11 @@ from difflib import SequenceMatcher
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from config import Settings
 from models import InvoiceLine, Kloklijst
 from otto_identifier_mapping import load_verified_otto_mapping
 from validation_wagegroups import analyze_otto_wagegroups
+from wagegroup_rates import analyze_otto_rate_mismatches
 
 # Maps the original kloklijst column names (used in output/comparison) to
 # the corresponding ORM field names on the Kloklijst model.
@@ -38,6 +40,7 @@ KLOKLIJST_COL_TO_FIELD: dict[str, str] = {
 }
 
 FUZZY_MATCH_THRESHOLD = 90
+settings = Settings()
 
 
 def normalize_name(name: str) -> str:
@@ -579,6 +582,9 @@ async def run_validation(
 
     wagegroup_analysis: dict | None = None
     wagegroup_output_file: str | None = None
+    rate_analysis: dict | None = None
+    rate_output_file: str | None = None
+    rate_histogram_file: str | None = None
     if agency == "otto":
         wagegroup_analysis = await analyze_otto_wagegroups(
             week=week_int,
@@ -591,6 +597,14 @@ async def run_validation(
             wagegroup_output_file,
             wagegroup_analysis.get("mismatches", []),
         )
+        rate_analysis = await analyze_otto_rate_mismatches(
+            week=week_int,
+            db=db,
+            tolerance_eur=float(settings.rate_diff_tolerance_eur),
+            output_dir="output",
+        )
+        rate_output_file = rate_analysis.get("outputFile")
+        rate_histogram_file = rate_analysis.get("histogramFile")
 
     return {
         "week": week,
@@ -605,6 +619,9 @@ async def run_validation(
         "exactPersonMatchCount": exact_person_match_count,
         "wagegroupAnalysis": wagegroup_analysis,
         "wagegroupOutputFile": wagegroup_output_file,
+        "rateAnalysis": rate_analysis,
+        "rateOutputFile": rate_output_file,
+        "rateHistogramFile": rate_histogram_file,
     }
 
 
@@ -661,8 +678,11 @@ def format_validation_email_body(result: dict) -> str:
     wagegroup_mismatches = [
         row for row in wagegroup_rows if str(row.get("status", "")).strip() == "mismatch"
     ]
+    rate_analysis = result.get("rateAnalysis") or {}
+    rate_mismatches = rate_analysis.get("mismatches", []) or []
+    tolerance_eur = rate_analysis.get("toleranceEur")
     provider_hint = f" voor {provider_label}" if provider_label else ""
-    if not week_mismatches and not wagegroup_mismatches:
+    if not week_mismatches and not wagegroup_mismatches and not rate_mismatches:
         return "\n".join(
             [
                 "Goedemorgen,",
@@ -678,7 +698,8 @@ def format_validation_email_body(result: dict) -> str:
         )
 
     lines = ["Goedemorgen,", ""]
-    if week_mismatches and wagegroup_mismatches:
+    has_wage_like = bool(wagegroup_mismatches or rate_mismatches)
+    if week_mismatches and has_wage_like:
         lines.append(
             "Op bovenstaande factuur hebben we"
             f"{provider_hint} voor week "
@@ -721,7 +742,7 @@ def format_validation_email_body(result: dict) -> str:
                 f"- Bij {name} is een discrepantie gevonden voor {code} (status: {_fmt_value(status)})."
             )
 
-    if wagegroup_mismatches and week_mismatches:
+    if has_wage_like and week_mismatches:
         lines.extend(
             [
                 "",
@@ -735,6 +756,24 @@ def format_validation_email_body(result: dict) -> str:
             known_wagegroup = _fmt_value(row.get("knownWagegroup"))
             lines.append(
                 f"- Bij {name} staat loongroep {invoice_wagegroup} op de factuur, maar referentie is {known_wagegroup}."
+            )
+    if rate_mismatches:
+        if wagegroup_mismatches:
+            lines.append("")
+        if tolerance_eur is not None:
+            lines.append(
+                f"Daarnaast zijn er tariefverschillen groter dan de ingestelde tolerantie van EUR {float(tolerance_eur):.2f}:"
+            )
+        else:
+            lines.append("Daarnaast zijn er tariefverschillen gevonden:")
+        for row in rate_mismatches[:20]:
+            name = _fmt_value(row.get("name"))
+            code = _fmt_value(row.get("invoiceCodeToeslag"))
+            invoice_rate = _fmt_value(row.get("invoiceRate"))
+            expected_rate = _fmt_value(row.get("expectedRate"))
+            diff = _fmt_value(row.get("difference"))
+            lines.append(
+                f"- Bij {name} ({code}) is tarief {invoice_rate} op de factuur, verwacht {expected_rate} (verschil {diff})."
             )
 
     lines.extend(["", "Kan hier een correctie van worden gemaakt?", "", "Bedankt!"])

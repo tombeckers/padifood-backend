@@ -41,6 +41,12 @@ from validation_hours import (
     normalize_name,
     run_validation,
 )
+from wagegroup_rates import (
+    parse_flex_wagegroup_rate_workbook,
+    parse_otto_wagegroup_rate_workbook,
+    persist_parsed_wagegroup_rates,
+    write_rates_csvs,
+)
 
 settings = Settings()
 
@@ -786,6 +792,57 @@ async def update_wages(
     }
 
 
+@app.post("/upload_wagegroups_rate")
+async def upload_wagegroups_rate(
+    file: UploadFile = File(...),
+    agency: str = "otto",
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Geen bestandsnaam ontvangen.")
+    if not file.filename.lower().endswith(".xlsx"):
+        raise HTTPException(
+            status_code=400, detail="Alleen .xlsx-bestanden worden ondersteund."
+        )
+
+    provider = agency.strip().lower()
+    if provider not in {"otto", "flexspecialisten"}:
+        raise HTTPException(
+            status_code=400, detail="agency moet 'otto' of 'flexspecialisten' zijn."
+        )
+
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Leeg bestand ontvangen.")
+
+    try:
+        if provider == "otto":
+            parsed = parse_otto_wagegroup_rate_workbook(content, file.filename)
+        else:
+            parsed = parse_flex_wagegroup_rate_workbook(content, file.filename)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail=f"Kon tarievenbestand niet verwerken: {e}"
+        ) from e
+
+    db_stats = await persist_parsed_wagegroup_rates(db, provider=provider, parsed=parsed)
+    csv_paths = write_rates_csvs(
+        provider=provider,
+        parsed=parsed,
+        output_dir=str(OUTPUT_DIR),
+    )
+    return {
+        "status": "ok",
+        "agency": provider,
+        "personRates": db_stats["personRates"],
+        "rateCardRows": db_stats["rateCardRows"],
+        **csv_paths,
+    }
+
+
 @app.post("/wagegroups/backfill_from_csv")
 async def backfill_wagegroups(
     payload: WagegroupBackfillRequest,
@@ -1069,6 +1126,8 @@ async def upload(
             "emailBody": format_validation_email_body(otto_result),
             "outputFileWeek": otto_result["outputFileWeek"],
             "outputFileDay": otto_result["outputFileDay"],
+            "rateOutputFile": otto_result.get("rateOutputFile"),
+            "rateHistogramFile": otto_result.get("rateHistogramFile"),
             "similarPeople": otto_result.get("similarPeople", []),
         })
 
@@ -1210,6 +1269,15 @@ async def verify_name_pairs(
                 provider_response["wagegroupOutputFile"] = wagegroup_output_file
                 provider_response["wagegroupSummary"] = (
                     validation_result.get("wagegroupAnalysis") or {}
+                )
+                provider_response["rateSummary"] = (
+                    validation_result.get("rateAnalysis") or {}
+                )
+                provider_response["rateOutputFile"] = validation_result.get(
+                    "rateOutputFile"
+                )
+                provider_response["rateHistogramFile"] = validation_result.get(
+                    "rateHistogramFile"
                 )
             providers_response[response_key] = provider_response
     except FileNotFoundError as e:
