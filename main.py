@@ -8,7 +8,7 @@ from datetime import date, datetime
 from typing import List
 import re
 
-from fastapi import Depends, FastAPI, UploadFile, File, HTTPException
+from fastapi import Depends, FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.security import APIKeyHeader
@@ -99,6 +99,15 @@ async def get_db() -> AsyncSession:
 
 def _normalize_person_name(name: str) -> str:
     return " ".join(name.strip().lower().split())
+
+
+def _normalize_rate_agency(agency: str) -> str:
+    provider = (agency or "").strip().lower()
+    if provider in {"otto", "flexspecialisten"}:
+        return provider
+    raise HTTPException(
+        status_code=400, detail="agency moet 'otto' of 'flexspecialisten' zijn."
+    )
 
 
 def _normalize_header_cell(value: str) -> str:
@@ -795,7 +804,7 @@ async def update_wages(
 @app.post("/upload_wagegroups_rate")
 async def upload_wagegroups_rate(
     file: UploadFile = File(...),
-    agency: str = "otto",
+    agency: str = Form("otto"),
     db: AsyncSession = Depends(get_db),
     _: None = Depends(verify_api_key),
 ):
@@ -806,11 +815,7 @@ async def upload_wagegroups_rate(
             status_code=400, detail="Alleen .xlsx-bestanden worden ondersteund."
         )
 
-    provider = agency.strip().lower()
-    if provider not in {"otto", "flexspecialisten"}:
-        raise HTTPException(
-            status_code=400, detail="agency moet 'otto' of 'flexspecialisten' zijn."
-        )
+    provider = _normalize_rate_agency(agency)
 
     content = await file.read()
     if not content:
@@ -828,7 +833,9 @@ async def upload_wagegroups_rate(
             status_code=400, detail=f"Kon tarievenbestand niet verwerken: {e}"
         ) from e
 
-    db_stats = await persist_parsed_wagegroup_rates(db, provider=provider, parsed=parsed)
+    db_stats = await persist_parsed_wagegroup_rates(
+        db, provider=provider, parsed=parsed
+    )
     csv_paths = write_rates_csvs(
         provider=provider,
         parsed=parsed,
@@ -969,7 +976,9 @@ async def upload(
     uploaded = []
     for file in files:
         if not file.filename:
-            raise HTTPException(status_code=400, detail="Geüpload bestand heeft geen bestandsnaam.")
+            raise HTTPException(
+                status_code=400, detail="Geüpload bestand heeft geen bestandsnaam."
+            )
         lower = file.filename.lower()
         if not (lower.endswith(".xlsx") or lower.endswith(".pdf")):
             raise HTTPException(
@@ -997,11 +1006,17 @@ async def upload(
         elif is_kloklijst:
             if is_otto:
                 if otto_kloklijst is not None:
-                    raise HTTPException(status_code=400, detail="Meerdere OTTO kloklijstbestanden gevonden.")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Meerdere OTTO kloklijstbestanden gevonden.",
+                    )
                 otto_kloklijst = item
             elif is_flex:
                 if flex_kloklijst is not None:
-                    raise HTTPException(status_code=400, detail="Meerdere Flexspecialisten kloklijstbestanden gevonden.")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Meerdere Flexspecialisten kloklijstbestanden gevonden.",
+                    )
                 flex_kloklijst = item
             else:
                 raise HTTPException(
@@ -1014,7 +1029,10 @@ async def upload(
                 pass
             else:
                 if otto_factuur is not None:
-                    raise HTTPException(status_code=400, detail="Meerdere OTTO factuurbestanden gevonden.")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Meerdere OTTO factuurbestanden gevonden.",
+                    )
                 otto_factuur = item
         elif "tarief" in lower or "lonen" in lower:
             # Tarievensheet uploaded as part of batch — ignore here, handled by /upload_tarievensheet
@@ -1037,13 +1055,25 @@ async def upload(
             ),
         )
     if otto_kloklijst and not otto_factuur:
-        raise HTTPException(status_code=400, detail="OTTO kloklijst gevonden maar geen OTTO factuurbestand (.xlsx).")
+        raise HTTPException(
+            status_code=400,
+            detail="OTTO kloklijst gevonden maar geen OTTO factuurbestand (.xlsx).",
+        )
     if otto_factuur and not otto_kloklijst:
-        raise HTTPException(status_code=400, detail="OTTO factuurbestand gevonden maar geen OTTO kloklijst.")
+        raise HTTPException(
+            status_code=400,
+            detail="OTTO factuurbestand gevonden maar geen OTTO kloklijst.",
+        )
     if flex_kloklijst and not flex_pdfs:
-        raise HTTPException(status_code=400, detail="Flexspecialisten kloklijst gevonden maar geen PDF factuur.")
+        raise HTTPException(
+            status_code=400,
+            detail="Flexspecialisten kloklijst gevonden maar geen PDF factuur.",
+        )
     if flex_pdfs and not flex_kloklijst:
-        raise HTTPException(status_code=400, detail="Flexspecialisten PDF gevonden maar geen Flexspecialisten kloklijst.")
+        raise HTTPException(
+            status_code=400,
+            detail="Flexspecialisten PDF gevonden maar geen Flexspecialisten kloklijst.",
+        )
 
     # ------------------------------------------------------------------ week extraction + cross-validation
 
@@ -1052,26 +1082,45 @@ async def upload(
     if has_otto:
         otto_week_kl = extract_week_from_filename(otto_kloklijst["filename"])  # type: ignore[index]
         if not otto_week_kl:
-            raise HTTPException(status_code=400, detail="Weeknummer (YYYYww) niet gevonden in OTTO kloklijst bestandsnaam.")
+            raise HTTPException(
+                status_code=400,
+                detail="Weeknummer (YYYYww) niet gevonden in OTTO kloklijst bestandsnaam.",
+            )
         otto_week_fa = extract_week_from_factuur(otto_factuur["content"])  # type: ignore[index]
         if not otto_week_fa:
-            print("WARNING: Weeknummer niet te bepalen uit kolom Datum in OTTO factuur — week uit kloklijst gebruikt")
+            print(
+                "WARNING: Weeknummer niet te bepalen uit kolom Datum in OTTO factuur — week uit kloklijst gebruikt"
+            )
         if otto_week_kl != otto_week_fa:
-            print(f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa} — doorgaan met kloklijst week")
+            print(
+                f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa} — doorgaan met kloklijst week"
+            )
         week = otto_week_kl
 
     if has_flex:
         flex_week_kl = extract_week_from_filename(flex_kloklijst["filename"])  # type: ignore[index]
         if not flex_week_kl:
-            raise HTTPException(status_code=400, detail="Weeknummer (YYYYww) niet gevonden in Flexspecialisten kloklijst bestandsnaam.")
-        flex_week_pdf_raw = extract_week_from_flex_pdfs([p["content"] for p in flex_pdfs])
+            raise HTTPException(
+                status_code=400,
+                detail="Weeknummer (YYYYww) niet gevonden in Flexspecialisten kloklijst bestandsnaam.",
+            )
+        flex_week_pdf_raw = extract_week_from_flex_pdfs(
+            [p["content"] for p in flex_pdfs]
+        )
         if flex_week_pdf_raw is None:
-            raise HTTPException(status_code=400, detail="Weeknummer niet te bepalen uit de Flexspecialisten PDF.")
+            raise HTTPException(
+                status_code=400,
+                detail="Weeknummer niet te bepalen uit de Flexspecialisten PDF.",
+            )
         flex_week_pdf = str(flex_week_pdf_raw)
         if flex_week_kl != flex_week_pdf:
-            print(f"WARNING: Flex weeknummers komen niet overeen: kloklijst={flex_week_kl}, PDF={flex_week_pdf} — doorgaan met kloklijst week")
+            print(
+                f"WARNING: Flex weeknummers komen niet overeen: kloklijst={flex_week_kl}, PDF={flex_week_pdf} — doorgaan met kloklijst week"
+            )
         if week is not None and week != flex_week_kl:
-            print(f"WARNING: OTTO weeknummer ({week}) komt niet overeen met Flexspecialisten weeknummer ({flex_week_kl}) — doorgaan")
+            print(
+                f"WARNING: OTTO weeknummer ({week}) komt niet overeen met Flexspecialisten weeknummer ({flex_week_kl}) — doorgaan"
+            )
         week = flex_week_kl
 
     assert week is not None
@@ -1079,7 +1128,9 @@ async def upload(
     # ------------------------------------------------------------------ load name-pair decisions
 
     verified_rows = _read_verified_name_pairs()
-    confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(verified_rows)
+    confirmed_same_pairs, confirmed_diff_pairs = _decision_pairs_for_validation(
+        verified_rows
+    )
 
     # ------------------------------------------------------------------ process OTTO
 
@@ -1115,21 +1166,31 @@ async def upload(
             raise
         except Exception as e:
             import traceback
+
             traceback.print_exc()
-            raise HTTPException(status_code=500, detail=f"Fout bij OTTO verwerking: {e}")
+            raise HTTPException(
+                status_code=500, detail=f"Fout bij OTTO verwerking: {e}"
+            )
 
-        if not os.path.exists(otto_result["outputFileWeek"]) or not os.path.exists(otto_result["outputFileDay"]):
-            raise HTTPException(status_code=400, detail="OTTO outputbestanden niet aangemaakt door validatie.")
+        if not os.path.exists(otto_result["outputFileWeek"]) or not os.path.exists(
+            otto_result["outputFileDay"]
+        ):
+            raise HTTPException(
+                status_code=400,
+                detail="OTTO outputbestanden niet aangemaakt door validatie.",
+            )
 
-        results.append({
-            "agency": "otto",
-            "emailBody": format_validation_email_body(otto_result),
-            "outputFileWeek": otto_result["outputFileWeek"],
-            "outputFileDay": otto_result["outputFileDay"],
-            "rateOutputFile": otto_result.get("rateOutputFile"),
-            "rateHistogramFile": otto_result.get("rateHistogramFile"),
-            "similarPeople": otto_result.get("similarPeople", []),
-        })
+        results.append(
+            {
+                "agency": "otto",
+                "emailBody": format_validation_email_body(otto_result),
+                "outputFileWeek": otto_result["outputFileWeek"],
+                "outputFileDay": otto_result["outputFileDay"],
+                "rateOutputFile": otto_result.get("rateOutputFile"),
+                "rateHistogramFile": otto_result.get("rateHistogramFile"),
+                "similarPeople": otto_result.get("similarPeople", []),
+            }
+        )
 
     # ------------------------------------------------------------------ process Flex
 
@@ -1169,19 +1230,29 @@ async def upload(
             raise
         except Exception as e:
             import traceback
+
             traceback.print_exc()
-            raise HTTPException(status_code=500, detail=f"Fout bij Flexspecialisten verwerking: {e}")
+            raise HTTPException(
+                status_code=500, detail=f"Fout bij Flexspecialisten verwerking: {e}"
+            )
 
-        if not os.path.exists(flex_result["outputFileWeek"]) or not os.path.exists(flex_result["outputFileDay"]):
-            raise HTTPException(status_code=400, detail="Flexspecialisten outputbestanden niet aangemaakt door validatie.")
+        if not os.path.exists(flex_result["outputFileWeek"]) or not os.path.exists(
+            flex_result["outputFileDay"]
+        ):
+            raise HTTPException(
+                status_code=400,
+                detail="Flexspecialisten outputbestanden niet aangemaakt door validatie.",
+            )
 
-        results.append({
-            "agency": "flexspecialisten",
-            "emailBody": format_validation_email_body(flex_result),
-            "outputFileWeek": flex_result["outputFileWeek"],
-            "outputFileDay": flex_result["outputFileDay"],
-            "similarPeople": flex_result.get("similarPeople", []),
-        })
+        results.append(
+            {
+                "agency": "flexspecialisten",
+                "emailBody": format_validation_email_body(flex_result),
+                "outputFileWeek": flex_result["outputFileWeek"],
+                "outputFileDay": flex_result["outputFileDay"],
+                "similarPeople": flex_result.get("similarPeople", []),
+            }
+        )
 
     return {"results": results}
 

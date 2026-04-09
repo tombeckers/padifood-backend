@@ -18,7 +18,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from models import InvoiceLine, PersonWagegroup, PersonWagegroupRate, WagegroupRateCard
 from validation_wagegroups import normalize_person_name
 
-
 def _norm_text(value: Any) -> str:
     if value is None:
         return ""
@@ -100,13 +99,27 @@ def _extract_schaal_tarief(text: str) -> tuple[str | None, str | None]:
     return schaal, tarief
 
 
+def _extract_phase(text: str) -> str | None:
+    clean = _norm_text(text)
+    if not clean:
+        return None
+    m = re.search(r"\bfase\s+([A-Z])\b", clean, flags=re.IGNORECASE)
+    if m:
+        return m.group(1).upper()
+    if re.fullmatch(r"[A-Z]", clean.upper()):
+        return clean.upper()
+    return None
+
+
 @dataclass
 class ParsedRateWorkbook:
     person_rates: list[dict[str, Any]]
     rate_card: list[dict[str, Any]]
 
 
-def parse_otto_wagegroup_rate_workbook(content: bytes, filename: str) -> ParsedRateWorkbook:
+def parse_otto_wagegroup_rate_workbook(
+    content: bytes, filename: str
+) -> ParsedRateWorkbook:
     if load_workbook is None:
         raise ValueError("openpyxl is niet beschikbaar in deze omgeving.")
     wb = load_workbook(io.BytesIO(content), data_only=True)
@@ -115,59 +128,111 @@ def parse_otto_wagegroup_rate_workbook(content: bytes, filename: str) -> ParsedR
     ws = wb["Blad1"]
 
     header = [(_norm_text(c.value)) for c in ws[1]]
-    by_name: dict[str, int] = {h.lower(): i for i, h in enumerate(header) if h}
+    by_name: dict[str, int] = {}
+    for i, h in enumerate(header):
+        if not h:
+            continue
+        key = h.lower()
+        if key not in by_name:
+            by_name[key] = i
     person_idx = by_name.get("personeelsnummer")
+    first_name_idx = by_name.get("voornaam")
+    last_name_idx = by_name.get("achternaam")
     tarief_idx = by_name.get("fase tarief")
-    if person_idx is None or tarief_idx is None:
-        raise ValueError("Kolommen 'Personeelsnummer' en 'Fase tarief' zijn verplicht.")
+    schaal_idx = by_name.get("schaal")
+    if tarief_idx is None:
+        tarief_idx = 4  # E
+    if schaal_idx is None:
+        schaal_idx = 5  # F
+    if person_idx is None:
+        raise ValueError("Kolom 'Personeelsnummer' is verplicht.")
+    if first_name_idx is None or last_name_idx is None:
+        raise ValueError("Kolommen 'Voornaam' en 'Achternaam' zijn verplicht.")
 
-    # observed in sample
-    rate_columns = [("orf", "100"), ("tf", "133"), ("of", "135"), ("atv", "200")]
+    rate_columns = [
+        ("100%", "100"),
+        ("133%", "133"),
+        ("135%", "135"),
+        ("180%", "180"),
+        ("200%", "200"),
+        ("300%", "300"),
+    ]
+    # Fallback positions for OTTO sheet layout when headers are missing:
+    # Q,R,S,T,U,V -> 100,133,135,180,200,300
+    fallback_rate_indexes = {
+        "100": 16,  # Q
+        "133": 17,  # R
+        "135": 18,  # S
+        "180": 19,  # T
+        "200": 20,  # U
+        "300": 21,  # V
+    }
     rate_indexes: list[tuple[int, str]] = []
     for col_name, rate_key in rate_columns:
         idx = by_name.get(col_name)
-        if idx is not None:
-            rate_indexes.append((idx, rate_key))
+        if idx is None:
+            idx = fallback_rate_indexes[rate_key]
+        rate_indexes.append((idx, rate_key))
     if not rate_indexes:
-        raise ValueError("Geen OTTO tariefkolommen gevonden (verwacht ORF/TF/OF/ATV).")
+        raise ValueError(
+            "Geen OTTO tariefkolommen gevonden (verwacht 100%/133%/135%/180%/200%/300%)."
+        )
 
     person_rates: list[dict[str, Any]] = []
     for row in ws.iter_rows(min_row=2, values_only=True):
-        person_number = _to_person_number(row[person_idx] if person_idx < len(row) else None)
-        if not person_number:
-            continue
-        tarief = _norm_text(row[tarief_idx] if tarief_idx < len(row) else None).upper() or None
-        for idx, rate_key in rate_indexes:
-            rate_value = _to_float(row[idx] if idx < len(row) else None)
-            if rate_value is None:
-                continue
-            person_rates.append(
-                {
-                    "provider": "otto",
-                    "person_number": person_number,
-                    "name": person_number,
-                    "normalized_name": normalize_person_name(person_number),
-                    "schaal": None,
-                    "tarief": tarief,
-                    "rate_key": rate_key,
-                    "rate_value": rate_value,
-                    "source_file": filename,
-                    "source_week": None,
-                }
+        try:
+            person_number = _to_person_number(
+                row[person_idx] if person_idx < len(row) else None
             )
+            if not person_number:
+                continue
+            first_name = _norm_text(
+                row[first_name_idx] if first_name_idx < len(row) else None
+            )
+            last_name = _norm_text(
+                row[last_name_idx] if last_name_idx < len(row) else None
+            )
+            name = _norm_text(f"{first_name} {last_name}")
+            tarief = _extract_phase(row[tarief_idx] if tarief_idx < len(row) else None)
+            schaal = (
+                _norm_text(row[schaal_idx] if schaal_idx < len(row) else None) or None
+            )
+            for idx, rate_key in rate_indexes:
+                rate_value = _to_float(row[idx] if idx < len(row) else None)
+                if rate_value is None:
+                    continue
+                person_rates.append(
+                    {
+                        "provider": "otto",
+                        "person_number": person_number,
+                        "name": name or person_number,
+                        "normalized_name": normalize_person_name(name or person_number),
+                        "schaal": schaal,
+                        "tarief": tarief,
+                        "rate_key": rate_key,
+                        "rate_value": rate_value,
+                        "source_file": filename,
+                        "source_week": None,
+                    }
+                )
+        except Exception:
+            continue
 
-    # derive card as median-ish mode by (tarief, key)
-    grouped: dict[tuple[str, str], list[float]] = defaultdict(list)
+    # derive card as median-ish mode by (schaal, tarief, key)
+    grouped: dict[tuple[str, str, str], list[float]] = defaultdict(list)
     for row in person_rates:
+        schaal = row.get("schaal") or ""
         tarief = row.get("tarief") or ""
-        grouped[(str(tarief), str(row["rate_key"]))].append(float(row["rate_value"]))
+        grouped[(str(schaal), str(tarief), str(row["rate_key"]))].append(
+            float(row["rate_value"])
+        )
     rate_card: list[dict[str, Any]] = []
-    for (tarief, rate_key), values in grouped.items():
+    for (schaal, tarief, rate_key), values in grouped.items():
         selected = Counter(round(v, 4) for v in values).most_common(1)[0][0]
         rate_card.append(
             {
                 "provider": "otto",
-                "schaal": "NA",
+                "schaal": schaal or "NA",
                 "tarief": tarief or "NA",
                 "rate_key": rate_key,
                 "rate_value": float(selected),
@@ -178,63 +243,117 @@ def parse_otto_wagegroup_rate_workbook(content: bytes, filename: str) -> ParsedR
     return ParsedRateWorkbook(person_rates=person_rates, rate_card=rate_card)
 
 
-def parse_flex_wagegroup_rate_workbook(content: bytes, filename: str) -> ParsedRateWorkbook:
+def parse_flex_wagegroup_rate_workbook(
+    content: bytes, filename: str
+) -> ParsedRateWorkbook:
     if load_workbook is None:
         raise ValueError("openpyxl is niet beschikbaar in deze omgeving.")
     wb = load_workbook(io.BytesIO(content), data_only=True)
-    if "1 januari 2025" not in wb.sheetnames:
-        raise ValueError("Flex tarievenbestand moet sheet '1 januari 2025' bevatten.")
-    ws = wb["1 januari 2025"]
+    if "Blad1" in wb.sheetnames:
+        ws = wb["Blad1"]
+    elif "1 januari 2025" in wb.sheetnames:
+        ws = wb["1 januari 2025"]
+    else:
+        raise ValueError(
+            "Flex tarievenbestand moet sheet 'Blad1' of '1 januari 2025' bevatten."
+        )
+
+    header = [(_norm_text(c.value)) for c in ws[1]]
+    by_name: dict[str, int] = {h.lower(): i for i, h in enumerate(header) if h}
+    person_idx = by_name.get("loonnummer")
+    first_name_idx = by_name.get("voornaam")
+    last_name_idx = by_name.get("achternaam")
+    loongroep_idx = by_name.get("loongroep")
+    fase_contracten_idx = by_name.get("fase contracten")
+    if loongroep_idx is None:
+        loongroep_idx = 3  # D
+    if fase_contracten_idx is None:
+        fase_contracten_idx = 4  # E
+    if person_idx is None:
+        raise ValueError("Kolom 'Loonnummer' is verplicht.")
+    if first_name_idx is None or last_name_idx is None:
+        raise ValueError("Kolommen 'Voornaam' en 'Achternaam' zijn verplicht.")
+
+    rate_columns = [
+        ("100%", "100"),
+        ("133%", "133"),
+        ("135%", "135"),
+        ("180%", "180"),
+        ("200%", "200"),
+        ("300%", "300"),
+    ]
+    # Fallback positions for Flex layout when % headers are missing.
+    # J,L,N,P,R -> 100,133,135,200,300
+    fallback_rate_indexes = {
+        "100": 9,  # J
+        "133": 11,  # L
+        "135": 13,  # N
+        "200": 15,  # P
+        "300": 17,  # R
+    }
+    rate_indexes: list[tuple[int, str]] = []
+    for col_name, rate_key in rate_columns:
+        idx = by_name.get(col_name)
+        if idx is None:
+            idx = fallback_rate_indexes.get(rate_key)
+        if idx is not None:
+            rate_indexes.append((idx, rate_key))
+    if not rate_indexes:
+        raise ValueError(
+            "Geen Flex tariefkolommen gevonden (verwacht 100%/133%/135%/180%/200%/300%)."
+        )
 
     person_rates: list[dict[str, Any]] = []
     rate_card_candidates: dict[tuple[str, str, str], list[float]] = defaultdict(list)
-    current_header_map: dict[int, str] = {}
-    row_num = 0
-    for row in ws.iter_rows(values_only=True):
-        row_num += 1
-        vals = [_norm_text(v) for v in row]
-        if not any(vals):
-            continue
-        if "leeftijd" in [v.lower() for v in vals] and "lota naam" in [v.lower() for v in vals]:
-            header_map: dict[int, str] = {}
-            for idx, cell in enumerate(vals):
-                key = _rate_key_from_header(cell)
-                if key:
-                    header_map[idx] = key
-            current_header_map = header_map
-            continue
-
-        if not current_header_map:
-            continue
-        lota_name = vals[1] if len(vals) > 1 else ""
-        if not lota_name or "productiemdw" not in lota_name.lower():
-            continue
-        schaal, tarief = _extract_schaal_tarief(lota_name)
-        if not schaal or not tarief:
-            continue
-
-        person_number = f"flex:{schaal}:{tarief}:{row_num}"
-        for idx, rate_key in current_header_map.items():
-            if idx >= len(row):
-                continue
-            rate_value = _to_float(row[idx])
-            if rate_value is None:
-                continue
-            person_rates.append(
-                {
-                    "provider": "flexspecialisten",
-                    "person_number": person_number,
-                    "name": lota_name,
-                    "normalized_name": normalize_person_name(lota_name),
-                    "schaal": schaal,
-                    "tarief": tarief,
-                    "rate_key": rate_key,
-                    "rate_value": rate_value,
-                    "source_file": filename,
-                    "source_week": None,
-                }
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        try:
+            person_number = _to_person_number(
+                row[person_idx] if person_idx < len(row) else None
             )
-            rate_card_candidates[(schaal, tarief, rate_key)].append(rate_value)
+            if not person_number:
+                continue
+            first_name = _norm_text(
+                row[first_name_idx] if first_name_idx < len(row) else None
+            )
+            last_name = _norm_text(
+                row[last_name_idx] if last_name_idx < len(row) else None
+            )
+            name = _norm_text(f"{first_name} {last_name}")
+
+            loongroep = _norm_text(
+                row[loongroep_idx] if loongroep_idx < len(row) else None
+            )
+            schaal, parsed_tarief = _extract_schaal_tarief(loongroep)
+            fase_contracten = _norm_text(
+                row[fase_contracten_idx] if fase_contracten_idx < len(row) else None
+            )
+            fase = _extract_phase(fase_contracten)
+            tarief = fase or parsed_tarief or "NA"
+            schaal_value = schaal or "NA"
+
+            for idx, rate_key in rate_indexes:
+                rate_value = _to_float(row[idx] if idx < len(row) else None)
+                if rate_value is None:
+                    continue
+                person_rates.append(
+                    {
+                        "provider": "flexspecialisten",
+                        "person_number": person_number,
+                        "name": name or person_number,
+                        "normalized_name": normalize_person_name(name or person_number),
+                        "schaal": schaal_value,
+                        "tarief": tarief,
+                        "rate_key": rate_key,
+                        "rate_value": rate_value,
+                        "source_file": filename,
+                        "source_week": None,
+                    }
+                )
+                rate_card_candidates[(schaal_value, tarief, rate_key)].append(
+                    rate_value
+                )
+        except Exception:
+            continue
 
     rate_card: list[dict[str, Any]] = []
     for (schaal, tarief, rate_key), values in rate_card_candidates.items():
@@ -259,15 +378,24 @@ async def persist_parsed_wagegroup_rates(
     provider: str,
     parsed: ParsedRateWorkbook,
 ) -> dict[str, int]:
-    await db.execute(delete(PersonWagegroupRate).where(PersonWagegroupRate.provider == provider))
-    await db.execute(delete(WagegroupRateCard).where(WagegroupRateCard.provider == provider))
+    await db.execute(
+        delete(PersonWagegroupRate).where(PersonWagegroupRate.provider == provider)
+    )
+    await db.execute(
+        delete(WagegroupRateCard).where(WagegroupRateCard.provider == provider)
+    )
     db.add_all(PersonWagegroupRate(**row) for row in parsed.person_rates)
     db.add_all(WagegroupRateCard(**row) for row in parsed.rate_card)
     await db.commit()
-    return {"personRates": len(parsed.person_rates), "rateCardRows": len(parsed.rate_card)}
+    return {
+        "personRates": len(parsed.person_rates),
+        "rateCardRows": len(parsed.rate_card),
+    }
 
 
-def write_rates_csvs(*, provider: str, parsed: ParsedRateWorkbook, output_dir: str) -> dict[str, str]:
+def write_rates_csvs(
+    *, provider: str, parsed: ParsedRateWorkbook, output_dir: str
+) -> dict[str, str]:
     os.makedirs(output_dir, exist_ok=True)
     person_path = os.path.join(output_dir, f"{provider}_wagegroup_person_rates.csv")
     card_path = os.path.join(output_dir, f"{provider}_wagegroup_rate_card.csv")
@@ -288,7 +416,15 @@ def write_rates_csvs(*, provider: str, parsed: ParsedRateWorkbook, output_dir: s
         w.writeheader()
         w.writerows(parsed.person_rates)
     with open(card_path, "w", newline="", encoding="utf-8-sig") as f:
-        fields = ["provider", "schaal", "tarief", "rate_key", "rate_value", "source_file", "source_week"]
+        fields = [
+            "provider",
+            "schaal",
+            "tarief",
+            "rate_key",
+            "rate_value",
+            "source_file",
+            "source_week",
+        ]
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(parsed.rate_card)

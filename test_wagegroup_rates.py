@@ -47,43 +47,61 @@ class WagegroupRatesTests(unittest.TestCase):
         ws = wb.active
         ws.title = "Blad1"
         ws["A1"] = "Personeelsnummer"
-        ws["AB1"] = "Fase tarief"
-        ws["AC1"] = "ORF"
-        ws["AD1"] = "TF"
-        ws["AE1"] = "OF"
-        ws["AF1"] = "ATV"
+        ws["B1"] = "Voornaam"
+        ws["C1"] = "Achternaam"
+        ws["D1"] = "100%"
+        ws["E1"] = "133%"
+        ws["F1"] = "135%"
+        ws["G1"] = "180%"
+        ws["H1"] = "200%"
+        ws["I1"] = "300%"
         ws["A2"] = "441359"
-        ws["AB2"] = "A"
-        ws["AC2"] = 10
-        ws["AD2"] = 13
-        ws["AE2"] = 14
-        ws["AF2"] = 20
+        ws["B2"] = "Jan"
+        ws["C2"] = "Jansen"
+        ws["D2"] = 10
+        ws["E2"] = 13
+        ws["F2"] = 14
+        ws["G2"] = 18
+        ws["H2"] = 20
+        ws["I2"] = 30
         buf = io.BytesIO()
         wb.save(buf)
 
         parsed = parse_otto_wagegroup_rate_workbook(buf.getvalue(), "Padifood tarieven p.p..xlsx")
-        self.assertEqual(len(parsed.person_rates), 4)
-        self.assertTrue(any(r["rate_key"] == "133" for r in parsed.person_rates))
+        self.assertEqual(len(parsed.person_rates), 6)
+        self.assertTrue(any(r["rate_key"] == "300" for r in parsed.person_rates))
+        self.assertTrue(any(r["name"] == "Jan Jansen" for r in parsed.person_rates))
 
     @unittest.skipIf(Workbook is None, "openpyxl not installed")
     def test_parse_flex_workbook(self):
         wb = Workbook()
         ws = wb.active
         ws.title = "1 januari 2025"
-        ws["A1"] = "Leeftijd"
-        ws["B1"] = "Lota naam"
-        ws["G1"] = "1"
-        ws["I1"] = "1.33"
-        ws["A2"] = "alle leeftijden"
-        ws["B2"] = "Productiemdw D4 / Fase C"
-        ws["G2"] = 20.0
-        ws["I2"] = 26.6
+        ws["A1"] = "Loonnummer"
+        ws["B1"] = "Voornaam"
+        ws["C1"] = "Achternaam"
+        ws["D1"] = "100%"
+        ws["E1"] = "133%"
+        ws["F1"] = "135%"
+        ws["G1"] = "180%"
+        ws["H1"] = "200%"
+        ws["I1"] = "300%"
+        ws["A2"] = "99123"
+        ws["B2"] = "Piet"
+        ws["C2"] = "Peters"
+        ws["D2"] = 20.0
+        ws["E2"] = 26.6
+        ws["F2"] = 27.0
+        ws["G2"] = 36.0
+        ws["H2"] = 40.0
+        ws["I2"] = 60.0
         buf = io.BytesIO()
         wb.save(buf)
 
         parsed = parse_flex_wagegroup_rate_workbook(buf.getvalue(), "Lonen en tarieven 2025.xlsx")
-        self.assertEqual(len(parsed.person_rates), 2)
-        self.assertTrue(any(r["schaal"] == "D4" for r in parsed.person_rates))
+        self.assertEqual(len(parsed.person_rates), 6)
+        self.assertTrue(any(r["person_number"] == "99123" for r in parsed.person_rates))
+        self.assertTrue(any(r["name"] == "Piet Peters" for r in parsed.person_rates))
 
 
 if __name__ == "__main__":
