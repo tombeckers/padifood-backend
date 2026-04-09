@@ -1,0 +1,24 @@
+﻿provider,personId,name,invoiceCodeToeslag,rateKey,invoiceRate,deducedInvoiceWagegroup,referenceWagegroup,difference,status,matchMethod
+otto,408973,Daniel Wilczak,Norm uren Dag,100,30.11,A0 / Fase A,B2 / Fase B,2.1004,wagegroup_diff_by_rate,person_number
+otto,408973,Daniel Wilczak,Norm uren Dag,100,30.11,A0 / Fase A,B2 / Fase B,2.1004,wagegroup_diff_by_rate,person_number
+otto,408973,Daniel Wilczak,Norm uren Dag,100,30.11,A0 / Fase A,B2 / Fase B,2.1004,wagegroup_diff_by_rate,person_number
+otto,408973,Daniel Wilczak,Norm uren Dag,100,30.11,A0 / Fase A,B2 / Fase B,2.1004,wagegroup_diff_by_rate,person_number
+otto,446709,Patryk Rydzewski,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,446709,Patryk Rydzewski,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,446709,Patryk Rydzewski,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,446709,Patryk Rydzewski,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,446709,Patryk Rydzewski,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,453422,Kamil Michalik,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,453422,Kamil Michalik,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,453422,Kamil Michalik,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,453422,Kamil Michalik,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,441359,Paolo Artini,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,441359,Paolo Artini,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,441359,Paolo Artini,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,441359,Paolo Artini,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,441359,Paolo Artini,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,449344,Marius Seciu,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,449344,Marius Seciu,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,449344,Marius Seciu,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,449344,Marius Seciu,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,449344,Marius Seciu,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number

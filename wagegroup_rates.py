@@ -88,6 +88,50 @@ def _rate_key_from_code_toeslag(code_toeslag: str) -> str:
     return "100"
 
 
+def _same_wagegroup(
+    *,
+    schaal_left: str | None,
+    tarief_left: str | None,
+    schaal_right: str | None,
+    tarief_right: str | None,
+) -> bool:
+    return (schaal_left or "NA") == (schaal_right or "NA") and (tarief_left or "NA") == (
+        tarief_right or "NA"
+    )
+
+
+def _pick_best_rate_card_candidate(
+    *,
+    invoice_rate: float,
+    candidates: list["WagegroupRateCard"],
+    tolerance_eur: float,
+) -> "WagegroupRateCard | None":
+    within_tolerance = [
+        c for c in candidates if abs(float(invoice_rate) - float(c.rate_value)) <= tolerance_eur
+    ]
+    if not within_tolerance:
+        return None
+    within_tolerance.sort(key=lambda c: abs(float(invoice_rate) - float(c.rate_value)))
+    return within_tolerance[0]
+
+
+def _wagegroup_in_candidates(
+    *,
+    schaal: str | None,
+    tarief: str | None,
+    candidates: list["WagegroupRateCard"],
+) -> bool:
+    for c in candidates:
+        if _same_wagegroup(
+            schaal_left=schaal,
+            tarief_left=tarief,
+            schaal_right=c.schaal,
+            tarief_right=c.tarief,
+        ):
+            return True
+    return False
+
+
 def _extract_schaal_tarief(text: str) -> tuple[str | None, str | None]:
     clean = _norm_text(text)
     if not clean:
@@ -480,6 +524,142 @@ def _write_histogram_csv(path: str, diffs: list[float]) -> None:
         w = csv.DictWriter(f, fieldnames=["bucket", "count"])
         w.writeheader()
         w.writerows(rows)
+
+
+def _write_wagegroup_rate_differences_csv(path: str, rows: list[dict[str, Any]]) -> None:
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        fields = [
+            "provider",
+            "personId",
+            "name",
+            "invoiceCodeToeslag",
+            "rateKey",
+            "invoiceRate",
+            "deducedInvoiceWagegroup",
+            "referenceWagegroup",
+            "difference",
+            "status",
+            "matchMethod",
+        ]
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(rows)
+
+
+async def analyze_wagegroup_differences_by_rate(
+    *,
+    week: int,
+    provider: str,
+    db: AsyncSession,
+    tolerance_eur: float,
+    output_dir: str,
+) -> dict[str, Any]:
+    person_rates_result = await db.execute(
+        select(PersonWagegroupRate).where(PersonWagegroupRate.provider == provider)
+    )
+    person_rates = list(person_rates_result.scalars().all())
+    card_result = await db.execute(
+        select(WagegroupRateCard).where(WagegroupRateCard.provider == provider)
+    )
+    card_rows = list(card_result.scalars().all())
+    invoice_result = await db.execute(
+        select(InvoiceLine).where(
+            InvoiceLine.week_number == week,
+            InvoiceLine.agency == provider,
+        )
+    )
+    invoice_rows = list(invoice_result.scalars().all())
+
+    person_lookup: dict[tuple[str, str], PersonWagegroupRate] = {}
+    person_name_lookup: dict[tuple[str, str], PersonWagegroupRate] = {}
+    for row in person_rates:
+        person_lookup[(row.person_number, row.rate_key)] = row
+        person_name_lookup[(row.normalized_name, row.rate_key)] = row
+
+    card_by_rate_key: dict[str, list[WagegroupRateCard]] = defaultdict(list)
+    for row in card_rows:
+        card_by_rate_key[row.rate_key].append(row)
+
+    mismatches: list[dict[str, Any]] = []
+    matched_rows = 0
+    missing_reference = 0
+    missing_rate_card_match = 0
+
+    for row in invoice_rows:
+        rate_key = _rate_key_from_code_toeslag(row.code_toeslag or "")
+        invoice_rate = _invoice_line_rate(row)
+        if invoice_rate is None:
+            continue
+
+        sap_id = _norm_text(row.sap_id)
+        normalized_name = normalize_person_name(row.naam or "")
+
+        person_rate = person_lookup.get((sap_id, rate_key))
+        match_method = "person_number"
+        if not person_rate:
+            person_rate = person_name_lookup.get((normalized_name, rate_key))
+            match_method = "name_fallback"
+        if not person_rate:
+            missing_reference += 1
+            continue
+
+        reference_wagegroup = f"{person_rate.schaal or 'NA'} / Fase {person_rate.tarief or 'NA'}"
+        card_candidates = card_by_rate_key.get(rate_key, [])
+        deduced_candidates = [
+            c
+            for c in card_candidates
+            if abs(float(invoice_rate) - float(c.rate_value)) <= tolerance_eur
+        ]
+        deduced = _pick_best_rate_card_candidate(
+            invoice_rate=float(invoice_rate),
+            candidates=deduced_candidates,
+            tolerance_eur=tolerance_eur,
+        )
+        if not deduced:
+            missing_rate_card_match += 1
+            continue
+        matched_rows += 1
+        if _wagegroup_in_candidates(
+            schaal=person_rate.schaal,
+            tarief=person_rate.tarief,
+            candidates=deduced_candidates,
+        ):
+            continue
+
+        deduced_wagegroup = f"{deduced.schaal or 'NA'} / Fase {deduced.tarief or 'NA'}"
+        reference_rate_diff = abs(float(invoice_rate) - float(person_rate.rate_value))
+
+        mismatches.append(
+            {
+                "provider": provider,
+                "personId": sap_id or person_rate.person_number,
+                "name": row.naam or person_rate.name,
+                "invoiceCodeToeslag": row.code_toeslag,
+                "rateKey": rate_key,
+                "invoiceRate": round(float(invoice_rate), 4),
+                "deducedInvoiceWagegroup": deduced_wagegroup,
+                "referenceWagegroup": reference_wagegroup,
+                "difference": round(reference_rate_diff, 4),
+                "status": "wagegroup_diff_by_rate",
+                "matchMethod": match_method,
+            }
+        )
+
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(output_dir, f"{week} validation_wagegroups_by_rate_{provider}.csv")
+    _write_wagegroup_rate_differences_csv(path, mismatches)
+    return {
+        "status": "ok",
+        "week": week,
+        "provider": provider,
+        "toleranceEur": tolerance_eur,
+        "matchedRows": matched_rows,
+        "missingReference": missing_reference,
+        "missingRateCardMatch": missing_rate_card_match,
+        "wagegroupDifferences": len(mismatches),
+        "mismatches": mismatches,
+        "outputFile": path,
+    }
 
 
 async def analyze_otto_rate_mismatches(

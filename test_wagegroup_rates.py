@@ -7,16 +7,25 @@ except ImportError:  # pragma: no cover - environment dependency
     Workbook = None
 
 from wagegroup_rates import (
+    _pick_best_rate_card_candidate,
     _build_histogram_rows,
     _extract_schaal_tarief,
     _rate_key_from_code_toeslag,
     _rate_key_from_header,
+    _same_wagegroup,
+    _wagegroup_in_candidates,
     parse_flex_wagegroup_rate_workbook,
     parse_otto_wagegroup_rate_workbook,
 )
 
 
 class WagegroupRatesTests(unittest.TestCase):
+    class _Card:
+        def __init__(self, schaal: str, tarief: str, rate_value: float):
+            self.schaal = schaal
+            self.tarief = tarief
+            self.rate_value = rate_value
+
     def test_rate_key_from_header(self):
         self.assertEqual(_rate_key_from_header("100%"), "100")
         self.assertEqual(_rate_key_from_header("1.33"), "133")
@@ -40,6 +49,68 @@ class WagegroupRatesTests(unittest.TestCase):
         self.assertEqual(counts["0.50-1.00"], 1)
         self.assertEqual(counts["1.00-2.00"], 1)
         self.assertEqual(counts["5.00+"], 1)
+
+    def test_pick_best_rate_card_candidate_within_tolerance(self):
+        candidates = [
+            self._Card("A1", "A", 30.00),
+            self._Card("B1", "B", 30.75),
+            self._Card("C1", "C", 29.10),
+        ]
+        picked = _pick_best_rate_card_candidate(
+            invoice_rate=30.6,
+            candidates=candidates,
+            tolerance_eur=1.0,
+        )
+        self.assertIsNotNone(picked)
+        self.assertEqual(picked.schaal, "B1")
+        self.assertEqual(picked.tarief, "B")
+
+    def test_pick_best_rate_card_candidate_outside_tolerance(self):
+        candidates = [self._Card("A1", "A", 30.0)]
+        picked = _pick_best_rate_card_candidate(
+            invoice_rate=32.5,
+            candidates=candidates,
+            tolerance_eur=1.0,
+        )
+        self.assertIsNone(picked)
+
+    def test_same_wagegroup(self):
+        self.assertTrue(
+            _same_wagegroup(
+                schaal_left="A1",
+                tarief_left="A",
+                schaal_right="A1",
+                tarief_right="A",
+            )
+        )
+        self.assertFalse(
+            _same_wagegroup(
+                schaal_left="A1",
+                tarief_left="A",
+                schaal_right="B1",
+                tarief_right="A",
+            )
+        )
+
+    def test_wagegroup_in_candidates(self):
+        candidates = [
+            self._Card("A1", "A", 30.0),
+            self._Card("B1", "B", 31.0),
+        ]
+        self.assertTrue(
+            _wagegroup_in_candidates(
+                schaal="A1",
+                tarief="A",
+                candidates=candidates,
+            )
+        )
+        self.assertFalse(
+            _wagegroup_in_candidates(
+                schaal="C1",
+                tarief="C",
+                candidates=candidates,
+            )
+        )
 
     @unittest.skipIf(Workbook is None, "openpyxl not installed")
     def test_parse_otto_workbook(self):

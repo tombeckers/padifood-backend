@@ -26,6 +26,7 @@ from models import InvoiceLine, Kloklijst
 from otto_identifier_mapping import load_verified_otto_mapping
 from validation_wagegroups import analyze_otto_wagegroups
 from wagegroup_rates import analyze_otto_rate_mismatches
+from wagegroup_rates import analyze_wagegroup_differences_by_rate
 
 # Maps the original kloklijst column names (used in output/comparison) to
 # the corresponding ORM field names on the Kloklijst model.
@@ -171,9 +172,7 @@ def _find_similar_name_pairs(
     seen: set[tuple[str, str]] = set()
 
     kloklijst_only = sorted(
-        name
-        for name in (kloklijst_names - factuur_names)
-        if name.startswith("name:")
+        name for name in (kloklijst_names - factuur_names) if name.startswith("name:")
     )
     factuur_only = sorted(
         name for name in (factuur_names - kloklijst_names) if name.startswith("name:")
@@ -293,9 +292,7 @@ async def _load_factuur_hours_by_date_db(
         )
         if not compare_key:
             continue
-        totals[compare_key][str(row.datum)][
-            row.code_toeslag
-        ] += row.totaal_uren
+        totals[compare_key][str(row.datum)][row.code_toeslag] += row.totaal_uren
     return totals
 
 
@@ -392,7 +389,9 @@ def _apply_alias_to_display_map(
     return remapped
 
 
-def build_rows(factuur, kloklijst, include_date=False, display_names: dict[str, str] | None = None):
+def build_rows(
+    factuur, kloklijst, include_date=False, display_names: dict[str, str] | None = None
+):
     """
     Combine factuur and kloklijst dicts into comparison rows.
 
@@ -585,6 +584,18 @@ async def run_validation(
     rate_analysis: dict | None = None
     rate_output_file: str | None = None
     rate_histogram_file: str | None = None
+    wagegroup_rate_analysis: dict | None = None
+    wagegroup_rate_output_file: str | None = None
+
+    wagegroup_rate_analysis = await analyze_wagegroup_differences_by_rate(
+        week=week_int,
+        provider=agency,
+        db=db,
+        tolerance_eur=1.0,
+        output_dir="output",
+    )
+    wagegroup_rate_output_file = wagegroup_rate_analysis.get("outputFile")
+
     if agency == "otto":
         wagegroup_analysis = await analyze_otto_wagegroups(
             week=week_int,
@@ -622,6 +633,8 @@ async def run_validation(
         "rateAnalysis": rate_analysis,
         "rateOutputFile": rate_output_file,
         "rateHistogramFile": rate_histogram_file,
+        "wagegroupRateAnalysis": wagegroup_rate_analysis,
+        "wagegroupRateOutputFile": wagegroup_rate_output_file,
     }
 
 
@@ -641,6 +654,95 @@ def _fmt_hours(value) -> str:
     if number.is_integer():
         return str(int(number))
     return f"{number:.2f}".replace(".", ",")
+
+
+def _fmt_money_2(value) -> str:
+    if value is None or value == "":
+        return "-"
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return str(value)
+    return f"{number:.2f}"
+
+
+def _dedupe_rate_mismatches(rows: list[dict]) -> list[dict]:
+    grouped: dict[tuple[str, str, str, str], dict] = {}
+    for row in rows:
+        name = _fmt_value(row.get("name"))
+        code = _fmt_value(row.get("invoiceCodeToeslag"))
+        invoice_rate = _fmt_money_2(row.get("invoiceRate"))
+        expected_rate = _fmt_money_2(row.get("expectedRate"))
+        key = (name, code, invoice_rate, expected_rate)
+
+        diff_raw = row.get("difference")
+        try:
+            diff = float(diff_raw)
+        except (TypeError, ValueError):
+            diff = None
+
+        entry = grouped.get(key)
+        if not entry:
+            grouped[key] = {
+                "name": name,
+                "code": code,
+                "invoice_rate": invoice_rate,
+                "expected_rate": expected_rate,
+                "count": 1,
+                "min_diff": diff,
+                "max_diff": diff,
+            }
+            continue
+
+        entry["count"] += 1
+        if diff is not None:
+            if entry["min_diff"] is None or diff < entry["min_diff"]:
+                entry["min_diff"] = diff
+            if entry["max_diff"] is None or diff > entry["max_diff"]:
+                entry["max_diff"] = diff
+
+    deduped = list(grouped.values())
+    deduped.sort(key=lambda r: (r["name"].lower(), r["code"].lower()))
+    return deduped
+
+
+def _dedupe_wagegroup_rate_mismatches(rows: list[dict]) -> list[dict]:
+    grouped: dict[tuple[str, str, str], dict] = {}
+    for row in rows:
+        name = _fmt_value(row.get("name"))
+        deduced = _fmt_value(row.get("deducedInvoiceWagegroup"))
+        reference = _fmt_value(row.get("referenceWagegroup"))
+        key = (name, deduced, reference)
+        diff_raw = row.get("difference")
+        try:
+            diff = float(diff_raw)
+        except (TypeError, ValueError):
+            diff = None
+
+        entry = grouped.get(key)
+        if not entry:
+            grouped[key] = {
+                "name": name,
+                "deduced": deduced,
+                "reference": reference,
+                "count": 1,
+                "min_diff": diff,
+                "max_diff": diff,
+            }
+            continue
+
+        entry["count"] += 1
+        if diff is not None:
+            if entry["min_diff"] is None or diff < entry["min_diff"]:
+                entry["min_diff"] = diff
+            if entry["max_diff"] is None or diff > entry["max_diff"]:
+                entry["max_diff"] = diff
+
+    deduped = list(grouped.values())
+    deduped.sort(
+        key=lambda r: (r["name"].lower(), r["deduced"].lower(), r["reference"].lower())
+    )
+    return deduped
 
 
 def _write_wagegroup_rows_csv(path: str, rows: list[dict]) -> None:
@@ -676,13 +778,22 @@ def format_validation_email_body(result: dict) -> str:
     wagegroup_analysis = result.get("wagegroupAnalysis") or {}
     wagegroup_rows = wagegroup_analysis.get("mismatches", [])
     wagegroup_mismatches = [
-        row for row in wagegroup_rows if str(row.get("status", "")).strip() == "mismatch"
+        row
+        for row in wagegroup_rows
+        if str(row.get("status", "")).strip() == "mismatch"
     ]
     rate_analysis = result.get("rateAnalysis") or {}
     rate_mismatches = rate_analysis.get("mismatches", []) or []
     tolerance_eur = rate_analysis.get("toleranceEur")
+    wagegroup_rate_analysis = result.get("wagegroupRateAnalysis") or {}
+    wagegroup_rate_mismatches = wagegroup_rate_analysis.get("mismatches", []) or []
     provider_hint = f" voor {provider_label}" if provider_label else ""
-    if not week_mismatches and not wagegroup_mismatches and not rate_mismatches:
+    if (
+        not week_mismatches
+        and not wagegroup_mismatches
+        and not rate_mismatches
+        and not wagegroup_rate_mismatches
+    ):
         return "\n".join(
             [
                 "Goedemorgen,",
@@ -698,7 +809,9 @@ def format_validation_email_body(result: dict) -> str:
         )
 
     lines = ["Goedemorgen,", ""]
-    has_wage_like = bool(wagegroup_mismatches or rate_mismatches)
+    has_wage_like = bool(
+        wagegroup_mismatches or rate_mismatches or wagegroup_rate_mismatches
+    )
     if week_mismatches and has_wage_like:
         lines.append(
             "Op bovenstaande factuur hebben we"
@@ -742,23 +855,9 @@ def format_validation_email_body(result: dict) -> str:
                 f"- Bij {name} is een discrepantie gevonden voor {code} (status: {_fmt_value(status)})."
             )
 
-    if has_wage_like and week_mismatches:
-        lines.extend(
-            [
-                "",
-                "Daarnaast hebben we de volgende afwijkingen gevonden in loongroepen:",
-            ]
-        )
-    if wagegroup_mismatches:
-        for row in wagegroup_mismatches:
-            name = _fmt_value(row.get("name"))
-            invoice_wagegroup = _fmt_value(row.get("invoiceWagegroup"))
-            known_wagegroup = _fmt_value(row.get("knownWagegroup"))
-            lines.append(
-                f"- Bij {name} staat loongroep {invoice_wagegroup} op de factuur, maar referentie is {known_wagegroup}."
-            )
     if rate_mismatches:
-        if wagegroup_mismatches:
+        deduped_rate_mismatches = _dedupe_rate_mismatches(rate_mismatches)
+        if week_mismatches:
             lines.append("")
         if tolerance_eur is not None:
             lines.append(
@@ -766,14 +865,39 @@ def format_validation_email_body(result: dict) -> str:
             )
         else:
             lines.append("Daarnaast zijn er tariefverschillen gevonden:")
-        for row in rate_mismatches[:20]:
-            name = _fmt_value(row.get("name"))
-            code = _fmt_value(row.get("invoiceCodeToeslag"))
-            invoice_rate = _fmt_value(row.get("invoiceRate"))
-            expected_rate = _fmt_value(row.get("expectedRate"))
-            diff = _fmt_value(row.get("difference"))
+        for row in deduped_rate_mismatches[:20]:
+            min_diff = row.get("min_diff")
+            max_diff = row.get("max_diff")
+            if min_diff is None or max_diff is None:
+                diff_text = "-"
+            elif min_diff == max_diff:
+                diff_text = f"{min_diff:.2f}"
+            else:
+                diff_text = f"{min_diff:.2f}-{max_diff:.2f}"
+            count_text = f", {row['count']}x gezien" if row.get("count", 0) > 1 else ""
             lines.append(
-                f"- Bij {name} ({code}) is tarief {invoice_rate} op de factuur, verwacht {expected_rate} (verschil {diff})."
+                f"- Bij {row['name']} ({row['code']}) is tarief {row['invoice_rate']} op de factuur, verwacht {row['expected_rate']} (verschil {diff_text}{count_text})."
+            )
+    if wagegroup_rate_mismatches:
+        deduped_wagegroup_rate_mismatches = _dedupe_wagegroup_rate_mismatches(
+            wagegroup_rate_mismatches
+        )
+        lines.append("")
+        lines.append(
+            "Daarnaast zijn er loongroepverschillen gevonden op basis van tariefmapping (tolerantie EUR 1,00):"
+        )
+        for row in deduped_wagegroup_rate_mismatches[:20]:
+            min_diff = row.get("min_diff")
+            max_diff = row.get("max_diff")
+            if min_diff is None or max_diff is None:
+                diff_text = "-"
+            elif min_diff == max_diff:
+                diff_text = f"{min_diff:.4f}"
+            else:
+                diff_text = f"{min_diff:.4f}-{max_diff:.4f}"
+            count_text = f", {row['count']}x gezien" if row.get("count", 0) > 1 else ""
+            lines.append(
+                f"- Bij {row['name']} wijkt de loongroep af: factuur afgeleid {row['deduced']}, referentie {row['reference']} (rate-verschil {diff_text}{count_text})."
             )
 
     lines.extend(["", "Kan hier een correctie van worden gemaakt?", "", "Bedankt!"])

@@ -1188,6 +1188,8 @@ async def upload(
                 "outputFileDay": otto_result["outputFileDay"],
                 "rateOutputFile": otto_result.get("rateOutputFile"),
                 "rateHistogramFile": otto_result.get("rateHistogramFile"),
+                "wagegroupRateOutputFile": otto_result.get("wagegroupRateOutputFile"),
+                "wagegroupRateSummary": otto_result.get("wagegroupRateAnalysis") or {},
                 "similarPeople": otto_result.get("similarPeople", []),
             }
         )
@@ -1334,6 +1336,12 @@ async def verify_name_pairs(
                 "outputFileWeek": output_file_week,
                 "exactPersonMatchCount": validation_result.get(
                     "exactPersonMatchCount", 0
+                ),
+                "wagegroupRateSummary": (
+                    validation_result.get("wagegroupRateAnalysis") or {}
+                ),
+                "wagegroupRateOutputFile": validation_result.get(
+                    "wagegroupRateOutputFile"
                 ),
             }
             if response_key == "otto":
