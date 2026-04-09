@@ -9,7 +9,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import InvoiceLine, OttoIdentifierMapping, PersonWagegroup
+from models import InvoiceLine, OttoIdentifierMapping, PersonWagegroup, PersonWagegroupRate
 from otto_identifier_mapping import build_otto_mapping_candidates
 
 
@@ -54,6 +54,19 @@ def _pick_wagegroup(values: list[str]) -> tuple[str, bool]:
     counter = Counter(cleaned)
     top_wagegroup, _ = counter.most_common(1)[0]
     return top_wagegroup, len(counter) > 1
+
+
+def _extract_tarief_letter(value: str) -> str:
+    text = value.strip().upper()
+    if not text:
+        return ""
+    m = re.search(r"\bFASE\s+([A-Z])\b", text)
+    if m:
+        return m.group(1)
+    m = re.search(r"([A-Z])$", text)
+    if m:
+        return m.group(1)
+    return text
 
 
 async def load_otto_identity_context(db: AsyncSession) -> dict[str, object]:
@@ -370,6 +383,23 @@ async def analyze_otto_wagegroups(
         for row in known_rows
         if row.person_number.startswith("name:")
     }
+    rate_result = await db.execute(
+        select(PersonWagegroupRate).where(
+            PersonWagegroupRate.provider == "otto",
+            PersonWagegroupRate.rate_key == "100",
+        )
+    )
+    person_rate_rows = list(rate_result.scalars().all())
+    person_tarief_by_person = {
+        row.person_number: (row.tarief or "").strip().upper()
+        for row in person_rate_rows
+        if row.person_number and row.tarief
+    }
+    person_tarief_by_name = {
+        row.normalized_name: (row.tarief or "").strip().upper()
+        for row in person_rate_rows
+        if row.normalized_name and row.tarief
+    }
 
     wagegroup_matches = 0
     wagegroup_mismatches = 0
@@ -411,7 +441,13 @@ async def analyze_otto_wagegroups(
             continue
 
         known_wagegroup = known.wagegroup.strip()
-        if known_wagegroup == invoice_wagegroup:
+        known_tarief = person_tarief_by_person.get(sap_id)
+        if not known_tarief:
+            known_tarief = person_tarief_by_name.get(normalize_person_name(invoice_name))
+        if not known_tarief:
+            known_tarief = _extract_tarief_letter(known_wagegroup)
+        invoice_tarief = _extract_tarief_letter(invoice_wagegroup)
+        if known_tarief == invoice_tarief:
             wagegroup_matches += 1
             continue
         wagegroup_mismatches += 1
@@ -420,8 +456,8 @@ async def analyze_otto_wagegroups(
                 {
                     "sapId": sap_id,
                     "name": invoice_name,
-                    "invoiceWagegroup": invoice_wagegroup,
-                    "knownWagegroup": known_wagegroup,
+                    "invoiceWagegroup": invoice_tarief or invoice_wagegroup,
+                    "knownWagegroup": known_tarief or known_wagegroup,
                     "status": "mismatch",
                     "matchMethod": match_method,
                 }
