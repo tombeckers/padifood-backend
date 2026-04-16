@@ -63,13 +63,30 @@ TABLES = [
 ]
 
 
+AGENCY_TABLES = {"kloklijst", "invoice_lines"}
+
+
 async def section_counts(conn: asyncpg.Connection):
     header("ROW COUNTS")
-    print(row_fmt("table", "rows", widths=[35, 8]))
-    print("  " + "-" * 45)
+    print(row_fmt("table", "agency", "rows", "weeks", widths=[35, 18, 8, 40]))
+    print("  " + "-" * 103)
     for table in TABLES:
-        n = await conn.fetchval(f"SELECT COUNT(*) FROM {table}")
-        print(row_fmt(table, n, widths=[35, 8]))
+        if table in AGENCY_TABLES:
+            rows = await conn.fetch(f"""
+                SELECT agency,
+                       COUNT(*) AS n,
+                       array_agg(DISTINCT week_number ORDER BY week_number) AS weeks
+                FROM {table}
+                GROUP BY agency ORDER BY agency
+            """)
+            total = await conn.fetchval(f"SELECT COUNT(*) FROM {table}")
+            print(row_fmt(table, "(total)", total, "", widths=[35, 18, 8, 40]))
+            for r in rows:
+                print(row_fmt("", r["agency"], r["n"], str(list(r["weeks"])),
+                              widths=[35, 18, 8, 40]))
+        else:
+            n = await conn.fetchval(f"SELECT COUNT(*) FROM {table}")
+            print(row_fmt(table, "", n, "", widths=[35, 18, 8, 40]))
 
 
 # ---------------------------------------------------------------------------
