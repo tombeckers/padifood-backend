@@ -1210,6 +1210,12 @@ async def upload(
                     csv_content = f.read()
                 await load_file(fname, csv_content, db)
 
+            # Write PDFs to input/ for audit trail
+            for p in flex_pdfs:
+                pdf_name = build_prefixed_filename(p["filename"], week)
+                with open(os.path.join(input_dir, pdf_name), "wb") as f:
+                    f.write(p["content"])
+
             # Load Flex PDF invoices (with correction merging)
             await load_flex_invoices(
                 [(p["filename"], p["content"]) for p in flex_pdfs],
