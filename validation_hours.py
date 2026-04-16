@@ -41,6 +41,27 @@ KLOKLIJST_COL_TO_FIELD: dict[str, str] = {
     "OW200 Dag": "ow200_dag",
 }
 
+# Premium (non-norm) fields used to derive norm hours from effectieve_uren_dag.
+_PREMIUM_FIELDS = ["t133_dag", "t135_dag", "t200_dag", "ow140_week", "ow180_dag", "ow200_dag"]
+
+
+def _kloklijst_norm_uren(row: "Kloklijst") -> float | None:
+    """
+    Derive norm hours as effectieve_uren_dag minus all premium hours.
+
+    Kelio double-counts overtime: OW hours appear both in norm_uren_dag and
+    in their own OW column. The invoice derives norm as effectieve - premiums,
+    so we do the same for an apples-to-apples comparison.
+
+    Legacy fallback: if effectieve_uren_dag is absent, use raw norm_uren_dag.
+    """
+    if row.effectieve_uren_dag is not None:
+        premium = sum(getattr(row, f) or 0.0 for f in _PREMIUM_FIELDS)
+        return max(row.effectieve_uren_dag - premium, 0.0)
+    # Legacy fallback — raw Kelio value (may include OW double-count)
+    return row.norm_uren_dag
+
+
 FUZZY_MATCH_THRESHOLD = 90
 settings = Settings()
 
@@ -299,7 +320,7 @@ async def _load_kloklijst_hours_db(
         if not compare_key:
             continue
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
-            val = getattr(row, field, None)
+            val = _kloklijst_norm_uren(row) if col_name == "Norm uren Dag" else getattr(row, field, None)
             if val is not None and val != 0:
                 totals[compare_key][col_name] += val
     return {k: dict(v) for k, v in totals.items()}
@@ -362,7 +383,7 @@ async def _load_kloklijst_hours_by_date_db(
             continue
         date_key = str(row.datum)
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
-            val = getattr(row, field, None)
+            val = _kloklijst_norm_uren(row) if col_name == "Norm uren Dag" else getattr(row, field, None)
             if val is not None and val != 0:
                 totals[compare_key][date_key][col_name] += val
     return totals
