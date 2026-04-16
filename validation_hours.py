@@ -15,6 +15,7 @@ import argparse
 import asyncio
 import csv
 import os
+import re
 from collections import defaultdict
 from difflib import SequenceMatcher
 
