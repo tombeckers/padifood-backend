@@ -162,7 +162,7 @@ def _fuzzy_score(left: str, right: str) -> int:
     return round(100 * SequenceMatcher(None, left, right).ratio())
 
 
-_INITIAL_TOKEN_RE = re.compile(r"^[A-Za-z]\.?$")
+_INITIAL_TOKEN_RE = re.compile(r"^[A-Za-z]\.?$|^[A-Z]{2,3}$")
 
 
 def _is_initials_name(display_name: str) -> bool:
