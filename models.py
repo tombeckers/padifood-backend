@@ -69,6 +69,7 @@ class InvoiceLine(Base):
     datum: Mapped[Optional[date]]
     code_toeslag: Mapped[str]
     totaal_uren: Mapped[float]
+    tarief: Mapped[Optional[float]]
     subtotaal: Mapped[float]
 
 

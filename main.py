@@ -35,7 +35,8 @@ from validation_wagegroups import (
     verify_otto_wagegroup_coverage,
 )
 from convert_flex import extract_week_from_flex_pdfs
-from loaders import load_file, load_flex_invoices
+from convert_otto_pdf import extract_week_from_otto_pdfs
+from loaders import load_file, load_flex_invoices, load_otto_pdf_invoices
 from validation_hours import (
     format_validation_email_body,
     normalize_name,
@@ -992,6 +993,7 @@ async def upload(
     flex_kloklijst: dict | None = None
     otto_factuur: dict | None = None
     flex_pdfs: list[dict] = []
+    otto_pdfs: list[dict] = []
 
     for item in uploaded:
         lower = item["filename"].lower()
@@ -1002,7 +1004,15 @@ async def upload(
         is_otto = "otto" in lower
 
         if is_pdf:
-            flex_pdfs.append(item)
+            if is_otto:
+                otto_pdfs.append(item)
+            elif is_flex:
+                flex_pdfs.append(item)
+            else:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Kan agency niet bepalen voor PDF: {item['filename']}. Bestandsnaam moet 'Otto' of 'Flex' bevatten.",
+                )
         elif is_kloklijst:
             if is_otto:
                 if otto_kloklijst is not None:
@@ -1043,21 +1053,28 @@ async def upload(
                 detail=f"Onbekend bestandstype: {item['filename']}",
             )
 
-    has_otto = otto_kloklijst is not None and otto_factuur is not None
+    has_otto_xlsx = otto_kloklijst is not None and otto_factuur is not None
+    has_otto_pdf = otto_kloklijst is not None and len(otto_pdfs) > 0
+    has_otto = has_otto_xlsx or has_otto_pdf
     has_flex = flex_kloklijst is not None and len(flex_pdfs) > 0
 
     if not has_otto and not has_flex:
         raise HTTPException(
             status_code=400,
             detail=(
-                "Geen volledig paar gevonden. Geef een OTTO kloklijst+factuurbestand "
+                "Geen volledig paar gevonden. Geef een OTTO kloklijst+factuurbestand (xlsx of pdf) "
                 "en/of een Flexspecialisten kloklijst+PDF."
             ),
         )
-    if otto_kloklijst and not otto_factuur:
+    if otto_factuur is not None and len(otto_pdfs) > 0:
         raise HTTPException(
             status_code=400,
-            detail="OTTO kloklijst gevonden maar geen OTTO factuurbestand (.xlsx).",
+            detail="Zowel een OTTO factuur xlsx als OTTO PDF gevonden. Geef één van beide.",
+        )
+    if otto_kloklijst and not otto_factuur and not otto_pdfs:
+        raise HTTPException(
+            status_code=400,
+            detail="OTTO kloklijst gevonden maar geen OTTO factuur (xlsx of pdf).",
         )
     if otto_factuur and not otto_kloklijst:
         raise HTTPException(
@@ -1086,15 +1103,30 @@ async def upload(
                 status_code=400,
                 detail="Weeknummer (YYYYww) niet gevonden in OTTO kloklijst bestandsnaam.",
             )
-        otto_week_fa = extract_week_from_factuur(otto_factuur["content"])  # type: ignore[index]
-        if not otto_week_fa:
-            print(
-                "WARNING: Weeknummer niet te bepalen uit kolom Datum in OTTO factuur — week uit kloklijst gebruikt"
+        if has_otto_xlsx:
+            otto_week_fa = extract_week_from_factuur(otto_factuur["content"])  # type: ignore[index]
+            if not otto_week_fa:
+                print(
+                    "WARNING: Weeknummer niet te bepalen uit kolom Datum in OTTO factuur — week uit kloklijst gebruikt"
+                )
+            elif otto_week_kl != otto_week_fa:
+                print(
+                    f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa} — doorgaan met kloklijst week"
+                )
+        elif has_otto_pdf:
+            otto_week_pdf_raw = extract_week_from_otto_pdfs(
+                [p["content"] for p in otto_pdfs]
             )
-        if otto_week_kl != otto_week_fa:
-            print(
-                f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, factuur={otto_week_fa} — doorgaan met kloklijst week"
-            )
+            if otto_week_pdf_raw is None:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Weeknummer niet te bepalen uit de OTTO PDF.",
+                )
+            otto_week_pdf = str(otto_week_pdf_raw)
+            if otto_week_kl != otto_week_pdf:
+                print(
+                    f"WARNING: OTTO weeknummers komen niet overeen: kloklijst={otto_week_kl}, PDF={otto_week_pdf} — doorgaan met kloklijst week"
+                )
         week = otto_week_kl
 
     if has_flex:
@@ -1138,19 +1170,35 @@ async def upload(
 
     if has_otto:
         kloklijst_name = build_prefixed_filename(otto_kloklijst["filename"], week)  # type: ignore[index]
-        factuur_name = build_prefixed_filename(otto_factuur["filename"], week)  # type: ignore[index]
         with open(os.path.join(input_dir, kloklijst_name), "wb") as f:
             f.write(otto_kloklijst["content"])  # type: ignore[index]
-        with open(os.path.join(input_dir, factuur_name), "wb") as f:
-            f.write(otto_factuur["content"])  # type: ignore[index]
 
         try:
-            created_files = convert_input(kloklijst_name, factuur_name)
+            if has_otto_xlsx:
+                factuur_name = build_prefixed_filename(otto_factuur["filename"], week)  # type: ignore[index]
+                with open(os.path.join(input_dir, factuur_name), "wb") as f:
+                    f.write(otto_factuur["content"])  # type: ignore[index]
+                created_files = convert_input(kloklijst_name, factuur_name)
+            else:
+                # PDF invoice: convert kloklijst only, save PDFs for audit trail
+                for p in otto_pdfs:
+                    pdf_name = f"{week} {os.path.basename(p['filename'])}"
+                    with open(os.path.join(input_dir, pdf_name), "wb") as f:
+                        f.write(p["content"])
+                created_files = convert_input(kloklijst_name)
+
             for file_path in created_files:
                 fname = os.path.basename(file_path)
                 with open(file_path, "rb") as f:
                     csv_content = f.read()
                 await load_file(fname, csv_content, db)
+
+            if has_otto_pdf:
+                await load_otto_pdf_invoices(
+                    [(p["filename"], p["content"]) for p in otto_pdfs],
+                    int(week),
+                    db,
+                )
             otto_result = await run_validation(
                 week,
                 db,
