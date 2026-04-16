@@ -161,10 +161,17 @@ def _fuzzy_score(left: str, right: str) -> int:
     return round(100 * SequenceMatcher(None, left, right).ratio())
 
 
+_INITIAL_TOKEN_RE = re.compile(r"^[A-Za-z]\.?$")
+
+
 def _is_initials_name(display_name: str) -> bool:
-    """Return True if name is in 'X. Lastname' or 'X.Y. Lastname' format (initials + last name)."""
+    """Return True if name is in initials + lastname format.
+    Handles 'A Lademann', 'D.D. Baciu', 'A.B. Smith', etc.
+    """
     tokens = display_name.strip().split()
-    return len(tokens) >= 2 and all("." in t for t in tokens[:-1])
+    return len(tokens) >= 2 and all(
+        _INITIAL_TOKEN_RE.match(t) or "." in t for t in tokens[:-1]
+    )
 
 
 def _find_similar_name_pairs(
