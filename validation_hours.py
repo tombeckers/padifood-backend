@@ -161,6 +161,12 @@ def _fuzzy_score(left: str, right: str) -> int:
     return round(100 * SequenceMatcher(None, left, right).ratio())
 
 
+def _is_initials_name(display_name: str) -> bool:
+    """Return True if name is in 'X. Lastname' or 'X.Y. Lastname' format (initials + last name)."""
+    tokens = display_name.strip().split()
+    return len(tokens) >= 2 and all("." in t for t in tokens[:-1])
+
+
 def _find_similar_name_pairs(
     factuur_names: set[str],
     kloklijst_names: set[str],
@@ -190,6 +196,30 @@ def _find_similar_name_pairs(
             display_pair = (
                 kloklijst_display_map.get(kloklijst_name, kloklijst_name),
                 factuur_display_map.get(factuur_name, factuur_name),
+            )
+            if display_pair in seen:
+                continue
+            seen.add(display_pair)
+            similar_pairs.append(display_pair)
+
+    # Second pass: initials-based matching for Flex invoice names.
+    # e.g. factuur "D.D. Baciu" → last name "baciu" → matches kloklijst "Baciu Dumitru".
+    for factuur_key in factuur_only:
+        display_name = factuur_display_map.get(factuur_key, "")
+        if not display_name or not _is_initials_name(display_name):
+            continue
+        last_name = display_name.strip().split()[-1].lower()
+        for kloklijst_key in kloklijst_only:
+            if (kloklijst_key, factuur_key) in confirmed_diff_pairs:
+                continue
+            klok_display = kloklijst_display_map.get(kloklijst_key, "")
+            if not klok_display:
+                continue
+            if last_name not in [w.lower() for w in klok_display.split()]:
+                continue
+            display_pair = (
+                kloklijst_display_map.get(kloklijst_key, kloklijst_key),
+                factuur_display_map.get(factuur_key, factuur_key),
             )
             if display_pair in seen:
                 continue
