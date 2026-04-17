@@ -1,0 +1,101 @@
+﻿Naam,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+M A Cotrau,Norm uren Dag,80.0,40.0,40.0,VERSCHIL
+G A Evlante,Norm uren Dag,25.0,12.5,12.5,VERSCHIL
+A Lademann,Norm uren Dag,75.0,37.5,37.5,VERSCHIL
+A. Jaksina,Norm uren Dag,14.5,7.25,7.25,VERSCHIL
+A. Jaksina,T133 Dag,14.5,7.25,7.25,VERSCHIL
+A. Wiktorowicz,Norm uren Dag,77.0,38.5,38.5,VERSCHIL
+A. Wiktorowicz,T135 Dag,2.5,1.25,1.25,VERSCHIL
+Da Silva Figueiredo Laura Alexandra,Norm uren Dag,,27.75,,ALLEEN IN KLOKLIJST
+Da Silva Figueiredo Laura Alexandra,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+AM Minta,Norm uren Dag,65.0,32.5,32.5,VERSCHIL
+MA Ruszkowska,Norm uren Dag,78.5,39.25,39.25,VERSCHIL
+B Dudek,Norm uren Dag,22.5,11.75,10.75,VERSCHIL
+B Dudek,OW140 Week,1.0,0.5,0.5,VERSCHIL
+B Dudek,T133 Dag,51.5,25.75,25.75,VERSCHIL
+B Dudek,T135 Dag,6.0,3.0,3.0,VERSCHIL
+D.D. Baciu,Norm uren Dag,70.0,35.0,35.0,VERSCHIL
+D.D. Baciu,T135 Dag,10.0,5.0,5.0,VERSCHIL
+M. Baran,Norm uren Dag,32.5,16.25,16.25,VERSCHIL
+M. Baran,T133 Dag,44.5,22.25,22.25,VERSCHIL
+BP Stormowski,Norm uren Dag,75.0,40.0,35.0,VERSCHIL
+BP Stormowski,OW140 Week,5.0,2.5,2.5,VERSCHIL
+BP Stormowski,T135 Dag,5.0,2.5,2.5,VERSCHIL
+Bodykto Kamila Nikola,Norm uren Dag,,38.75,,ALLEEN IN KLOKLIJST
+Bodykto Kamila Nikola,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+KN Bodytko,Norm uren Dag,77.5,,,ALLEEN IN FACTUUR
+KN Bodytko,T133 Dag,1.0,,,ALLEEN IN FACTUUR
+M. Browarski,Norm uren Dag,55.0,27.5,27.5,VERSCHIL
+M. Browarski,T135 Dag,8.0,4.0,4.0,VERSCHIL
+MC Mihai,Norm uren Dag,67.5,33.75,33.75,VERSCHIL
+M Czenczek,Norm uren Dag,57.0,28.5,28.5,VERSCHIL
+M Czenczek,T133 Dag,4.5,2.25,2.25,VERSCHIL
+D Petrachiuta,Norm uren Dag,37.5,18.75,18.75,VERSCHIL
+D Petrachiuta,T133 Dag,42.5,21.25,21.25,VERSCHIL
+D. Pyttel,Norm uren Dag,65.0,36.0,29.0,VERSCHIL
+D. Pyttel,OW140 Week,7.0,3.5,3.5,VERSCHIL
+D. Pyttel,OW180 Dag,12.5,6.25,6.25,VERSCHIL
+D. Pyttel,OW200 Dag,3.5,1.75,1.75,VERSCHIL
+D. Pyttel,T135 Dag,15.0,7.5,7.5,VERSCHIL
+LA Da Silva Figueiredo,Norm uren Dag,55.5,,,ALLEEN IN FACTUUR
+LA Da Silva Figueiredo,T133 Dag,8.0,,,ALLEEN IN FACTUUR
+DJ Kowalkowski,Norm uren Dag,78.5,40.75,37.75,VERSCHIL
+DJ Kowalkowski,OW140 Week,3.0,1.5,1.5,VERSCHIL
+DJ Kowalkowski,T133 Dag,1.5,0.75,0.75,VERSCHIL
+E Lemezonaite,Norm uren Dag,30.5,15.25,15.25,VERSCHIL
+E Lemezonaite,T133 Dag,47.0,23.5,23.5,VERSCHIL
+E. Guoga,Norm uren Dag,64.0,32.0,32.0,VERSCHIL
+E. Kedzior,Norm uren Dag,79.0,46.0,33.0,VERSCHIL
+E. Kedzior,OW140 Week,13.0,6.5,6.5,VERSCHIL
+E. Kedzior,T133 Dag,1.0,0.5,0.5,VERSCHIL
+F Ungureanu,Norm uren Dag,28.5,14.25,14.25,VERSCHIL
+F Ungureanu,T133 Dag,46.5,23.25,23.25,VERSCHIL
+R Firlej,Norm uren Dag,52.0,33.0,19.0,VERSCHIL
+R Firlej,OW140 Week,1.0,,,ALLEEN IN FACTUUR
+R Firlej,OW180 Dag,12.0,3.25,8.75,VERSCHIL
+R Firlej,OW200 Dag,3.0,,,ALLEEN IN FACTUUR
+R Firlej,T135 Dag,14.0,7.0,7.0,VERSCHIL
+G Stanionis,Norm uren Dag,79.0,43.5,35.5,VERSCHIL
+G Stanionis,OW140 Week,8.0,4.0,4.0,VERSCHIL
+G Stanionis,T133 Dag,1.0,0.5,0.5,VERSCHIL
+H Trumpis,Norm uren Dag,24.5,12.25,12.25,VERSCHIL
+H Trumpis,T133 Dag,47.5,23.75,23.75,VERSCHIL
+H Trumpis,T135 Dag,1.5,0.75,0.75,VERSCHIL
+J Lisiewicz,Norm uren Dag,69.5,34.75,34.75,VERSCHIL
+J. Stefan,Norm uren Dag,17.5,13.5,4.0,VERSCHIL
+J. Stefan,OW140 Week,9.5,4.75,4.75,VERSCHIL
+J. Stefan,T133 Dag,52.5,26.25,26.25,VERSCHIL
+J. Stefan,T135 Dag,10.0,5.0,5.0,VERSCHIL
+JM Jaworska,Norm uren Dag,76.0,38.0,38.0,VERSCHIL
+JM Jaworska,T133 Dag,1.0,0.5,0.5,VERSCHIL
+K Wieleba,Norm uren Dag,35.5,17.75,17.75,VERSCHIL
+K Wieleba,T133 Dag,49.0,21.5,27.5,VERSCHIL
+K. Slawik,Norm uren Dag,78.0,45.25,32.75,VERSCHIL
+K. Slawik,OW140 Week,12.5,6.25,6.25,VERSCHIL
+K. Slawik,T133 Dag,2.0,1.0,1.0,VERSCHIL
+M. Kolacz,Norm uren Dag,68.0,34.0,34.0,VERSCHIL
+L. Nowakowski,Norm uren Dag,7.5,3.75,3.75,VERSCHIL
+L. Nowakowski,T133 Dag,29.0,14.5,14.5,VERSCHIL
+L. Nowakowski,T135 Dag,36.0,18.0,18.0,VERSCHIL
+l. Sebalj,Norm uren Dag,80.0,,,ALLEEN IN FACTUUR
+l. Sebalj,OW140 Week,4.0,,,ALLEEN IN FACTUUR
+Sebali Luka,Norm uren Dag,,42.0,,ALLEEN IN KLOKLIJST
+Sebali Luka,OW140 Week,,2.0,,ALLEEN IN KLOKLIJST
+M V Munteanu,Norm uren Dag,69.0,34.5,34.5,VERSCHIL
+M Raduszewski,Norm uren Dag,79.5,39.75,39.75,VERSCHIL
+S Mziray,Norm uren Dag,66.0,33.0,33.0,VERSCHIL
+O Stanciu,Norm uren Dag,29.0,20.25,8.75,VERSCHIL
+O Stanciu,OW140 Week,11.5,5.75,5.75,VERSCHIL
+O Stanciu,T133 Dag,46.0,23.0,23.0,VERSCHIL
+O Stanciu,T135 Dag,5.0,2.5,2.5,VERSCHIL
+P Pazusis,Norm uren Dag,21.0,10.5,10.5,VERSCHIL
+P Pazusis,T133 Dag,39.5,19.75,19.75,VERSCHIL
+P Pazusis,T135 Dag,1.0,0.5,0.5,VERSCHIL
+S Pokrajac,Norm uren Dag,80.0,40.0,40.0,VERSCHIL
+V R Preda,Norm uren Dag,65.0,35.25,29.75,VERSCHIL
+V R Preda,OW140 Week,5.5,2.75,2.75,VERSCHIL
+V R Preda,OW180 Dag,12.0,6.0,6.0,VERSCHIL
+V R Preda,OW200 Dag,3.5,1.75,1.75,VERSCHIL
+V R Preda,T135 Dag,15.0,7.5,7.5,VERSCHIL
+S. Stepien,T133 Dag,44.5,22.0,22.5,VERSCHIL
+S. Stepien,T135 Dag,35.5,15.75,19.75,VERSCHIL
