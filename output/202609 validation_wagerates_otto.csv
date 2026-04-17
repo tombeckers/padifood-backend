@@ -1,1 +1,4 @@
 ﻿sapId,name,invoiceCodeToeslag,rateKey,invoiceRate,expectedRate,difference,status,matchMethod
+442415,C Cristu Virgil,OW180 Dag,180,37.3,51.4427,14.1427,rate_mismatch,person_number
+442415,C Cristu Virgil,OW200 Dag,200,41.44,56.5452,15.1052,rate_mismatch,person_number
+380663,Muc Jerzy,OW180 Dag,180,37.7809,52.0325,14.2517,rate_mismatch,person_number

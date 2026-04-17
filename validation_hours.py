@@ -797,15 +797,17 @@ async def run_validation(
     wagegroup_rate_analysis: dict | None = None
     wagegroup_rate_output_file: str | None = None
 
-    if agency == "otto":
+    if agency in ("otto", "flexspecialisten"):
         wagegroup_rate_analysis = await analyze_wagegroup_differences_by_rate(
             week=week_int,
             provider=agency,
             db=db,
-            tolerance_eur=1.0,
+            tolerance_eur=float(settings.rate_diff_tolerance_eur),
             output_dir="output",
         )
         wagegroup_rate_output_file = wagegroup_rate_analysis.get("outputFile")
+
+    if agency == "otto":
         wagegroup_analysis = await analyze_otto_wagegroups(
             week=week_int,
             db=db,
@@ -1095,8 +1097,12 @@ def format_validation_email_body(result: dict) -> str:
             wagegroup_rate_mismatches
         )
         lines.append("")
+        tol = wagegroup_rate_analysis.get("toleranceEur")
+        tol_text = (
+            f"{float(tol):.2f}".replace(".", ",") if tol is not None else "1,00"
+        )
         lines.append(
-            "Daarnaast zijn er loongroepverschillen gevonden op basis van tariefmapping (tolerantie EUR 1,00):"
+            f"Daarnaast zijn er loongroepverschillen gevonden op basis van tariefmapping (tolerantie EUR {tol_text}):"
         )
         for row in deduped_wagegroup_rate_mismatches[:20]:
             min_diff = row.get("min_diff")

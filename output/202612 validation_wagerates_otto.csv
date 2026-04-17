@@ -1,0 +1,9 @@
+﻿sapId,name,invoiceCodeToeslag,rateKey,invoiceRate,expectedRate,difference,status,matchMethod
+456408,Koziol Marek,Norm uren Dag,100,31.37,30.247,1.123,rate_mismatch,person_number
+374877,Kupcikova lva,T133 Dag,133,39.0901,40.3395,1.2494,rate_mismatch,person_number
+454524,Lopusiewicz Maciej,Norm uren Dag,100,32.0,30.247,1.753,rate_mismatch,person_number
+454524,Lopusiewicz Maciej,T133 Dag,133,40.7897,38.5112,2.2786,rate_mismatch,person_number
+436824,Pyc Damian,OW200 Dag,200,52.4615,58.6546,6.193,rate_mismatch,person_number
+414172,Robakowski Przemyslaw,OW200 Dag,200,52.46,58.6546,6.1946,rate_mismatch,person_number
+446709,Rydzewski，Patryk,Norm uren Dag,100,30.6,31.8349,1.2349,rate_mismatch,person_number
+449344,Seciu Marius,OW200 Dag,200,52.4608,58.6546,6.1938,rate_mismatch,person_number

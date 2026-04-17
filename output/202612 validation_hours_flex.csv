@@ -1,0 +1,115 @@
+﻿Naam,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+M A Cotrau,Norm uren Dag,14.75,14.75,0.0,OK
+M A Cotrau,T133 Dag,19.75,19.75,0.0,OK
+G A Evlante,Norm uren Dag,12.0,12.0,0.0,OK
+G A Evlante,T133 Dag,17.5,17.5,0.0,OK
+A Lademann,Norm uren Dag,13.75,13.75,0.0,OK
+A Lademann,T133 Dag,18.25,18.25,0.0,OK
+A. Jaksina,Norm uren Dag,39.0,39.0,0.0,OK
+A. Jaksina,T135 Dag,1.0,1.0,0.0,OK
+A. Wiktorowicz,Norm uren Dag,11.75,11.75,0.0,OK
+A. Wiktorowicz,T133 Dag,26.0,26.0,0.0,OK
+A. Wiktorowicz,T135 Dag,1.0,1.0,0.0,OK
+IA Martins,Norm uren Dag,15.0,15.0,0.0,OK
+IA Martins,T135 Dag,0.5,0.5,0.0,OK
+Da Silva Figueiredo Laura Alexandra,Norm uren Dag,,11.5,,ALLEEN IN KLOKLIJST
+Da Silva Figueiredo Laura Alexandra,T133 Dag,,23.5,,ALLEEN IN KLOKLIJST
+AM Minta,Norm uren Dag,11.75,11.75,0.0,OK
+AM Minta,T133 Dag,22.5,22.5,0.0,OK
+MA Ruszkowska,Norm uren Dag,9.0,9.0,0.0,OK
+MA Ruszkowska,T133 Dag,26.25,26.25,0.0,OK
+MA Ruszkowska,T135 Dag,2.25,2.25,0.0,OK
+N B Babinecz,Norm uren Dag,33.75,33.75,0.0,OK
+N B Babinecz,T133 Dag,1.0,1.0,0.0,OK
+B S Tol,Norm uren Dag,37.5,37.5,0.0,OK
+D.D. Baciu,Norm uren Dag,17.5,17.5,0.0,OK
+D.D. Baciu,T133 Dag,22.5,22.5,0.0,OK
+M. Baran,Norm uren Dag,32.5,32.5,0.0,OK
+M. Baran,T135 Dag,5.0,5.0,0.0,OK
+M. Bernad,Norm uren Dag,31.5,31.5,0.0,OK
+M. Bernad,T135 Dag,2.0,2.0,0.0,OK
+BP Stormowski,Norm uren Dag,13.0,13.0,0.0,OK
+BP Stormowski,OW140 Week,0.75,0.75,0.0,OK
+BP Stormowski,T133 Dag,26.25,26.25,0.0,OK
+BP Stormowski,T135 Dag,0.75,0.75,0.0,OK
+MC Mihai,Norm uren Dag,32.75,32.75,0.0,OK
+MC Mihai,T133 Dag,4.75,4.75,0.0,OK
+M Czenczek,Norm uren Dag,32.25,32.25,0.0,OK
+M Czenczek,OW200 Dag,4.25,4.25,0.0,OK
+M Czenczek,T133 Dag,7.75,7.75,0.0,OK
+D Petrachiuta,Norm uren Dag,5.75,5.75,0.0,OK
+D Petrachiuta,OW140 Week,0.5,0.5,0.0,OK
+D Petrachiuta,OW200 Dag,6.75,6.75,0.0,OK
+D Petrachiuta,T133 Dag,20.25,20.25,0.0,OK
+D Petrachiuta,T135 Dag,14.0,14.0,0.0,OK
+D. Pyttel,Norm uren Dag,32.5,32.5,0.0,OK
+D. Pyttel,OW140 Week,4.0,4.0,0.0,OK
+D. Pyttel,OW200 Dag,5.75,5.75,0.0,OK
+D. Pyttel,T135 Dag,7.5,7.5,0.0,OK
+LA Da Silva Figueiredo,Norm uren Dag,11.5,,,ALLEEN IN FACTUUR
+LA Da Silva Figueiredo,T133 Dag,23.5,,,ALLEEN IN FACTUUR
+DJ Kowalkowski,Norm uren Dag,39.25,39.25,0.0,OK
+Miguel Mateus Reis Dos Santos,Norm uren Dag,,11.5,,ALLEEN IN KLOKLIJST
+Miguel Mateus Reis Dos Santos,T133 Dag,,12.25,,ALLEEN IN KLOKLIJST
+MM Reis Dos Santos,Norm uren Dag,11.5,,,ALLEEN IN FACTUUR
+MM Reis Dos Santos,T133 Dag,12.25,,,ALLEEN IN FACTUUR
+E. Kedzior,Norm uren Dag,38.0,38.0,0.0,OK
+E. Kedzior,OW140 Week,4.25,4.25,0.0,OK
+E. Kedzior,T133 Dag,2.0,2.0,0.0,OK
+F Ungureanu,Norm uren Dag,37.25,37.25,0.0,OK
+F Ungureanu,OW140 Week,8.0,8.0,0.0,OK
+F Ungureanu,T133 Dag,2.75,2.75,0.0,OK
+R Firlej,OW140 Week,2.5,2.5,0.0,OK
+R Firlej,T133 Dag,23.25,23.25,0.0,OK
+R Firlej,T135 Dag,17.0,17.0,0.0,OK
+I G Tanase,Norm uren Dag,17.5,17.5,0.0,OK
+I G Tanase,T133 Dag,22.5,22.5,0.0,OK
+G Stanionis,Norm uren Dag,38.0,38.0,0.0,OK
+G Stanionis,OW140 Week,4.75,4.75,0.0,OK
+G Stanionis,T133 Dag,2.0,2.0,0.0,OK
+H Trumpis,Norm uren Dag,36.75,37.75,-1.0,VERSCHIL
+H Trumpis,OW140 Week,1.25,1.25,0.0,OK
+H Trumpis,T135 Dag,2.25,2.25,0.0,OK
+J Lisiewicz,Norm uren Dag,29.75,29.75,0.0,OK
+J Lisiewicz,T135 Dag,4.0,4.0,0.0,OK
+J. Stefan,Norm uren Dag,37.5,37.5,0.0,OK
+J. Stefan,OW140 Week,2.5,2.5,0.0,OK
+J. Stefan,T135 Dag,2.5,2.5,0.0,OK
+JM Jaworska,Norm uren Dag,38.0,38.0,0.0,OK
+JM Jaworska,OW140 Week,5.0,5.0,0.0,OK
+JM Jaworska,T133 Dag,2.0,2.0,0.0,OK
+K Wieleba,Norm uren Dag,32.5,32.5,0.0,OK
+K Wieleba,OW200 Dag,4.75,4.75,0.0,OK
+K Wieleba,T135 Dag,7.5,7.5,0.0,OK
+K. Slawik,Norm uren Dag,38.0,38.0,0.0,OK
+K. Slawik,OW140 Week,3.5,3.5,0.0,OK
+K. Slawik,T133 Dag,2.0,2.0,0.0,OK
+M. Kolacz,Norm uren Dag,11.5,11.5,0.0,OK
+M. Kolacz,OW140 Week,3.25,3.25,0.0,OK
+M. Kolacz,T133 Dag,26.0,26.0,0.0,OK
+M. Kolacz,T135 Dag,2.5,2.5,0.0,OK
+L Ungureanu,Norm uren Dag,38.5,38.5,0.0,OK
+L Ungureanu,OW140 Week,7.75,7.75,0.0,OK
+L Ungureanu,T133 Dag,1.5,1.5,0.0,OK
+L. Nowakowski,Norm uren Dag,35.5,35.5,0.0,OK
+L. Nowakowski,T135 Dag,4.0,4.0,0.0,OK
+M Raduszewski,Norm uren Dag,11.0,11.0,0.0,OK
+M Raduszewski,OW140 Week,0.75,0.75,0.0,OK
+M Raduszewski,T133 Dag,26.25,26.25,0.0,OK
+M Raduszewski,T135 Dag,2.75,2.75,0.0,OK
+S. Maciaszek,Norm uren Dag,34.25,34.25,0.0,OK
+NT Tekiela,Norm uren Dag,12.0,12.0,0.0,OK
+O Stanciu,Norm uren Dag,35.5,35.5,0.0,OK
+P Pazusis,Norm uren Dag,40.0,40.0,0.0,OK
+P Pazusis,OW140 Week,2.25,2.25,0.0,OK
+S Pokrajac,Norm uren Dag,13.5,13.5,0.0,OK
+S Pokrajac,T133 Dag,23.75,23.75,0.0,OK
+V R Preda,Norm uren Dag,38.5,38.5,0.0,OK
+V R Preda,OW140 Week,2.75,2.75,0.0,OK
+V R Preda,OW200 Dag,5.0,5.0,0.0,OK
+V R Preda,T133 Dag,1.5,1.5,0.0,OK
+S. Statkiewicz,Norm uren Dag,40.25,40.0,0.25,VERSCHIL
+S. Statkiewicz,OW200 Dag,4.75,4.75,0.0,OK
+S. Stepien,Norm uren Dag,33.25,33.25,0.0,OK
+S. Stepien,OW200 Dag,5.5,5.5,0.0,OK
+S. Stepien,T135 Dag,6.75,6.75,0.0,OK
