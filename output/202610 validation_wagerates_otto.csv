@@ -1,0 +1,3 @@
+﻿sapId,name,invoiceCodeToeslag,rateKey,invoiceRate,expectedRate,difference,status,matchMethod
+456408,Koziol Marek,Norm uren Dag,100,31.37,30.247,1.123,rate_mismatch,person_number
+446709,Rydzewski Patryk,Norm uren Dag,100,30.6,31.8349,1.2349,rate_mismatch,person_number

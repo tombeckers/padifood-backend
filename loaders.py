@@ -33,6 +33,22 @@ def _to_float(val) -> Optional[float]:
     try:
         if pd.isna(val):
             return None
+        if isinstance(val, (int, float)):
+            return float(val)
+        if isinstance(val, str):
+            text = val.strip().strip('"')
+            if not text:
+                return None
+            # Parse duration-like clock values exported by Flex conversion:
+            # "9:30:00.058000", "1 day, 17:00:00.058000", "3:45:00"
+            if ":" in text:
+                td = pd.to_timedelta(text, errors="coerce")
+                if not pd.isna(td):
+                    return float(td.total_seconds()) / 3600.0
+            # Support Dutch-formatted decimals (e.g. "1.234,56", "7,5")
+            if "," in text and ":" not in text:
+                text = text.replace(".", "").replace(",", ".")
+            return float(text)
         return float(val)
     except (TypeError, ValueError):
         return None
@@ -299,6 +315,12 @@ async def load_flex_invoices(
         for r in rows_data
     ]
 
+    await session.execute(
+        delete(InvoiceLine).where(
+            InvoiceLine.week_number == week_number,
+            InvoiceLine.agency == "flexspecialisten",
+        )
+    )
     session.add_all(rows)
     await session.commit()
     return {

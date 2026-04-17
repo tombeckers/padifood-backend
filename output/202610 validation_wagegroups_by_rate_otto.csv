@@ -1,0 +1,3 @@
+﻿provider,personId,name,invoiceCodeToeslag,rateKey,invoiceRate,deducedInvoiceWagegroup,referenceWagegroup,difference,status,matchMethod
+otto,456408,Koziol Marek,Norm uren Dag,100,31.37,A3 / Fase B,A0 / Fase A,1.123,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,Norm uren Dag,100,30.6,A1 / Fase A,B1 / Fase NA,1.2349,wagegroup_diff_by_rate,person_number

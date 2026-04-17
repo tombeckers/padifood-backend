@@ -23,11 +23,21 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import Settings
-from models import InvoiceLine, Kloklijst
+from models import InvoiceLine, Kloklijst, PersonWagegroupRate
 from otto_identifier_mapping import load_verified_otto_mapping
 from validation_wagegroups import analyze_otto_wagegroups
 from wagegroup_rates import analyze_otto_rate_mismatches
 from wagegroup_rates import analyze_wagegroup_differences_by_rate
+
+_EMBEDDED_NUM_RE = re.compile(r"\b\d{6,12}\b")
+
+
+def _strip_embedded_numbers(name: str) -> str:
+    """Remove embedded 6-12 digit tokens (e.g. SAP numbers in kloklijst names)."""
+    if not name:
+        return name
+    cleaned = _EMBEDDED_NUM_RE.sub(" ", name)
+    return " ".join(cleaned.split())
 
 # Maps the original kloklijst column names (used in output/comparison) to
 # the corresponding ORM field names on the Kloklijst model.
@@ -53,13 +63,17 @@ def _kloklijst_norm_uren(row: "Kloklijst") -> float | None:
     in their own OW column. The invoice derives norm as effectieve - premiums,
     so we do the same for an apples-to-apples comparison.
 
-    Legacy fallback: if effectieve_uren_dag is absent, use raw norm_uren_dag.
+    Legacy fallback: if effectieve_uren_dag is absent, still subtract premium
+    hours from norm_uren_dag when possible so Kelio OW double-counting is
+    corrected in both paths.
     """
     if row.effectieve_uren_dag is not None:
         premium = sum(getattr(row, f) or 0.0 for f in _PREMIUM_FIELDS)
         return max(row.effectieve_uren_dag - premium, 0.0)
-    # Legacy fallback — raw Kelio value (may include OW double-count)
-    return row.norm_uren_dag
+    if row.norm_uren_dag is not None:
+        premium = sum(getattr(row, f) or 0.0 for f in _PREMIUM_FIELDS)
+        return max(row.norm_uren_dag - premium, 0.0)
+    return None
 
 
 FUZZY_MATCH_THRESHOLD = 90
@@ -109,7 +123,8 @@ def _kloklijst_compare_key(
         return f"id:{loonnummer_to_sap[loonnummer]}"
     if not name:
         return None
-    return _name_compare_key(name)
+    cleaned = _strip_embedded_numbers(name) if agency == "otto" else name
+    return _name_compare_key(cleaned or name)
 
 
 def _display_name_for_key(key: str, display_names: dict[str, str]) -> str:
@@ -299,7 +314,13 @@ async def _load_kloklijst_hours_db(
     agency: str,
     loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, float]]:
-    """Returns {compare_key: {col_name: total_uren}} from kloklijst for an agency."""
+    """Returns {compare_key: {col_name: total_uren}} from kloklijst for an agency.
+
+    Kelio adjustment: Norm uren Dag = Σ effectieve_uren_dag − Σ all premium hours.
+    Because premium hours (especially OW140_week) can appear on rows where
+    effectieve_uren_dag is NULL, we aggregate per person first then compute Norm
+    once, rather than subtracting per-row.
+    """
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
@@ -307,7 +328,10 @@ async def _load_kloklijst_hours_db(
             Kloklijst.datum.isnot(None),
         )
     )
-    totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    premium_totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    effectieve_total: dict[str, float] = defaultdict(float)
+    norm_raw_total: dict[str, float] = defaultdict(float)
+    keys_seen: set[str] = set()
     for row in result.scalars().all():
         if not row.naam:
             continue
@@ -319,10 +343,28 @@ async def _load_kloklijst_hours_db(
         )
         if not compare_key:
             continue
+        keys_seen.add(compare_key)
+        if row.effectieve_uren_dag:
+            effectieve_total[compare_key] += row.effectieve_uren_dag
+        if row.norm_uren_dag:
+            norm_raw_total[compare_key] += row.norm_uren_dag
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
-            val = _kloklijst_norm_uren(row) if col_name == "Norm uren Dag" else getattr(row, field, None)
-            if val is not None and val != 0:
-                totals[compare_key][col_name] += val
+            if col_name == "Norm uren Dag":
+                continue
+            val = getattr(row, field, None)
+            if val:
+                premium_totals[compare_key][col_name] += val
+
+    totals: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    for key in keys_seen:
+        for col_name, val in premium_totals[key].items():
+            if val:
+                totals[key][col_name] += val
+        premium_sum = sum(premium_totals[key].values())
+        base = effectieve_total[key] if effectieve_total[key] > 0 else norm_raw_total[key]
+        norm = max(base - premium_sum, 0.0) if base > 0 else 0.0
+        if norm:
+            totals[key]["Norm uren Dag"] += norm
     return {k: dict(v) for k, v in totals.items()}
 
 
@@ -361,7 +403,10 @@ async def _load_kloklijst_hours_by_date_db(
     agency: str,
     loonnummer_to_sap: dict[str, str],
 ) -> dict[str, dict[str, dict[str, float]]]:
-    """Returns {compare_key: {date: {col_name: total_uren}}} from kloklijst for an agency."""
+    """Returns {compare_key: {date: {col_name: total_uren}}} from kloklijst for an agency.
+
+    Kelio adjustment applied per (person, date): Norm = effectieve − Σ premiums.
+    """
     result = await db.execute(
         select(Kloklijst).where(
             Kloklijst.week_number == week,
@@ -369,7 +414,10 @@ async def _load_kloklijst_hours_by_date_db(
             Kloklijst.datum.isnot(None),
         )
     )
-    totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    premium_by_date: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    effectieve_by_date: dict = defaultdict(lambda: defaultdict(float))
+    norm_raw_by_date: dict = defaultdict(lambda: defaultdict(float))
+    date_keys: set[tuple[str, str]] = set()
     for row in result.scalars().all():
         if not row.naam:
             continue
@@ -382,10 +430,30 @@ async def _load_kloklijst_hours_by_date_db(
         if not compare_key:
             continue
         date_key = str(row.datum)
+        date_keys.add((compare_key, date_key))
+        if row.effectieve_uren_dag:
+            effectieve_by_date[compare_key][date_key] += row.effectieve_uren_dag
+        if row.norm_uren_dag:
+            norm_raw_by_date[compare_key][date_key] += row.norm_uren_dag
         for col_name, field in KLOKLIJST_COL_TO_FIELD.items():
-            val = _kloklijst_norm_uren(row) if col_name == "Norm uren Dag" else getattr(row, field, None)
-            if val is not None and val != 0:
+            if col_name == "Norm uren Dag":
+                continue
+            val = getattr(row, field, None)
+            if val:
+                premium_by_date[compare_key][date_key][col_name] += val
+
+    totals: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    for compare_key, date_key in date_keys:
+        for col_name, val in premium_by_date[compare_key][date_key].items():
+            if val:
                 totals[compare_key][date_key][col_name] += val
+        premium_sum = sum(premium_by_date[compare_key][date_key].values())
+        base = effectieve_by_date[compare_key][date_key]
+        if base <= 0:
+            base = norm_raw_by_date[compare_key][date_key]
+        norm = max(base - premium_sum, 0.0) if base > 0 else 0.0
+        if norm:
+            totals[compare_key][date_key]["Norm uren Dag"] += norm
     return totals
 
 
@@ -525,6 +593,85 @@ def build_rows(
     return rows, counts
 
 
+async def _auto_derive_otto_mapping(
+    week: int,
+    db: AsyncSession,
+) -> tuple[dict[str, str], set[str]]:
+    """Build loonnummer→SAP mapping for Otto directly from the data.
+
+    Strategy:
+    1. Collect the set of SAP IDs in invoice_lines for this week.
+    2. For each kloklijst row, if loonnummers equals an invoice sap_id, map directly.
+    3. Otherwise, look up the person in person_wagegroup_rates by normalized name
+       (embedded numbers stripped); if their SAP appears in the invoice, map loon→SAP.
+    """
+    invoice_res = await db.execute(
+        select(InvoiceLine.sap_id)
+        .where(InvoiceLine.week_number == week, InvoiceLine.agency == "otto")
+        .distinct()
+    )
+    invoice_saps: set[str] = {
+        s for (s,) in ((_id_text(r[0]),) for r in invoice_res) if s
+    }
+
+    rates_res = await db.execute(
+        select(PersonWagegroupRate.person_number, PersonWagegroupRate.normalized_name).where(
+            PersonWagegroupRate.provider == "otto"
+        )
+    )
+    rate_sap_by_norm_name: dict[str, str] = {}
+    for sap_raw, norm_name in rates_res:
+        sap = _id_text(sap_raw)
+        if not sap or not norm_name:
+            continue
+        rate_sap_by_norm_name.setdefault(str(norm_name).strip().lower(), sap)
+
+    klok_res = await db.execute(
+        select(Kloklijst.loonnummers, Kloklijst.personeelsnummer, Kloklijst.naam)
+        .where(
+            Kloklijst.week_number == week,
+            Kloklijst.agency == "otto",
+            Kloklijst.naam.isnot(None),
+        )
+        .distinct()
+    )
+    klok_rows = list(klok_res)
+
+    # Detect loonnummer collisions: a given loonnummer is ambiguous when it is
+    # attached to multiple distinct (personeelsnummer, name) combinations in the
+    # kloklijst. In that case we refuse to use a direct loon→SAP shortcut and
+    # let name-based fallback disambiguate per row.
+    loon_people: dict[str, set[tuple[str, str]]] = defaultdict(set)
+    for loon_raw, pnummer_raw, naam in klok_rows:
+        loon = _id_text(loon_raw)
+        if not loon:
+            continue
+        pnummer = _id_text(pnummer_raw) or ""
+        cleaned = _strip_embedded_numbers(str(naam or ""))
+        loon_people[loon].add((pnummer, normalize_name(cleaned)))
+    ambiguous_loons = {loon for loon, people in loon_people.items() if len(people) > 1}
+
+    loonnummer_to_sap: dict[str, str] = {}
+    mapped_sap_ids: set[str] = set()
+    for loon_raw, _pnummer_raw, naam in klok_rows:
+        loon = _id_text(loon_raw)
+        if not loon or loon in ambiguous_loons:
+            continue
+        if loon in invoice_saps:
+            loonnummer_to_sap.setdefault(loon, loon)
+            mapped_sap_ids.add(loon)
+            continue
+        if not naam:
+            continue
+        cleaned = _strip_embedded_numbers(str(naam))
+        norm = normalize_name(cleaned)
+        sap = rate_sap_by_norm_name.get(norm)
+        if sap and sap in invoice_saps:
+            loonnummer_to_sap.setdefault(loon, sap)
+            mapped_sap_ids.add(sap)
+    return loonnummer_to_sap, mapped_sap_ids
+
+
 async def run_validation(
     week: str,
     db: AsyncSession,
@@ -541,6 +688,10 @@ async def run_validation(
     mapped_sap_ids: set[str] = set()
     if agency == "otto":
         loonnummer_to_sap, mapped_sap_ids = await load_verified_otto_mapping(db)
+        auto_loon, auto_sap = await _auto_derive_otto_mapping(week_int, db)
+        for loon, sap in auto_loon.items():
+            loonnummer_to_sap.setdefault(loon, sap)
+        mapped_sap_ids.update(auto_sap)
 
     factuur = await _load_factuur_hours_db(week_int, db, agency, mapped_sap_ids)
     kloklijst = await _load_kloklijst_hours_db(week_int, db, agency, loonnummer_to_sap)
@@ -646,16 +797,15 @@ async def run_validation(
     wagegroup_rate_analysis: dict | None = None
     wagegroup_rate_output_file: str | None = None
 
-    wagegroup_rate_analysis = await analyze_wagegroup_differences_by_rate(
-        week=week_int,
-        provider=agency,
-        db=db,
-        tolerance_eur=1.0,
-        output_dir="output",
-    )
-    wagegroup_rate_output_file = wagegroup_rate_analysis.get("outputFile")
-
     if agency == "otto":
+        wagegroup_rate_analysis = await analyze_wagegroup_differences_by_rate(
+            week=week_int,
+            provider=agency,
+            db=db,
+            tolerance_eur=1.0,
+            output_dir="output",
+        )
+        wagegroup_rate_output_file = wagegroup_rate_analysis.get("outputFile")
         wagegroup_analysis = await analyze_otto_wagegroups(
             week=week_int,
             db=db,
@@ -841,6 +991,11 @@ def format_validation_email_body(result: dict) -> str:
         for row in wagegroup_rows
         if str(row.get("status", "")).strip() == "mismatch"
     ]
+    wagegroup_missing = [
+        row
+        for row in wagegroup_rows
+        if str(row.get("status", "")).strip() == "missing_known_wagegroup"
+    ]
     rate_analysis = result.get("rateAnalysis") or {}
     rate_mismatches = rate_analysis.get("mismatches", []) or []
     tolerance_eur = rate_analysis.get("toleranceEur")
@@ -850,7 +1005,7 @@ def format_validation_email_body(result: dict) -> str:
     if (
         not week_mismatches
         and not wagegroup_mismatches
-        and not rate_mismatches
+        and not wagegroup_missing
         and not wagegroup_rate_mismatches
     ):
         return "\n".join(
@@ -869,7 +1024,9 @@ def format_validation_email_body(result: dict) -> str:
 
     lines = ["Goedemorgen,", ""]
     has_wage_like = bool(
-        wagegroup_mismatches or rate_mismatches or wagegroup_rate_mismatches
+        wagegroup_mismatches
+        or wagegroup_missing
+        or wagegroup_rate_mismatches
     )
     if week_mismatches and has_wage_like:
         lines.append(
@@ -914,28 +1071,24 @@ def format_validation_email_body(result: dict) -> str:
                 f"- Bij {name} is een discrepantie gevonden voor {code} (status: {_fmt_value(status)})."
             )
 
-    if rate_mismatches:
-        deduped_rate_mismatches = _dedupe_rate_mismatches(rate_mismatches)
-        if week_mismatches:
-            lines.append("")
-        if tolerance_eur is not None:
+    if wagegroup_mismatches:
+        lines.append("")
+        lines.append("Daarnaast hebben we de volgende loongroepafwijkingen gevonden:")
+        for row in wagegroup_mismatches[:20]:
+            name = _fmt_value(row.get("name"))
+            invoice_wagegroup = _fmt_value(row.get("invoiceWagegroup"))
+            known_wagegroup = _fmt_value(row.get("knownWagegroup"))
             lines.append(
-                f"Daarnaast zijn er tariefverschillen groter dan de ingestelde tolerantie van EUR {float(tolerance_eur):.2f}:"
+                f"- Bij {name} staat loongroep {invoice_wagegroup} op de factuur, maar referentie is {known_wagegroup}."
             )
-        else:
-            lines.append("Daarnaast zijn er tariefverschillen gevonden:")
-        for row in deduped_rate_mismatches[:20]:
-            min_diff = row.get("min_diff")
-            max_diff = row.get("max_diff")
-            if min_diff is None or max_diff is None:
-                diff_text = "-"
-            elif min_diff == max_diff:
-                diff_text = f"{min_diff:.2f}"
-            else:
-                diff_text = f"{min_diff:.2f}-{max_diff:.2f}"
-            count_text = f", {row['count']}x gezien" if row.get("count", 0) > 1 else ""
+    if wagegroup_missing:
+        lines.append("")
+        lines.append("Daarnaast ontbreken loongroepreferenties voor de volgende personen:")
+        for row in wagegroup_missing[:20]:
+            name = _fmt_value(row.get("name"))
+            sap_id = _fmt_value(row.get("sapId"))
             lines.append(
-                f"- Bij {row['name']} ({row['code']}) is tarief {row['invoice_rate']} op de factuur, verwacht {row['expected_rate']} (verschil {diff_text}{count_text})."
+                f"- Bij {name} (SAP {sap_id}) is geen loongroepreferentie beschikbaar in /wagegroups."
             )
     if wagegroup_rate_mismatches:
         deduped_wagegroup_rate_mismatches = _dedupe_wagegroup_rate_mismatches(

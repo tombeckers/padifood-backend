@@ -400,6 +400,20 @@ async def analyze_otto_wagegroups(
         for row in person_rate_rows
         if row.normalized_name and row.tarief
     }
+    # Also build a SAP->wagegroup map from rates so we can treat person_wagegroup_rates
+    # as a first-class reference source when person_wagegroups lacks an entry.
+    rate_wagegroup_by_person: dict[str, str] = {}
+    rate_wagegroup_by_name: dict[str, str] = {}
+    for row in person_rate_rows:
+        schaal = (row.schaal or "").strip()
+        tarief = (row.tarief or "").strip()
+        if not schaal and not tarief:
+            continue
+        wg = f"{schaal} / Fase {tarief}".strip() if tarief else schaal
+        if row.person_number:
+            rate_wagegroup_by_person.setdefault(row.person_number, wg)
+        if row.normalized_name:
+            rate_wagegroup_by_name.setdefault(row.normalized_name, wg)
 
     wagegroup_matches = 0
     wagegroup_mismatches = 0
@@ -415,17 +429,26 @@ async def analyze_otto_wagegroups(
         if had_conflict:
             invoice_wagegroup_conflicts += 1
 
+        normalized_invoice = normalize_person_name(invoice_name)
         known = known_by_person.get(sap_id)
         match_method = "person_number"
         if known:
             matched_by_person_number += 1
         else:
-            known = fallback_by_name.get(normalize_person_name(invoice_name))
+            known = fallback_by_name.get(normalized_invoice)
             match_method = "name_fallback"
             if known:
                 matched_by_name_fallback += 1
 
-        if not known:
+        known_tarief = person_tarief_by_person.get(sap_id) or person_tarief_by_name.get(normalized_invoice)
+        known_wagegroup = (known.wagegroup.strip() if known else "") or (
+            rate_wagegroup_by_person.get(sap_id) or rate_wagegroup_by_name.get(normalized_invoice) or ""
+        )
+        has_rate_reference = bool(known_tarief) or bool(
+            rate_wagegroup_by_person.get(sap_id) or rate_wagegroup_by_name.get(normalized_invoice)
+        )
+
+        if not known and not has_rate_reference:
             missing_known_wagegroup += 1
             if include_mismatches and len(mismatches) < max_items:
                 mismatches.append(
@@ -440,13 +463,13 @@ async def analyze_otto_wagegroups(
                 )
             continue
 
-        known_wagegroup = known.wagegroup.strip()
-        known_tarief = person_tarief_by_person.get(sap_id)
-        if not known_tarief:
-            known_tarief = person_tarief_by_name.get(normalize_person_name(invoice_name))
         if not known_tarief:
             known_tarief = _extract_tarief_letter(known_wagegroup)
         invoice_tarief = _extract_tarief_letter(invoice_wagegroup)
+        # If the invoice has no wagegroup value, skip comparison: there is nothing
+        # to compare against (reported elsewhere as missing invoice data).
+        if not invoice_tarief:
+            continue
         if known_tarief == invoice_tarief:
             wagegroup_matches += 1
             continue
@@ -459,7 +482,7 @@ async def analyze_otto_wagegroups(
                     "invoiceWagegroup": invoice_tarief or invoice_wagegroup,
                     "knownWagegroup": known_tarief or known_wagegroup,
                     "status": "mismatch",
-                    "matchMethod": match_method,
+                    "matchMethod": match_method or "rate_reference",
                 }
             )
 
