@@ -200,15 +200,37 @@ def _fuzzy_score(left: str, right: str) -> int:
 
 _INITIAL_TOKEN_RE = re.compile(r"^[A-Za-z]\.?$|^[A-Z]{2,3}$")
 
+# Threshold for surname fuzzy match in initials-based pass (more lenient than
+# full-name fuzzy because only a surname fragment is compared).
+_SURNAME_FUZZY_THRESHOLD = 70
 
-def _is_initials_name(display_name: str) -> bool:
-    """Return True if name is in initials + lastname format.
-    Handles 'A Lademann', 'D.D. Baciu', 'A.B. Smith', etc.
+
+def _split_initials_prefix(display_name: str) -> tuple[list[str], str] | None:
+    """
+    If display_name starts with one or more initial tokens, return (initials, surname).
+    The surname is everything after the leading initials and may be compound,
+    e.g. 'LA Da Silva Figueiredo' → (['LA'], 'Da Silva Figueiredo').
+    Returns None if the name does not start with any initial tokens.
     """
     tokens = display_name.strip().split()
-    return len(tokens) >= 2 and all(
-        _INITIAL_TOKEN_RE.match(t) or "." in t for t in tokens[:-1]
-    )
+    if len(tokens) < 2:
+        return None
+    n_initials = 0
+    for t in tokens:
+        if _INITIAL_TOKEN_RE.match(t) or ("." in t and len(t) <= 4):
+            n_initials += 1
+        else:
+            break
+    if n_initials == 0 or n_initials == len(tokens):
+        return None
+    return tokens[:n_initials], " ".join(tokens[n_initials:])
+
+
+def _is_initials_name(display_name: str) -> bool:
+    """Return True if name starts with one or more initial tokens.
+    Handles 'A Lademann', 'D.D. Baciu', 'AM Minta', 'LA Da Silva Figueiredo'.
+    """
+    return _split_initials_prefix(display_name) is not None
 
 
 def _find_similar_name_pairs(
@@ -247,19 +269,32 @@ def _find_similar_name_pairs(
             similar_pairs.append(display_pair)
 
     # Second pass: initials-based matching for Flex invoice names.
-    # e.g. factuur "D.D. Baciu" → last name "baciu" → matches kloklijst "Baciu Dumitru".
+    # e.g. "D.D. Baciu" → surname "Baciu" → matches "Baciu Dumitru".
+    # Supports compound surnames ("LA Da Silva Figueiredo") and minor typos
+    # by fuzzy-matching the extracted surname against the kloklijst name prefix.
     for factuur_key in factuur_only:
         display_name = factuur_display_map.get(factuur_key, "")
-        if not display_name or not _is_initials_name(display_name):
+        split = _split_initials_prefix(display_name) if display_name else None
+        if not split:
             continue
-        last_name = display_name.strip().split()[-1].lower()
+        _, surname = split
+        surname_lower = surname.lower()
+        surname_tokens = surname_lower.split()
+        n = len(surname_tokens)
+
         for kloklijst_key in kloklijst_only:
             if (kloklijst_key, factuur_key) in confirmed_diff_pairs:
                 continue
             klok_display = kloklijst_display_map.get(kloklijst_key, "")
             if not klok_display:
                 continue
-            if last_name not in [w.lower() for w in klok_display.split()]:
+            klok_tokens = klok_display.lower().split()
+            if len(klok_tokens) < n:
+                continue
+            # Kloklijst format is typically "Last [First ...]"; match surname
+            # against the first n tokens with fuzzy tolerance for minor typos.
+            klok_prefix = " ".join(klok_tokens[:n])
+            if _fuzzy_score(surname_lower, klok_prefix) <= _SURNAME_FUZZY_THRESHOLD:
                 continue
             display_pair = (
                 kloklijst_display_map.get(kloklijst_key, kloklijst_key),
