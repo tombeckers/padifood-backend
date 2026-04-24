@@ -174,12 +174,200 @@ Kulesza Arkadiusz,T135 Dag,4.0,4.0,0.0,OK
 Cristu Virgil,Norm uren Dag,26.0,26.0,0.0,OK
 Cristu Virgil,T135 Dag,13.0,13.0,0.0,OK
 Kasileviciute Gerda,Norm uren Dag,31.75,31.75,0.0,OK
-<<<<<<< HEAD
 Kasileviciute Gerda,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
 Kasileviciute Gerda,normaleuren ma-vr 133%,4.0,,,ALLEEN IN FACTUUR
-=======
+Kijak Hanna,Norm uren Dag,7.5,7.5,0.0,OK
+Kijak Hanna,T133 Dag,20.75,20.75,0.0,OK
+Kijak Hanna,T135 Dag,2.25,2.25,0.0,OK
+Jakubiak Marta,Norm uren Dag,36.0,36.0,0.0,OK
+Jakubiak Marta,T133 Dag,2.25,2.25,0.0,OK
+Kupcik Stanislav,Norm uren Dag,14.25,14.25,0.0,OK
+Kupcik Stanislav,T133 Dag,17.5,17.5,0.0,OK
+Tranevicius Martynas,Norm uren Dag,7.0,7.0,0.0,OK
+Tranevicius Martynas,T133 Dag,5.5,5.5,0.0,OK
+Raczynska Natalia,Norm uren Dag,18.0,18.0,0.0,OK
+Raczynska Natalia,T133 Dag,0.25,0.25,0.0,OK
+Plachta Zuzanna,Norm uren Dag,36.75,36.75,0.0,OK
+Plachta Zuzanna,T133 Dag,3.25,3.25,0.0,OK
+Tkachuk Vadym,Norm uren Dag,30.25,30.25,0.0,OK
+Tkachuk Vadym,T133 Dag,1.0,1.0,0.0,OK
+Naam,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+Stepien Konrad,Norm uren Dag,27.5,27.5,0.0,OK
+Stepien Konrad,T135 Dag,11.75,11.75,0.0,OK
+Koson Adrian,Norm uren Dag,32.5,32.5,0.0,OK
+Koson Adrian,T135 Dag,5.25,5.25,0.0,OK
+Przybyszewska Elzbieta,Norm uren Dag,32.0,32.0,0.0,OK
+Kosior Agnieszka,Norm uren Dag,33.0,33.0,0.0,OK
+Kosior Agnieszka,T133 Dag,1.0,1.0,0.0,OK
+Jankowska Paulina,Norm uren Dag,29.25,29.25,0.0,OK
+Jankowska Paulina,T133 Dag,0.75,0.75,0.0,OK
+Nowak Julia,Norm uren Dag,8.75,8.75,0.0,OK
+Nowak Julia,T133 Dag,20.0,20.0,0.0,OK
+Majewski Gerard,Norm uren Dag,11.25,11.25,0.0,OK
+Majewski Gerard,T133 Dag,21.0,21.0,0.0,OK
+Majewski Gerard,T135 Dag,2.75,2.75,0.0,OK
+Mlynarczyk Bogumil,Norm uren Dag,11.25,11.25,0.0,OK
+Mlynarczyk Bogumil,T133 Dag,20.75,20.75,0.0,OK
+Mlynarczyk Bogumil,T135 Dag,1.75,1.75,0.0,OK
+Ogiela Patrycja,Norm uren Dag,30.0,30.0,0.0,OK
+Cyran Anna,Norm uren Dag,32.0,32.0,0.0,OK
+Cyran Anna,T135 Dag,4.25,4.25,0.0,OK
+Glabien Dariusz,Norm uren Dag,36.0,36.0,0.0,OK
+Glabien Dariusz,OW180 Dag,2.25,2.25,0.0,OK
+Glabien Dariusz,OW200 Dag,1.75,1.75,0.0,OK
+Glabien Dariusz,T135 Dag,4.0,4.0,0.0,OK
+Pasiali Krystyna,Norm uren Dag,40.0,40.0,0.0,OK
+Kaziura Katarzyna,Norm uren Dag,8.0,8.0,0.0,OK
+Kaziura Katarzyna,T133 Dag,12.0,12.0,0.0,OK
+Drabik Renata,Norm uren Dag,13.25,13.25,0.0,OK
+Muc Jerzy,Norm uren Dag,13.0,13.0,0.0,OK
+Muc Jerzy,T135 Dag,3.0,3.0,0.0,OK
+Mika Patrycja,Norm uren Dag,8.75,8.75,0.0,OK
+Mika Patrycja,T133 Dag,19.75,19.75,0.0,OK
+Mikulska Anna,Norm uren Dag,8.25,8.25,0.0,OK
+Mikulska Anna,T133 Dag,20.75,20.75,0.0,OK
+Wielgus Mateusz,Norm uren Dag,24.0,24.0,0.0,OK
+Poplonski Tomasz,Norm uren Dag,15.0,15.0,0.0,OK
+Poplonski Tomasz,T133 Dag,17.0,17.0,0.0,OK
+Baraniuk Beata,Norm uren Dag,32.0,32.0,0.0,OK
+Baraniuk Beata,T135 Dag,5.0,5.0,0.0,OK
+Przydatek Renata,Norm uren Dag,32.5,32.5,0.0,OK
+Przydatek Renata,T135 Dag,4.5,4.5,0.0,OK
+Holubowska Barbara,Norm uren Dag,32.0,32.0,0.0,OK
+Vrzalova Lucie,Norm uren Dag,35.75,35.75,0.0,OK
+Vrzalova Lucie,T133 Dag,1.0,1.0,0.0,OK
+Urbanowicz Malgorzata,Norm uren Dag,27.25,27.25,0.0,OK
+Urbanowicz Malgorzata,T133 Dag,0.75,0.75,0.0,OK
+Drozdziel Martin,Norm uren Dag,31.5,31.5,0.0,OK
+Drozdziel Martin,T135 Dag,6.25,6.25,0.0,OK
+Wilczak Daniel,Norm uren Dag,7.5,7.5,0.0,OK
+Wilczak Daniel,T133 Dag,20.5,20.5,0.0,OK
+Wilczak Daniel,T135 Dag,0.5,0.5,0.0,OK
+Skrzypczak Kewin,Norm uren Dag,16.25,16.25,0.0,OK
+Skrzypczak Kewin,T133 Dag,15.75,15.75,0.0,OK
+Piksa Sandra,Norm uren Dag,9.75,9.75,0.0,OK
+Piksa Sandra,T133 Dag,20.5,20.5,0.0,OK
+Wolanin Maciej,Norm uren Dag,8.25,8.25,0.0,OK
+Wolanin Maciej,T133 Dag,20.75,20.75,0.0,OK
+Wolanin Maciej,T135 Dag,2.5,2.5,0.0,OK
+Bierczak Piotr,Norm uren Dag,28.0,28.0,0.0,OK
+Bierczak Piotr,T135 Dag,8.75,8.75,0.0,OK
+Mankowska Paulina,Norm uren Dag,29.0,29.0,0.0,OK
+Mankowska Paulina,T133 Dag,1.0,1.0,0.0,OK
+Milon Oliwia,Norm uren Dag,30.75,30.75,0.0,OK
+Milon Oliwia,T133 Dag,1.0,1.0,0.0,OK
+Szulewska Dorota,Norm uren Dag,32.0,32.0,0.0,OK
+Szulewska Dorota,T135 Dag,5.5,5.5,0.0,OK
+Perczyk Justyna,Norm uren Dag,34.75,34.75,0.0,OK
+Kovacova Martina,Norm uren Dag,29.0,29.0,0.0,OK
+Kovacova Martina,T133 Dag,0.75,0.75,0.0,OK
+Stankiewicz Lucyna,Norm uren Dag,30.5,30.5,0.0,OK
+Marek Magdalena,Norm uren Dag,29.0,29.0,0.0,OK
+Solomonova Nikola,Norm uren Dag,9.0,9.0,0.0,OK
+Solomonova Nikola,T133 Dag,20.0,20.0,0.0,OK
+Costa Pedro,Norm uren Dag,9.75,9.75,0.0,OK
+Costa Pedro,T133 Dag,21.0,21.0,0.0,OK
+Peixoto Mathew,Norm uren Dag,32.0,32.0,0.0,OK
+Peixoto Mathew,T135 Dag,8.0,8.0,0.0,OK
+Magon Bartlomiej,Norm uren Dag,8.25,8.25,0.0,OK
+Magon Bartlomiej,T133 Dag,13.0,13.0,0.0,OK
+Kijak Dominik,Norm uren Dag,28.0,28.0,0.0,OK
+Kijak Dominik,T135 Dag,6.0,6.0,0.0,OK
+Madej Marta,Norm uren Dag,35.5,35.5,0.0,OK
+Madej Marta,T133 Dag,1.5,1.5,0.0,OK
+Pasieka Malgorzata,Norm uren Dag,8.75,8.75,0.0,OK
+Pasieka Malgorzata,T133 Dag,20.75,20.75,0.0,OK
+Pyc Damian,Norm uren Dag,10.5,10.5,0.0,OK
+Pyc Damian,T133 Dag,14.0,14.0,0.0,OK
+Kaziura Julia,Norm uren Dag,32.25,32.25,0.0,OK
+Kaziura Julia,T135 Dag,4.0,4.0,0.0,OK
+Augustinaitis Audrius,Norm uren Dag,10.75,10.75,0.0,OK
+Augustinaitis Audrius,T133 Dag,12.75,12.75,0.0,OK
+CostaVinhas Elisabete,Norm uren Dag,35.0,35.0,0.0,OK
+CostaVinhas Elisabete,T133 Dag,1.0,1.0,0.0,OK
+Pires Alves David,Norm uren Dag,34.5,34.5,0.0,OK
+Muszczek Patrycja,Norm uren Dag,32.0,32.0,0.0,OK
+Muszczek Patrycja,T135 Dag,4.75,4.75,0.0,OK
+Matiscik Vladimir,Norm uren Dag,31.25,31.25,0.0,OK
+Spevakova Olivia,Norm uren Dag,34.5,34.5,0.0,OK
+Spevakova Olivia,T133 Dag,1.0,1.0,0.0,OK
+Agafitei loan,Norm uren Dag,10.5,10.5,0.0,OK
+Agafitei loan,T133 Dag,19.5,19.5,0.0,OK
+Agafitei loan,T135 Dag,4.5,4.5,0.0,OK
+Rydzewski Patryk,Norm uren Dag,10.25,10.25,0.0,OK
+Rydzewski Patryk,T133 Dag,21.75,21.75,0.0,OK
+Rydzewski Patryk,T135 Dag,2.25,2.25,0.0,OK
+Madry Oliwier,Norm uren Dag,32.75,32.75,0.0,OK
+Madry Oliwier,T133 Dag,2.25,2.25,0.0,OK
+Madry Oliwier,T135 Dag,3.0,3.0,0.0,OK
+Seciu Marius,Norm uren Dag,30.0,30.0,0.0,OK
+Skorczewski Dawid,Norm uren Dag,32.0,32.0,0.0,OK
+Dalalau Gabriel,Norm uren Dag,32.0,32.0,0.0,OK
+Zmijewska Magdalena,Norm uren Dag,35.75,35.75,0.0,OK
+Zmijewska Magdalena,T133 Dag,2.25,2.25,0.0,OK
+Mladinovici Marius,Norm uren Dag,26.75,26.75,0.0,OK
+Mladinovici Marius,T135 Dag,12.25,12.25,0.0,OK
+Bruzdzinski Marcel,Norm uren Dag,13.25,13.25,0.0,OK
+Bruzdzinski Marcel,T133 Dag,18.25,18.25,0.0,OK
+Cabla Robert,Norm uren Dag,39.0,39.0,0.0,OK
+Proschl Lukas,Norm uren Dag,32.0,32.0,0.0,OK
+Proschl Lukas,T135 Dag,5.25,5.25,0.0,OK
+Michalik Kamil,Norm uren Dag,10.0,10.0,0.0,OK
+Michalik Kamil,T133 Dag,20.25,20.25,0.0,OK
+Michalik Kamil,T135 Dag,2.5,2.5,0.0,OK
+Mikiciuk Tomasz,Norm uren Dag,30.25,30.25,0.0,OK
+Jankowski Dawid,Norm uren Dag,36.75,36.75,0.0,OK
+Jankowski Dawid,OW180 Dag,3.5,3.5,0.0,OK
+Jankowski Dawid,T133 Dag,3.25,3.25,0.0,OK
+Lopusiewicz Maciej,Norm uren Dag,31.25,31.25,0.0,OK
+Mogilnicka Anna,Norm uren Dag,12.0,12.0,0.0,OK
+Mogilnicka Anna,T133 Dag,20.0,20.0,0.0,OK
+Koziol Marek,Norm uren Dag,40.0,40.0,0.0,OK
+Koziol Marek,OW180 Dag,1.25,1.25,0.0,OK
+Koziol Marek,OW200 Dag,2.0,2.0,0.0,OK
+Djs Hendrick,Norm uren Dag,14.25,14.25,0.0,OK
+Djs Hendrick,T133 Dag,19.5,19.5,0.0,OK
+Djs Hendrick,T135 Dag,4.5,4.5,0.0,OK
+CastilloArias EdwinJose,Norm uren Dag,11.5,11.5,0.0,OK
+CastilloArias EdwinJose,T133 Dag,19.25,19.25,0.0,OK
+Almasiova Bianka,Norm uren Dag,33.5,33.5,0.0,OK
+Almasiova Bianka,T133 Dag,1.0,1.0,0.0,OK
+Chiaga lonut,Norm uren Dag,10.25,10.25,0.0,OK
+Chiaga lonut,T133 Dag,17.25,17.25,0.0,OK
+Chiaga lonut,T135 Dag,4.0,4.0,0.0,OK
+Munteanu Lucian,Norm uren Dag,32.0,32.0,0.0,OK
+Munteanu Lucian,T135 Dag,4.5,4.5,0.0,OK
+Clim lonel,Norm uren Dag,39.75,39.75,0.0,OK
+Clim lonel,OW140 Week,1.0,1.0,0.0,OK
+Clim lonel,OW180 Dag,5.5,5.5,0.0,OK
+Clim lonel,OW200 Dag,1.5,1.5,0.0,OK
+Clim lonel,T133 Dag,0.25,0.25,0.0,OK
+Mirea Octavian,Norm uren Dag,39.5,39.5,0.0,OK
+Mirea Octavian,T133 Dag,0.25,0.25,0.0,OK
+Petre Laurentiu,Norm uren Dag,32.0,32.0,0.0,OK
+Petre Laurentiu,T135 Dag,4.5,4.5,0.0,OK
+Melo Hajezy Rui,Norm uren Dag,30.0,30.0,0.0,OK
+Wachowiak Robert,Norm uren Dag,14.0,14.0,0.0,OK
+Wachowiak Robert,T133 Dag,10.5,10.5,0.0,OK
+Wachowiak Robert,T135 Dag,10.0,10.0,0.0,OK
+Culea Stefan,Norm uren Dag,10.75,10.75,0.0,OK
+Culea Stefan,T133 Dag,19.75,19.75,0.0,OK
+Culea Stefan,T135 Dag,0.75,0.75,0.0,OK
+Salata Dawid,Norm uren Dag,13.0,13.0,0.0,OK
+Salata Dawid,T133 Dag,18.5,18.5,0.0,OK
+Pintea Ana,Norm uren Dag,30.75,30.75,0.0,OK
+Pilcher Alexandra,Norm uren Dag,9.5,9.5,0.0,OK
+Pilcher Alexandra,T133 Dag,19.75,19.75,0.0,OK
+Marszol Wanesa,Norm uren Dag,15.5,15.5,0.0,OK
+Recka Anna,Norm uren Dag,31.5,31.5,0.0,OK
+Kulesza Arkadiusz,Norm uren Dag,36.0,36.0,0.0,OK
+Kulesza Arkadiusz,OW180 Dag,1.25,1.25,0.0,OK
+Kulesza Arkadiusz,OW200 Dag,1.25,1.25,0.0,OK
+Kulesza Arkadiusz,T135 Dag,4.0,4.0,0.0,OK
+Cristu Virgil,Norm uren Dag,26.0,26.0,0.0,OK
+Cristu Virgil,T135 Dag,13.0,13.0,0.0,OK
+Kasileviciute Gerda,Norm uren Dag,31.75,31.75,0.0,OK
 Kasileviciute Gerda,T133 Dag,4.0,4.0,0.0,OK
->>>>>>> a12bd82fe5f8ea582767917f40e66ac09d5b5e53
 Kijak Hanna,Norm uren Dag,7.5,7.5,0.0,OK
 Kijak Hanna,T133 Dag,20.75,20.75,0.0,OK
 Kijak Hanna,T135 Dag,2.25,2.25,0.0,OK
