@@ -4,8 +4,10 @@ import csv
 import io
 import os
 import re
+import json
+import uuid
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Any
 
 try:
@@ -159,6 +161,555 @@ def _extract_phase(text: str) -> str | None:
 class ParsedRateWorkbook:
     person_rates: list[dict[str, Any]]
     rate_card: list[dict[str, Any]]
+
+
+@dataclass(frozen=True)
+class MappingRule:
+    key: str
+    header: str
+    required: bool
+    fallback_column: str | None = None
+
+
+@dataclass
+class PreviewContext:
+    upload_id: str
+    agency: str
+    source_file_name: str
+    workbook_path: str
+    detected_sheet: str
+    header_row: int
+    header_cells: list[str]
+    mapping: dict[str, dict[str, Any]]
+
+
+_RATE_KEYS = ["100", "133", "135", "180", "200", "300"]
+_ROW_ERROR_INLINE_LIMIT = 200
+_SAMPLE_ROWS_LIMIT = 5
+_SAMPLE_ROWS_MIN = 2
+
+_AGENCY_CONFIG: dict[str, dict[str, Any]] = {
+    "otto": {
+        "sheets": ["Blad1"],
+        "required_sheet": "Blad1",
+        "mapping_rules": [
+            MappingRule("person_number", "Personeelsnummer", True, None),
+            MappingRule("first_name", "Voornaam", True, None),
+            MappingRule("last_name", "Achternaam", True, None),
+            MappingRule("tarief", "Fase tarief", False, "E"),
+            MappingRule("schaal", "Schaal", False, "F"),
+            MappingRule("rate_100", "100%", False, "Q"),
+            MappingRule("rate_133", "133%", False, "R"),
+            MappingRule("rate_135", "135%", False, "S"),
+            MappingRule("rate_180", "180%", False, "T"),
+            MappingRule("rate_200", "200%", False, "U"),
+            MappingRule("rate_300", "300%", False, "V"),
+        ],
+    },
+    "flexspecialisten": {
+        "sheets": ["Blad1", "1 januari 2025"],
+        "required_sheet": None,
+        "mapping_rules": [
+            MappingRule("person_number", "Loonnummer", True, None),
+            MappingRule("first_name", "Voornaam", True, None),
+            MappingRule("last_name", "Achternaam", True, None),
+            MappingRule("loongroep", "Loongroep", False, "D"),
+            MappingRule("fase_contracten", "Fase contracten", False, "E"),
+            MappingRule("rate_100", "100%", False, "J"),
+            MappingRule("rate_133", "133%", False, "L"),
+            MappingRule("rate_135", "135%", False, "N"),
+            MappingRule("rate_180", "180%", False, "V"),
+            MappingRule("rate_200", "200%", False, "P"),
+            MappingRule("rate_300", "300%", False, "R"),
+        ],
+    },
+}
+
+
+def _normalize_header(value: Any) -> str:
+    text = _norm_text(value).replace("\ufeff", "")
+    text = text.replace("％", "%")
+    text = text.replace("procent", "%")
+    text = re.sub(r"\s*%\s*", "%", text)
+    text = re.sub(r"[\s,;:_-]+", " ", text.strip().lower())
+    return " ".join(text.split())
+
+
+def _column_letter_to_index(column: str) -> int | None:
+    text = _norm_text(column).upper()
+    if not text or not re.fullmatch(r"[A-Z]+", text):
+        return None
+    total = 0
+    for ch in text:
+        total = total * 26 + (ord(ch) - ord("A") + 1)
+    return total - 1
+
+
+def _column_index_to_letter(index: int) -> str | None:
+    if index < 0:
+        return None
+    n = index + 1
+    chars: list[str] = []
+    while n > 0:
+        n, rem = divmod(n - 1, 26)
+        chars.append(chr(ord("A") + rem))
+    return "".join(reversed(chars))
+
+
+def _mapping_to_response_item(
+    key: str,
+    required: bool,
+    mapping_entry: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "key": key,
+        "header": mapping_entry.get("header"),
+        "column": mapping_entry.get("column"),
+        "sourceType": mapping_entry.get("sourceType", "missing"),
+        "confidence": mapping_entry.get("confidence", "none"),
+        "required": required,
+        "notes": mapping_entry.get("notes"),
+    }
+
+
+def _select_sheet_for_agency(wb: Any, agency: str) -> Any:
+    cfg = _AGENCY_CONFIG[agency]
+    required_sheet = cfg.get("required_sheet")
+    if required_sheet:
+        if required_sheet not in wb.sheetnames:
+            raise ValueError(
+                f"{agency} tarievenbestand moet sheet '{required_sheet}' bevatten."
+            )
+        return wb[required_sheet]
+    for candidate in cfg["sheets"]:
+        if candidate in wb.sheetnames:
+            return wb[candidate]
+    raise ValueError(
+        "Flex tarievenbestand moet sheet 'Blad1' of '1 januari 2025' bevatten."
+    )
+
+
+def _resolve_mapping(header_cells: list[str], agency: str) -> dict[str, dict[str, Any]]:
+    by_exact: dict[str, int] = {}
+    by_normalized: dict[str, int] = {}
+    for idx, cell in enumerate(header_cells):
+        if not cell:
+            continue
+        exact = _norm_text(cell)
+        normalized = _normalize_header(cell)
+        if exact and exact not in by_exact:
+            by_exact[exact] = idx
+        if normalized and normalized not in by_normalized:
+            by_normalized[normalized] = idx
+
+    mapping: dict[str, dict[str, Any]] = {}
+    for rule in _AGENCY_CONFIG[agency]["mapping_rules"]:
+        idx = by_exact.get(rule.header)
+        if idx is not None:
+            mapping[rule.key] = {
+                "columnIndex": idx,
+                "column": _column_index_to_letter(idx),
+                "header": header_cells[idx] if idx < len(header_cells) else rule.header,
+                "sourceType": "header",
+                "confidence": "exact",
+                "required": rule.required,
+                "notes": None,
+            }
+            continue
+
+        idx = by_normalized.get(_normalize_header(rule.header))
+        if idx is not None:
+            mapping[rule.key] = {
+                "columnIndex": idx,
+                "column": _column_index_to_letter(idx),
+                "header": header_cells[idx] if idx < len(header_cells) else rule.header,
+                "sourceType": "header",
+                "confidence": "normalized",
+                "required": rule.required,
+                "notes": "Matched using normalized header value.",
+            }
+            continue
+
+        if rule.fallback_column:
+            fallback_idx = _column_letter_to_index(rule.fallback_column)
+            if fallback_idx is not None:
+                mapping[rule.key] = {
+                    "columnIndex": fallback_idx,
+                    "column": rule.fallback_column,
+                    "header": (
+                        header_cells[fallback_idx]
+                        if fallback_idx < len(header_cells)
+                        else None
+                    ),
+                    "sourceType": "fallback",
+                    "confidence": "fallback",
+                    "required": rule.required,
+                    "notes": "Using agency fallback column.",
+                }
+                continue
+
+        mapping[rule.key] = {
+            "columnIndex": None,
+            "column": None,
+            "header": None,
+            "sourceType": "missing",
+            "confidence": "none",
+            "required": rule.required,
+            "notes": "No header or fallback column resolved.",
+        }
+    return mapping
+
+
+def _compute_unresolved(mapping: dict[str, dict[str, Any]], agency: str) -> dict[str, list[str]]:
+    unresolved_required: list[str] = []
+    unresolved_optional: list[str] = []
+    unresolved_rates: list[str] = []
+    for rule in _AGENCY_CONFIG[agency]["mapping_rules"]:
+        entry = mapping[rule.key]
+        if entry.get("columnIndex") is not None:
+            continue
+        if rule.required:
+            unresolved_required.append(rule.key)
+        elif rule.key.startswith("rate_"):
+            unresolved_rates.append(rule.key.replace("rate_", ""))
+        else:
+            unresolved_optional.append(rule.key)
+    return {
+        "unresolvedRequired": unresolved_required,
+        "unresolvedOptional": unresolved_optional,
+        "unresolvedRates": unresolved_rates,
+    }
+
+
+def _sample_rows_for_preview(ws: Any, mapping: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    def _to_preview_value(value: Any) -> str | int | float | None:
+        if value is None:
+            return None
+        if isinstance(value, bool):
+            return str(value).lower()
+        if isinstance(value, (int, float)):
+            return value
+        text = _norm_text(value)
+        return text if text else None
+
+    rows: list[dict[str, Any]] = []
+    mapped_keys = [key for key, spec in mapping.items() if spec.get("columnIndex") is not None]
+    if not mapped_keys:
+        mapped_keys = list(mapping.keys())
+
+    for row_idx, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
+        row_sample: dict[str, Any] = {}
+        has_value = False
+        for key in mapped_keys:
+            spec = mapping.get(key, {})
+            col_idx = spec.get("columnIndex")
+            raw_value = row[col_idx] if col_idx is not None and col_idx < len(row) else None
+            value = _to_preview_value(raw_value)
+            if value is not None:
+                has_value = True
+            row_sample[key] = value
+        # Always include the first rows for deterministic UI preview,
+        # then continue with non-empty mapped rows only.
+        if has_value or len(rows) < _SAMPLE_ROWS_MIN:
+            row_sample["rowNumber"] = row_idx
+            rows.append(row_sample)
+        if len(rows) >= _SAMPLE_ROWS_LIMIT:
+            break
+    return rows
+
+
+def _persist_preview_context(preview_dir: str, context: PreviewContext) -> None:
+    os.makedirs(preview_dir, exist_ok=True)
+    context_path = os.path.join(preview_dir, f"{context.upload_id}.json")
+    with open(context_path, "w", encoding="utf-8") as f:
+        json.dump(asdict(context), f, ensure_ascii=True)
+
+
+def _load_preview_context(preview_dir: str, upload_id: str) -> PreviewContext:
+    context_path = os.path.join(preview_dir, f"{upload_id}.json")
+    if not os.path.exists(context_path):
+        raise ValueError("Onbekende uploadId; start met /upload_wagegroups_rate/preview.")
+    with open(context_path, encoding="utf-8") as f:
+        raw = json.load(f)
+    return PreviewContext(**raw)
+
+
+def create_wagegroup_rate_preview(
+    *,
+    content: bytes,
+    filename: str,
+    agency: str,
+    preview_dir: str,
+) -> dict[str, Any]:
+    if load_workbook is None:
+        raise ValueError("openpyxl is niet beschikbaar in deze omgeving.")
+    wb = load_workbook(io.BytesIO(content), data_only=True)
+    ws = _select_sheet_for_agency(wb, agency)
+
+    header_cells = [_norm_text(c.value) for c in ws[1]]
+    mapping = _resolve_mapping(header_cells, agency)
+    unresolved = _compute_unresolved(mapping, agency)
+    warnings: list[str] = []
+    if unresolved["unresolvedRates"]:
+        warnings.append(
+            "Niet alle tariefkolommen konden worden gekoppeld: "
+            + ", ".join(unresolved["unresolvedRates"])
+        )
+
+    upload_id = uuid.uuid4().hex
+    workbook_path = os.path.join(preview_dir, f"{upload_id}.xlsx")
+    os.makedirs(preview_dir, exist_ok=True)
+    with open(workbook_path, "wb") as f:
+        f.write(content)
+
+    context = PreviewContext(
+        upload_id=upload_id,
+        agency=agency,
+        source_file_name=filename,
+        workbook_path=workbook_path,
+        detected_sheet=str(ws.title),
+        header_row=1,
+        header_cells=header_cells,
+        mapping=mapping,
+    )
+    _persist_preview_context(preview_dir, context)
+
+    response_mapping = [
+        _mapping_to_response_item(rule.key, rule.required, mapping[rule.key])
+        for rule in _AGENCY_CONFIG[agency]["mapping_rules"]
+    ]
+
+    return {
+        "uploadId": upload_id,
+        "detectedSheet": ws.title if ws else None,
+        "headerRow": 1,
+        "mapping": response_mapping,
+        "unresolvedRequired": unresolved["unresolvedRequired"],
+        "unresolvedOptional": unresolved["unresolvedOptional"],
+        "unresolvedRates": unresolved["unresolvedRates"],
+        "warnings": warnings,
+        "sampleRows": _sample_rows_for_preview(ws, mapping),
+    }
+
+
+def _apply_mapping_override(
+    context: PreviewContext,
+    mapping_override: dict[str, dict[str, str]] | None,
+) -> tuple[dict[str, dict[str, Any]], list[str]]:
+    merged = {k: dict(v) for k, v in context.mapping.items()}
+    warnings: list[str] = []
+    if not mapping_override:
+        return merged, warnings
+
+    header_lookup: dict[str, int] = {}
+    normalized_lookup: dict[str, int] = {}
+    for idx, cell in enumerate(context.header_cells):
+        if not cell:
+            continue
+        header_lookup[cell] = idx
+        normalized_lookup[_normalize_header(cell)] = idx
+
+    for key, override in mapping_override.items():
+        if key not in merged:
+            warnings.append(f"Onbekende mappingOverride key genegeerd: {key}.")
+            continue
+        header_value = _norm_text(override.get("header")) if override else ""
+        column_value = _norm_text(override.get("column")) if override else ""
+        if not header_value and not column_value:
+            # Ignore empty override entries and keep preview mapping.
+            # Frontend may send sparse/default entries for untouched fields.
+            continue
+
+        idx = None
+        if header_value:
+            idx = header_lookup.get(header_value)
+            if idx is None:
+                idx = normalized_lookup.get(_normalize_header(header_value))
+        if idx is None and column_value:
+            idx = _column_letter_to_index(column_value)
+
+        if idx is None:
+            warnings.append(
+                f"mappingOverride voor '{key}' genegeerd: geen geldige kolom/header gevonden."
+            )
+            continue
+
+        merged[key] = {
+            **merged[key],
+            "columnIndex": idx,
+            "column": _column_index_to_letter(idx),
+            "header": context.header_cells[idx] if idx < len(context.header_cells) else None,
+            "sourceType": "manual",
+            "confidence": "manual",
+            "notes": "Column set via mappingOverride.",
+        }
+    return merged, warnings
+
+
+def _read_row_value(row: tuple[Any, ...], mapping: dict[str, dict[str, Any]], key: str) -> Any:
+    idx = mapping.get(key, {}).get("columnIndex")
+    if idx is None or idx >= len(row):
+        return None
+    return row[idx]
+
+
+def commit_wagegroup_rate_preview(
+    *,
+    upload_id: str,
+    agency: str,
+    preview_dir: str,
+    output_dir: str,
+    mapping_override: dict[str, dict[str, str]] | None = None,
+) -> tuple[ParsedRateWorkbook, dict[str, Any]]:
+    if load_workbook is None:
+        raise ValueError("openpyxl is niet beschikbaar in deze omgeving.")
+
+    context = _load_preview_context(preview_dir, upload_id)
+    if context.agency != agency:
+        raise ValueError("uploadId hoort bij een andere agency.")
+    if not os.path.exists(context.workbook_path):
+        raise ValueError("Bronbestand voor uploadId is niet meer beschikbaar.")
+
+    with open(context.workbook_path, "rb") as f:
+        content = f.read()
+    wb = load_workbook(io.BytesIO(content), data_only=True)
+    ws = _select_sheet_for_agency(wb, agency)
+    mapping, override_warnings = _apply_mapping_override(context, mapping_override)
+    unresolved = _compute_unresolved(mapping, agency)
+    if unresolved["unresolvedRequired"]:
+        raise ValueError(
+            "Ontbrekende verplichte kolommen na mappingOverride: "
+            + ", ".join(unresolved["unresolvedRequired"])
+            + ". Controleer mappingOverride.header/column."
+        )
+
+    errors: list[dict[str, Any]] = []
+    warnings: list[str] = list(override_warnings)
+    person_rates: list[dict[str, Any]] = []
+    rate_card_candidates: dict[tuple[str, str, str], list[float]] = defaultdict(list)
+    processed_rows = 0
+    ingested_rows = 0
+    skipped_rows = 0
+
+    for row_number, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
+        processed_rows += 1
+        person_number = _to_person_number(_read_row_value(row, mapping, "person_number"))
+        first_name = _norm_text(_read_row_value(row, mapping, "first_name"))
+        last_name = _norm_text(_read_row_value(row, mapping, "last_name"))
+        full_name = _norm_text(f"{first_name} {last_name}") or (person_number or "")
+
+        row_errors: list[dict[str, Any]] = []
+        if not person_number:
+            row_errors.append(
+                {"row": row_number, "code": "missing_person_number", "message": "Persoonsnummer ontbreekt.", "field": "person_number"}
+            )
+        if not first_name or not last_name:
+            row_errors.append(
+                {"row": row_number, "code": "missing_name", "message": "Voornaam en/of achternaam ontbreekt.", "field": "name"}
+            )
+        if row_errors:
+            skipped_rows += 1
+            errors.extend(row_errors)
+            continue
+
+        if agency == "otto":
+            tarief = _extract_phase(_read_row_value(row, mapping, "tarief"))
+            schaal = _norm_text(_read_row_value(row, mapping, "schaal")) or None
+            provider = "otto"
+        else:
+            loongroep = _norm_text(_read_row_value(row, mapping, "loongroep"))
+            schaal, parsed_tarief = _extract_schaal_tarief(loongroep)
+            fase = _extract_phase(_read_row_value(row, mapping, "fase_contracten"))
+            tarief = fase or parsed_tarief or "NA"
+            schaal = schaal or "NA"
+            provider = "flexspecialisten"
+
+        valid_rate_count = 0
+        for rate_key in _RATE_KEYS:
+            key = f"rate_{rate_key}"
+            if mapping.get(key, {}).get("columnIndex") is None:
+                continue
+            raw_rate = _read_row_value(row, mapping, key)
+            rate_value = _to_float(raw_rate)
+            if raw_rate not in (None, "") and rate_value is None:
+                errors.append(
+                    {
+                        "row": row_number,
+                        "code": "invalid_rate_value",
+                        "message": f"Ongeldige numerieke waarde voor {rate_key}%.",
+                        "field": key,
+                    }
+                )
+                continue
+            if rate_value is None:
+                continue
+            valid_rate_count += 1
+            person_rates.append(
+                {
+                    "provider": provider,
+                    "person_number": person_number,
+                    "name": full_name or person_number,
+                    "normalized_name": normalize_person_name(full_name or person_number),
+                    "schaal": schaal,
+                    "tarief": tarief,
+                    "rate_key": rate_key,
+                    "rate_value": rate_value,
+                    "source_file": context.source_file_name,
+                    "source_week": None,
+                }
+            )
+            rate_card_candidates[(str(schaal or "NA"), str(tarief or "NA"), rate_key)].append(
+                rate_value
+            )
+
+        if valid_rate_count == 0:
+            skipped_rows += 1
+            errors.append(
+                {
+                    "row": row_number,
+                    "code": "no_rates_found",
+                    "message": "Geen valide tariefwaarden gevonden in de rij.",
+                    "field": "rates",
+                }
+            )
+            continue
+        ingested_rows += 1
+
+    rate_card: list[dict[str, Any]] = []
+    for (schaal, tarief, rate_key), values in rate_card_candidates.items():
+        selected = Counter(round(v, 4) for v in values).most_common(1)[0][0]
+        rate_card.append(
+            {
+                "provider": agency,
+                "schaal": schaal,
+                "tarief": tarief,
+                "rate_key": rate_key,
+                "rate_value": float(selected),
+                "source_file": context.source_file_name,
+                "source_week": None,
+            }
+        )
+
+    report_url: str | None = None
+    inline_errors: list[dict[str, Any]] | None = errors
+    if len(errors) > _ROW_ERROR_INLINE_LIMIT:
+        os.makedirs(output_dir, exist_ok=True)
+        report_path = os.path.join(output_dir, f"{upload_id}_wagegroup_rate_errors.json")
+        with open(report_path, "w", encoding="utf-8") as f:
+            json.dump(errors, f, ensure_ascii=True, indent=2)
+        report_url = report_path
+        inline_errors = errors[:_ROW_ERROR_INLINE_LIMIT]
+        warnings.append("Foutenrapport is ingekort inline; volledig rapport staat op errorReportUrl.")
+
+    stats = {
+        "processedRows": processed_rows,
+        "ingestedRows": ingested_rows,
+        "skippedRows": skipped_rows,
+        "errorReportUrl": report_url,
+        "errorReportInline": inline_errors,
+        "warnings": warnings,
+    }
+    return ParsedRateWorkbook(person_rates=person_rates, rate_card=rate_card), stats
 
 
 def parse_otto_wagegroup_rate_workbook(

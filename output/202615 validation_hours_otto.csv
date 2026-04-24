@@ -174,8 +174,12 @@ Kulesza Arkadiusz,T135 Dag,4.0,4.0,0.0,OK
 Cristu Virgil,Norm uren Dag,26.0,26.0,0.0,OK
 Cristu Virgil,T135 Dag,13.0,13.0,0.0,OK
 Kasileviciute Gerda,Norm uren Dag,31.75,31.75,0.0,OK
+<<<<<<< HEAD
 Kasileviciute Gerda,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
 Kasileviciute Gerda,normaleuren ma-vr 133%,4.0,,,ALLEEN IN FACTUUR
+=======
+Kasileviciute Gerda,T133 Dag,4.0,4.0,0.0,OK
+>>>>>>> a12bd82fe5f8ea582767917f40e66ac09d5b5e53
 Kijak Hanna,Norm uren Dag,7.5,7.5,0.0,OK
 Kijak Hanna,T133 Dag,20.75,20.75,0.0,OK
 Kijak Hanna,T135 Dag,2.25,2.25,0.0,OK
