@@ -1,0 +1,11 @@
+﻿provider,personId,name,invoiceCodeToeslag,rateKey,invoiceRate,deducedInvoiceWagegroup,referenceWagegroup,difference,status,matchMethod
+otto,441359,Artini Paolo,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase A,1.7222,wagegroup_diff_by_rate,person_number
+otto,441359,Artini Paolo,T133 Dag,133,38.24,A0 / Fase A,B1 / Fase A,2.2458,wagegroup_diff_by_rate,person_number
+otto,453422,Michalik Kamil,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,453422,Michalik Kamil,T133 Dag,133,38.24,A0 / Fase A,C0 / Fase A,2.5564,wagegroup_diff_by_rate,person_number
+otto,453422,Michalik Kamil,T135 Dag,135,38.74,A0 / Fase A,C0 / Fase A,2.5895,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,Norm uren Dag,100,30.04,A0 / Fase A,B1 / Fase NA,1.7949,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,T133 Dag,133,38.24,A0 / Fase A,B1 / Fase NA,2.2549,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,T135 Dag,135,38.7425,A0 / Fase A,B1 / Fase NA,2.2772,wagegroup_diff_by_rate,person_number
+otto,449344,Seciu Marius,Norm uren Dag,100,30.04,A0 / Fase A,C0 / Fase A,1.9606,wagegroup_diff_by_rate,person_number
+otto,408973,Wilczak Daniel,Norm uren Dag,100,30.1099,A0 / Fase A,B2 / Fase B,2.1005,wagegroup_diff_by_rate,person_number

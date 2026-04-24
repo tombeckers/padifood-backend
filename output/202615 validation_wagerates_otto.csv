@@ -1,0 +1,14 @@
+﻿sapId,name,invoiceCodeToeslag,rateKey,invoiceRate,expectedRate,difference,status,matchMethod
+457423,Chiaga lonut,Norm uren Dag,100,32.0,30.247,1.753,rate_mismatch,person_number
+457423,Chiaga lonut,T133 Dag,133,40.7907,38.5112,2.2796,rate_mismatch,person_number
+457423,Chiaga lonut,T135 Dag,135,41.3325,39.012,2.3205,rate_mismatch,person_number
+374814,Glabien Dariusz,OW180 Dag,180,39.9111,55.0006,15.0895,rate_mismatch,person_number
+374814,Glabien Dariusz,OW200 Dag,200,44.3429,60.4807,16.1378,rate_mismatch,person_number
+454135,Jankowski Dawid,OW180 Dag,180,36.8114,50.2813,13.4699,rate_mismatch,person_number
+456408,Koziol Marek,OW180 Dag,180,38.32,52.9102,14.5902,rate_mismatch,person_number
+456408,Koziol Marek,OW200 Dag,200,42.58,58.1972,15.6172,rate_mismatch,person_number
+439825,Kulesza Arkadiusz,OW180 Dag,180,36.808,50.2813,13.4733,rate_mismatch,person_number
+439825,Kulesza Arkadiusz,OW200 Dag,200,40.904,55.2899,14.3859,rate_mismatch,person_number
+446709,Rydzewski Patryk,Norm uren Dag,100,30.6,31.8349,1.2349,rate_mismatch,person_number
+446709,Rydzewski Patryk,T133 Dag,133,38.9706,40.4949,1.5243,rate_mismatch,person_number
+446709,Rydzewski Patryk,T135 Dag,135,39.48,41.0197,1.5397,rate_mismatch,person_number

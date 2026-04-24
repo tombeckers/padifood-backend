@@ -1,0 +1,891 @@
+﻿Naam,Datum,Code toeslag,Factuur uren,Kloklijst uren,Verschil,Status
+Koson Adrian,2025-12-01,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Koson Adrian,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Koson Adrian,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Koson Adrian,2025-12-04,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Koson Adrian,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-01,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-02,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-03,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-03,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-04,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-04,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-05,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Wach Piotr,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-02,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-04,Norm uren Dag,,9.25,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kwiecinska Patrycja,2025-12-07,OW140 Week,,2.75,,ALLEEN IN KLOKLIJST
+Przybyszewska Elzbieta,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przybyszewska Elzbieta,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przybyszewska Elzbieta,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przybyszewska Elzbieta,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przybyszewska Elzbieta,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kosior Agnieszka,2025-12-07,OW140 Week,,2.5,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-01,Norm uren Dag,,5.0,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-03,Norm uren Dag,,9.25,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Jankowska Paulina,2025-12-07,OW140 Week,,0.25,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-01,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-02,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Czajkowski Jaroslaw,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-01,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-01,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-02,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-03,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-05,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlynarczyk Bogumil,2025-12-07,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-01,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-01,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-05,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Marczak Beata,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Ogiela Patrycja,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Ogiela Patrycja,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Ogiela Patrycja,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Ogiela Patrycja,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Ogiela Patrycja,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cyran Anna,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cyran Anna,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cyran Anna,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cyran Anna,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cyran Anna,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kutermak Dawid,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kutermak Dawid,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kutermak Dawid,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kutermak Dawid,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kutermak Dawid,2025-12-05,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-01,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-01,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-02,Norm uren Dag,,4.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-02,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-03,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-03,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-04,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-04,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-05,Norm uren Dag,,5.25,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-05,T133 Dag,,2.75,,ALLEEN IN KLOKLIJST
+Glabien Dariusz,2025-12-07,OW140 Week,,8.0,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-02,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-03,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-03,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Kutkiewicz Katarzyna,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Kupcikova Iva,2025-12-01,Norm uren Dag,,6.0,,ALLEEN IN KLOKLIJST
+Kupcikova Iva,2025-12-02,Norm uren Dag,,6.0,,ALLEEN IN KLOKLIJST
+Kupcikova Iva,2025-12-03,Norm uren Dag,,6.0,,ALLEEN IN KLOKLIJST
+Kupcikova Iva,2025-12-04,Norm uren Dag,,6.0,,ALLEEN IN KLOKLIJST
+Kupcikova Iva,2025-12-05,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-01,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-02,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-03,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-04,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Pasiali Krystyna,2025-12-07,OW140 Week,,7.0,,ALLEEN IN KLOKLIJST
+Jankowski Andrzej,2025-12-02,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Jankowski Andrzej,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Jankowski Andrzej,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Jankowski Andrzej,2025-12-05,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-01,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-04,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Katarzyna,2025-12-07,OW140 Week,,2.25,,ALLEEN IN KLOKLIJST
+Kaziura Klaudiusz,2025-12-02,Norm uren Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Klaudiusz,2025-12-02,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Kaziura Klaudiusz,2025-12-02,T135 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Kaziura Klaudiusz,2025-12-03,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Kaziura Klaudiusz,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Drabik Renata,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-01,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-01,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-02,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-02,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-03,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-03,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-04,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-04,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-05,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Muc Jerzy,2025-12-05,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-03,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-03,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Mika Patrycja,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Jaworski Patryk,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Jaworski Patryk,2025-12-02,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Jaworski Patryk,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Jaworski Patryk,2025-12-04,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Jaworski Patryk,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-03,Norm uren Dag,,8.75,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikulska Anna,2025-12-07,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+Wielgus Mateusz,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wielgus Mateusz,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wielgus Mateusz,2025-12-03,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Wielgus Mateusz,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wielgus Mateusz,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Podlasin Martin,2025-12-01,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Podlasin Martin,2025-12-01,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Podlasin Martin,2025-12-02,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Podlasin Martin,2025-12-02,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-01,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-02,Norm uren Dag,,3.25,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-02,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-03,Norm uren Dag,,3.25,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-04,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-05,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Poplonski Tomasz,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+B Baraniuk Beata,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+B Baraniuk Beata,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+B Baraniuk Beata,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+B Baraniuk Beata,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+B Baraniuk Beata,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przydatek Renata,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przydatek Renata,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przydatek Renata,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Przydatek Renata,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-03,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-03,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Holubowska Barbara,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-02,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-03,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-03,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Koszny Ewa,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-02,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Urbanowicz Malgorzata,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-06,OW180 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Drozdziel Martin,2025-12-06,OW200 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Wilczak Daniel,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wilczak Daniel,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wilczak Daniel,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wilczak Daniel,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wilczak Daniel,2025-12-05,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Mogilnicki Konrad,2025-12-01,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Mogilnicki Konrad,2025-12-02,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Mogilnicki Konrad,2025-12-03,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Mogilnicki Konrad,2025-12-04,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Mogilnicki Konrad,2025-12-05,Norm uren Dag,,5.25,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-02,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-02,T133 Dag,,1.75,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Piksa Sandra,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-02,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-02,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-03,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-04,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Wolanin Maciej,2025-12-05,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-01,Norm uren Dag,,10.0,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-02,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-03,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-04,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-05,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Robakowski Przemyslaw,2025-12-07,OW140 Week,,5.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-01,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-02,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-03,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-04,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Dlugolecki Grzegorz,2025-12-05,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-01,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-02,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-03,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-04,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-05,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Wajler Kamila,2025-12-07,OW140 Week,,2.25,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-01,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-02,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-03,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-04,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Pikta Daniel,2025-12-05,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Gigliotti Mario,2025-12-01,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Gigliotti Mario,2025-12-02,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Gigliotti Mario,2025-12-03,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Gigliotti Mario,2025-12-04,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Gigliotti Mario,2025-12-05,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-01,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-02,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-02,T133 Dag,,5.5,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-03,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-03,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-04,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-04,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-05,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-05,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-05,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Lenart Richard,2025-12-07,OW140 Week,,4.25,,ALLEEN IN KLOKLIJST
+Stankiewicz Lucyna,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Stankiewicz Lucyna,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Stankiewicz Lucyna,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Marek Magdalena,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Marek Magdalena,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Marek Magdalena,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Marek Magdalena,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Marek Magdalena,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-01,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-02,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-03,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-04,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Babics David,2025-12-07,OW140 Week,,3.0,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Solomonova Nikola,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-01,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-02,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-02,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-03,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-04,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-05,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Marques Wilson,2025-12-07,OW140 Week,,1.25,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-01,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-02,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-02,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-03,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-04,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-05,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Costa Pedro,2025-12-07,OW140 Week,,1.25,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-01,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-02,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-03,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-05,Norm uren Dag,,6.0,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-05,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Peixoto Mathew,2025-12-07,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-01,Norm uren Dag,,8.75,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-01,T133 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-02,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-04,Norm uren Dag,,9.25,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-04,T133 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Slosiar Tomas,2025-12-05,Norm uren Dag,,9.25,,ALLEEN IN KLOKLIJST
+Kijak Dominik,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kijak Dominik,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kijak Dominik,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kijak Dominik,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-03,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-03,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-05,Norm uren Dag,,4.25,,ALLEEN IN KLOKLIJST
+Major Daria,2025-12-05,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-01,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-02,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-03,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-04,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-05,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Cieslak Grazyna,2025-12-07,OW140 Week,,3.0,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-02,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-02,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-04,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-05,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Madej Marta,2025-12-07,OW140 Week,,0.75,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-03,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-03,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Pasieka Malgorzata,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-01,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-02,T133 Dag,,3.25,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-03,T133 Dag,,3.25,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Pyc Damian,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-01,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-02,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-02,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-03,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-03,T133 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-04,Norm uren Dag,,5.25,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-04,T133 Dag,,2.75,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Madry Slawomir,2025-12-05,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Julia,2025-12-04,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Kaziura Julia,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-01,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-01,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-03,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Gil Sandra,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-02,T133 Dag,,5.75,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-05,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-05,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Augustinaitis Audrius,2025-12-07,OW140 Week,,1.25,,ALLEEN IN KLOKLIJST
+CostaVinhas Elisabete,2025-12-01,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+CostaVinhas Elisabete,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+CostaVinhas Elisabete,2025-12-03,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+CostaVinhas Elisabete,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Pires Alves David,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Pires Alves David,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Pires Alves David,2025-12-03,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Pires Alves David,2025-12-04,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Kaziura Wiktor,2025-12-04,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Kaziura Wiktor,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kaziura Wiktor,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Kaziura Wiktor,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-01,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-01,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-02,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-02,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-03,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-03,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-04,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-04,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-05,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Artini Paolo,2025-12-05,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-02,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-05,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Muszczek Patrycja,2025-12-07,OW140 Week,,1.5,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-01,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-02,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-02,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-03,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-04,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-04,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-05,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Matiscik Vladimir,2025-12-07,OW140 Week,,1.5,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-01,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-02,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-02,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-03,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-03,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-04,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-05,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Mlot Wiktoria,2025-12-05,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-01,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-01,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-02,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-03,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-03,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-04,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-05,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Garbacz Kamila,2025-12-05,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-01,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-02,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-03,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-04,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-05,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Ustrzynski Jakub,2025-12-07,OW140 Week,,2.25,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-01,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-01,T133 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-02,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Domaradzka Jagoda,2025-12-07,OW140 Week,,5.0,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-01,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-02,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-02,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-03,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-03,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-04,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Maka Patryk,2025-12-04,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-03,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-03,T135 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Sztabinska Anna,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-05,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Agafitei loan,2025-12-07,OW140 Week,,2.0,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-01,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-01,T133 Dag,,5.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-01,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-02,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-03,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-05,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-05,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Rydzewski Patryk,2025-12-07,OW140 Week,,3.0,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-01,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-03,Norm uren Dag,,5.5,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-03,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-04,Norm uren Dag,,5.25,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-05,Norm uren Dag,,5.25,,ALLEEN IN KLOKLIJST
+Madry Oliwier,2025-12-05,T133 Dag,,3.25,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-02,Norm uren Dag,,10.0,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kierzkowski Mateusz,2025-12-07,OW140 Week,,2.0,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-01,Norm uren Dag,,4.5,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-02,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-03,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-04,Norm uren Dag,,10.5,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-05,Norm uren Dag,,4.25,,ALLEEN IN KLOKLIJST
+Seciu Marius,2025-12-07,OW140 Week,,0.25,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-01,T135 Dag,,0.75,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-02,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Dalalau Gabriel,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-01,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-04,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Bienkowska Bernardeta,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-01,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-02,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Zmijewska Magdalena,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Obaciu Andrei,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Obaciu Andrei,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Obaciu Andrei,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Obaciu Andrei,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Obaciu Andrei,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mladinovici Marius,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mladinovici Marius,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mladinovici Marius,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mladinovici Marius,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mladinovici Marius,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-01,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-01,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-02,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-02,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-03,Norm uren Dag,,6.25,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-03,T135 Dag,,1.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-04,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-04,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-05,Norm uren Dag,,6.5,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-05,T135 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-06,Norm uren Dag,,0.75,,ALLEEN IN KLOKLIJST
+Bruzdzinski Marcel,2025-12-06,OW180 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-02,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-02,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-05,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Dekanova Katarina,2025-12-07,OW140 Week,,2.25,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-05,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Cabla Robert,2025-12-07,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-02,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-04,T133 Dag,,3.75,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-05,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Moldovan Adrian,2025-12-05,T133 Dag,,2.75,,ALLEEN IN KLOKLIJST
+Proschl Lukas,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Proschl Lukas,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Proschl Lukas,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Proschl Lukas,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Radu Denisa,2025-12-07,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-03,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Michalik Kamil,2025-12-05,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-01,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-02,Norm uren Dag,,8.75,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Mikiciuk Tomasz,2025-12-07,OW140 Week,,3.5,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-01,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-02,Norm uren Dag,,9.0,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-03,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-03,T133 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-04,Norm uren Dag,,9.5,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-04,T133 Dag,,0.25,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Jankowski Dawid,2025-12-07,OW140 Week,,5.75,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-02,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Lopusiewicz Maciej,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-01,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-05,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Cwioro Agnieszka,2025-12-07,OW140 Week,,0.5,,ALLEEN IN KLOKLIJST
+Gajewska Anna,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Gajewska Anna,2025-12-02,Norm uren Dag,,8.5,,ALLEEN IN KLOKLIJST
+Gajewska Anna,2025-12-03,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Gajewska Anna,2025-12-04,Norm uren Dag,,4.0,,ALLEEN IN KLOKLIJST
+Koralewski Arkadiusz,2025-12-01,Norm uren Dag,,1.25,,ALLEEN IN KLOKLIJST
+Koralewski Arkadiusz,2025-12-02,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-01,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-01,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-02,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-04,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-05,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-05,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-06,OW180 Dag,,5.75,,ALLEEN IN KLOKLIJST
+Bierczak Piotr,2025-12-06,OW200 Dag,,3.25,,ALLEEN IN KLOKLIJST
+Cotofrea Stefan-Bogdan,2025-12-01,Norm uren Dag,,6.75,,ALLEEN IN KLOKLIJST
+Cotofrea Stefan-Bogdan,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cotofrea Stefan-Bogdan,2025-12-03,Norm uren Dag,,7.0,,ALLEEN IN KLOKLIJST
+Cotofrea Stefan-Bogdan,2025-12-04,Norm uren Dag,,7.25,,ALLEEN IN KLOKLIJST
+Cotofrea Stefan-Bogdan,2025-12-05,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Cristu Virgil,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cristu Virgil,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cristu Virgil,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cristu Virgil,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Cristu Virgil,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Filipek Damian,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Filipek Damian,2025-12-02,Norm uren Dag,,7.75,,ALLEEN IN KLOKLIJST
+Filipek Damian,2025-12-03,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Filipek Damian,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Filipek Damian,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-01,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-01,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-01,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-02,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-02,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-03,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-03,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-04,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-05,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-05,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Szulewska Dorota,2025-12-07,OW140 Week,,0.25,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-02,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-03,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+S Slepcik Ernesto,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-01,Norm uren Dag,,8.25,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-01,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-02,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-03,T133 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-04,T133 Dag,,1.25,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-05,Norm uren Dag,,7.5,,ALLEEN IN KLOKLIJST
+Kasileviciute Gerda,2025-12-07,OW140 Week,,4.0,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-02,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-02,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-03,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-04,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-05,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Gracia Juarez Juan,2025-12-05,T133 Dag,,2.5,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-01,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-01,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-02,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-02,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-03,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-04,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Grucelski Marcin,2025-12-05,T133 Dag,,3.75,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-02,Norm uren Dag,,1.75,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-03,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-04,Norm uren Dag,,2.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-04,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-04,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-05,Norm uren Dag,,2.25,,ALLEEN IN KLOKLIJST
+Kijak Hanna,2025-12-05,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-01,T133 Dag,,4.75,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-02,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-02,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-03,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-04,Norm uren Dag,,2.5,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-04,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Kristof Jakub,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Perczyk Justyna,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Perczyk Justyna,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Perczyk Justyna,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Perczyk Justyna,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Perczyk Justyna,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-01,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-01,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-02,Norm uren Dag,,3.0,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-02,T133 Dag,,5.0,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-02,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-03,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-03,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-03,T135 Dag,,1.0,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-04,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-04,T133 Dag,,5.25,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-04,T135 Dag,,0.5,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-05,Norm uren Dag,,2.75,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-05,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Karpinski Kamil,2025-12-07,OW140 Week,,1.75,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-01,Norm uren Dag,,3.75,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-01,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-02,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-02,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-03,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-03,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-04,Norm uren Dag,,4.0,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-04,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-05,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Skrzypczak Kewin,2025-12-05,T133 Dag,,3.5,,ALLEEN IN KLOKLIJST
+Kovacova Martina,2025-12-01,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kovacova Martina,2025-12-02,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kovacova Martina,2025-12-03,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kovacova Martina,2025-12-04,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Kovacova Martina,2025-12-05,Norm uren Dag,,8.0,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-01,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-01,T133 Dag,,3.75,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-02,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-02,T133 Dag,,4.25,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-03,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-03,T133 Dag,,4.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-04,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-04,T133 Dag,,3.0,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-05,Norm uren Dag,,3.5,,ALLEEN IN KLOKLIJST
+Tranevicius Martynas,2025-12-05,T133 Dag,,4.0,,ALLEEN IN KLOKLIJST

@@ -1,0 +1,16 @@
+﻿sapId,name,invoiceCodeToeslag,rateKey,invoiceRate,expectedRate,difference,status,matchMethod
+441359,Artini Paolo,Norm uren Dag,100,30.04,31.7622,1.7222,rate_mismatch,person_number
+441359,Artini Paolo,T133 Dag,133,38.24,40.4858,2.2458,rate_mismatch,person_number
+413691,Bierczak Piotr,OW180 Dag,180,38.88,54.0327,15.1527,rate_mismatch,person_number
+413691,Bierczak Piotr,OW200 Dag,200,43.2,59.4386,16.2386,rate_mismatch,person_number
+451815,Bruzdzinski Marcel,OW180 Dag,180,36.5412,50.2813,13.7401,rate_mismatch,person_number
+406836,Drozdziel Martin,OW180 Dag,180,38.0895,53.4776,15.388,rate_mismatch,person_number
+406836,Drozdziel Martin,OW200 Dag,200,42.32,58.7944,16.4744,rate_mismatch,person_number
+453422,Michalik Kamil,Norm uren Dag,100,30.04,32.0006,1.9606,rate_mismatch,person_number
+453422,Michalik Kamil,T133 Dag,133,38.24,40.7964,2.5564,rate_mismatch,person_number
+453422,Michalik Kamil,T135 Dag,135,38.74,41.3295,2.5895,rate_mismatch,person_number
+446709,Rydzewski Patryk,Norm uren Dag,100,30.04,31.8349,1.7949,rate_mismatch,person_number
+446709,Rydzewski Patryk,T133 Dag,133,38.24,40.4949,2.2549,rate_mismatch,person_number
+446709,Rydzewski Patryk,T135 Dag,135,38.7425,41.0197,2.2772,rate_mismatch,person_number
+449344,Seciu Marius,Norm uren Dag,100,30.04,32.0006,1.9606,rate_mismatch,person_number
+408973,Wilczak Daniel,Norm uren Dag,100,30.1099,32.2104,2.1005,rate_mismatch,person_number
