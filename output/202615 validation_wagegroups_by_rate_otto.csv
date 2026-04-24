@@ -1,0 +1,7 @@
+﻿provider,personId,name,invoiceCodeToeslag,rateKey,invoiceRate,deducedInvoiceWagegroup,referenceWagegroup,difference,status,matchMethod
+otto,457423,Chiaga lonut,Norm uren Dag,100,32.0,C0 / Fase A,A0 / Fase A,1.753,wagegroup_diff_by_rate,person_number
+otto,457423,Chiaga lonut,T133 Dag,133,40.7907,C0 / Fase A,A0 / Fase A,2.2796,wagegroup_diff_by_rate,person_number
+otto,457423,Chiaga lonut,T135 Dag,135,41.3325,C0 / Fase A,A0 / Fase A,2.3205,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,Norm uren Dag,100,30.6,A1 / Fase A,B1 / Fase NA,1.2349,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,T133 Dag,133,38.9706,A1 / Fase A,B1 / Fase NA,1.5243,wagegroup_diff_by_rate,person_number
+otto,446709,Rydzewski Patryk,T135 Dag,135,39.48,A1 / Fase A,B1 / Fase NA,1.5397,wagegroup_diff_by_rate,person_number

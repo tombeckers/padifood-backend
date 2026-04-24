@@ -43,6 +43,8 @@ from validation_hours import (
     run_validation,
 )
 from wagegroup_rates import (
+    commit_wagegroup_rate_preview,
+    create_wagegroup_rate_preview,
     parse_flex_wagegroup_rate_workbook,
     parse_otto_wagegroup_rate_workbook,
     persist_parsed_wagegroup_rates,
@@ -71,6 +73,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = (BASE_DIR / "output").resolve()
+RATE_UPLOAD_PREVIEW_DIR = (OUTPUT_DIR / "rate_upload_previews").resolve()
 WAGEGROUPS_CSV_PATH = (BASE_DIR / "person_wagegroups.csv").resolve()
 WAGEGROUPS_HEADERS = ["id", "name", "wagegroup"]
 VERIFIED_NAME_PAIRS_CSV_PATH = (BASE_DIR / "verified_name_pairs.csv").resolve()
@@ -498,6 +501,17 @@ class OttoIdentifierMappingBuildRequest(BaseModel):
     includeCandidates: bool = False
 
 
+class RateMappingOverride(BaseModel):
+    column: str | None = None
+    header: str | None = None
+
+
+class UploadWagegroupsRateCommitRequest(BaseModel):
+    uploadId: str
+    agency: str
+    mappingOverride: dict[str, RateMappingOverride] | None = None
+
+
 @app.post("/download")
 async def download(payload: DownloadRequest):
     requested = payload.fileName.strip()
@@ -848,6 +862,80 @@ async def upload_wagegroups_rate(
         "personRates": db_stats["personRates"],
         "rateCardRows": db_stats["rateCardRows"],
         **csv_paths,
+    }
+
+
+@app.post("/upload_wagegroups_rate/preview")
+async def upload_wagegroups_rate_preview(
+    file: UploadFile = File(...),
+    agency: str = Form(...),
+    _: None = Depends(verify_api_key),
+):
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Geen bestandsnaam ontvangen.")
+    if not file.filename.lower().endswith(".xlsx"):
+        raise HTTPException(
+            status_code=400, detail="Alleen .xlsx-bestanden worden ondersteund."
+        )
+    provider = _normalize_rate_agency(agency)
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Leeg bestand ontvangen.")
+
+    try:
+        return create_wagegroup_rate_preview(
+            content=content,
+            filename=file.filename,
+            agency=provider,
+            preview_dir=str(RATE_UPLOAD_PREVIEW_DIR),
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail=f"Kon tarievenbestand niet verwerken: {e}"
+        ) from e
+
+
+@app.post("/upload_wagegroups_rate/commit")
+async def upload_wagegroups_rate_commit(
+    payload: UploadWagegroupsRateCommitRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_api_key),
+):
+    provider = _normalize_rate_agency(payload.agency)
+    override_payload = (
+        {
+            key: {"column": value.column, "header": value.header}
+            for key, value in payload.mappingOverride.items()
+        }
+        if payload.mappingOverride
+        else None
+    )
+    try:
+        parsed, commit_stats = commit_wagegroup_rate_preview(
+            upload_id=payload.uploadId,
+            agency=provider,
+            preview_dir=str(RATE_UPLOAD_PREVIEW_DIR),
+            output_dir=str(OUTPUT_DIR),
+            mapping_override=override_payload,
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail=f"Kon commit niet verwerken: {e}"
+        ) from e
+
+    await persist_parsed_wagegroup_rates(db, provider=provider, parsed=parsed)
+    write_rates_csvs(provider=provider, parsed=parsed, output_dir=str(OUTPUT_DIR))
+    return {
+        "processedRows": commit_stats["processedRows"],
+        "ingestedRows": commit_stats["ingestedRows"],
+        "skippedRows": commit_stats["skippedRows"],
+        "errorReportUrl": commit_stats.get("errorReportUrl"),
+        "errorReportInline": commit_stats.get("errorReportInline") or [],
+        "warnings": commit_stats.get("warnings") or [],
     }
 
 
